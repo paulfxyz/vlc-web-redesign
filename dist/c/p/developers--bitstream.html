@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js" data-opt="c" data-root="../../" data-slug="developers--bitstream" data-default-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>biTStream — VideoLAN</title>
+<meta name="description" content="VideoLAN, the home of VLC media player.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../../shared/favicon.svg" type="image/svg+xml">
+<script>(function(){var d=document.documentElement;d.className=d.className.replace('no-js','js');try{var s=localStorage,t=s.getItem('vl-theme-c')||'light',mq=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches;var dk=t==='dark'||(t==='auto'&&mq)||(t==='classic'?false:false);d.setAttribute('data-theme',dk?'dark':'light');d.setAttribute('data-skin',t);['contrast','size','motion','links','spacing'].forEach(function(k){var v=s.getItem('vl-'+k);if(v)d.setAttribute('data-'+k,v);});if(s.getItem('vl-motion')!=='off'&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))d.className+=' motion';}catch(e){}})();</script>
+<link rel="stylesheet" href="../../shared/ui.css">
+<link rel="stylesheet" href="../c.css">
+</head>
+<body class="">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="conecp"><path d="M27.2 6.5c.9-2.6 8.7-2.6 9.6 0L50 51H14z"/></clipPath><symbol id="cone" viewBox="0 0 64 64"><path d="M27.2 6.5c.9-2.6 8.7-2.6 9.6 0L50 51H14z" fill="#ff8800"/><g clip-path="url(#conecp)" fill="#fff"><rect y="19" width="64" height="7"/><rect y="34" width="64" height="7.5"/></g><rect x="6" y="49" width="52" height="9" rx="3.5" fill="#ff8800"/></symbol></defs></svg><a class="skip" href="#main">Skip to content</a>
+<header class="c-mast">
+<div class="c-strip"><div class="c-wrap"><span>Vol. 30 · Est. 1996 · Free since 2001</span><span class="c-strip-r"><button type="button" data-ui-open="lang" class="c-tl"><span data-ui-langlabel="name">English</span> edition</button><button type="button" class="c-tl" data-c-act="night" aria-label="Switch between day and night edition"><span class="c-ed">Night edition</span></button><button type="button" class="c-tl" data-ui-open="search" aria-label="Search">Search</button><button type="button" class="c-tl" data-ui-open="a11y">Display</button><button type="button" class="c-donate" data-donate>Donate</button></span></div></div>
+<div class="c-wrap c-name"><a href="../index.html" aria-label="VideoLAN — home"><svg viewBox="0 0 64 64" aria-hidden="true" class="cone"><use href="#cone"/></svg><span class="c-word">VideoLAN</span></a></div>
+<nav class="c-nav" aria-label="Chapters"><div class="c-wrap"><button type="button" class="c-navtoggle" data-c-act="nav" aria-expanded="false">Chapters</button><div class="c-navlinks"><a href="section--download.html"><span>01</span>Download</a><a href="section--vlc.html"><span>02</span>VLC media player</a><a href="section--releases.html"><span>03</span>Release notes</a><a href="section--news.html"><span>04</span>News</a><a href="section--security.html"><span>05</span>Security</a><a href="section--projects.html"><span>06</span>Projects</a><a href="section--developers.html" aria-current="page"><span>07</span>Developers</a><a href="section--support.html"><span>08</span>Support</a><a href="section--contribute.html"><span>09</span>Contribute</a><a href="section--events.html"><span>10</span>Events</a><a href="section--press.html"><span>11</span>Press</a><a href="section--videolan.html"><span>12</span>VideoLAN</a></div></div></nav>
+</header>
+<main id="main" tabindex="-1"><article class="c-article">
+<header class="c-ahead c-wrap"><p class="c-kick"><a href="section--developers.html">§ 07 · Developers</a></p>
+<h1>biTStream</h1>
+
+<p class="c-by">2 min read <span aria-hidden="true">·</span> videolan.org/developers/bitstream.html</p></header>
+<div class="c-wrap c-agrid has-toc">
+<aside class="c-toc" aria-label="In this article"><p>In this article</p><ol><li><a href="#bitstream-vs-libdvbpsi">biTStream vs. libdvbpsi</a></li><li><a href="#current-features">Current features</a></li><li><a href="#get-bitstream">Get biTStream</a></li><li><a href="#extending-bitstream">Extending biTStream</a></li><li><a href="#mailing-list">Mailing list</a></li></ol></aside>
+<div class="c-prose x-prose">
+<p><code>biTStream</code> is a set of C headers allowing a simpler access to binary structures such as specified by MPEG, DVB, IETF, SMPTE, IEEE, SCTE, etc. </p>
+<h2 id="bitstream-vs-libdvbpsi">biTStream vs. libdvbpsi</h2>
+<p>libdvbpsi converts binary structures to C structures. Lists are implemented with chained lists of C structures.</p>
+<p>biTStream is lower level, and more efficient: fewer memory allocations, fewer memory copies. It also features a better separation between layers and specifications.</p>
+<h2 id="current-features">Current features</h2>
+<p><code>biTStream</code> currently implements the following specifications:</p>
+<ul> <li>ISO/IEC 13818-1 (MPEG-2 systems)</li> <li>ISO/IEC 13818-2 (MPEG-2 video)</li> <li>ISO/IEC 13818-3 (MPEG-2 audio)</li> <li>ISO/IEC 14496-3 (MPEG-4 advanced audio coding)</li> <li>ISO/IEC 14496-10 (MPEG-4 advanced video coding)</li> <li>ITU-T H.265 (high efficiency video coding)</li> <li>ATSC A/52</li> <li>ETSI EN 300 468 (Service Information in DVB systems)</li> <li>ETSI EN 50 221 (Common Interface Specification)</li> <li>ETSI TS 103 194 (DVB Simulcrypt)</li> <li>IETF RFC 3550 (Real Time Protocol)</li> <li>IETF RFC 2250 (Real Time Protocol for MPEG-1/2 audio/video)</li> <li>IETF RFC 3611 (Real Time Control Protocol Extended Reports)</li> <li>SMPTE 2022-1 (Forward Error Correction)</li> <li>SMPTE 2022-6 (hbrmt)</li> <li>SMPTE 291 (Ancillary Data Packet and Space Formatting)</li> <li>SMPTE 352 (Payload Identification)</li> <li>SMPTE 337 (Non-PCM data in AES3)</li> <li>IEEE 802.3 (Ethernet frames)</li> <li>SCTE-35 (Splice Information Table)</li> <li>SCTE-104 (Automation to Compression Communications API)</li> </ul>
+<p>In particular it supports the following MPEG and DVB structures (parsers and writers):</p>
+<ul> <li>Program Allocation Table (PAT)</li> <li>Conditional Access Table (CAT)</li> <li>Transport Stream Descriptor Table (TSDT)</li> <li>Program Map Table (PMT)</li> <li>Network Information Table (NIT)</li> <li>Bouquet Association Table (BAT)</li> <li>Service Definition Table (SDT)</li> <li>Event Information Table (EIT)</li> <li>Time and Date Table (TDT)</li> <li>Time Offset Table (TOT)</li> <li>Running Status Table (RST)</li> <li>Stuffing Table (ST)</li> <li>Discontinuity Information Table (DIT)</li> <li>Selection Information Table (SIT)</li> <li>MPEG descriptors 0x02 to 0x12 and 0x1b to 0x2c</li> <li>DVB descriptors 0x40 to 0x6e and 0x7a to 0x7c</li> </ul>
+<h2 id="get-bitstream">Get biTStream</h2>
+<p>The latest <code>biTStream</code> release is <a href="https://get.videolan.org/bitstream/1.6/" data-dl><strong>version 1.6</strong></a>.</p>
+<p><code>biTStream</code> is available through <a href="https://wiki.videolan.org/git">git</a> at:</p>
+<pre><code>git clone https://code.videolan.org/videolan/bitstream.git</code></pre>
+<p>All releases can be found by browsing the <a href="https://get.videolan.org/bitstream/" data-dl><strong>releases</strong></a>.</p>
+<p>The source code can browsed at <a href="https://code.videolan.org/videolan/bitstream">code.videolan.org</a>.</p>
+<h2 id="extending-bitstream">Extending biTStream</h2>
+<p>A lot of MPEG and DVB tables and descriptors are not implemented yet, or are incomplete. Patches are very welcome.</p>
+<p>Though biTStream is originally targeted at video applications in general and MPEG-2 transport stream in particular, the same principle can be followed with other binary data types, and patches are welcome here too. Just try to follow a coherent directory naming.</p>
+<p>biTStream is released under the MIT license because since it is a direct application of standards, there is no added value. The MIT license doesn't require you to contribute back your changes, and you can use biTStream in proprietary applications. However, if you add new structures, or fix bugs in current structures, you'd be very nice to contribute them (again, there is no point in concealing this). Thanks.</p>
+<p>Contributions can be sent as pull requests in our <a href="https://github.com/videolan/bitstream">github repository</a>.</p>
+<h2 id="mailing-list">Mailing list</h2>
+<p>There is a mailing-list dedicated to biTStream development. Subscribe <a href="developers--lists.html">here</a>.</p></div>
+</div>
+<div class="c-wrap"><nav class="c-pn" aria-label="Continue reading"><a href="developers.html"><small>← Previous</small><b>Developer zone</b></a><a href="developers--i18n.html" class="r"><small>Next →</small><b>VideoLAN internationalization</b></a></nav></div>
+</article></main>
+<footer class="c-foot"><div class="c-wrap"><div class="c-foot-grid"><div><h3><span>01</span> <a href="section--download.html">Download</a></h3><p>Official builds of VLC for every platform, past and present.</p></div><div><h3><span>02</span> <a href="section--vlc.html">VLC media player</a></h3><p>Features, screenshots, skins, goodies and the libVLC framework.</p></div><div><h3><span>03</span> <a href="section--releases.html">Release notes</a></h3><p>Every VLC release since 1.1, with highlights and changelogs.</p></div><div><h3><span>04</span> <a href="section--news.html">News</a></h3><p>Announcements from VideoLAN since 1999.</p></div><div><h3><span>05</span> <a href="section--security.html">Security</a></h3><p>Advisories and bulletins, and how to report a vulnerability.</p></div><div><h3><span>06</span> <a href="section--projects.html">Projects</a></h3><p>DVBlast, x264, dav1d, multicat, VLMC, VLMa and the libraries behind VLC.</p></div><div><h3><span>07</span> <a href="section--developers.html">Developers</a></h3><p>Developer documentation, libraries, mailing lists and translation.</p></div><div><h3><span>08</span> <a href="section--support.html">Support</a></h3><p>FAQ, documentation, forums, IRC and mailing lists.</p></div><div><h3><span>09</span> <a href="section--contribute.html">Contribute</a></h3><p>Give time, hardware or money. VLC is made by people like you.</p></div><div><h3><span>10</span> <a href="section--events.html">Events</a></h3><p>VideoLAN Dev Days, FOSDEM and 25 years of photos and stories.</p></div><div><h3><span>11</span> <a href="section--press.html">Press</a></h3><p>Press releases and official statements.</p></div><div><h3><span>12</span> <a href="section--videolan.html">VideoLAN</a></h3><p>The organisation, team, partners, legal and privacy.</p></div></div>
+<div class="c-colophon"><p><b>Colophon.</b> Set in your system’s own serif and sans faces, so nothing is downloaded but words. No cookies, no trackers. VLC, VideoLAN and x264 are registered trademarks of VideoLAN. Unofficial redesign concept by Paul Fleury. <a href="design-notes.html">Design notes</a> · <a href="sitemap.html">Index of every page</a></p></div></div></footer><script src="../../shared/search-index.js" defer></script>
+<script src="../../shared/ui.js" defer></script>
+<script src="../c.js" defer></script>
+</body>
+</html>

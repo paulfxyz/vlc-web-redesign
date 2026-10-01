@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js" data-opt="c" data-root="../../" data-slug="developers--x264" data-default-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>x264 — VideoLAN</title>
+<meta name="description" content="VideoLAN, the home of VLC media player.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../../shared/favicon.svg" type="image/svg+xml">
+<script>(function(){var d=document.documentElement;d.className=d.className.replace('no-js','js');try{var s=localStorage,t=s.getItem('vl-theme-c')||'light',mq=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches;var dk=t==='dark'||(t==='auto'&&mq)||(t==='classic'?false:false);d.setAttribute('data-theme',dk?'dark':'light');d.setAttribute('data-skin',t);['contrast','size','motion','links','spacing'].forEach(function(k){var v=s.getItem('vl-'+k);if(v)d.setAttribute('data-'+k,v);});if(s.getItem('vl-motion')!=='off'&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))d.className+=' motion';}catch(e){}})();</script>
+<link rel="stylesheet" href="../../shared/ui.css">
+<link rel="stylesheet" href="../c.css">
+</head>
+<body class="">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="conecp"><path d="M27.2 6.5c.9-2.6 8.7-2.6 9.6 0L50 51H14z"/></clipPath><symbol id="cone" viewBox="0 0 64 64"><path d="M27.2 6.5c.9-2.6 8.7-2.6 9.6 0L50 51H14z" fill="#ff8800"/><g clip-path="url(#conecp)" fill="#fff"><rect y="19" width="64" height="7"/><rect y="34" width="64" height="7.5"/></g><rect x="6" y="49" width="52" height="9" rx="3.5" fill="#ff8800"/></symbol></defs></svg><a class="skip" href="#main">Skip to content</a>
+<header class="c-mast">
+<div class="c-strip"><div class="c-wrap"><span>Vol. 30 · Est. 1996 · Free since 2001</span><span class="c-strip-r"><button type="button" data-ui-open="lang" class="c-tl"><span data-ui-langlabel="name">English</span> edition</button><button type="button" class="c-tl" data-c-act="night" aria-label="Switch between day and night edition"><span class="c-ed">Night edition</span></button><button type="button" class="c-tl" data-ui-open="search" aria-label="Search">Search</button><button type="button" class="c-tl" data-ui-open="a11y">Display</button><button type="button" class="c-donate" data-donate>Donate</button></span></div></div>
+<div class="c-wrap c-name"><a href="../index.html" aria-label="VideoLAN — home"><svg viewBox="0 0 64 64" aria-hidden="true" class="cone"><use href="#cone"/></svg><span class="c-word">VideoLAN</span></a></div>
+<nav class="c-nav" aria-label="Chapters"><div class="c-wrap"><button type="button" class="c-navtoggle" data-c-act="nav" aria-expanded="false">Chapters</button><div class="c-navlinks"><a href="section--download.html"><span>01</span>Download</a><a href="section--vlc.html"><span>02</span>VLC media player</a><a href="section--releases.html"><span>03</span>Release notes</a><a href="section--news.html"><span>04</span>News</a><a href="section--security.html"><span>05</span>Security</a><a href="section--projects.html"><span>06</span>Projects</a><a href="section--developers.html" aria-current="page"><span>07</span>Developers</a><a href="section--support.html"><span>08</span>Support</a><a href="section--contribute.html"><span>09</span>Contribute</a><a href="section--events.html"><span>10</span>Events</a><a href="section--press.html"><span>11</span>Press</a><a href="section--videolan.html"><span>12</span>VideoLAN</a></div></div></nav>
+</header>
+<main id="main" tabindex="-1"><article class="c-article">
+<header class="c-ahead c-wrap"><p class="c-kick"><a href="section--developers.html">§ 07 · Developers</a></p>
+<h1>x264</h1>
+
+<p class="c-by">2 min read <span aria-hidden="true">·</span> videolan.org/developers/x264.html</p></header>
+<div class="c-wrap c-agrid has-toc">
+<aside class="c-toc" aria-label="In this article"><p>In this article</p><ol><li><a href="#features-overview">Features Overview</a></li><li><a href="#getting-x264">Getting x264</a></li><li><a href="#news">News</a></li><li><a href="#encoder-features">Encoder features</a></li><li><a href="#awards">Awards</a></li><li><a href="#support">Support</a></li><li><a href="#bugs">Bugs</a></li><li><a href="#licensing">Licensing</a></li><li><a href="#software-using-x264">Software using x264</a></li></ol></aside>
+<div class="c-prose x-prose">
+<p>x264 is a <strong>free software</strong> <strong>library</strong> and <strong>application</strong> for encoding video streams into the <strong><a href="https://en.wikipedia.org/wiki/H.264">H.264/MPEG-4 AVC</a></strong> compression format, and is released under the terms of the <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GNU GPL</a>.</p>
+<p><a href="https://code.videolan.org/videolan/x264/-/archive/master/x264-master.tar.bz2"> <img alt="Download x264 icon" decoding="async" loading="lazy" src="https://www.videolan.org/images/downloadX264.png"/> Download x264 master  •  Source  •  750kB </a></p>
+<p><a href="https://artifacts.videolan.org/x264/" data-dl>Binaries</a></p>
+<h2 id="features-overview">Features Overview</h2>
+<ul> <li>Provides best-in-class performance, compression, and features.</li> <li>Achieves dramatic performance, encoding 4 or more 1080p streams in realtime on a single consumer-level computer.</li> <li>Gives the best quality, having the most advanced psychovisual optimizations.</li> <li>Support features necessary for many different applications, such as television broadcast, Blu-ray low-latency video applications, and web video.</li> <li>x264 forms the core of many web video services, such as Youtube, Facebook, Vimeo, and Hulu. It is widely used by television broadcasters and ISPs.</li> </ul>
+<hr/>
+<h2 id="getting-x264">Getting x264</h2>
+<h3 id="source">Source</h3>
+<p>The latest x264 source code is available through <a href="https://wiki.videolan.org/Git">git</a> repository:</p>
+<pre><code># git clone https://code.videolan.org/videolan/x264.git</code></pre>
+<p>You can <a href="https://code.videolan.org/videolan/x264/">browse the source</a> on-line.</p>
+<h3 id="application-binaries">Application binaries</h3>
+<p>Official builds for Windows, Linux, and MacOSX are available from <a href="https://artifacts.videolan.org/x264/" data-dl>here</a>.</p>
+<h2 id="news">News</h2>
+<p><strong>2013 August 23</strong> — The <a href="https://mailman.videolan.org/pipermail/x264-devel/2013-August/010211.html">x264 Development Newsletter: Volume 39</a> is out.</p>
+<p><strong>2013 July 4</strong> — The <a href="https://mailman.videolan.org/pipermail/x264-devel/2013-July/010170.html">x264 Development Newsletter: Volume 38</a> is out.</p>
+<p><strong>2013 May 20</strong> — The <a href="https://mailman.videolan.org/pipermail/x264-devel/2013-May/010083.html">x264 Development Newsletter: Volume 37</a> is out.</p>
+<p><strong>2013 May 4</strong> — The <a href="https://mailman.videolan.org/pipermail/x264-devel/2013-May/010049.html">x264 Development Newsletter: Volume 36</a> is out.</p>
+<hr/>
+<h2 id="encoder-features">Encoder features</h2>
+<ul> <li> 8x8 and 4x4 adaptive spatial transform</li> <li> Adaptive B-frame placement</li> <li> B-frames as references / arbitrary frame order</li> <li> CAVLC/CABAC entropy coding</li> <li> Custom quantization matrices</li> <li> Intra: all macroblock types (16x16, 8x8, 4x4, and PCM with all predictions)</li> <li> Inter P: all partitions (from 16x16 down to 4x4)</li> <li> Inter B: partitions from 16x16 down to 8x8 (including skip/direct)</li> <li> Interlacing (MBAFF)</li> <li> Multiple reference frames</li> <li> Ratecontrol: constant quantizer, constant quality, single or multipass ABR, optional VBV</li> <li> Scenecut detection</li> <li> Spatial and temporal direct mode in B-frames, adaptive mode selection</li> <li> Parallel encoding on multiple CPUs</li> <li> Predictive lossless mode</li> <li> Psy optimizations for detail retention (adaptive quantization, psy-RD, psy-trellis)</li> <li> Zones for arbitrarily adjusting bitrate distribution</li> </ul>
+<h2 id="awards">Awards</h2>
+<p><strong>2010 May 25</strong> — x264 won <a href="https://www.compression.ru/video/codec_comparison/h264_2010/">MSU Sixth MPEG-4 AVC/H.264 Video Codecs Comparison</a>, with ~24% better encoding than second place.</p>
+<p><strong>2005 December 26</strong> — x264 won <a href="https://www.doom9.org/index.html?/codecs-final-105-1.htm">Doom9's 2005 codec shoot-out</a>, passing Ateme by a hair.</p>
+<p><strong>2005 December 12</strong> — x264 tied for 1st place (with Ateme) in the <a href="https://www.compression.ru/video/codec_comparison/mpeg-4_avc_h264_2005_en.html">second annual MSU MPEG-4 AVC/ H.264 codecs comparison</a>.</p>
+<hr/>
+<h2 id="support">Support</h2>
+<p>For support information and to ask questions, you have the following possibilities:</p>
+<p>A mailing list (<a href="https://mailman.videolan.org/listinfo/x264-devel">x264-devel</a>), IRC (<a href="irc://irc.libera.chat/x264">#x264@libera</a> and <a href="irc://irc.libera.chat/x264dev">#x264dev@libera</a>) and <a href="https://code.videolan.org/videolan/x264/issues">Issue Tracker</a>.</p>
+<h2 id="bugs">Bugs</h2>
+<p>Please report any bugs on the <a href="https://code.videolan.org/videolan/x264/issues/">Issue tracker</a>.</p>
+<p>If it is a crash, then compile x264 with <code>./configure --enable-debug</code> and follow the <a href="https://ffmpeg.org/bugreports.html">ffmpeg bugreporting guidelines</a>.</p>
+<h2 id="licensing">Licensing</h2>
+<p>In addition to being free to use under the <a href="https://www.gnu.org/licenses/gpl-2.0.html">GNU GPL</a>, x264 is also available under a commercial license. Contact x264licensing@videolan.org for more details.</p>
+<hr/>
+<h2 id="software-using-x264">Software using x264</h2>
+<ul> <li><a href="https://avidemux.org/">Avidemux</a></li> <li><a href="https://www.funknmary.de/bergdichter/projekte/index.php?page=ELDER">ELDER</a></li> <li><a href="https://sourceforge.net/projects/ffdshow">ffdshow</a></li> <li><a href="https://ffmpeg.org/">ffmpeg</a></li> <li><a href="https://sf.net/projects/gordianknot/">GordianKnot</a></li> <li><a href="https://handbrake.fr/">Handbrake</a></li> <li><a href="https://lives.sourceforge.net/">LiVES</a></li> <li><a href="https://forum.doom9.org/showthread.php?t=96032">MeGUI</a></li> <li><a href="https://www.mplayerhq.hu/">MEncoder</a></li> <li><a href="https://www.detritus.qc.ca/">Bencos (formerly RealAnime)</a></li> <li><a href="https://staxmedia.sourceforge.net/">StaxRip</a></li> <li><a href="vlc.html">VLC media player</a></li> <li>…and many more</li> </ul>
+<p>If you use <strong>x264</strong> in another project, let <em>us know</em>!</p></div>
+</div>
+<div class="c-wrap"><nav class="c-pn" aria-label="Continue reading"><a href="developers--x262.html"><small>← Previous</small><b>x262</b></a><a href="developers--x265.html" class="r"><small>Next →</small><b>x265</b></a></nav></div>
+</article></main>
+<footer class="c-foot"><div class="c-wrap"><div class="c-foot-grid"><div><h3><span>01</span> <a href="section--download.html">Download</a></h3><p>Official builds of VLC for every platform, past and present.</p></div><div><h3><span>02</span> <a href="section--vlc.html">VLC media player</a></h3><p>Features, screenshots, skins, goodies and the libVLC framework.</p></div><div><h3><span>03</span> <a href="section--releases.html">Release notes</a></h3><p>Every VLC release since 1.1, with highlights and changelogs.</p></div><div><h3><span>04</span> <a href="section--news.html">News</a></h3><p>Announcements from VideoLAN since 1999.</p></div><div><h3><span>05</span> <a href="section--security.html">Security</a></h3><p>Advisories and bulletins, and how to report a vulnerability.</p></div><div><h3><span>06</span> <a href="section--projects.html">Projects</a></h3><p>DVBlast, x264, dav1d, multicat, VLMC, VLMa and the libraries behind VLC.</p></div><div><h3><span>07</span> <a href="section--developers.html">Developers</a></h3><p>Developer documentation, libraries, mailing lists and translation.</p></div><div><h3><span>08</span> <a href="section--support.html">Support</a></h3><p>FAQ, documentation, forums, IRC and mailing lists.</p></div><div><h3><span>09</span> <a href="section--contribute.html">Contribute</a></h3><p>Give time, hardware or money. VLC is made by people like you.</p></div><div><h3><span>10</span> <a href="section--events.html">Events</a></h3><p>VideoLAN Dev Days, FOSDEM and 25 years of photos and stories.</p></div><div><h3><span>11</span> <a href="section--press.html">Press</a></h3><p>Press releases and official statements.</p></div><div><h3><span>12</span> <a href="section--videolan.html">VideoLAN</a></h3><p>The organisation, team, partners, legal and privacy.</p></div></div>
+<div class="c-colophon"><p><b>Colophon.</b> Set in your system’s own serif and sans faces, so nothing is downloaded but words. No cookies, no trackers. VLC, VideoLAN and x264 are registered trademarks of VideoLAN. Unofficial redesign concept by Paul Fleury. <a href="design-notes.html">Design notes</a> · <a href="sitemap.html">Index of every page</a></p></div></div></footer><script src="../../shared/search-index.js" defer></script>
+<script src="../../shared/ui.js" defer></script>
+<script src="../c.js" defer></script>
+</body>
+</html>

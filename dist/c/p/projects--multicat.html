@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js" data-opt="c" data-root="../../" data-slug="projects--multicat" data-default-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Multicat — VideoLAN</title>
+<meta name="description" content="VideoLAN, the home of VLC media player.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../../shared/favicon.svg" type="image/svg+xml">
+<script>(function(){var d=document.documentElement;d.className=d.className.replace('no-js','js');try{var s=localStorage,t=s.getItem('vl-theme-c')||'light',mq=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches;var dk=t==='dark'||(t==='auto'&&mq)||(t==='classic'?false:false);d.setAttribute('data-theme',dk?'dark':'light');d.setAttribute('data-skin',t);['contrast','size','motion','links','spacing'].forEach(function(k){var v=s.getItem('vl-'+k);if(v)d.setAttribute('data-'+k,v);});if(s.getItem('vl-motion')!=='off'&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))d.className+=' motion';}catch(e){}})();</script>
+<link rel="stylesheet" href="../../shared/ui.css">
+<link rel="stylesheet" href="../c.css">
+</head>
+<body class="">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="conecp"><path d="M27.2 6.5c.9-2.6 8.7-2.6 9.6 0L50 51H14z"/></clipPath><symbol id="cone" viewBox="0 0 64 64"><path d="M27.2 6.5c.9-2.6 8.7-2.6 9.6 0L50 51H14z" fill="#ff8800"/><g clip-path="url(#conecp)" fill="#fff"><rect y="19" width="64" height="7"/><rect y="34" width="64" height="7.5"/></g><rect x="6" y="49" width="52" height="9" rx="3.5" fill="#ff8800"/></symbol></defs></svg><a class="skip" href="#main">Skip to content</a>
+<header class="c-mast">
+<div class="c-strip"><div class="c-wrap"><span>Vol. 30 · Est. 1996 · Free since 2001</span><span class="c-strip-r"><button type="button" data-ui-open="lang" class="c-tl"><span data-ui-langlabel="name">English</span> edition</button><button type="button" class="c-tl" data-c-act="night" aria-label="Switch between day and night edition"><span class="c-ed">Night edition</span></button><button type="button" class="c-tl" data-ui-open="search" aria-label="Search">Search</button><button type="button" class="c-tl" data-ui-open="a11y">Display</button><button type="button" class="c-donate" data-donate>Donate</button></span></div></div>
+<div class="c-wrap c-name"><a href="../index.html" aria-label="VideoLAN — home"><svg viewBox="0 0 64 64" aria-hidden="true" class="cone"><use href="#cone"/></svg><span class="c-word">VideoLAN</span></a></div>
+<nav class="c-nav" aria-label="Chapters"><div class="c-wrap"><button type="button" class="c-navtoggle" data-c-act="nav" aria-expanded="false">Chapters</button><div class="c-navlinks"><a href="section--download.html"><span>01</span>Download</a><a href="section--vlc.html"><span>02</span>VLC media player</a><a href="section--releases.html"><span>03</span>Release notes</a><a href="section--news.html"><span>04</span>News</a><a href="section--security.html"><span>05</span>Security</a><a href="section--projects.html" aria-current="page"><span>06</span>Projects</a><a href="section--developers.html"><span>07</span>Developers</a><a href="section--support.html"><span>08</span>Support</a><a href="section--contribute.html"><span>09</span>Contribute</a><a href="section--events.html"><span>10</span>Events</a><a href="section--press.html"><span>11</span>Press</a><a href="section--videolan.html"><span>12</span>VideoLAN</a></div></div></nav>
+</header>
+<main id="main" tabindex="-1"><article class="c-article">
+<header class="c-ahead c-wrap"><p class="c-kick"><a href="section--projects.html">§ 06 · Projects</a></p>
+<h1>Multicat</h1>
+
+<p class="c-by">2 min read <span aria-hidden="true">·</span> videolan.org/projects/multicat.html</p></header>
+<div class="c-wrap c-agrid has-toc">
+<aside class="c-toc" aria-label="In this article"><p>In this article</p><ol><li><a href="#simple-and-efficient-multicast-and-transport-str">Simple and efficient multicast and transport stream manipulation</a></li><li><a href="#the-multicat-program">The multicat program</a></li><li><a href="#the-ingests-program">The ingests program</a></li><li><a href="#the-aggregartp-and-reordertp-programs">The aggregartp and reordertp programs</a></li><li><a href="#the-smooths-program">The smooths program</a></li><li><a href="#the-multilive-program">The multilive program</a></li><li><a href="#get-multicat">Get Multicat</a></li></ol></aside>
+<div class="c-prose x-prose">
+<h2 id="simple-and-efficient-multicast-and-transport-str">Simple and efficient multicast and transport stream manipulation</h2>
+<p>The multicat package contains a set of tools designed to easily and efficiently manipulate multicast streams in general, and MPEG-2 Transport Streams (ISO/IEC 13818-1) in particular.</p>
+<p>The multicat suite of applications is very lightweight and designed to operate in tight environments. Memory and CPU usages are kept to a minimum, and they feature only one thread of execution. It is designed to run on Linux, FreeBSD and Mac OS X.</p>
+<h2 id="the-multicat-program">The <code>multicat</code> program</h2>
+<p><code>multicat</code> itself is a 1 input/1 output application. Inputs and outputs can be network streams (unicast and multicast), files, directories, character devices or FIFOs. It is thought to be a multicast equivalent of the popular netcat tool. Typical applications are recording live transport streams, or playing out TS files without modification. Also it is able to record a continuous stream into a directory, rotate the files periodically, and make seamless extracts from it.</p>
+<p>Multicat tries to rebuild the internal clock of the input stream; but it wants to remain agnostic of what is transported, so in case of files the said clock is stored to an auxiliary file (example.aux accompanies example.ts) while recording. Other inputs are considered "live", and the input clock is simply derived from the reception time of the packets.</p>
+<h2 id="the-ingests-program">The <code>ingests</code> program</h2>
+<p><code>ingests</code> is a companion application designed to manipulate TS files. It reads the PCR values of the file, and builds the auxiliary file that is necessary for multicat.</p>
+<p> The combination of <code>ingests</code> and <code>multicat</code> makes a simple and efficient TS file streamer.</p>
+<h2 id="the-aggregartp-and-reordertp-programs">The <code>aggregartp</code> and <code>reordertp</code> programs</h2>
+<p><code>aggregartp</code> splits a single RTP stream (for instance a high-bitrate signal) to several contribution links with load balancing.</p>
+<p><code>reordertp</code> takes one or multiple inputs (from <code>aggregartp</code> or another source known to reorder and/or add jitter to packets) and smoothes them out to output the original stream in correct order.</p>
+<h2 id="the-smooths-program">The <code>smooths</code> program</h2>
+<p>This program allows to minimize jitter and please IAT analysers. It reads the RTP timestamps and waits for the proper time to send the packet.</p>
+<h2 id="the-multilive-program">The <code>multilive</code> program</h2>
+<p>This program implements a VRRP-like master/slave redundancy between two servers. Both servers communicate via a multicast address, and if the master server crashes, the slave server takes over.</p>
+<h2 id="get-multicat">Get Multicat</h2>
+<p> The latest official version of <code>Multicat</code> is numbered 2.4, and is available <a href="https://get.videolan.org/multicat/2.4/multicat-2.4.tar.bz2" data-dl>here</a>.</p>
+<p><a href="developers--bitstream.html">biTStream</a> needs to be installed at build-time.</p>
+<p>The code can be checked out using Git with <code>git clone https://code.videolan.org/videolan/multicat.git</code> and you can <a href="https://code.videolan.org/videolan/multicat">browse the source online</a>.</p>
+<p>User support and development is handled in the <a href="developers--lists.html">multicat-devel mailing-list</a>.</p>
+<p>Contributions can be sent as pull requests in our <a href="https://github.com/videolan/multicat">github repository</a>.</p></div>
+</div>
+<div class="c-wrap"><nav class="c-pn" aria-label="Continue reading"><a href="projects--dvblast.html"><small>← Previous</small><b>DVBlast</b></a><a href="projects--vlma.html" class="r"><small>Next →</small><b>VLMa Overview</b></a></nav></div>
+</article></main>
+<footer class="c-foot"><div class="c-wrap"><div class="c-foot-grid"><div><h3><span>01</span> <a href="section--download.html">Download</a></h3><p>Official builds of VLC for every platform, past and present.</p></div><div><h3><span>02</span> <a href="section--vlc.html">VLC media player</a></h3><p>Features, screenshots, skins, goodies and the libVLC framework.</p></div><div><h3><span>03</span> <a href="section--releases.html">Release notes</a></h3><p>Every VLC release since 1.1, with highlights and changelogs.</p></div><div><h3><span>04</span> <a href="section--news.html">News</a></h3><p>Announcements from VideoLAN since 1999.</p></div><div><h3><span>05</span> <a href="section--security.html">Security</a></h3><p>Advisories and bulletins, and how to report a vulnerability.</p></div><div><h3><span>06</span> <a href="section--projects.html">Projects</a></h3><p>DVBlast, x264, dav1d, multicat, VLMC, VLMa and the libraries behind VLC.</p></div><div><h3><span>07</span> <a href="section--developers.html">Developers</a></h3><p>Developer documentation, libraries, mailing lists and translation.</p></div><div><h3><span>08</span> <a href="section--support.html">Support</a></h3><p>FAQ, documentation, forums, IRC and mailing lists.</p></div><div><h3><span>09</span> <a href="section--contribute.html">Contribute</a></h3><p>Give time, hardware or money. VLC is made by people like you.</p></div><div><h3><span>10</span> <a href="section--events.html">Events</a></h3><p>VideoLAN Dev Days, FOSDEM and 25 years of photos and stories.</p></div><div><h3><span>11</span> <a href="section--press.html">Press</a></h3><p>Press releases and official statements.</p></div><div><h3><span>12</span> <a href="section--videolan.html">VideoLAN</a></h3><p>The organisation, team, partners, legal and privacy.</p></div></div>
+<div class="c-colophon"><p><b>Colophon.</b> Set in your system’s own serif and sans faces, so nothing is downloaded but words. No cookies, no trackers. VLC, VideoLAN and x264 are registered trademarks of VideoLAN. Unofficial redesign concept by Paul Fleury. <a href="design-notes.html">Design notes</a> · <a href="sitemap.html">Index of every page</a></p></div></div></footer><script src="../../shared/search-index.js" defer></script>
+<script src="../../shared/ui.js" defer></script>
+<script src="../c.js" defer></script>
+</body>
+</html>
