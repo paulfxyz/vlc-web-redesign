@@ -7,7 +7,7 @@
   var store = { get: function (k) { try { return localStorage.getItem('vl-' + k); } catch (e) { return null; } },
                 set: function (k, v) { try { if (v) localStorage.setItem('vl-' + k, v); else localStorage.removeItem('vl-' + k); } catch (e) {} } };
   var toastT;
-  function toast(msg) { var t = $('#toast'); t.textContent = msg; t.className = 'toast show'; clearTimeout(toastT); toastT = setTimeout(function () { t.className = 'toast'; }, 3800); }
+  function toast(msg) { var t = $('#toast'); t.textContent = msg; t.className = 'toast show'; clearTimeout(toastT); toastT = setTimeout(function () { t.className = 'toast'; }, 6000); }
 
   /* ---------- Router ---------- */
   var views = $$('.view'), ids = views.map(function (v) { return v.id; });
@@ -105,7 +105,7 @@
     if (!silent) {
       closeDialog($('#lang-dialog'));
       if (code === 'en') toast('English selected.');
-      else toast(native + ' is not translated yet. Showing English for now, and your choice is saved.');
+      else toast(native + ' (' + b.getAttribute('data-en') + ') is not available yet. For now the site is in English only; ' + b.getAttribute('data-en') + ' will be added quickly once the VideoLAN team confirms the redesign is a go.');
     }
   }
   langBtns.forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); }); });

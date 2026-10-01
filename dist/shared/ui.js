@@ -46,7 +46,7 @@
   function toast(m) {
     if (!toastEl) { toastEl = el('<div class="ui-toast" role="status" aria-live="polite"></div>'); d.body.appendChild(toastEl); }
     toastEl.textContent = m; toastEl.className = 'ui-toast show'; clearTimeout(toastT);
-    toastT = setTimeout(function () { toastEl.className = 'ui-toast'; }, 3600);
+    toastT = setTimeout(function () { toastEl.className = 'ui-toast'; }, 6000);
   }
   W.VLToast = toast;
 
@@ -126,7 +126,7 @@
       LANGS.forEach(function (l) { b += '<button type="button" lang="' + l[0] + '" data-l="' + l[0] + '" data-s="' + esc((l[1] + ' ' + l[2] + ' ' + l[0]).toLowerCase()) + '"><b' + (RTL[l[0]] ? ' dir="rtl"' : '') + '>' + l[1] + '</b><span' + (l[0] === 'en' ? ' class="ok">Available' : '>' + l[2]) + '</span></button>'; });
       langLayer = makeLayer('ui-lang', 'Choose your language',
         '<div class="ui-body"><label class="ui-sr" for="ui-lq">Search languages</label><input class="ui-search" id="ui-lq" type="search" autocomplete="off" placeholder="Search ' + LANGS.length + ' languages… (Português, 日本語, Arabic)">' +
-        '<div class="ui-note">' + ICO.info.replace('<svg', '<svg width="18" height="18" style="flex-shrink:0;margin-top:2px"') + '<span>Translations will come with VideoLAN’s volunteer translators. The site stays in English for now, and your choice is saved for when your language is ready.</span></div>' +
+        '<div class="ui-note">' + ICO.info.replace('<svg', '<svg width="18" height="18" style="flex-shrink:0;margin-top:2px"') + '<span>For now this site is available in English only. Every language listed here will be added quickly once the VideoLAN team confirms the redesign is a go. Your choice is saved for when it’s ready.</span></div>' +
         '<div class="ui-langs" id="ui-langs">' + b + '</div><p class="ui-count" id="ui-lc" aria-live="polite"></p></div>', true);
       var q = $('#ui-lq', langLayer), btns = $$('#ui-langs button', langLayer);
       function filt() { var v = q.value.toLowerCase().trim(), n = 0; btns.forEach(function (x) { var hit = !v || x.getAttribute('data-s').indexOf(v) > -1; x.style.display = hit ? '' : 'none'; if (hit) n++; }); $('#ui-lc', langLayer).textContent = n + ' of ' + btns.length + ' languages'; }
@@ -141,7 +141,7 @@
   function setLang(code, silent) {
     var l = langName(code); store('lang', code === 'en' ? '' : code);
     $$('[data-ui-langlabel]').forEach(function (x) { x.textContent = x.getAttribute('data-ui-langlabel') === 'code' ? l[0].split('-')[0].toUpperCase() : l[1]; });
-    if (!silent) toast(code === 'en' ? 'English selected.' : l[1] + ' is not translated yet. English is shown for now, and your choice is saved.');
+    if (!silent) toast(code === 'en' ? 'English selected.' : l[1] + ' (' + l[2] + ') is not available yet. For now the site is in English only; ' + l[2] + ' will be added quickly once the VideoLAN team confirms the redesign is a go.');
     d.dispatchEvent(new CustomEvent('vl:lang', { detail: l }));
   }
 

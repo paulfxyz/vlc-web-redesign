@@ -545,7 +545,7 @@ details.spec .chips { margin: 0; padding: 0 1.25rem 1.25rem; }
 .seg button[aria-pressed="true"] { background: var(--text); color: var(--bg); }
 
 /* Toast */
-.toast { visibility: hidden; position: fixed; left: 50%; bottom: 1.25rem; transform: translateX(-50%) translateY(140%); background: var(--text); color: var(--bg); padding: .85rem 1.15rem; border-radius: var(--r-md); box-shadow: var(--shadow-lg); font-size: var(--text-sm); z-index: 120; transition: transform .35s var(--ease); max-width: calc(100% - 2rem); }
+.toast { visibility: hidden; position: fixed; left: 50%; bottom: 76px; transform: translateX(-50%) translateY(140%); background: var(--text); color: var(--bg); padding: .85rem 1.15rem; border-radius: var(--r-md); box-shadow: var(--shadow-lg); font-size: var(--text-sm); z-index: 120; transition: transform .35s var(--ease); max-width: calc(100% - 2rem); }
 .toast.show { visibility: visible; transform: translateX(-50%) translateY(0); }
 
 /* Reveal on scroll (only when JS + motion allowed) */
