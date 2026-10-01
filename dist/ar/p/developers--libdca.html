@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-root="../../" data-base="../" data-slug="developers--libdca" data-lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>libdca a free DTS Coherent Acoustics decoder — VideoLAN</title>
+<meta name="description" content="توثيق المطوّرين والمكتبات والقوائم البريدية والترجمة.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../../p/developers--libdca.html"><link rel="alternate" hreflang="fr" href="../../fr/p/developers--libdca.html"><link rel="alternate" hreflang="zh-Hans" href="../../zh/p/developers--libdca.html"><link rel="alternate" hreflang="ar" href="../../ar/p/developers--libdca.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<a class="skip" href="#main">انتقل إلى المحتوى</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">مقترح لإعادة تصميم videolan.org — تصوّر مستقل مُهدى إلى فريق VideoLAN.</span><span class="s">مقترح إعادة التصميم ·</span> <a href="../p/design-notes.html">اقرأ ملاحظات التصميم</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — الرئيسية"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="القائمة"><a href="../p/download.html">تنزيل</a><a href="../index.html#features">الميزات</a><a href="../p/news.html">الأخبار</a><a href="../p/section--projects.html">المشاريع</a><a href="../p/support.html">الدعم</a><a href="../p/contribute.html">ساهم</a><a href="../index.html#about">من نحن</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="بحث" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="اللغة: العربية"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-globe"/></svg><span class="code">AR</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="التبديل إلى الوضع الداكن" data-l-dark="التبديل إلى الوضع الداكن" data-l-light="التبديل إلى الوضع الفاتح"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="العرض وسهولة الوصول"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>تبرّع</a>
+<details class="menu"><summary class="ib" aria-label="القائمة"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-download"/></svg>تنزيل</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-sparkle"/></svg>الميزات</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-news"/></svg>الأخبار</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-box"/></svg>المشاريع</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-chat"/></svg>الدعم</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-users"/></svg>ساهم</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-home"/></svg>من نحن</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>تبرّع</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">الرئيسية</a><span aria-hidden="true">/</span><a href="section--developers.html">المطوّرون</a></nav>
+<p class="kick">المطوّرون · قراءة 2 دقائق</p>
+<h1 lang="en" dir="ltr">libdca a free DTS Coherent Acoustics decoder</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><p class="untr"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-info"/></svg><span>لم تُترجم هذه الصفحة بعد، وتظهر بنسختها الإنجليزية الأصلية.</span></p><div class="pw"><aside class="toc" aria-label="في هذه الصفحة"><p class="kick">في هذه الصفحة</p><ul lang="en" dir="ltr"><li><a href="#development-status">Development status</a></li><li><a href="#getting-libdca">Getting libdca</a></li><li><a href="#support">Support</a></li><li><a href="#projects-using-libdca">Projects using libdca</a></li><li><a href="#where-to-find-dts-coherent-acoustics-samples">Where to find DTS Coherent Acoustics samples</a></li></ul></aside><article class="prose" lang="en" dir="ltr">
+<p>libdca is a free library for decoding DTS Coherent Acoustics streams. The code is written by <a href="mailto:gbazin@videolan.org">Gildas Bazin</a> and was based on the <a href="https://liba52.sourceforge.net/">a52dec</a> project. It is released under the terms of the GPL license.</p>
+<p>The DTS Coherent Acoustics standard (ETSI 102 114 v1.2.1), as published by the ETSI, is available <a href="https://www.etsi.org/standards-search">here</a> (look for DTS Coherent Acoustics).</p>
+<h2 id="development-status">Development status</h2>
+<p><strong>BIG FAT WARNING</strong>: libdca is still in early development stage so don't expect too much of it.</p>
+<p>Right now, I am concentrating on finishing the implementation of the core part of the specification. The library should however already be quite useable.</p>
+<p>A few things are still lacking there but they should mainly affect low-bitrate DTS streams which don't seem that common anyway (some of the missing things are: Joint channels coding, Dynamic range, etc… - see the TODO file).</p>
+<p>There might also be quality issues, but for some early code it does seem pretty decent to me.</p>
+<p>None of the extensions (extra channels, 96/192kHz sample rates) have been implemented (and unfortunately the public standard provides only minimal information on them).</p>
+<h2 id="getting-libdca">Getting libdca</h2>
+<p>Current release is <a href="https://download.videolan.org/pub/videolan/libdca/0.0.7/libdca-0.0.7.tar.bz2" data-dl>libdca-0.0.7.tar.bz2</a></p>
+<p>The latest libdca source code can always be found in the <a href="https://code.videolan.org/videolan/libdca">GIT</a> repository:</p>
+<pre><code>$ git clone https://code.videolan.org/videolan/libdca</code></pre>
+<p><strong>Provisional Warning</strong>: DTS Inc. claims that use of libdca software, to decode DTS compressed sound data on a DVD could violate DTS's patent rights. If you are unsure about the legality of using and distributing this code in your country, in particular in the USA, please consult your lawyer before downloading it.</p>
+<h2 id="support">Support</h2>
+<p>For support information, have a look <a href="support.html">here</a>.</p>
+<p>A <a href="support--lists.html">libdca-devel</a> mailing list is also available.</p>
+<h2 id="projects-using-libdca">Projects using libdca</h2>
+<ul> <li><a href="../index.html">VLC media player</a>: a cross-platform video player and streaming solution.</li> <li><a href="https://sourceforge.net/projects/guliverkli/">Media Player Classic</a>: a win32 player just like WMP6.4 except that it has a lot more features.</li> <li><a href="https://xine.sourceforge.net/">Xine</a>: a free multimedia player.</li> <li><a href="https://ffmpeg.org/">FFmpeg</a>: a complete solution to record, convert and stream audio and video.</li> <li><a href="https://www.mplayerhq.hu/">MPlayer</a>: a free multimedia player.</li> <li><a href="https://ffdshow.sourceforge.net/">ffdshow</a>: a DirectShow filter for most A/V codecs.</li> </ul>
+<p>If you use libdca in another project, let me know!</p>
+<h2 id="where-to-find-dts-coherent-acoustics-samples">Where to find DTS Coherent Acoustics samples</h2>
+<p>Some very good samples are available on the <a href="https://web.archive.org/web/20030427153003/http://www.sr.se/multikanal/english/e_index.stm">swedish radio website</a>.</p><p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">فهرس الموقع</a> · <a href="https://www.videolan.org/developers/libdca.html">الصفحة الأصلية</a></p></article></div><nav class="pn" aria-label="المطوّرون"><a href="developers--libbluray.html"><small>السابق</small><b lang="en">libbluray</b></a><a class="r" href="developers--libdvbcsa.html"><small>التالي</small><b lang="en">libdvbcsa</b></a></nav></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN، مشروع ومنظمة غير ربحية، تصنع برمجيات وسائط حرّة منذ 1996.</p><div class="langs"><a href="../../p/developers--libdca.html" hreflang="en" lang="en">English</a><a href="../../fr/p/developers--libdca.html" hreflang="fr" lang="fr">Français</a><a href="../../zh/p/developers--libdca.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="../../ar/p/developers--libdca.html" hreflang="ar" lang="ar" aria-current="true">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">تنزيل</a></li><li><a href="../p/vlc--features.html">الميزات</a></li><li><a href="../p/vlc--skins.php.html">السمات</a></li><li><a href="https://addons.videolan.org/">الإضافات</a></li><li><a href="../p/vlc--releases--3.0.24.html">ملاحظات الإصدار</a></li><li><a href="../p/security.html">الأمان</a></li></ul></div><div><h4>المشاريع</h4><ul><li><a href="../p/section--projects.html">كل المشاريع</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>المجتمع</h4><ul><li><a href="https://forum.videolan.org/">المنتديات</a></li><li><a href="https://wiki.videolan.org/">الويكي</a></li><li><a href="../p/support--faq.html">الأسئلة الشائعة</a></li><li><a href="https://docs.videolan.me/vlc-user/">التوثيق</a></li><li><a href="../p/contribute.html">ساهم</a></li><li><a href="../p/videolan--events.html">الفعاليات</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">من نحن</a></li><li><a href="../p/videolan--team.html">الفريق والمنظمة</a></li><li><a href="../p/videolan--partners.html">الشركاء</a></li><li><a href="../p/press.html">الصحافة</a></li><li><a href="../p/legal.html">الشؤون القانونية</a></li><li><a href="../p/privacy.html">الخصوصية</a></li><li><a href="../p/contact.html">اتصل بنا</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC وVideoLAN وx264 علامات تجارية مسجّلة لـ VideoLAN. تصوّر غير رسمي لإعادة التصميم من Paul Fleury. لقطات الأفلام: Big Buck Bunny وSintel وTears of Steel وCaminandes وElephants Dream © Blender Foundation، رخصة CC BY.</p><p><a href="../p/sitemap.html">فهرس الموقع</a> · <a href="../p/design-notes.html">عن إعادة التصميم</a> · بلا ملفات تعريف · بلا متتبّعات · HTML5 ثابت</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../../site.js" defer></script>
+</body></html>

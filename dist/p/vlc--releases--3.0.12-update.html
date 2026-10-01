@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-root="../" data-base="../" data-slug="vlc--releases--3.0.12-update" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VLC 3.0.12 and 3.0.13 automatic updater issue — VideoLAN</title>
+<meta name="description" content="Every VLC release since 1.1, with highlights and changelogs.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../p/vlc--releases--3.0.12-update.html"><link rel="alternate" hreflang="fr" href="../fr/p/vlc--releases--3.0.12-update.html"><link rel="alternate" hreflang="zh-Hans" href="../zh/p/vlc--releases--3.0.12-update.html"><link rel="alternate" hreflang="ar" href="../ar/p/vlc--releases--3.0.12-update.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">Design proposal for videolan.org — an independent concept offered to the VideoLAN team.</span><span class="s">Redesign proposal ·</span> <a href="../p/design-notes.html">Read the design notes</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — Home"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="Menu"><a href="../p/download.html">Download</a><a href="../index.html#features">Features</a><a href="../p/news.html">News</a><a href="../p/section--projects.html">Projects</a><a href="../p/support.html">Support</a><a href="../p/contribute.html">Contribute</a><a href="../index.html#about">About</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="Search" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="Language: English"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-globe"/></svg><span class="code">EN</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="Switch to dark theme" data-l-dark="Switch to dark theme" data-l-light="Switch to light theme"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="Display &amp; accessibility"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../icons.svg#i-heart"/></svg>Donate</a>
+<details class="menu"><summary class="ib" aria-label="Menu"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-download"/></svg>Download</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-sparkle"/></svg>Features</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-news"/></svg>News</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-box"/></svg>Projects</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-chat"/></svg>Support</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-users"/></svg>Contribute</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-home"/></svg>About</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../icons.svg#i-heart"/></svg>Donate</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="section--releases.html">Release notes</a></nav>
+<p class="kick">Release notes · 2 min read</p>
+<h1>VLC 3.0.12 and 3.0.13 automatic updater issue</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><div class="pw"><aside class="toc" aria-label="On this page"><p class="kick">On this page</p><ul><li><a href="#this-is-only-relevant-to-windows-users">This is only relevant to Windows users</a></li><li><a href="#download-updated-vlc">Download Updated VLC</a></li><li><a href="#related-links">Related links</a></li><li><a href="#contact">Contact</a></li></ul></aside><article class="prose"><p><strong>ENGLISH</strong> | <a href="https://www.videolan.org/vlc/releases/3.0.12-update.de.html">DEUTSCH</a> | <a href="https://www.videolan.org/vlc/releases/3.0.12-update.fr.html">FRANÇAIS</a> | <a href="https://www.videolan.org/vlc/releases/3.0.12-update.hi.html">हिंदी</a> | <a href="https://www.videolan.org/vlc/releases/3.0.12-update.it.html">ITALIANO</a> | <a href="https://www.videolan.org/vlc/releases/3.0.12-update.jp.html">日本語</a> | <a href="https://www.videolan.org/vlc/releases/3.0.12-update.pt.html">PORTUGUÊS</a> | <a href="https://www.videolan.org/vlc/releases/3.0.12-update.ru.html">РУССКИЙ</a></p>
+
+<p>A bug in the auto updater will prevent Windows users to automatically update</p>
+<h2 id="this-is-only-relevant-to-windows-users">This is only relevant to Windows users</h2>
+<h3 id="short-version">Short version:</h3>
+<ul> <li>- versions 3.0.12 to 3.0.13 are <strong>not</strong> able to update automatically anymore, and will <strong>require</strong> user action<li> <li>- versions 3.0.11 and earlier should update automatically to 3.0.14</li> </li></li></ul>
+<h3 id="description">Description:</h3>
+<p>This notice applies to VLC 3.0.13 and VLC 3.0.12 users.<br> Due to a mistake introduced in the automatic updater code, updates will be downloaded, verified for integrity, but will not be installed. This is bad and we would like to apologize for this.<br><br></p>
+<h3 id="instructions">Instructions:</h3>
+<p>In order to update to 3.0.14, you will need to go to <a href="vlc.html">https://www.videolan.org/vlc</a> to download and install VLC manually.<br> You can find details instructions on how to do so <a href="https://docs.videolan.me/vlc-user/3.0/en/gettingstarted/setup/windows.html">here</a><br><br> If you already ran the updater and it downloaded the installer, you can run it manually by opening a file explorer (Windows key + E, or just click the explorer icon) and enter <em>%TEMP%</em> as the location.<br> You'll see the installer there. It will be named «vlc-3.0.14-win32.exe» or «vlc-3.0.14-win64.exe» respectively depending on whether you're using a 32bit or 64bit version of Windows.<br> <br> <img alt="3.0.12 update screen" decoding="async" loading="lazy" src="https://images.videolan.org/images/screenshots/3.0.12-update.jpg"/> <br> <br></p>
+<h3 id="post-mortem-explanation">Post mortem explanation:</h3>
+<p>On May 10<sup>th</sup> 2021, the VideoLAN organization released VLC 3.0.13, and enabled auto updates.<br> This usually would be fairly straightforward, a prompt would appear informing you that an update is available, you click download and install, and that would be the end of it.<br> However and unfortunately, for this particular update, a few additional tedious (if not painful) steps will be necessary.<br> The issue was introduced in 3.0.12, but it didn't become obvious until we started rolling out 3.0.13.<br> While the issue was fixed for 3.0.14, we can't rely on that fix for people who've installed 3.0.12 already.<br> <br> <a href="https://code.videolan.org/videolan/vlc-3.0/-/commit/83d8e7efaa4f7dc23b07c47c59431e1f6df57da5"> The commit that introduced the bug</a><br> <a href="https://code.videolan.org/videolan/vlc-3.0/-/commit/d456994213b98933664bd6aee2e8f09d5dea5628">The commit that fixed the bug for future releases</a><br></p>
+<h2 id="download-updated-vlc">Download Updated VLC</h2>
+<p> <a href="https://get.videolan.org/vlc/3.0.16/win32/vlc-3.0.16-win32.exe" data-dl>  VLC for Windows Version 3.0.16 </a> </p>
+<h2 id="related-links">Related links</h2>
+<ul> <li><a href="https://code.videolan.org/videolan/vlc/-/raw/3.0.x/NEWS">Changelog</a></li> </ul>
+<h2 id="contact">Contact</h2>
+<p>For any questions related to this release, please <a href="contact.html">contact us</a>.</p><p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">Site index</a> · <a href="https://www.videolan.org/vlc/releases/3.0.12-update.html">Original page</a></p></article></div><nav class="pn" aria-label="Release notes"><a href="vlc--releases--3.0.13.html"><small>Previous</small><b lang="en">VLC 3.0.13 Vetinari</b></a><a class="r" href="vlc--releases--3.0.12.html"><small>Next</small><b lang="en">VLC 3.0.12 Vetinari</b></a></nav></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN, a project and a non-profit organisation, producing free multimedia software since 1996.</p><div class="langs"><a href="../p/vlc--releases--3.0.12-update.html" hreflang="en" lang="en" aria-current="true">English</a><a href="../fr/p/vlc--releases--3.0.12-update.html" hreflang="fr" lang="fr">Français</a><a href="../zh/p/vlc--releases--3.0.12-update.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="../ar/p/vlc--releases--3.0.12-update.html" hreflang="ar" lang="ar">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">Download</a></li><li><a href="../p/vlc--features.html">Features</a></li><li><a href="../p/vlc--skins.php.html">Skins</a></li><li><a href="https://addons.videolan.org/">Extensions</a></li><li><a href="../p/vlc--releases--3.0.24.html">Release notes</a></li><li><a href="../p/security.html">Security</a></li></ul></div><div><h4>Projects</h4><ul><li><a href="../p/section--projects.html">All projects</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>Community</h4><ul><li><a href="https://forum.videolan.org/">Forums</a></li><li><a href="https://wiki.videolan.org/">Wiki</a></li><li><a href="../p/support--faq.html">FAQ</a></li><li><a href="https://docs.videolan.me/vlc-user/">Documentation</a></li><li><a href="../p/contribute.html">Contribute</a></li><li><a href="../p/videolan--events.html">Events</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">About</a></li><li><a href="../p/videolan--team.html">Team &amp; organisation</a></li><li><a href="../p/videolan--partners.html">Partners</a></li><li><a href="../p/press.html">Press</a></li><li><a href="../p/legal.html">Legal</a></li><li><a href="../p/privacy.html">Privacy</a></li><li><a href="../p/contact.html">Contact</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC, VideoLAN and x264 are registered trademarks of VideoLAN. Unofficial redesign concept by Paul Fleury. Film stills: Big Buck Bunny, Sintel, Tears of Steel, Caminandes, Elephants Dream © Blender Foundation, CC BY.</p><p><a href="../p/sitemap.html">Site index</a> · <a href="../p/design-notes.html">About this redesign</a> · No cookies · No trackers · Static HTML5</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../site.js" defer></script>
+</body></html>

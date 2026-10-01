@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-root="../" data-base="../" data-slug="developers--unity" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VLC for Unity — VideoLAN</title>
+<meta name="description" content="Developer documentation, libraries, mailing lists and translation.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../p/developers--unity.html"><link rel="alternate" hreflang="fr" href="../fr/p/developers--unity.html"><link rel="alternate" hreflang="zh-Hans" href="../zh/p/developers--unity.html"><link rel="alternate" hreflang="ar" href="../ar/p/developers--unity.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">Design proposal for videolan.org — an independent concept offered to the VideoLAN team.</span><span class="s">Redesign proposal ·</span> <a href="../p/design-notes.html">Read the design notes</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — Home"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="Menu"><a href="../p/download.html">Download</a><a href="../index.html#features">Features</a><a href="../p/news.html">News</a><a href="../p/section--projects.html">Projects</a><a href="../p/support.html">Support</a><a href="../p/contribute.html">Contribute</a><a href="../index.html#about">About</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="Search" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="Language: English"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-globe"/></svg><span class="code">EN</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="Switch to dark theme" data-l-dark="Switch to dark theme" data-l-light="Switch to light theme"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="Display &amp; accessibility"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../icons.svg#i-heart"/></svg>Donate</a>
+<details class="menu"><summary class="ib" aria-label="Menu"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-download"/></svg>Download</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-sparkle"/></svg>Features</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-news"/></svg>News</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-box"/></svg>Projects</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-chat"/></svg>Support</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-users"/></svg>Contribute</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-home"/></svg>About</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../icons.svg#i-heart"/></svg>Donate</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="section--developers.html">Developers</a></nav>
+<p class="kick">Developers · 1 min read</p>
+<h1>VLC for Unity</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><div class="pw"><aside class="toc" aria-label="On this page"><p class="kick">On this page</p><ul><li><a href="#supported-platforms">Supported platforms</a></li><li><a href="#sample-scenes">Sample scenes</a></li><li><a href="#support">Support</a></li><li><a href="#development">Development</a></li></ul></aside><article class="prose">
+<p><code>vlc-unity</code> is an integration of the LibVLC engine with the Unity 3D game engine. This project allows to embed <a href="vlc--libvlc.html">LibVLC</a> inside a Unity-based game.</p>
+<p>Since Unity apps and games are built using C#, <a href="https://code.videolan.org/videolan/LibVLCSharp">LibVLCSharp</a> is used for the scripting part when interacting with LibVLC in Unity. The rest of the plugin code, transparent to Unity users, is written in C++ for maximum performance and ease of use of the various graphics APIs (<strong>OpenGL, Direct3D</strong>).</p>
+<div class="gallery"><img alt="VLC for Unity" decoding="async" loading="lazy" src="https://images.videolan.org/images/vlc-unity.png"/></div>
+<h2 id="supported-platforms">Supported platforms</h2>
+<ul> <li> <strong>Windows Classic</strong> <ul> <li>- Minimum OS version: Windows 7</li> <li>- ABI supported: x64</li> <li>- Graphics API: Direct3D 11</li> </ul> </li> <br> <li> <strong>Windows Modern (UWP)</strong> <ul> <li>- Minimum OS version: Windows 10</li> <li>- ABI supported: x64, ARM64</li> <li>- Graphics API: Direct3D 11</li> </ul> </li> <br> <li> <strong>Android</strong> <ul> <li>- Minimum OS version: Android 4.2 (API 17)</li> <li>- ABI supported: armeabi-v7a, arm64-v8a, x86, x86_64</li> <li>- Graphics API: OpenGL ES 2/3</li> </ul> </li> <br> <li> <strong>iOS</strong> <ul> <li>- Minimum OS version: iOS 9</li> <li>- ABI supported: ARM64. Simulator support will come later.</li> <li>- Graphics API: Metal</li> </ul> </li> <br> <li> <strong>macOS</strong> <ul> <li>- Minimum OS version: macOS 10.11</li> <li>- ABI supported: Intel x64, Apple Silicon ARM64</li> <li>- Graphics API: Metal</li> </ul> </li> </ul>
+<h2 id="sample-scenes">Sample scenes</h2>
+<p>Several Unity sample scenes are available to help you get started quickly!</p>
+<p> <ul> <li>- A minimal playback example with buttons</li> <li>- 360 playback with keyboard navigation built-in</li> <li>- A video with subtitles showcasing support</li> <li>- The VLCPlayerExample provides a great base with more controls</li> <li>- 3D scene you can move around in with a movie screen and chairs in a cinema room</li> </ul> </p>
+<h2 id="support">Support</h2>
+<p>User support and development is handled in the <a href="https://code.videolan.org/videolan/vlc-unity">GitLab repository</a>.</p>
+<h2 id="development">Development</h2>
+<p><code>vlc-unity</code> is available through <a href="https://wiki.videolan.org/git">git</a> at:</p>
+<pre><code>git clone https://code.videolan.org/videolan/vlc-unity</code></pre>
+<p>The source code can be browsed online at <a href="https://code.videolan.org/videolan/vlc-unity">code.videolan.org</a>.</p>
+<p>Contributions are welcome as merge requests in our <a href="https://code.videolan.org/videolan/vlc-unity/-/merge_requests">gitlab repository</a>.</p>
+<div class="gallery"><img alt="3d scene in Unity" decoding="async" loading="lazy" src="https://images.videolan.org/images/unity-3d-scene.png"/><img alt="media element Unity" decoding="async" loading="lazy" src="https://images.videolan.org/images/unity-media-element.png"/></div>
+<p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">Site index</a> · <a href="https://www.videolan.org/developers/unity.html">Original page</a></p></article></div><nav class="pn" aria-label="Developers"><a href="developers--lists.html"><small>Previous</small><b lang="en">VideoLAN mailing-lists</b></a><a class="r" href="developers--vlc.html"><small>Next</small><b lang="en">VLC media player</b></a></nav></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN, a project and a non-profit organisation, producing free multimedia software since 1996.</p><div class="langs"><a href="../p/developers--unity.html" hreflang="en" lang="en" aria-current="true">English</a><a href="../fr/p/developers--unity.html" hreflang="fr" lang="fr">Français</a><a href="../zh/p/developers--unity.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="../ar/p/developers--unity.html" hreflang="ar" lang="ar">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">Download</a></li><li><a href="../p/vlc--features.html">Features</a></li><li><a href="../p/vlc--skins.php.html">Skins</a></li><li><a href="https://addons.videolan.org/">Extensions</a></li><li><a href="../p/vlc--releases--3.0.24.html">Release notes</a></li><li><a href="../p/security.html">Security</a></li></ul></div><div><h4>Projects</h4><ul><li><a href="../p/section--projects.html">All projects</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>Community</h4><ul><li><a href="https://forum.videolan.org/">Forums</a></li><li><a href="https://wiki.videolan.org/">Wiki</a></li><li><a href="../p/support--faq.html">FAQ</a></li><li><a href="https://docs.videolan.me/vlc-user/">Documentation</a></li><li><a href="../p/contribute.html">Contribute</a></li><li><a href="../p/videolan--events.html">Events</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">About</a></li><li><a href="../p/videolan--team.html">Team &amp; organisation</a></li><li><a href="../p/videolan--partners.html">Partners</a></li><li><a href="../p/press.html">Press</a></li><li><a href="../p/legal.html">Legal</a></li><li><a href="../p/privacy.html">Privacy</a></li><li><a href="../p/contact.html">Contact</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC, VideoLAN and x264 are registered trademarks of VideoLAN. Unofficial redesign concept by Paul Fleury. Film stills: Big Buck Bunny, Sintel, Tears of Steel, Caminandes, Elephants Dream © Blender Foundation, CC BY.</p><p><a href="../p/sitemap.html">Site index</a> · <a href="../p/design-notes.html">About this redesign</a> · No cookies · No trackers · Static HTML5</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../site.js" defer></script>
+</body></html>

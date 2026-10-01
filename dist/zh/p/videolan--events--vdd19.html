@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" data-root="../../" data-base="../" data-slug="videolan--events--vdd19" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Video Dev Days 2019 — VideoLAN</title>
+<meta name="description" content="VideoLAN 开发者大会、FOSDEM，以及 25 年来的照片与故事。">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../../p/videolan--events--vdd19.html"><link rel="alternate" hreflang="fr" href="../../fr/p/videolan--events--vdd19.html"><link rel="alternate" hreflang="zh-Hans" href="../../zh/p/videolan--events--vdd19.html"><link rel="alternate" hreflang="ar" href="../../ar/p/videolan--events--vdd19.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">videolan.org 改版提案——一份献给 VideoLAN 团队的独立设计概念。</span><span class="s">改版提案 ·</span> <a href="../p/design-notes.html">阅读设计说明</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — 首页"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="菜单"><a href="../p/download.html">下载</a><a href="../index.html#features">功能</a><a href="../p/news.html">新闻</a><a href="../p/section--projects.html">项目</a><a href="../p/support.html">支持</a><a href="../p/contribute.html">参与贡献</a><a href="../index.html#about">关于</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="搜索" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="语言: 简体中文"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-globe"/></svg><span class="code">ZH</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="切换到深色主题" data-l-dark="切换到深色主题" data-l-light="切换到浅色主题"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="显示与无障碍"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>捐赠</a>
+<details class="menu"><summary class="ib" aria-label="菜单"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-download"/></svg>下载</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-sparkle"/></svg>功能</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-news"/></svg>新闻</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-box"/></svg>项目</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-chat"/></svg>支持</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-users"/></svg>参与贡献</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-home"/></svg>关于</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>捐赠</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">首页</a><span aria-hidden="true">/</span><a href="section--events.html">活动</a></nav>
+<p class="kick">活动 · 阅读约 2 分钟</p>
+<h1 lang="en" dir="ltr">Video Dev Days 2019</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><p class="untr"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-info"/></svg><span>本页尚未翻译，以下为英文原文。</span></p><div class="pw"><aside class="toc" aria-label="本页内容"><p class="kick">本页内容</p><ul lang="en" dir="ltr"><li><a href="#video-dev-days-2019-about">Video Dev Days 2019 About</a></li><li><a href="#schedule">Schedule</a></li><li><a href="#who-can-come">Who can come?</a></li><li><a href="#register">Register</a></li><li><a href="#sponsors">Sponsors</a></li><li><a href="#locations">Locations</a></li><li><a href="#code-of-conduct">Code of Conduct</a></li><li><a href="#contact">Contact</a></li></ul></aside><article class="prose" lang="en" dir="ltr"><h4>Sponsors</h4>
+<p><a href="https://www.iij.ad.jp/en/"> <img alt="Internet Initiative Japan" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/IIJ.jpg"/> </a> <a href="https://www.stream.co.jp/english/"> <img alt="J-Stream" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/jstream.jpg"/> </a> <a href="https://mux.com/"> <img alt="Mux" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/mux.png"/> </a> <a href="https://abema.tv/"> <img alt="AbemaTV" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/abematv.png"/> </a> <a href="https://mozilla.org/"> <img alt="Mozilla" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/mozilla.png"/> </a> <a href="https://videolabs.io/"> <img alt="Videolabs" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/videolabs.png"/> </a> <a href="https://youtube.com/"> <img alt="YouTube" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd17/sponsors/youtube_logo.svg"/> </a> <img alt="Tokyo Video Tech" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/tvt.png"/> <a href="https://www.4cast.co.jp/"> <img alt="Forecast Communications Inc." decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/4cast.png"/> </a></p>
+<div class="gallery"><img alt="vdd logo" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/vdd2019cone.png"/></div>
+
+<h3 id="the-open-multimedia-conference-that-frees-the-co">The Open Multimedia Conference that frees the cone in you!</h3>
+<h4>9 - 10 November, 2019, Tokyo</h4>
+<p>--</p>
+<p>Days</p>
+<p>--</p>
+<p>Hours</p>
+<p>--</p>
+<p>Minutes</p>
+<p>--</p>
+<p>Seconds</p>
+<p><a href="https://forms.gle/dUGSE3eG3gyh5SQ6A">Register</a></p>
+<h2 id="video-dev-days-2019-about"> Video Dev Days 2019 About </h2>
+<p>The <a href="videolan.html">VideoLAN non-profit organisation</a> is happy to invite you to the multimedia open-source event of the fall!</p>
+<p>For its <strong>eleventh edition</strong>, people from the VideoLAN and open source multimedia communities will meet in <strong>Tokyo</strong> to discuss and work on the future of the open-source multimedia community</p>
+<p>This is a <strong>technical</strong> conference, focused on low-level multimedia, like codecs and their implementations like <a href="developers--x264.html">x264</a> or <a href="https://code.videolan.org/videolan/dav1d">dav1d</a>, frameworks like FFmpeg or Gstreamer or playback libraries like libVLC.</p>
+<h4>When?</h4>
+<p>9 - 10 November 2019</p>
+<h4>Where?</h4>
+<p>Tokyo</p>
+<h2 id="schedule">Schedule</h2>
+<hr/>
+<ul> <li>Friday 8</li> <li>Saturday 9</li> <li>Sunday 10</li> </ul>
+<h4>09:30 - 18:30</h4>
+<h3 id="community-bonding-day-surprise">Community Bonding Day: Surprise!</h3>
+<p>Pokecone: <strong>Codec Wars !</strong><br> The VideoLAN organization will pay for whatever costs associated with the event.<br> Discover your team members in a fun game around Tokyo.<br> Please meet in the sponsored hotel lobby (<a href="https://wiki.videolan.org/VDD19/#Accommodation_.2F_Hotel">Villa Fontaine Nihombashi Hakozaki</a>) at 9:30am. </p>
+<h4>19:30</h4>
+<h3 id="evening-drinks">Evening drinks</h3>
+<p>On <strong>Friday at 19h30</strong>, people are welcome to come and share a few good drinks, with all attendees. </p>
+<p>Alcoholic and non-alcoholic drinks will be available! </p>
+<h4> 08:30 - 09:00 </h4>
+<h3 id="registration">Registration</h3>
+<h4> 09:00 - 09:10 </h4>
+<p> Jean-Baptiste Kempf, VideoLAN </p>
+<h3 id="welcome-words">Welcome words</h3>
+<h4> 09:10 - 09:20 </h4>
+<p> Marie Gunji, Internet Initiative Japan </p>
+<h3 id="internet-initiative-japan">Internet Initiative Japan</h3>
+<h4> 09:20 - 09:50 </h4>
+<p> Ronald S. Bultje, Two Orioles </p>
+<h3 id="dav1d">dav1d</h3>
+<h4> 09:50 - 10:20 </h4>
+<p> Phil Cluff, Mux </p>
+<h3 id="sash-and-low-latency-adaptive-streaming">Sash and low latency adaptive streaming</h3>
+<h4> 10:20 - 10:50 </h4>
+<p> Pradeep Ramachandran, MulticoreWare Inc. </p>
+<h3 id="x265-update">x265 update</h3>
+<h4> 10:50 - 11:05 </h4>
+<h3 id="break">Break</h3>
+<h4> 11:05 - 11:35 </h4>
+<p> Thomas Daede, Mozilla </p>
+<h3 id="rav1e-update">rav1e update</h3>
+<h4> 11:35 - 12:05 </h4>
+<p> Jean-Baptiste Kempf, VideoLAN </p>
+<h3 id="vlc-4-0">VLC 4.0</h3>
+<h4> 12:05 - 12:20 </h4>
+<h3 id="tokyo-video-tech">Tokyo Video Tech</h3>
+<h4> 12:30 - 13:30 </h4>
+<h3 id="lunch-break">Lunch Break</h3>
+<p>Bentō sponsored by <a href="https://www.stream.co.jp/english/">J-Stream</a></p>
+<h4> 13:30 - 14:00 </h4>
+<h3 id="group-photo">Group Photo</h3>
+<h4> 14:00 - 18:00 </h4>
+<h3 id="meetups-see-wiki">Meetups (<a href="https://wiki.videolan.org/VDD19/#Planning">See wiki</a>)</h3>
+<h4> 19:30 - 21:30 </h4>
+<h3 id="community-dinner">Community Dinner</h3>
+<p>Location: Warayakiya, Ginza<br>You need to be on time.</p>
+<h4> 09:30 - 12:00 </h4>
+<h3 id="lightning-talks-see-wiki">Lightning talks (<a href="https://wiki.videolan.org/VDD19/#Planning">see wiki</a>)</h3>
+<ul> </ul>
+<h4> 12:00 - 14:00 </h4>
+<h3 id="lunch">Lunch</h3>
+<p>Bentō sponsored by <a href="https://abema.tv/">AbemaTV</a></p>
+<h4> 14:00 - 18:00 </h4>
+<h3 id="unconferences-see-wiki">Unconferences (<a href="https://wiki.videolan.org/VDD19/#Planning">see wiki</a>)</h3>
+<p>The actual content of the unconference track is being decided on Saturday evening. For the live schedule, check the <a href="https://wiki.videolan.org/VDD19#Unconference_schedule">designated page on the wiki</a>.</p>
+<h4> 19:30 - 21:30 </h4>
+<h3 id="unofficial-dinner">Unofficial Dinner</h3>
+<p>Karaoke at J-House amusement bar</p>
+<h2 id="who-can-come">Who can come? </h2>
+<p><strong>Anyone</strong> who cares about open source multimedia technologies and development. Remember that it targets a technical crowd!</p>
+<p>If you are representing a <strong>company</strong> caring about open-source multimedia software, we would be <strong>very interested</strong> if you could co-sponsor the event.</p>
+<h2 id="register">Register</h2>
+<h3 id="cost-and-sponsorship"> COST AND SPONSORSHIP </h3>
+<h3 id="free">FREE</h3>
+<p> The cost for attendance is free. Like previous years, active developers can get a full sponsorship covering travel costs. We will also provide accomodation. </p>
+<p><a href="https://forms.gle/dUGSE3eG3gyh5SQ6A">HERE!</a></p>
+<h3 id="accommodation">Accommodation</h3>
+<p>If you got sponsering confirmation your hotel will be:<br> Hotel Villa Fontaine Tokyo - Nihombashi Hakozaki<br> 20-10 Hakozaki-cho Nihombashi Chuo-ku Tokyo, 103-0015</p>
+<h2 id="sponsors">Sponsors</h2>
+<hr/>
+<p><a href="https://www.iij.ad.jp/en/"> <img alt="Internet Initiative Japan" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/IIJ.jpg"/> </a></p>
+<p><a href="https://www.stream.co.jp/english/"> <img alt="J-Stream" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/jstream.jpg"/> </a></p>
+<p><a href="https://mux.com/"> <img alt="Mux" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/mux.png"/> </a></p>
+<p><a href="https://abema.tv/"> <img alt="AbemaTV" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/abematv.png"/> </a></p>
+<p><a href="https://mozilla.org/"> <img alt="Mozilla" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/mozilla.png"/> </a></p>
+<p><a href="https://videolabs.io/"> <img alt="Videolabs" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/videolabs.png"/> </a></p>
+<div class="gallery"><img alt="Tokyo Video Tech" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/tvt.png"/></div>
+<p><a href="https://youtube.com/"> <img alt="YouTube" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd17/sponsors/youtube_logo.svg"/> </a></p>
+<p><a href="https://www.4cast.co.jp/"> <img alt="Forecast Communications Inc." decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd19/sponsors/4cast.png"/> </a></p>
+<h2 id="locations">Locations</h2>
+<hr/>
+<p>Conference</p>
+<p>Internet Initiative Japan Inc. Iidabashi Grand Bloom, 2-10-2 Fujimi, Chiyoda-ku, Tokyo 102-0071, JAPAN</p>
+<h2 id="code-of-conduct">Code of Conduct </h2>
+<p>This community activity is running under the <a href="https://wiki.videolan.org/CoC/">VideoLAN Code of Conduct</a>. We expect all attendees to respect our <a href="https://wiki.videolan.org/VideoLAN_Values/">Shared Values</a>.</p>
+<h2 id="contact">Contact </h2>
+<p>The VideoLAN Dev Days are organized by the board members of the VideoLAN non-profit organization, Jean-Baptiste Kempf, Denis Charmet, Konstantin Pavlov and Hugo Beauzée-Luyssen. You can reach us at board@videolan.org.</p><p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">网站索引</a> · <a href="https://www.videolan.org/videolan/events/vdd19/">原始页面</a></p></article></div><nav class="pn" aria-label="活动"><a href="videolan--events--vdd23.html"><small>上一页</small><b lang="en">Video Dev Days 2023</b></a><a class="r" href="videolan--events--vdd18.html"><small>下一页</small><b lang="en">Video Dev Days 2018</b></a></nav></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN——一个项目，也是一家非营利组织，自 1996 年起开发自由的多媒体软件。</p><div class="langs"><a href="../../p/videolan--events--vdd19.html" hreflang="en" lang="en">English</a><a href="../../fr/p/videolan--events--vdd19.html" hreflang="fr" lang="fr">Français</a><a href="../../zh/p/videolan--events--vdd19.html" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">简体中文</a><a href="../../ar/p/videolan--events--vdd19.html" hreflang="ar" lang="ar">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">下载</a></li><li><a href="../p/vlc--features.html">功能</a></li><li><a href="../p/vlc--skins.php.html">皮肤</a></li><li><a href="https://addons.videolan.org/">扩展</a></li><li><a href="../p/vlc--releases--3.0.24.html">发行说明</a></li><li><a href="../p/security.html">安全</a></li></ul></div><div><h4>项目</h4><ul><li><a href="../p/section--projects.html">全部项目</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>社区</h4><ul><li><a href="https://forum.videolan.org/">论坛</a></li><li><a href="https://wiki.videolan.org/">Wiki</a></li><li><a href="../p/support--faq.html">常见问题</a></li><li><a href="https://docs.videolan.me/vlc-user/">文档</a></li><li><a href="../p/contribute.html">参与贡献</a></li><li><a href="../p/videolan--events.html">活动</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">关于</a></li><li><a href="../p/videolan--team.html">团队与组织</a></li><li><a href="../p/videolan--partners.html">合作伙伴</a></li><li><a href="../p/press.html">新闻中心</a></li><li><a href="../p/legal.html">法律信息</a></li><li><a href="../p/privacy.html">隐私</a></li><li><a href="../p/contact.html">联系我们</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC、VideoLAN 和 x264 是 VideoLAN 的注册商标。本改版为 Paul Fleury 的非官方概念设计。 影片画面：Big Buck Bunny、Sintel、Tears of Steel、Caminandes、Elephants Dream © Blender Foundation，CC BY。</p><p><a href="../p/sitemap.html">网站索引</a> · <a href="../p/design-notes.html">关于本次改版</a> · 无 Cookie · 无追踪 · 静态 HTML5</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../../site.js" defer></script>
+</body></html>

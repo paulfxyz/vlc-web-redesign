@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-root="../" data-base="../" data-slug="projects--multicat" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Multicat — VideoLAN</title>
+<meta name="description" content="DVBlast, x264, dav1d, multicat, VLMC, VLMa and the libraries behind VLC.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../p/projects--multicat.html"><link rel="alternate" hreflang="fr" href="../fr/p/projects--multicat.html"><link rel="alternate" hreflang="zh-Hans" href="../zh/p/projects--multicat.html"><link rel="alternate" hreflang="ar" href="../ar/p/projects--multicat.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">Design proposal for videolan.org — an independent concept offered to the VideoLAN team.</span><span class="s">Redesign proposal ·</span> <a href="../p/design-notes.html">Read the design notes</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — Home"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="Menu"><a href="../p/download.html">Download</a><a href="../index.html#features">Features</a><a href="../p/news.html">News</a><a href="../p/section--projects.html" aria-current="page">Projects</a><a href="../p/support.html">Support</a><a href="../p/contribute.html">Contribute</a><a href="../index.html#about">About</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="Search" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="Language: English"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-globe"/></svg><span class="code">EN</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="Switch to dark theme" data-l-dark="Switch to dark theme" data-l-light="Switch to light theme"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="Display &amp; accessibility"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../icons.svg#i-heart"/></svg>Donate</a>
+<details class="menu"><summary class="ib" aria-label="Menu"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-download"/></svg>Download</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-sparkle"/></svg>Features</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-news"/></svg>News</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-box"/></svg>Projects</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-chat"/></svg>Support</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-users"/></svg>Contribute</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-home"/></svg>About</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../icons.svg#i-heart"/></svg>Donate</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="section--projects.html">Projects</a></nav>
+<p class="kick">Projects · 2 min read</p>
+<h1>Multicat</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><div class="pw"><aside class="toc" aria-label="On this page"><p class="kick">On this page</p><ul><li><a href="#simple-and-efficient-multicast-and-transport-str">Simple and efficient multicast and transport stream manipulation</a></li><li><a href="#the-multicat-program">The multicat program</a></li><li><a href="#the-ingests-program">The ingests program</a></li><li><a href="#the-aggregartp-and-reordertp-programs">The aggregartp and reordertp programs</a></li><li><a href="#the-smooths-program">The smooths program</a></li><li><a href="#the-multilive-program">The multilive program</a></li><li><a href="#get-multicat">Get Multicat</a></li></ul></aside><article class="prose">
+<h2 id="simple-and-efficient-multicast-and-transport-str">Simple and efficient multicast and transport stream manipulation</h2>
+<p>The multicat package contains a set of tools designed to easily and efficiently manipulate multicast streams in general, and MPEG-2 Transport Streams (ISO/IEC 13818-1) in particular.</p>
+<p>The multicat suite of applications is very lightweight and designed to operate in tight environments. Memory and CPU usages are kept to a minimum, and they feature only one thread of execution. It is designed to run on Linux, FreeBSD and Mac OS X.</p>
+<h2 id="the-multicat-program">The <code>multicat</code> program</h2>
+<p><code>multicat</code> itself is a 1 input/1 output application. Inputs and outputs can be network streams (unicast and multicast), files, directories, character devices or FIFOs. It is thought to be a multicast equivalent of the popular netcat tool. Typical applications are recording live transport streams, or playing out TS files without modification. Also it is able to record a continuous stream into a directory, rotate the files periodically, and make seamless extracts from it.</p>
+<p>Multicat tries to rebuild the internal clock of the input stream; but it wants to remain agnostic of what is transported, so in case of files the said clock is stored to an auxiliary file (example.aux accompanies example.ts) while recording. Other inputs are considered "live", and the input clock is simply derived from the reception time of the packets.</p>
+<h2 id="the-ingests-program">The <code>ingests</code> program</h2>
+<p><code>ingests</code> is a companion application designed to manipulate TS files. It reads the PCR values of the file, and builds the auxiliary file that is necessary for multicat.</p>
+<p> The combination of <code>ingests</code> and <code>multicat</code> makes a simple and efficient TS file streamer.</p>
+<h2 id="the-aggregartp-and-reordertp-programs">The <code>aggregartp</code> and <code>reordertp</code> programs</h2>
+<p><code>aggregartp</code> splits a single RTP stream (for instance a high-bitrate signal) to several contribution links with load balancing.</p>
+<p><code>reordertp</code> takes one or multiple inputs (from <code>aggregartp</code> or another source known to reorder and/or add jitter to packets) and smoothes them out to output the original stream in correct order.</p>
+<h2 id="the-smooths-program">The <code>smooths</code> program</h2>
+<p>This program allows to minimize jitter and please IAT analysers. It reads the RTP timestamps and waits for the proper time to send the packet.</p>
+<h2 id="the-multilive-program">The <code>multilive</code> program</h2>
+<p>This program implements a VRRP-like master/slave redundancy between two servers. Both servers communicate via a multicast address, and if the master server crashes, the slave server takes over.</p>
+<h2 id="get-multicat">Get Multicat</h2>
+<p> The latest official version of <code>Multicat</code> is numbered 2.4, and is available <a href="https://get.videolan.org/multicat/2.4/multicat-2.4.tar.bz2" data-dl>here</a>.</p>
+<p><a href="developers--bitstream.html">biTStream</a> needs to be installed at build-time.</p>
+<p>The code can be checked out using Git with <code>git clone https://code.videolan.org/videolan/multicat.git</code> and you can <a href="https://code.videolan.org/videolan/multicat">browse the source online</a>.</p>
+<p>User support and development is handled in the <a href="developers--lists.html">multicat-devel mailing-list</a>.</p>
+<p>Contributions can be sent as pull requests in our <a href="https://github.com/videolan/multicat">github repository</a>.</p><p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">Site index</a> · <a href="https://www.videolan.org/projects/multicat.html">Original page</a></p></article></div><nav class="pn" aria-label="Projects"><a href="projects--dvblast.html"><small>Previous</small><b lang="en">DVBlast</b></a><a class="r" href="projects--vlma.html"><small>Next</small><b lang="en">VLMa Overview</b></a></nav></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN, a project and a non-profit organisation, producing free multimedia software since 1996.</p><div class="langs"><a href="../p/projects--multicat.html" hreflang="en" lang="en" aria-current="true">English</a><a href="../fr/p/projects--multicat.html" hreflang="fr" lang="fr">Français</a><a href="../zh/p/projects--multicat.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="../ar/p/projects--multicat.html" hreflang="ar" lang="ar">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">Download</a></li><li><a href="../p/vlc--features.html">Features</a></li><li><a href="../p/vlc--skins.php.html">Skins</a></li><li><a href="https://addons.videolan.org/">Extensions</a></li><li><a href="../p/vlc--releases--3.0.24.html">Release notes</a></li><li><a href="../p/security.html">Security</a></li></ul></div><div><h4>Projects</h4><ul><li><a href="../p/section--projects.html">All projects</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>Community</h4><ul><li><a href="https://forum.videolan.org/">Forums</a></li><li><a href="https://wiki.videolan.org/">Wiki</a></li><li><a href="../p/support--faq.html">FAQ</a></li><li><a href="https://docs.videolan.me/vlc-user/">Documentation</a></li><li><a href="../p/contribute.html">Contribute</a></li><li><a href="../p/videolan--events.html">Events</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">About</a></li><li><a href="../p/videolan--team.html">Team &amp; organisation</a></li><li><a href="../p/videolan--partners.html">Partners</a></li><li><a href="../p/press.html">Press</a></li><li><a href="../p/legal.html">Legal</a></li><li><a href="../p/privacy.html">Privacy</a></li><li><a href="../p/contact.html">Contact</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC, VideoLAN and x264 are registered trademarks of VideoLAN. Unofficial redesign concept by Paul Fleury. Film stills: Big Buck Bunny, Sintel, Tears of Steel, Caminandes, Elephants Dream © Blender Foundation, CC BY.</p><p><a href="../p/sitemap.html">Site index</a> · <a href="../p/design-notes.html">About this redesign</a> · No cookies · No trackers · Static HTML5</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../site.js" defer></script>
+</body></html>

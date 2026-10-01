@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-root="../../" data-base="../" data-slug="vlc--releases--3.0.8" data-lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VLC 3.0.8 Vetinari — VideoLAN</title>
+<meta name="description" content="كل إصدار من VLC منذ 1.1، مع أبرز الميزات وسجل التغييرات.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../../p/vlc--releases--3.0.8.html"><link rel="alternate" hreflang="fr" href="../../fr/p/vlc--releases--3.0.8.html"><link rel="alternate" hreflang="zh-Hans" href="../../zh/p/vlc--releases--3.0.8.html"><link rel="alternate" hreflang="ar" href="../../ar/p/vlc--releases--3.0.8.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<a class="skip" href="#main">انتقل إلى المحتوى</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">مقترح لإعادة تصميم videolan.org — تصوّر مستقل مُهدى إلى فريق VideoLAN.</span><span class="s">مقترح إعادة التصميم ·</span> <a href="../p/design-notes.html">اقرأ ملاحظات التصميم</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — الرئيسية"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="القائمة"><a href="../p/download.html">تنزيل</a><a href="../index.html#features">الميزات</a><a href="../p/news.html">الأخبار</a><a href="../p/section--projects.html">المشاريع</a><a href="../p/support.html">الدعم</a><a href="../p/contribute.html">ساهم</a><a href="../index.html#about">من نحن</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="بحث" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="اللغة: العربية"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-globe"/></svg><span class="code">AR</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="التبديل إلى الوضع الداكن" data-l-dark="التبديل إلى الوضع الداكن" data-l-light="التبديل إلى الوضع الفاتح"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="العرض وسهولة الوصول"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>تبرّع</a>
+<details class="menu"><summary class="ib" aria-label="القائمة"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-download"/></svg>تنزيل</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-sparkle"/></svg>الميزات</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-news"/></svg>الأخبار</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-box"/></svg>المشاريع</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-chat"/></svg>الدعم</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-users"/></svg>ساهم</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-home"/></svg>من نحن</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>تبرّع</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">الرئيسية</a><span aria-hidden="true">/</span><a href="section--releases.html">ملاحظات الإصدارات</a></nav>
+<p class="kick">ملاحظات الإصدارات · قراءة 4 دقائق</p>
+<h1 lang="en" dir="ltr">VLC 3.0.8 Vetinari</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><p class="untr"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-info"/></svg><span>لم تُترجم هذه الصفحة بعد، وتظهر بنسختها الإنجليزية الأصلية.</span></p><div class="pw"><aside class="toc" aria-label="في هذه الصفحة"><p class="kick">في هذه الصفحة</p><ul lang="en" dir="ltr"><li><a href="#hardware-accelerated-decoding-for-hd-and-uhd">Hardware accelerated decoding for HD and UHD</a></li><li><a href="#3-0-8-fixes">3.0.8 Fixes</a></li><li><a href="#3-0-highlights">3.0 Highlights</a></li><li><a href="#3-0-features">3.0 Features</a></li><li><a href="#download-vlc">Download VLC</a></li><li><a href="#windows">Windows</a></li><li><a href="#android">Android</a></li><li><a href="#macos">macOS</a></li><li><a href="#ios">iOS</a></li><li><a href="#windows-store-and-uwp">Windows Store and UWP</a></li><li><a href="#windows-phone">Windows Phone</a></li><li><a href="#sources">Sources</a></li><li><a href="#linux">Linux</a></li><li><a href="#related-links">Related links</a></li><li><a href="#contact">Contact</a></li></ul></aside><article class="prose" lang="en" dir="ltr">
+<p>VLC 3.0.8 is the ninth version of the "Vetinari" branch of our popular media player.</p>
+<div class="gallery"><img alt="" decoding="async" loading="lazy" src="https://www.videolan.org/vlc/releases/3.0.0/carousel-3.0-4k.jpg"/><img alt="" decoding="async" loading="lazy" src="https://www.videolan.org/vlc/releases/3.0.0/carousel-3.0-hdr.jpg"/><img alt="" decoding="async" loading="lazy" src="https://www.videolan.org/vlc/releases/3.0.0/carousel-3.0-360.jpg"/><img alt="" decoding="async" loading="lazy" src="https://www.videolan.org/vlc/releases/3.0.0/carousel-chromecast2.jpg"/><img alt="" decoding="async" loading="lazy" src="https://www.videolan.org/vlc/releases/3.0.0/carousel-iphone10-1.jpg"/><img alt="" decoding="async" loading="lazy" src="https://www.videolan.org/vlc/releases/3.0.0/carousel-3.0-xbox.jpg"/></div>
+<h2 id="hardware-accelerated-decoding-for-hd-and-uhd">Hardware accelerated decoding for HD and UHD</h2>
+
+<h2 id="3-0-8-fixes">3.0.8 Fixes</h2>
+<ul> <li>VLC 3.0.8 is the eight update of "Vetinari":</li> <li>Fix stuttering for low framerate videos</li> <li>Improve adaptive streaming support</li> <li>Fix WebVTT subtitles rendering</li> <li>Improve audio output on macOS &amp;iOS</li> </ul>
+<ul> <li>It also fixes security issues:</li> <li><a href="security--sb-vlc308.html">13 issues</a>, including 5 buffer overflows we fixed. 11 CVEs were assigned and addressed.</li>   Read the <a href="https://code.videolan.org/videolan/vlc/-/raw/master/NEWS"></a>Changelog.   </ul>
+<h2 id="3-0-highlights">3.0 Highlights</h2>
+<ul> <li>VLC 3.0 "Vetinari" is a new major update of VLC</li> <li>VLC 3.0 activates <strong>hardware decoding</strong> by default, to get <a href="https://vimeo.com/254723528">4K and 8K playback!</a></li> <li>It supports <strong>10bits</strong> and <strong>HDR</strong></li> <li>VLC supports <strong>360 video</strong> and <strong>3D audio</strong>, up to Ambisonics 3rd order</li> </ul>
+<ul> <li>Allows <strong>audio passthrough</strong> for HD audio codecs</li> <li>Can stream to <strong>Chromecast</strong> devices, even in formats not supported natively</li> <li>Can play <strong>Blu-Ray Java menus</strong>: BD-J</li> <li>VLC supports browsing of <strong>local network</strong> drives and NAS</li>   Read the <a href="https://code.videolan.org/videolan/vlc/-/raw/master/NEWS"></a>Changelog.   </ul>
+<p><a href="https://vimeo.com/254723180">VLC 3.0 playing 8K 48fps 360 video on Android Galaxy S8</a> from <a href="https://vimeo.com/videolan">VideoLAN</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<p><a href="https://vimeo.com/254723528">VLC 3.0 playing 8k60 on Windows 10 using i7 GPU</a> from <a href="https://vimeo.com/videolan">VideoLAN</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<h2 id="3-0-features"> 3.0 Features</h2>
+<p>Core</p>
+<ul> <li>Network browsing for distant filesystems (SMB, FTP, SFTP, NFS...) <li>HDMI passthrough for Audio HD codecs, like E-AC3, TrueHD or DTS-HD <li>12bits codec and extended colorspaces (HDR) <li>Stream to distant renderers, like Chromecast <li>360 video and 3D audio playback with viewpoint change <li>Support for Ambisonics audio and more than 8 audio channels <li>Subtitles size modification during playback <li>Secure passwords storage </li></li></li></li></li></li></li></li></ul>
+<p>Acceleration</p>
+<ul> <li>Hardware decoding and display on all platforms</li> <li>HEVC hardware decoding on Windows, using DxVA2 and D3D11</li> <li>HEVC hardware decoding using OMX and MediaCodec (Android)</li> <li>MPEG-2, VC1/WMV3 hardware decoding on Android</li> <li>Important improvements for the MMAL decoder and output for rPI and rPI2</li> <li>HEVC and H.264 hardware decoding for macOS and and iOS based on VideoToolbox</li> <li>New VA-API decoder and rendering for Linux</li> </ul>
+<p>Codecs</p>
+<ul> <li>BD-Java menus and overlay in Blu-Ray</li> <li>Experimental AV1 video and Daala video decoders</li> <li>OggSpots video decoder</li> <li>New MPEG-1 &amp; 2 audio layer I, II, III + MPEG 2.5 decoder based on libmpg123</li> <li>New BPG decoder based on libbpg</li> <li>TDSC, Canopus HQX, Cineform, SpeedHQ, Pixlet, QDMC and FMVC decoders</li> <li>TTML subtitles support, including EBU-TT variant</li> <li>Rewrite of webVTT subtitles support, including CSS style support</li> <li>BluRay text subtitles (HDMV) deocoder</li> <li>Support for ARIB-B24, CEA-708</li> <li>New decoder for MIDI on macOS, iOS and Windows</li> </ul>
+<p>Containers</p>
+<ul> <li>Rework of the MP4 demuxer:<br> including 608/708, Flip4Mac, XiphQT, VP8, TTML mappings</li> <li>Rework of the TS demuxer:<br> including Opus, SCTE-18, ARIB mappings </li> <li>HD-DVD .evo support</li> <li>Rework of the PS demuxer, supporting HEVC, improving compatibility of broken files</li> <li>Improvements on MKV, including support for DVD-menus and FFv1, and faster seeking</li> <li>Support for Chained-Ogg, raw-HEVC and improvements for Flac</li> <li>Support for Creative ADPCM in AVI and VOC files</li> <li>Improved metadata formats in most file formats</li> </ul>
+<p>Protocols and devices</p>
+<ul> <li>Full support for Bluray Menus (BD-J) and Bluray ISO</li> <li>Rewrite of Adaptive Streaming protocols support</li> <li>Support for HLSv4 to HLSv7, including MP4 and ID3 cases</li> <li>Rewrite of DASH support, including MPEG2TS and ISOBMFF</li> <li>Support SAT&gt;IP devices, for DVB-S via IP networks</li> <li>Support for HTTP 2.0</li> <li>Support NFS, SMB and SFTP shares, with browsing</li> <li>Support for SRT streaming protocol</li> </ul>
+<p>Stream output and encoding</p>
+<ul> <li>Support for streaming to Chromecast devices <li>Support for VP8 and VP9 encoding through libvpx <li>Support for streaming Opus inside TS <li>Support for mp4 fragmented muxing <li>Improvements for x265 encoding </li></li></li></li></li></ul>
+<p>Video outputs and filters</p>
+<ul> <li>OpenGL as Linux/BSD default video output</li> <li>Improvements in OpenGL output: direct displaying and HDR tonemapping</li> <li>Rework of the Android video outputs</li> <li>New Direct3D11 video output supporting both Windows desktop and WinRT modes</li> <li>HDR10 support in Direct3D11 with Windows 10 Fall Creator Update</li> <li>Hardware deinterlacing on the rPI, using MMAL</li> <li>Video filter to convert between fps rates</li> <li>Hardware accelerated deinterlacing/adjust/sharpen/chroma with VA-API</li> <li>Hardware accelerated adjust/invert/posterize/sepia/sharpen with CoreImage</li> <li>Hardware accelerated deinterlacing/adjust/chroma with D3D9 and D3D11</li> </ul>
+<p>Audio outputs and filters</p>
+<ul> <li>Complete rewrite of the AudioTrack Android output</li> <li>New Tizen audio output</li> <li>HDMI/SPDIF pass-through support for WASAPI (AC3/DTS/DTSHD/EAC3/TRUEHD)</li> <li>Support EAC3 and TRUEHD pass-through for PulseAudio</li> <li>Rework of the AudioUnit modules to share more code between iOS and macOS</li> <li>SoX Resampler library audio filter module (converter and resampler)</li> <li>Ambisonics audio renderer, supporting up to 3rd order</li> <li>Binauralizer audio filter, working with Ambisonics or 5.1/7.1 streams</li> <li>Pitch shifting module</li> </ul>
+<p>OS Versions</p>
+<ul> <li>Windows XP ➔ 10 RS3</li> <li>macOS 10.7 ➔ 10.13</li> <li>iOS 7 ➔ 11</li> <li>Android 2.3 ➔ 8.1</li> <li>Android TV, Chromebooks with Play Store</li> <li>Windows RT 8.1, Windows Phone 8.1</li> <li>Windows 10 Mobile, Xbox 1, Windows Store</li> <li>GNU/Linux, Ubuntu, *BSD</li> </ul>
+<p>Android specific</p>
+<ul> <li>Chromecast support from your phone</li> <li>HEVC hardware decoding using MediaCodec</li> <li>Android Auto with voice actions</li> <li>Available on all Android TV, Chromebooks &amp; DeX</li> <li>Support for Picture-in-Picture</li> <li>Playlist files detection</li> </ul>
+<p>VLC SDK - libVLC</p>
+<ul> <li>New bindings for C++ and C++/CX</li> <li>New input-from-memory to implement custom protocols or DRM <li>Support for ChromeCast and Renderer targets <li>Improve API for servers discovery <li>New API for dialogs, notably for HTTPS warnings <li>New API to manage slaves inputs, including subtitles over the network <li>Improve codec, format descriptions and associated metadata <li>Improve EPG events API <li>Better support for Android applications, native and Java ones </li></li></li></li></li></li></li></li></ul>
+<h2 id="download-vlc">Download VLC</h2>
+<h2 id="windows">Windows</h2>
+<p><a href="https://get.videolan.org/vlc/3.0.8/win32/vlc-3.0.8-win32.exe" data-dl>  VLC for Windows Version 3.0.8 </a></p>
+<h2 id="android">Android</h2>
+<p><a href="https://play.google.com/store/apps/details?id=org.videolan.vlc"><img alt="" decoding="async" loading="lazy" src="https://www.videolan.org/images/get_it_on_play_logo_large.png"/></a></p>
+<h2 id="macos">macOS</h2>
+<p><a href="https://get.videolan.org/vlc/3.0.8/macosx/vlc-3.0.8.dmg" data-dl>  VLC for macOS Version 3.0.8 - 64bits </a></p>
+<h2 id="ios">iOS</h2>
+<p><a href="http://itunes.apple.com/app/vlc-ios/id650377962"><img alt="" decoding="async" loading="lazy" src="https://www.videolan.org/images/appstoredownload-en.png"/></a></p>
+<h2 id="windows-store-and-uwp">Windows Store and UWP</h2>
+<p><a href="https://www.microsoft.com/en-US/store/p/vlc/9nblggh4vvnh"><img alt="" decoding="async" loading="lazy" src="https://www.videolan.org/images/badges/WS_green.png"/></a></p>
+<h2 id="windows-phone">Windows Phone</h2>
+<p><a href="http://www.windowsphone.com/s?appid=44fa83f7-a98d-4647-b9d4-c35ed729d0c9"><img alt="" decoding="async" loading="lazy" src="https://www.videolan.org/images/badges/WPS_cyan.png"/></a></p>
+<h2 id="sources">Sources</h2>
+<p><a href="vlc--download-sources.html">Get the source!</a></p>
+<h2 id="linux">Linux</h2>
+<p>Ask your favorite packager for VLC 3.0!</p>
+<h2 id="related-links">Related links</h2>
+<ul> <li><a href="https://code.videolan.org/videolan/vlc/-/raw/master/NEWS">Changelog</a></li> </ul>
+<h2 id="contact">Contact</h2>
+<p>For any questions related to this release, please <a href="contact.html">contact us</a>.</p><p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">فهرس الموقع</a> · <a href="https://www.videolan.org/vlc/releases/3.0.8.html">الصفحة الأصلية</a></p></article></div><nav class="pn" aria-label="ملاحظات الإصدارات"><a href="vlc--releases--3.0.10.html"><small>السابق</small><b lang="en">VLC 3.0.10 Vetinari</b></a><a class="r" href="vlc--releases--3.0.7.html"><small>التالي</small><b lang="en">VLC 3.0.7 Vetinari</b></a></nav></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN، مشروع ومنظمة غير ربحية، تصنع برمجيات وسائط حرّة منذ 1996.</p><div class="langs"><a href="../../p/vlc--releases--3.0.8.html" hreflang="en" lang="en">English</a><a href="../../fr/p/vlc--releases--3.0.8.html" hreflang="fr" lang="fr">Français</a><a href="../../zh/p/vlc--releases--3.0.8.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="../../ar/p/vlc--releases--3.0.8.html" hreflang="ar" lang="ar" aria-current="true">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">تنزيل</a></li><li><a href="../p/vlc--features.html">الميزات</a></li><li><a href="../p/vlc--skins.php.html">السمات</a></li><li><a href="https://addons.videolan.org/">الإضافات</a></li><li><a href="../p/vlc--releases--3.0.24.html">ملاحظات الإصدار</a></li><li><a href="../p/security.html">الأمان</a></li></ul></div><div><h4>المشاريع</h4><ul><li><a href="../p/section--projects.html">كل المشاريع</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>المجتمع</h4><ul><li><a href="https://forum.videolan.org/">المنتديات</a></li><li><a href="https://wiki.videolan.org/">الويكي</a></li><li><a href="../p/support--faq.html">الأسئلة الشائعة</a></li><li><a href="https://docs.videolan.me/vlc-user/">التوثيق</a></li><li><a href="../p/contribute.html">ساهم</a></li><li><a href="../p/videolan--events.html">الفعاليات</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">من نحن</a></li><li><a href="../p/videolan--team.html">الفريق والمنظمة</a></li><li><a href="../p/videolan--partners.html">الشركاء</a></li><li><a href="../p/press.html">الصحافة</a></li><li><a href="../p/legal.html">الشؤون القانونية</a></li><li><a href="../p/privacy.html">الخصوصية</a></li><li><a href="../p/contact.html">اتصل بنا</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC وVideoLAN وx264 علامات تجارية مسجّلة لـ VideoLAN. تصوّر غير رسمي لإعادة التصميم من Paul Fleury. لقطات الأفلام: Big Buck Bunny وSintel وTears of Steel وCaminandes وElephants Dream © Blender Foundation، رخصة CC BY.</p><p><a href="../p/sitemap.html">فهرس الموقع</a> · <a href="../p/design-notes.html">عن إعادة التصميم</a> · بلا ملفات تعريف · بلا متتبّعات · HTML5 ثابت</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../../site.js" defer></script>
+</body></html>

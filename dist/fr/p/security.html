@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr" dir="ltr" data-root="../../" data-base="../" data-slug="security" data-lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Security — VideoLAN</title>
+<meta name="description" content="Avis et bulletins de sécurité, et comment signaler une faille.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../../p/security.html"><link rel="alternate" hreflang="fr" href="../../fr/p/security.html"><link rel="alternate" hreflang="zh-Hans" href="../../zh/p/security.html"><link rel="alternate" hreflang="ar" href="../../ar/p/security.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">Proposition de refonte de videolan.org — un concept indépendant offert à l’équipe VideoLAN.</span><span class="s">Proposition de refonte ·</span> <a href="../p/design-notes.html">Lire les notes de conception</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — Accueil"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="Menu"><a href="../p/download.html">Télécharger</a><a href="../index.html#features">Fonctionnalités</a><a href="../p/news.html">Actualités</a><a href="../p/section--projects.html">Projets</a><a href="../p/support.html">Assistance</a><a href="../p/contribute.html">Contribuer</a><a href="../index.html#about">À propos</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="Rechercher" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="Langue: Français"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-globe"/></svg><span class="code">FR</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="Passer au thème sombre" data-l-dark="Passer au thème sombre" data-l-light="Passer au thème clair"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="Affichage et accessibilité"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>Faire un don</a>
+<details class="menu"><summary class="ib" aria-label="Menu"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-download"/></svg>Télécharger</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-sparkle"/></svg>Fonctionnalités</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-news"/></svg>Actualités</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-box"/></svg>Projets</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-chat"/></svg>Assistance</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-users"/></svg>Contribuer</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-home"/></svg>À propos</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>Faire un don</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="section--security.html">Sécurité</a></nav>
+<p class="kick">Sécurité · 3 min de lecture</p>
+<h1 lang="en" dir="ltr">Security</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><p class="untr"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-info"/></svg><span>Cette page n’a pas encore été traduite. Elle s’affiche dans sa version anglaise d’origine.</span></p><div class="pw"><aside class="toc" aria-label="Sur cette page"><p class="kick">Sur cette page</p><ul lang="en" dir="ltr"><li><a href="#security-contacts">Security contacts</a></li><li><a href="#vlc-releases-security-bulletins-sb">VLC releases Security Bulletins (SB)</a></li><li><a href="#videolan-security-advisories">VideoLAN security advisories</a></li></ul></aside><article class="prose" lang="en" dir="ltr">
+<h2 id="security-contacts">Security contacts</h2>
+<p><strong>Email</strong>: security@REMOVE@videolan.org.</p>
+<p>Please note that signed emails are welcome, and responsible disclosure is very much appreciated.</p>
+<h2 id="vlc-releases-security-bulletins-sb">VLC releases Security Bulletins <em>(SB)</em></h2>
+<p>Those bulletins are related to each VLC release and can be made of multiple security issues, internal and external.</p>
+<h3 id="2026">2026</h3>
+<dl> <dt>VideoLAN-SB-VLC-324</dt> <dd>Multiple vulnerabilities fixed in VLC media player 3.0.24 <a href="security--sb-vlc3024.html">Details</a> </dd> </dl>
+<h3 id="2025">2025</h3>
+<dl> <dt>VideoLAN-SB-VLC-322</dt> <dd>Vulnerabilities fixed in VLC media player 3.0.22 <a href="security--sb-vlc3022.html">Details</a> </dd> </dl>
+<h3 id="2024">2024</h3>
+<dl> <dt>VideoLAN-SB-VLC-321</dt> <dd>Vulnerability fixed in VLC media player 3.0.21 <a href="security--sb-vlc3021.html">Details</a> </dd> <dt>VideoLAN-SB-VLC-iOS-359</dt> <dd>Vulnerability fixed in VLC-iOS 3.5.9 <a href="security--sb-vlc-ios359.html">Details</a> </dd> </dl>
+<h3 id="2023">2023</h3>
+<dl> <dt>VideoLAN-SB-VLC-320</dt> <dd>Vulnerability fixed in VLC media player 3.0.20 <a href="security--sb-vlc3020.html">Details</a> </dd> <dt>VideoLAN-SB-VLC-319</dt> <dd>Vulnerability fixed in VLC media player 3.0.19 <a href="security--sb-vlc3019.html">Details</a> </dd> </dl>
+<h3 id="2022">2022</h3>
+<dl> <dt>VideoLAN-SB-VLC-318</dt> <dd>Multiple vulnerabilities fixed in VLC media player 3.0.18 <a href="security--sb-vlc3018.html">Details</a> </dd> </dl>
+<h3 id="2021">2021</h3>
+<dl> <dt>VideoLAN-SB-VLC-313</dt> <dd>Multiple vulnerabilities fixed in VLC media player 3.0.13 <a href="security--sb-vlc3013.html">Details</a> </dd> </dl>
+<h3 id="2020">2020</h3>
+<dl> <dt>VideoLAN-SB-VLC-312</dt> <dd>Multiple vulnerabilities fixed in VLC media player 3.0.12 <a href="security--sb-vlc3012.html">Details</a> </dd> <dt>VideoLAN-SB-VLC-311</dt> <dd>Multiple vulnerabilities fixed in VLC media player 3.0.11 <a href="security--sb-vlc3011.html">Details</a> </dd> <dt>VideoLAN-SB-VLC-309</dt> <dd>Multiple vulnerabilities fixed in VLC media player 3.0.9/3.0.10 <a href="security--sb-vlc309.html">Details</a> </dd> </dl>
+<h3 id="2019">2019</h3>
+<dl> <dt>VideoLAN-SB-VLC-308</dt> <dd>Multiple vulnerabilities fixed in VLC media player 3.0.8 <a href="security--sb-vlc308.html">Details</a> </dd> </dl>
+<h2 id="videolan-security-advisories">VideoLAN security advisories</h2>
+<p><strong>Please note</strong>: The VideoLAN project does not issue security advisories for underlying third party libraries. Please refer to the concerned third parties as appropriate. </p>
+<h3 id="2019-2">2019</h3>
+<dl> <dt>VideoLAN-SA-1901</dt> <dd>Buffer overflow in avi demuxer &amp; heap use after free in mkv demuxer <a href="security--sa1901.html">Details</a> </dd> </dl>
+<h3 id="2018">2018</h3>
+<dl> <dt>VideoLAN-SA-1801</dt> <dd>Heap use after free in avformat demuxer <a href="security--sa1801.html">Details</a> </dd> </dl>
+<h3 id="2016">2016</h3>
+<dl> <dt>VideoLAN-SA-1601</dt> <dd>Buffer Overflow in Processing QuickTime IMA Files <a href="security--sa1601.html">Details</a> </dd> </dl>
+<h3 id="2015">2015</h3>
+<dl> <dt>VideoLAN-SA-1501</dt> <dd>Multiple heap and buffer overflows <a href="security--sa1501.html">Details</a> </dd> </dl>
+<h3 id="2013">2013</h3>
+<dl> <dt>VideoLAN-SA-1302 (CVE-2013-1954)</dt> <dd>Overflow in ASF Demuxer <a href="security--sa1302.html">Details</a> </dd> <dt>VideoLAN-SA-1301</dt> <dd>Overflow in subtitles decoder <a href="security--sa1301.html">Details</a> </dd> </dl>
+<h3 id="2012">2012</h3>
+<dl> <dt>VideoLAN-SA-1203 (CVE-2012-5470)</dt> <dd>Overflow in PNG decoder <a href="security--sa1203.html">Details</a> </dd> <dt>VideoLAN-SA-1202 (CVE-2012-1776)</dt> <dd>Heap overflows in Real RTPS protocol <a href="security--sa1202.html">Details</a> </dd> <dt>VideoLAN-SA-1201 (CVE-2012-1775)</dt> <dd>Stack overflow in MMS protocol <a href="security--sa1201.html">Details</a> </dd> </dl>
+<h3 id="2011">2011</h3>
+<dl> <dt>VideoLAN-SA-1108 (CVE-2012-0023)</dt> <dd>Heap corruption in TiVo demuxer. <a href="security--sa1108.html">Details</a> </dd> <dt>VideoLAN-SA-1107 (CVE-2011-3333)</dt> <dd>NULL dereference in HTTP and RTSP server. <a href="security--sa1107.html">Details</a> </dd> <dt>VideoLAN-SA-1106 (CVE-2011-2588)</dt> <dd>Heap buffer overflow in AVI demuxer. <a href="security--sa1106.html">Details</a> </dd> <dt>VideoLAN-SA-1105 (CVE-2011-2587)</dt> <dd>Heap buffer overflow in RealMedia demuxer. <a href="security--sa1105.html">Details</a> </dd> <dt>VideoLAN-SA-1104 (CVE-2011-2194)</dt> <dd>Integer overflow in XSPF demuxer. <a href="security--sa1104.html">Details</a> </dd> <dt>VideoLAN-SA-1103 (CVE-2011-1684)</dt> <dd>Heap corruption in MP4 demuxer. <a href="security--sa1103.html">Details</a> </dd> <dt>VideoLAN-SA-1102 (CVE-2011-0531)</dt> <dd>Insufficient input validation in MKV demuxer. <a href="security--sa1102.html">Details</a> </dd> <dt>VideoLAN-SA-1101 (CVE-2011-0021)</dt> <dd>Heap corruption in CDG codec. <a href="security--sa1101.html">Details</a> </dd> </dl>
+<h3 id="2010">2010</h3>
+<dl> <dt>VideoLAN-SA-1007 (CVE-2010-3907)</dt> <dd>Buffer overflow in Real Media demuxer. <a href="security--sa1007.html">Details</a> </dd> <dt>VideoLAN-SA-1006</dt> <dd>Stack smashing in SMB/CIFS access. <a href="security--sa1006.html">Details</a> </dd> <dt>VideoLAN-SA-1005 (CVE-2010-3124)</dt> <dd>DLL preloading vulnerability. <a href="security--sa1005.html">Details</a> </dd> <dt>VideoLAN-SA-1004 (CVE-2010-2937)</dt> <dd>Insufficient input validation VLC TagLib plugin. <a href="security--sa1004.html">Details</a> </dd> <dt>VideoLAN-SA-1003 (CVE-2010-1441..5)</dt> <dd>Multiple vulnerabilities in VLC. <a href="security--sa1003.html">Details</a> </dd> <dt>VideoLAN-SA-1002</dt> <dd>Buffer overflow in ancient VLC media player <a href="security--sa1002.html">Details</a> </dd> <dt>VideoLAN-SA-1001</dt> <dd>Clam AntiVirus input validation error <a href="security--sa1001.html">Details</a> </dd> </dl>
+<h3 id="2009">2009</h3>
+<dl> <dt>VideoLAN-SA-0901</dt> <dd>Stack overflows in VLC demuxers. <a href="security--sa0901.html">Details</a> </dd> </dl>
+<h3 id="2008">2008</h3>
+<dl> <dt>VideoLAN-SA-0811 (CVE-2008-5276)</dt> <dd>Buffer overflows in VLC Real demuxers. <a href="security--sa0811.html">Details</a> </dd> <dt>VideoLAN-SA-0810 (CVE-2008-5032, CVE-2008-5036)</dt> <dd>Multiple overflows in VLC demuxers. <a href="security--sa0810.html">Details</a> </dd> <dt>VideoLAN-SA-0809 (CVE-2008-4654, CVE-2008-4686)</dt> <dd>Buffer overflow in VLC TiVo demuxer. <a href="security--sa0809.html">Details</a> </dd> <dt>VideoLAN-SA-0807 (CVE-2008-3732, CVE-2008-3794)</dt> <dd>Multiple overflows in VLC demuxers. <a href="security--sa0807.html">Details</a> </dd> <dt>VideoLAN-SA-0806 (CVE-2008-2430)</dt> <dd>Arbitrary code execution through potential heap-overflows in VLC's WAV demuxer. <a href="security--sa0806.html">Details</a> </dd> <dt>VideoLAN-SA-0805 (CVE-2008-2147)</dt> <dd>Arbitrary code execution through rogue VLC plugins in the current directory. <a href="security--sa0805.html">Details</a> </dd> <dt>VideoLAN-SA-0804 (CVE-2007-6683)</dt> <dd>Arbitrary file overwrite and other abuses through M3U parser and browsers plugins. <a href="security--sa0804.html">Details</a> </dd> <dt>VideoLAN-SA-0803 (CVE-2008-0073, CVE-2008-1489, CVE-2008-1768, CVE-2008-1769)</dt> <dd>Arbitrary memory overwrite vulnerabilities in multiple modules: Real RTSP demuxer, Real Media demuxer, MP4 demuxer, Cinepak decoder. <a href="security--sa0803.html">Details</a> </dd> <dt>VideoLAN-SA-0802, CORE-2008-0130 (CVE-2008-0984)</dt> <dd>Arbitrary memory overwrite vulnerability in the MP4 demuxer. <a href="security--sa0802.html">Details</a> </dd> <dt>VideoLAN-SA-0801 (CVE-2007-6681, CVE-2007-6682, CVE-2008-0295, CVE-2008-0296)</dt> <dd>Format string vulnerability in the Web interface. Stack-based buffer overflow in the Subtitles demuxer. String buffer overflows in the Real RTSP demuxer. <a href="security--sa0801.html">Details</a></dd> </dl>
+<h3 id="2007">2007</h3>
+<dl> <dt>VideoLAN-SA-0703, CORE-2007-1004 (CVE-2007-6262)</dt> <dd>Recursive plugin release vulnerability in the Active X plugin. <a href="security--sa0703.html">Details</a> </dd> <dt>VideoLAN-SA-0702 (CVE-2007-3316)</dt> <dd>Format string injection in Vorbis, Theora, SAP and CDDA plugins. <a href="security--sa0702.html">Details</a> </dd> <dt>VideoLAN-SA-0701, MOAB-02-01-2007 (CVE-2007-0017)</dt> <dd>URL format string injection in CDDA and VCDX plugins. <a href="security--sa0701.html">Details</a> </dd> </dl><p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">Plan du site</a> · <a href="https://www.videolan.org/security/">Page d’origine</a></p></article></div><nav class="pn" aria-label="Sécurité"><span></span><a class="r" href="security--sb-vlc309.html"><small>Suivant</small><b lang="en">Security Bulletin VLC 3.0.9</b></a></nav></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN, un projet et une association, crée des logiciels multimédias libres depuis 1996.</p><div class="langs"><a href="../../p/security.html" hreflang="en" lang="en">English</a><a href="../../fr/p/security.html" hreflang="fr" lang="fr" aria-current="true">Français</a><a href="../../zh/p/security.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="../../ar/p/security.html" hreflang="ar" lang="ar">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">Télécharger</a></li><li><a href="../p/vlc--features.html">Fonctionnalités</a></li><li><a href="../p/vlc--skins.php.html">Skins</a></li><li><a href="https://addons.videolan.org/">Extensions</a></li><li><a href="../p/vlc--releases--3.0.24.html">Notes de version</a></li><li><a href="../p/security.html">Sécurité</a></li></ul></div><div><h4>Projets</h4><ul><li><a href="../p/section--projects.html">Tous les projets</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>Communauté</h4><ul><li><a href="https://forum.videolan.org/">Forums</a></li><li><a href="https://wiki.videolan.org/">Wiki</a></li><li><a href="../p/support--faq.html">FAQ</a></li><li><a href="https://docs.videolan.me/vlc-user/">Documentation</a></li><li><a href="../p/contribute.html">Contribuer</a></li><li><a href="../p/videolan--events.html">Événements</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">À propos</a></li><li><a href="../p/videolan--team.html">Équipe et organisation</a></li><li><a href="../p/videolan--partners.html">Partenaires</a></li><li><a href="../p/press.html">Presse</a></li><li><a href="../p/legal.html">Mentions légales</a></li><li><a href="../p/privacy.html">Confidentialité</a></li><li><a href="../p/contact.html">Contact</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC, VideoLAN et x264 sont des marques déposées de VideoLAN. Concept de refonte non officiel par Paul Fleury. Images de films : Big Buck Bunny, Sintel, Tears of Steel, Caminandes, Elephants Dream © Blender Foundation, CC BY.</p><p><a href="../p/sitemap.html">Plan du site</a> · <a href="../p/design-notes.html">À propos de cette refonte</a> · Sans cookie · Sans pisteur · HTML5 statique</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../../site.js" defer></script>
+</body></html>

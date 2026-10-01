@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" data-root="../../" data-base="../" data-slug="projects--dvblast" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DVBlast — VideoLAN</title>
+<meta name="description" content="DVBlast、x264、dav1d、multicat、VLMC、VLMa 以及支撑 VLC 的各种库。">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../../p/projects--dvblast.html"><link rel="alternate" hreflang="fr" href="../../fr/p/projects--dvblast.html"><link rel="alternate" hreflang="zh-Hans" href="../../zh/p/projects--dvblast.html"><link rel="alternate" hreflang="ar" href="../../ar/p/projects--dvblast.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">videolan.org 改版提案——一份献给 VideoLAN 团队的独立设计概念。</span><span class="s">改版提案 ·</span> <a href="../p/design-notes.html">阅读设计说明</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — 首页"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="菜单"><a href="../p/download.html">下载</a><a href="../index.html#features">功能</a><a href="../p/news.html">新闻</a><a href="../p/section--projects.html" aria-current="page">项目</a><a href="../p/support.html">支持</a><a href="../p/contribute.html">参与贡献</a><a href="../index.html#about">关于</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="搜索" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="语言: 简体中文"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-globe"/></svg><span class="code">ZH</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="切换到深色主题" data-l-dark="切换到深色主题" data-l-light="切换到浅色主题"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="显示与无障碍"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>捐赠</a>
+<details class="menu"><summary class="ib" aria-label="菜单"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-download"/></svg>下载</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-sparkle"/></svg>功能</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-news"/></svg>新闻</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-box"/></svg>项目</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-chat"/></svg>支持</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-users"/></svg>参与贡献</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-home"/></svg>关于</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>捐赠</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">首页</a><span aria-hidden="true">/</span><a href="section--projects.html">项目</a></nav>
+<p class="kick">项目 · 阅读约 1 分钟</p>
+<h1 lang="en" dir="ltr">DVBlast</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><p class="untr"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-info"/></svg><span>本页尚未翻译，以下为英文原文。</span></p><div class="pw"><aside class="toc" aria-label="本页内容"><p class="kick">本页内容</p><ul lang="en" dir="ltr"><li><a href="#features">Features</a></li><li><a href="#high-performance-streaming">High-Performance Streaming</a></li><li><a href="#inputs-outputs">Inputs - Outputs</a></li><li><a href="#support">Support</a></li><li><a href="#development">Development</a></li></ul></aside><article class="prose" lang="en" dir="ltr"><div class="gallery"><img alt="Large DVBlast Logo with headphones on a folder" decoding="async" loading="lazy" src="https://images.videolan.org/images/DVBlast-Icon.png"/></div>
+
+<p>Are you looking for live streaming? Don't look any further!<br> DVBlast is a simple and powerful MPEG-2/TS demux and streaming application.</p>
+<p><a href="https://get.videolan.org/dvblast/3.5/dvblast-3.5.tar.bz2" data-dl> <img alt="Download DVBlast icon" decoding="async" loading="lazy" src="https://www.videolan.org/images/downloadDVBlast.png"/>   Download DVBlast   Version 3.5  •  Linux  •  86 KiB </a></p>
+<h2 id="features">Features</h2>
+<ul> <li>Lightweight program designed for extreme memory and CPU conditions</li> <li>One runtime dependancy (<a href="http://libev.schmorp.de/">libev</a>), one build dependancy (<a href="developers--bitstream.html">biTStream</a>)</li> <li>CAM menus (MMI) support via an external application</li> <li>The configuration file describing outputs can be reloaded without losing a single packet</li> <li>Support for the new S2API of linux-dvb</li> <li>IPv6 network support</li> <li>UDP rather than RTP output for IPTV STBs which don't support RTP</li> <li>Open Source: <strong>GPLv2</strong></li> </ul>
+<h2 id="high-performance-streaming">High-Performance Streaming</h2>
+<p> <code>DVBlast</code> is written to be the core of a custom IRD, CID, or ASI gateway, based on a PC with a Linux-supported card. It is very lightweight and stable, designed for 24/7 operation. </p>
+<p> <code>DVBlast</code> does <strong>not</strong> do any kind of processing on the elementary streams, such as transcoding, or remultiplexing. If you were looking for these features, switch to <a href="vlc.html">VLC</a>. It does <strong>not</strong> stream from plain files (have a look at <a href="projects--multicat.html">multicat</a> instead). </p>
+<p> <code>DVBlast</code> compiles and run on Linux and macOS (with limited feature set). </p>
+<h2 id="inputs-outputs">Inputs - Outputs</h2>
+<p><code>DVBlast</code> supports several input methods:</p>
+<ul> <li>linux-dvb-supported cards (DVB-S, DVB-S2, DVB-C, DVB-T…) with or without CI interface</li> <li>DVB-ASI cards (from <a href="http://www.computermodules.com/">Computer Modules</a> or <a href="http://www.deltacast.tv/">Deltacast</a>)</li> <li>UDP or RTP, unicast or multicast, streams carrying a transport stream</li> </ul>
+<p>It outputs one or several RTP streams carrying transport streams with:</p>
+<ul> <li>hardware or software PID filtering</li> <li>PID-based or service-based demultiplexing</li> <li>optional descrambling via CAM device</li> <li>optional DVB tables </li> <li>optional PID and SID remapping </li> </ul>
+<h2 id="support">Support</h2>
+<p>User support and development is handled in the <a href="developers--lists.html">dvblast-devel</a> mailing-list.</p>
+<h2 id="development">Development</h2>
+<p>Hackers can participate to the development using <a href="https://wiki.videolan.org/Git">git</a>.</p>
+<p>The code is accessible from <code>https://code.videolan.org/videolan/dvblast.git</code> and you can <a href="https://code.videolan.org/videolan/dvblast.git">browse the source online</a>.</p>
+<p>Contributions can be sent as pull requests in our <a href="https://github.com/videolan/dvblast">github repository</a>.</p><p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">网站索引</a> · <a href="https://www.videolan.org/projects/dvblast.html">原始页面</a></p></article></div><nav class="pn" aria-label="项目"><a href="projects--dav1d.html"><small>上一页</small><b lang="en">dav1d</b></a><a class="r" href="projects--multicat.html"><small>下一页</small><b lang="en">Multicat</b></a></nav></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN——一个项目，也是一家非营利组织，自 1996 年起开发自由的多媒体软件。</p><div class="langs"><a href="../../p/projects--dvblast.html" hreflang="en" lang="en">English</a><a href="../../fr/p/projects--dvblast.html" hreflang="fr" lang="fr">Français</a><a href="../../zh/p/projects--dvblast.html" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">简体中文</a><a href="../../ar/p/projects--dvblast.html" hreflang="ar" lang="ar">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">下载</a></li><li><a href="../p/vlc--features.html">功能</a></li><li><a href="../p/vlc--skins.php.html">皮肤</a></li><li><a href="https://addons.videolan.org/">扩展</a></li><li><a href="../p/vlc--releases--3.0.24.html">发行说明</a></li><li><a href="../p/security.html">安全</a></li></ul></div><div><h4>项目</h4><ul><li><a href="../p/section--projects.html">全部项目</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>社区</h4><ul><li><a href="https://forum.videolan.org/">论坛</a></li><li><a href="https://wiki.videolan.org/">Wiki</a></li><li><a href="../p/support--faq.html">常见问题</a></li><li><a href="https://docs.videolan.me/vlc-user/">文档</a></li><li><a href="../p/contribute.html">参与贡献</a></li><li><a href="../p/videolan--events.html">活动</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">关于</a></li><li><a href="../p/videolan--team.html">团队与组织</a></li><li><a href="../p/videolan--partners.html">合作伙伴</a></li><li><a href="../p/press.html">新闻中心</a></li><li><a href="../p/legal.html">法律信息</a></li><li><a href="../p/privacy.html">隐私</a></li><li><a href="../p/contact.html">联系我们</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC、VideoLAN 和 x264 是 VideoLAN 的注册商标。本改版为 Paul Fleury 的非官方概念设计。 影片画面：Big Buck Bunny、Sintel、Tears of Steel、Caminandes、Elephants Dream © Blender Foundation，CC BY。</p><p><a href="../p/sitemap.html">网站索引</a> · <a href="../p/design-notes.html">关于本次改版</a> · 无 Cookie · 无追踪 · 静态 HTML5</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../../site.js" defer></script>
+</body></html>

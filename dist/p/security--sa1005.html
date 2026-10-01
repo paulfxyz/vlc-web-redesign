@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-root="../" data-base="../" data-slug="security--sa1005" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Security Advisory 1005 — VideoLAN</title>
+<meta name="description" content="Advisories and bulletins, and how to report a vulnerability.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../p/security--sa1005.html"><link rel="alternate" hreflang="fr" href="../fr/p/security--sa1005.html"><link rel="alternate" hreflang="zh-Hans" href="../zh/p/security--sa1005.html"><link rel="alternate" hreflang="ar" href="../ar/p/security--sa1005.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">Design proposal for videolan.org — an independent concept offered to the VideoLAN team.</span><span class="s">Redesign proposal ·</span> <a href="../p/design-notes.html">Read the design notes</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — Home"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="Menu"><a href="../p/download.html">Download</a><a href="../index.html#features">Features</a><a href="../p/news.html">News</a><a href="../p/section--projects.html">Projects</a><a href="../p/support.html">Support</a><a href="../p/contribute.html">Contribute</a><a href="../index.html#about">About</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="Search" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="Language: English"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-globe"/></svg><span class="code">EN</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="Switch to dark theme" data-l-dark="Switch to dark theme" data-l-light="Switch to light theme"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="Display &amp; accessibility"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../icons.svg#i-heart"/></svg>Donate</a>
+<details class="menu"><summary class="ib" aria-label="Menu"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-download"/></svg>Download</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-sparkle"/></svg>Features</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-news"/></svg>News</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-box"/></svg>Projects</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-chat"/></svg>Support</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-users"/></svg>Contribute</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../icons.svg#i-home"/></svg>About</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../icons.svg#i-heart"/></svg>Donate</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="section--security.html">Security</a></nav>
+<p class="kick">Security · 1 min read</p>
+<h1>Security Advisory 1005</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><div class="pw"><aside class="toc" aria-label="On this page"><p class="kick">On this page</p><ul><li><a href="#details">Details</a></li><li><a href="#impact">Impact</a></li><li><a href="#threat-mitigation">Threat mitigation</a></li><li><a href="#workarounds">Workarounds</a></li><li><a href="#solution">Solution</a></li><li><a href="#credits">Credits</a></li><li><a href="#references">References</a></li><li><a href="#history">History</a></li></ul></aside><article class="prose">
+<pre>Summary           : DLL preloading vulnerability
+Date              : August 2010
+Affected versions : All VLC media player versions up to 1.1.3
+ID                : VideoLAN-SA-1005
+CVE reference     : CVE-2010-3124</pre>
+<h2 id="details">Details</h2>
+<p>Due to the DLL loading design on Windows, VLC loads automatically a DLL from the current directory, if it doesn't find it in VLC's application directory or in system directories. A few modules of VLC are affected (only Qt4 and DMO are known at the moment). </p>
+<h2 id="impact">Impact</h2>
+<p>If successful, the exploit can execute arbitrary code within the context of VLC media player. </p>
+<h2 id="threat-mitigation">Threat mitigation</h2>
+<p>Microsoft has published workarounds ( <a href="https://www.microsoft.com/technet/security/advisory/2269637.mspx"> https://www.microsoft.com/technet/security/advisory/2269637.mspx</a> ) and a tool ( <a href="http://support.microsoft.com/kb/2264107">http://support.microsoft.com/kb/2264107</a> ) that fixes the vulnerability for all affected software on the computer. </p>
+<h2 id="workarounds">Workarounds</h2>
+<p>The user should refrain from opening files from untrusted third parties or accessing untrusted remote sites (network shares, USB keys), until the patch is applied. </p>
+<h2 id="solution">Solution</h2>
+<p>VLC media player 1.1.4 addresses this issue. The patch for VLC media player 1.1.x is available from the corresponding official VLC source code repositories. </p>
+<h2 id="credits">Credits</h2>
+<p>This vulnerability was reported by Georgi Guninski, Taeho Kwon, ACROS Security and H.D. Moore.<br> An exploit was posted on exploit-db by Vinay Katoch. </p>
+<h2 id="references">References</h2>
+<dl> <dt>The VideoLAN project</dt> <dd><a href="../index.html">http://www.videolan.org/</a> </dd> <dt>Patch for VLC 1.1.3, 1.1.2, 1.1.1, 1.1.0</dt> <dd><a href="http://git.videolan.org/?p=vlc/vlc-1.1.git;a=commit;h=43a31df56c37bd62c691cdbe3c1f11babd164b56">commit 43a31df56c37bd62c691cdbe3c1f11babd164b56</a> </dd> </dl>
+<h2 id="history">History</h2>
+<dl> <dt>23 August 2010</dt> <dd>Details of the vulnerability released.</dd> <dt>25 August 2010</dt> <dd>Exploit release.</dd> <dd>Vendor patch for VLC 1.1.3.</dd> <dt>26 August 2010</dt> <dd>Initial security advisory.</dd> <dd>CVE reference assigned.</dd> <dt>27 August 2010</dt> <dd>VLC 1.1.4 release.</dd> </dl>
+<p>Geoffroy Couprie,<br> on behalf of the VideoLAN project</p><p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">Site index</a> · <a href="https://www.videolan.org/security/sa1005.html">Original page</a></p></article></div><nav class="pn" aria-label="Security"><a href="security--sa1006.html"><small>Previous</small><b lang="en">Security Advisory 1006</b></a><a class="r" href="security--sa1004.html"><small>Next</small><b lang="en">Security Advisory 1004</b></a></nav></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN, a project and a non-profit organisation, producing free multimedia software since 1996.</p><div class="langs"><a href="../p/security--sa1005.html" hreflang="en" lang="en" aria-current="true">English</a><a href="../fr/p/security--sa1005.html" hreflang="fr" lang="fr">Français</a><a href="../zh/p/security--sa1005.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="../ar/p/security--sa1005.html" hreflang="ar" lang="ar">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">Download</a></li><li><a href="../p/vlc--features.html">Features</a></li><li><a href="../p/vlc--skins.php.html">Skins</a></li><li><a href="https://addons.videolan.org/">Extensions</a></li><li><a href="../p/vlc--releases--3.0.24.html">Release notes</a></li><li><a href="../p/security.html">Security</a></li></ul></div><div><h4>Projects</h4><ul><li><a href="../p/section--projects.html">All projects</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>Community</h4><ul><li><a href="https://forum.videolan.org/">Forums</a></li><li><a href="https://wiki.videolan.org/">Wiki</a></li><li><a href="../p/support--faq.html">FAQ</a></li><li><a href="https://docs.videolan.me/vlc-user/">Documentation</a></li><li><a href="../p/contribute.html">Contribute</a></li><li><a href="../p/videolan--events.html">Events</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">About</a></li><li><a href="../p/videolan--team.html">Team &amp; organisation</a></li><li><a href="../p/videolan--partners.html">Partners</a></li><li><a href="../p/press.html">Press</a></li><li><a href="../p/legal.html">Legal</a></li><li><a href="../p/privacy.html">Privacy</a></li><li><a href="../p/contact.html">Contact</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC, VideoLAN and x264 are registered trademarks of VideoLAN. Unofficial redesign concept by Paul Fleury. Film stills: Big Buck Bunny, Sintel, Tears of Steel, Caminandes, Elephants Dream © Blender Foundation, CC BY.</p><p><a href="../p/sitemap.html">Site index</a> · <a href="../p/design-notes.html">About this redesign</a> · No cookies · No trackers · Static HTML5</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../site.js" defer></script>
+</body></html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" data-root="../../" data-base="../" data-slug="vlc--download-altlinux" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VLC media player for ALT Linux — VideoLAN</title>
+<meta name="description" content="各平台 VLC 官方版本，新旧皆有。">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../../p/vlc--download-altlinux.html"><link rel="alternate" hreflang="fr" href="../../fr/p/vlc--download-altlinux.html"><link rel="alternate" hreflang="zh-Hans" href="../../zh/p/vlc--download-altlinux.html"><link rel="alternate" hreflang="ar" href="../../ar/p/vlc--download-altlinux.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">videolan.org 改版提案——一份献给 VideoLAN 团队的独立设计概念。</span><span class="s">改版提案 ·</span> <a href="../p/design-notes.html">阅读设计说明</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — 首页"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="菜单"><a href="../p/download.html" aria-current="page">下载</a><a href="../index.html#features">功能</a><a href="../p/news.html">新闻</a><a href="../p/section--projects.html">项目</a><a href="../p/support.html">支持</a><a href="../p/contribute.html">参与贡献</a><a href="../index.html#about">关于</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="搜索" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="语言: 简体中文"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-globe"/></svg><span class="code">ZH</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="切换到深色主题" data-l-dark="切换到深色主题" data-l-light="切换到浅色主题"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="显示与无障碍"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>捐赠</a>
+<details class="menu"><summary class="ib" aria-label="菜单"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-download"/></svg>下载</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-sparkle"/></svg>功能</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-news"/></svg>新闻</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-box"/></svg>项目</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-chat"/></svg>支持</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-users"/></svg>参与贡献</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-home"/></svg>关于</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>捐赠</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">首页</a><span aria-hidden="true">/</span><a href="section--download.html">下载</a></nav>
+<p class="kick">下载 · 阅读约 1 分钟</p>
+<h1 lang="en" dir="ltr">VLC media player for ALT Linux</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><p class="untr"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-info"/></svg><span>本页尚未翻译，以下为英文原文。</span></p><div class="pw"><aside class="toc" aria-label="本页内容"><p class="kick">本页内容</p><ul lang="en" dir="ltr"><li><a href="#alt-linux-sisyphus-unstable">ALT Linux Sisyphus (unstable)</a></li><li><a href="#current-stable-distributions">Current stable distributions</a></li><li><a href="#older-distributions">Older distributions</a></li></ul></aside><article class="prose" lang="en" dir="ltr"><div class="gallery"><img alt="VLC on Linux" decoding="async" loading="lazy" src="https://images.videolan.org/images/screenshots/vlc-linux.jpg"/><img alt="VLC media player - Linux - Gnome" decoding="async" loading="lazy" src="https://images.videolan.org/vlc/screenshots/1.0.0/VLC_Gnome.png"/><img alt="VLC media player - Linux - Debian / Gnome 3" decoding="async" loading="lazy" src="https://images.videolan.org/vlc/screenshots/2.0.0/vlc-2.0-gnome3-debian.jpg"/><img alt="Large Orange VLC media player Traffic Cone Logo" decoding="async" loading="lazy" src="https://images.videolan.org/images/largeVLC.png"/></div>
+
+<p>VLC is a free and open source cross-platform multimedia player and framework that plays most multimedia files as well as DVDs, Audio CDs, VCDs, and various streaming protocols.</p>
+
+<h2 id="alt-linux-sisyphus-unstable">ALT Linux Sisyphus (unstable)</h2>
+<p>Sisyphus packages repository always contains one of the latest versions of VLC (stable branch or svn trunk, depending on trunk usability/state).</p>
+<p>In order to acquire it you should have those lines in your /etc/apt/sources.list:</p>
+<pre>   rpm [alt] ftp://ftp.altlinux.com/pub/distributions/ALTLinux/Sisyphus i586 classic
+   rpm [alt] ftp://ftp.altlinux.com/pub/distributions/ALTLinux/Sisyphus noarch classic</pre>
+<p>If your arch is x86_64, substitute i586 to x86_64 in a corresponding line.</p>
+<p>For a normal install, including support for reading almost all audio/video formats, dvd playback and X11 video output do the following:</p>
+<pre>   # apt-get update
+   # apt-get install vlc</pre>
+<p>or for full install with all possible plugins:</p>
+<pre>   # apt-get install vlc-maxi</pre>
+<h2 id="current-stable-distributions">Current stable distributions</h2>
+<h3 id="4-0">4.0</h3>
+<p><strong>Server</strong> distribution does not have vlc package in 'main' component.</p>
+<p>In order to install vlc, one should enable 'classic' component and perform the following:</p>
+<pre>  # apt-get update
+  # apt-get install vlc</pre>
+<h2 id="older-distributions">Older distributions</h2>
+<p>Master 2.4 and Compact 3.0 contain outdated 0.7.2 version of VLC. There are no official backports done by ALT Linux Team, so you're encouraged to update if you want recent VLC.</p><p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">网站索引</a> · <a href="https://www.videolan.org/vlc/download-altlinux.html">原始页面</a></p></article></div><nav class="pn" aria-label="下载"><span></span><a class="r" href="vlc--download-android.html"><small>下一页</small><b lang="en">VLC for Android™</b></a></nav></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN——一个项目，也是一家非营利组织，自 1996 年起开发自由的多媒体软件。</p><div class="langs"><a href="../../p/vlc--download-altlinux.html" hreflang="en" lang="en">English</a><a href="../../fr/p/vlc--download-altlinux.html" hreflang="fr" lang="fr">Français</a><a href="../../zh/p/vlc--download-altlinux.html" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">简体中文</a><a href="../../ar/p/vlc--download-altlinux.html" hreflang="ar" lang="ar">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">下载</a></li><li><a href="../p/vlc--features.html">功能</a></li><li><a href="../p/vlc--skins.php.html">皮肤</a></li><li><a href="https://addons.videolan.org/">扩展</a></li><li><a href="../p/vlc--releases--3.0.24.html">发行说明</a></li><li><a href="../p/security.html">安全</a></li></ul></div><div><h4>项目</h4><ul><li><a href="../p/section--projects.html">全部项目</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>社区</h4><ul><li><a href="https://forum.videolan.org/">论坛</a></li><li><a href="https://wiki.videolan.org/">Wiki</a></li><li><a href="../p/support--faq.html">常见问题</a></li><li><a href="https://docs.videolan.me/vlc-user/">文档</a></li><li><a href="../p/contribute.html">参与贡献</a></li><li><a href="../p/videolan--events.html">活动</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">关于</a></li><li><a href="../p/videolan--team.html">团队与组织</a></li><li><a href="../p/videolan--partners.html">合作伙伴</a></li><li><a href="../p/press.html">新闻中心</a></li><li><a href="../p/legal.html">法律信息</a></li><li><a href="../p/privacy.html">隐私</a></li><li><a href="../p/contact.html">联系我们</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC、VideoLAN 和 x264 是 VideoLAN 的注册商标。本改版为 Paul Fleury 的非官方概念设计。 影片画面：Big Buck Bunny、Sintel、Tears of Steel、Caminandes、Elephants Dream © Blender Foundation，CC BY。</p><p><a href="../p/sitemap.html">网站索引</a> · <a href="../p/design-notes.html">关于本次改版</a> · 无 Cookie · 无追踪 · 静态 HTML5</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../../site.js" defer></script>
+</body></html>

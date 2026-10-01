@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" data-root="../../" data-base="../" data-slug="videolan--events--vdd26" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VDD · XXVI — VideoLAN</title>
+<meta name="description" content="VideoLAN 开发者大会、FOSDEM，以及 25 年来的照片与故事。">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../../p/videolan--events--vdd26.html"><link rel="alternate" hreflang="fr" href="../../fr/p/videolan--events--vdd26.html"><link rel="alternate" hreflang="zh-Hans" href="../../zh/p/videolan--events--vdd26.html"><link rel="alternate" hreflang="ar" href="../../ar/p/videolan--events--vdd26.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">videolan.org 改版提案——一份献给 VideoLAN 团队的独立设计概念。</span><span class="s">改版提案 ·</span> <a href="../p/design-notes.html">阅读设计说明</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — 首页"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="菜单"><a href="../p/download.html">下载</a><a href="../index.html#features">功能</a><a href="../p/news.html">新闻</a><a href="../p/section--projects.html">项目</a><a href="../p/support.html">支持</a><a href="../p/contribute.html">参与贡献</a><a href="../index.html#about">关于</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="搜索" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="语言: 简体中文"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-globe"/></svg><span class="code">ZH</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="切换到深色主题" data-l-dark="切换到深色主题" data-l-light="切换到浅色主题"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="显示与无障碍"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>捐赠</a>
+<details class="menu"><summary class="ib" aria-label="菜单"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-download"/></svg>下载</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-sparkle"/></svg>功能</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-news"/></svg>新闻</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-box"/></svg>项目</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-chat"/></svg>支持</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-users"/></svg>参与贡献</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-home"/></svg>关于</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>捐赠</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">首页</a><span aria-hidden="true">/</span><a href="section--events.html">活动</a></nav>
+<p class="kick">活动 · 阅读约 4 分钟</p>
+<h1 lang="en" dir="ltr">VDD · XXVI</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><p class="untr"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-info"/></svg><span>本页尚未翻译，以下为英文原文。</span></p><div class="pw"><aside class="toc" aria-label="本页内容"><p class="kick">本页内容</p><ul lang="en" dir="ltr"><li><a href="#about">About</a></li><li><a href="#participation-amp-registration">Participation &amp;amp; Registration</a></li><li><a href="#call-for-proposals-2">Call for Proposals</a></li><li><a href="#awesome-samples-competition">Awesome Samples Competition</a></li><li><a href="#schedule">Schedule</a></li><li><a href="#sponsors">Sponsors</a></li><li><a href="#access">Access</a></li><li><a href="#code-of-conduct">Code of Conduct</a></li><li><a href="#contact">Contact</a></li></ul></aside><article class="prose" lang="en" dir="ltr"><h4>Sponsors</h4>
+<p><a href="https://videolabs.io/"> <img alt="Videolabs" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd25/sponsors/videolabs.png"/> </a> <a href="https://www.uniroma1.it/en"> <img alt="Sapienza Università di Roma" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd26/sponsors/sapienza.svg"/> </a> <a href="https://www.netflix.com"> <img alt="Netflix Inc." decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd26/sponsors/Netflix-logo.png"/> </a> <a href="https://www.mux.com"> <img alt="Mux" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd26/sponsors/mux.png"/> </a> <a href="https://aomedia.org/"> <img alt="Alliance for Open Media" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd26/sponsors/aomedia-logo.png"/> </a> <a href="https://www.twoorioles.com/"> <img alt="Two Orioles" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd26/sponsors/twoorioles-logo.png"/> </a></p>
+<p>15th Edition  ·  Rome, Italy</p>
+
+<p>Video Dev Days 2026</p>
+<p>16th – 18th October, 2026  ·  Sapienza University of Rome</p>
+<p>The Open Multimedia Conference!</p>
+<h2 id="about"> About </h2>
+<p><a href="videolan.html">The VideoLAN non-profit organization</a> is excited to invite you to the upcoming multimedia open-source event in Rome!</p>
+<p>In this edition, participants from the VideoLAN and open-source multimedia communities will gather in <strong>Rome, Italy</strong> to discuss and collaborate on advancing the future of open-source multimedia.</p>
+<p>This technical conference will focus on in-depth multimedia topics, including codecs and their implementations such as <a href="developers--x264.html">x264</a> and <a href="https://code.videolan.org/videolan/dav1d">dav1d</a>, as well as frameworks like FFmpeg, and projects like <strong>VideoLAN</strong>, <strong>VLC</strong>, <strong>Kodi</strong>, <strong>libplacebo</strong>, <strong>mpv</strong> and related projects.</p>
+<p>This event is specifically geared towards the technical aspects of multimedia, emphasizing low-level components like codecs, their implementations, frameworks, playback libraries, and various innovative projects within the multimedia domain.</p>
+<h4>When ?</h4>
+<p>October 16th - 18th, 2026</p>
+<h4>Where ?</h4>
+<p>Rome, Italy</p>
+<h4>For ?</h4>
+<p> <strong>Anyone</strong> who cares about open source multimedia technologies and development. </p>
+<h4>From ?</h4>
+<p>VideoLAN. But you are very welcome to co-sponsor the event.</p>
+<h2 id="participation-amp-registration">Participation &amp; Registration</h2>
+<hr/>
+<h3 id="registration">Registration</h3>
+<p>Free admission for anyone in the open-source multimedia community.</p>
+<p><a href="https://framaforms.org/vdd-2026-late-registrations-1789557963"> Register for Free </a></p>
+<h3 id="call-for-proposals">Call for Proposals</h3>
+<p>Submit a technical talk or abstract by 1 October 2026.</p>
+<p><a href="https://framaforms.org/vdd-xxvi-call-for-proposals-video-dev-days-2026-1788383759"> Submit a Proposal </a></p>
+<h3 id="samples-competition">Samples Competition</h3>
+<p>The Derek Challenge: submit cursed media files by 2 October 2026.</p>
+<p><a href="https://code.videolan.org/VideoLAN.org/awesome-samples-competition-2026"> Submit Samples </a></p>
+<h2 id="call-for-proposals-2">Call for Proposals</h2>
+<p> Send a title and a paragraph — that is the whole process! </p>
+<p>All of these were real talks at previous VDDs:</p>
+<p>Checkasm|dav1d update|Multithreading in FFmpeg|llvm-mingw|Reading bits faster in libavcodec|x265 update|Libswscale Reimagined|What is HDR?|The pointer provenance problem in C|Hijacking AI CPU extension for multimedia|KODI updates|Tools for Screen Sharing in AV1|rav1e update|Ensuring the future of assembly language programming|FFGlitch|Why VFX Cares About Codecs|RV and RVV Introduction|State of the ffmpeg CLI &amp; MV-HEVC decoding|VLC Android Technical Stack|Debugging assembly functions|Compression for Virtual Production|APV codec|One Checkasm to rule them all|Reverse engineering popular and dead codecs|Dynamic Filter Loading at Meta|Re-using AV1 for SfM|IAMF|SVT-AV1-PSY: Origins, Features, and Future|Enabling Intelligent Media Playback on RISC-V|AMD AMF and Streaming SDK|VLC 4.0</p>
+<h4>WHAT MAKES A TALK</h4>
+<p>Media stack</p>
+<p>Highly technical engineering relevant to the open multimedia stack, codecs, playback libraries, or hardware acceleration.</p>
+<h4>WHO SENDS ONE</h4>
+<p>Anyone.</p>
+<p>Maintainers, students, first-timers, industry engineers, or independent hackers with code and insights to share.</p>
+<h4>WHAT TO SEND</h4>
+<p>An abstract.</p>
+<p>Title, short description, expected duration, and your bio. Nobody has ever been told their talk was too specific!</p>
+<p>Main Track: Saturday &amp; Sunday (17–18 October) · Lightning talks open Friday (16 October)</p>
+<p>Proposals deadline: 1 October 2026</p>
+<p> <a href="https://framaforms.org/vdd-xxvi-call-for-proposals-video-dev-days-2026-1788383759"> Submit a Proposal via Form </a> </p>
+<h2 id="awesome-samples-competition">Awesome Samples Competition</h2>
+<p>2nd Edition · The Derek Challenge · The Most Cursed Media File</p>
+<p> Make the weirdest media file you can — <em>standards abuse, not random corruption!</em> </p>
+<p>WAY I</p>
+<h4>Technically Valid</h4>
+<p>No player will touch it.</p>
+<p>Strictly conformant with the specification, yet exploiting obscure, forgotten, or extreme corner cases that break every known decoder.</p>
+<p>WAY II</p>
+<h4>Technically Invalid</h4>
+<p>Plays anyway.</p>
+<p>Violates specs, combines forbidden structures, or corrupts logic, yet VLC, mpv, or ffplay somehow manage to render it.</p>
+<p>Ingeniosus</p>
+<p>Clever</p>
+<p>Maledictus</p>
+<p>Cursed</p>
+<p>Functionalis</p>
+<p>Functional</p>
+<p>Impossibilis</p>
+<p>Impossible</p>
+<p>The Three Competition Rules</p>
+<p>Rule 01</p>
+<p>Explainable</p>
+<p>You must be able to explain how the file works and what mechanism is triggered.</p>
+<p>Rule 02</p>
+<p>No Exploits</p>
+<p>Memory corruption, security exploits, crashes, or resource exhaustion do not count.</p>
+<p>Rule 03</p>
+<p>Reproducible</p>
+<p>Must be 100% reproducible from your provided script, toolchain, or recipe.</p>
+<p>“We want undefined behaviour in the specification, not in the heap.”</p>
+<p> <a href="https://code.videolan.org/VideoLAN.org/awesome-samples-competition-2026"> Enter Awesome Samples Competition </a> </p>
+<h2 id="schedule">Schedule</h2>
+<hr/>
+<ul> <li>Friday 16th October</li> <li>Saturday 17th October</li> <li>Sunday 18th October</li> </ul>
+<h4>09:30</h4>
+<h3 id="community-bonding-day">Community Bonding Day</h3>
+<p>Will be announced later.</p>
+<h4>19:00</h4>
+<h3 id="evening-drinks">Evening drinks</h3>
+<p>On <strong>Friday from 19h00</strong> people are welcome to come and share a few good drinks, with all attendees.</p>
+<p>Location: Rome. Will be announced later.</p>
+<h4> 09:00 </h4>
+<h3 id="registration-2">Registration</h3>
+<h4> 12:30 - 14:00 </h4>
+<h3 id="break">Break</h3>
+<h4> 14:00 - 16:00 </h4>
+<h3 id="meetups-session-1-2">Meetups session 1/2</h3>
+<p><strong>Room 1</strong></p>
+<p><strong>Room 2</strong></p>
+<p>VLC media player</p>
+<p>FFmpeg</p>
+<h4> 16:00 - 18:00 </h4>
+<h3 id="meetups-session-2-2">Meetups session 2/2</h3>
+<p><strong>Room 1</strong></p>
+<p><strong>Room 2</strong></p>
+
+
+<h4> 19:00 - 21:00 </h4>
+<h3 id="community-dinner">Community Dinner</h3>
+<h4> 12:15 - 13:30 </h4>
+<h3 id="lunch-break">Lunch Break</h3>
+<p> Everyone </p>
+<h4> 13:00 - 18:00 </h4>
+<h3 id="unconferences">Unconferences</h3>
+<p><strong>Room 1</strong></p>
+<p><strong>Room 2</strong></p>
+<p><strong>Room 3</strong></p>
+<h2 id="sponsors">Sponsors</h2>
+<hr/>
+<p><a href="https://videolabs.io/"> <img alt="Videolabs" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd25/sponsors/videolabs.png"/> </a></p>
+<p><a href="https://www.uniroma1.it/en"> <img alt="Sapienza Università di Roma" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd26/sponsors/sapienza.svg"/> </a></p>
+<p><a href="https://www.netflix.com"> <img alt="Netflix Inc." decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd26/sponsors/Netflix-logo.png"/> </a></p>
+<p><a href="https://www.mux.com"> <img alt="Mux" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd26/sponsors/mux.png"/> </a></p>
+<p><a href="https://aomedia.org/"> <img alt="Alliance for Open Media" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd26/sponsors/aomedia-logo.png"/> </a></p>
+<p><a href="https://www.twoorioles.com/"> <img alt="Two Orioles" decoding="async" loading="lazy" src="https://images.videolan.org/images/events/vdd26/sponsors/twoorioles-logo.png"/> </a></p>
+<h2 id="access">Access</h2>
+<hr/>
+<h3 id="conference">Conference</h3>
+<h4><a href="https://www.uniroma1.it/en/pagina/sapienza-conference-centre">Sapienza Conference Centre, Sapienza University of Rome</a></h4>
+<p>Via Salaria 113, 00198 Roma, Italy</p>
+<p><br><small><a href="https://www.openstreetmap.org/?mlat=41.91422&amp;mlon=12.49712#map=17/41.91422/12.49712">View Larger Map</a></small></p>
+<h3 id="beer-event">Beer Event</h3>
+<h4><a href="https://www.whiterabbitroma.it/">White Rabbit</a></h4>
+<p>Via Spalato 35/37/39, 00198 Roma RM, Italy</p>
+<p><br><small><a href="https://www.openstreetmap.org/?mlat=41.9230845&amp;mlon=12.5152446#map=17/41.9230845/12.5152446">View Larger Map</a></small></p>
+<h3 id="hotels">Hotels</h3>
+<p>If you have been sponsored, you will be accommodated in one of the VideoLAN sponsored hotels.</p>
+<h4><a href="https://www.casaviatore.it/en/">Casa dell'Aviatore</a></h4>
+<p>Via Lazzaro Spallanzani 42, 00161 Roma RM, Italy</p>
+<p><br><small><a href="https://www.openstreetmap.org/search?lat=41.911012&amp;lon=12.512323&amp;zoom=19#map=19/41.911085/12.512317">View Larger Map</a></small></p>
+<h4><a href="https://all.accor.com/hotel/3320/index.en.shtml">Mercure Roma Corso Trieste</a></h4>
+<p>CIN: IT058091A1R5DXEH2C, Via Gradisca 31, 00198 Roma RM, Italy</p>
+<p><br><small><a href="https://www.openstreetmap.org/?mlat=41.9207242&amp;mlon=12.5138726#map=17/41.9207242/12.5138726">View Larger Map</a></small></p>
+<h4><a href="https://www.hotelrivoliroma.com/">Best Western Hotel Rivoli</a></h4>
+<p>Via Torquato Taramelli 7, 00197 Roma RM, Italy</p>
+<p><br><small><a href="https://www.openstreetmap.org/?mlat=41.9227268&amp;mlon=12.4832236#map=17/41.9227268/12.4832236">View Larger Map</a></small></p>
+<h3 id="community-dinner-2">Community Dinner</h3>
+<p>Will be announced soon.</p>
+<h2 id="code-of-conduct">Code of Conduct </h2>
+<p>This community activity is running under the <a href="https://wiki.videolan.org/CoC/">VideoLAN Code of Conduct</a>. We expect all attendees to respect our <a href="https://wiki.videolan.org/VideoLAN_Values/">Shared Values</a>.</p>
+<h2 id="contact">Contact </h2>
+<p>The Video Dev Days are organized by the board members of the VideoLAN non-profit organization, Jean-Baptiste Kempf, Thomas Guillem, Denis Charmet, Felix Paul Kühne, Vibhoothi and Konstantin Pavlov. You can reach us at board@videolan.org.</p><p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">网站索引</a> · <a href="https://www.videolan.org/videolan/events/vdd26/">原始页面</a></p></article></div><nav class="pn" aria-label="活动"><a href="videolan--events.html"><small>上一页</small><b lang="en">Events</b></a><a class="r" href="videolan--events--vdd25.html"><small>下一页</small><b lang="en">VideoLAN Developer Days 2025</b></a></nav></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN——一个项目，也是一家非营利组织，自 1996 年起开发自由的多媒体软件。</p><div class="langs"><a href="../../p/videolan--events--vdd26.html" hreflang="en" lang="en">English</a><a href="../../fr/p/videolan--events--vdd26.html" hreflang="fr" lang="fr">Français</a><a href="../../zh/p/videolan--events--vdd26.html" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">简体中文</a><a href="../../ar/p/videolan--events--vdd26.html" hreflang="ar" lang="ar">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">下载</a></li><li><a href="../p/vlc--features.html">功能</a></li><li><a href="../p/vlc--skins.php.html">皮肤</a></li><li><a href="https://addons.videolan.org/">扩展</a></li><li><a href="../p/vlc--releases--3.0.24.html">发行说明</a></li><li><a href="../p/security.html">安全</a></li></ul></div><div><h4>项目</h4><ul><li><a href="../p/section--projects.html">全部项目</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>社区</h4><ul><li><a href="https://forum.videolan.org/">论坛</a></li><li><a href="https://wiki.videolan.org/">Wiki</a></li><li><a href="../p/support--faq.html">常见问题</a></li><li><a href="https://docs.videolan.me/vlc-user/">文档</a></li><li><a href="../p/contribute.html">参与贡献</a></li><li><a href="../p/videolan--events.html">活动</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">关于</a></li><li><a href="../p/videolan--team.html">团队与组织</a></li><li><a href="../p/videolan--partners.html">合作伙伴</a></li><li><a href="../p/press.html">新闻中心</a></li><li><a href="../p/legal.html">法律信息</a></li><li><a href="../p/privacy.html">隐私</a></li><li><a href="../p/contact.html">联系我们</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC、VideoLAN 和 x264 是 VideoLAN 的注册商标。本改版为 Paul Fleury 的非官方概念设计。 影片画面：Big Buck Bunny、Sintel、Tears of Steel、Caminandes、Elephants Dream © Blender Foundation，CC BY。</p><p><a href="../p/sitemap.html">网站索引</a> · <a href="../p/design-notes.html">关于本次改版</a> · 无 Cookie · 无追踪 · 静态 HTML5</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../../site.js" defer></script>
+</body></html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" data-root="../../" data-base="../" data-slug="design-notes" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>关于本次改版 — VideoLAN</title>
+<meta name="description" content="Three design directions for videolan.org.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../../p/design-notes.html"><link rel="alternate" hreflang="fr" href="../../fr/p/design-notes.html"><link rel="alternate" hreflang="zh-Hans" href="../../zh/p/design-notes.html"><link rel="alternate" hreflang="ar" href="../../ar/p/design-notes.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">videolan.org 改版提案——一份献给 VideoLAN 团队的独立设计概念。</span><span class="s">改版提案 ·</span> <a href="../p/design-notes.html">阅读设计说明</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — 首页"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="菜单"><a href="../p/download.html">下载</a><a href="../index.html#features">功能</a><a href="../p/news.html">新闻</a><a href="../p/section--projects.html">项目</a><a href="../p/support.html">支持</a><a href="../p/contribute.html">参与贡献</a><a href="../index.html#about" aria-current="page">关于</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="搜索" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="语言: 简体中文"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-globe"/></svg><span class="code">ZH</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="切换到深色主题" data-l-dark="切换到深色主题" data-l-light="切换到浅色主题"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="显示与无障碍"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>捐赠</a>
+<details class="menu"><summary class="ib" aria-label="菜单"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-download"/></svg>下载</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-sparkle"/></svg>功能</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-news"/></svg>新闻</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-box"/></svg>项目</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-chat"/></svg>支持</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-users"/></svg>参与贡献</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-home"/></svg>关于</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>捐赠</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">首页</a><span aria-hidden="true">/</span><a href="section--videolan.html">VideoLAN</a></nav>
+<p class="kick">VideoLAN</p>
+<h1>关于本次改版</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><div class="pw nt"><article class="prose"><p class="x-lede">这是一份为 videolan.org 准备的独立提案：把现有网站的全部内容重建为一个快速、无障碍的静态 HTML5 站点，首批提供四种语言。</p>
+<h2 id="section">有哪些改变</h2><ul>
+<li><b>一个能识别设备的下载按钮。</b>它会为 Windows（x64、ARM64 或 32 位）、macOS、Linux、Android 或 iOS 自动选择正确的文件并显示大小，其他选项也只需一次点击。</li>
+<li><b>真正的下载中心。</b>所有平台集中在一处：安装程序、MSI、便携 ZIP 与 7z、Apple 芯片和 Intel 版本、八个 Linux 发行版的可复制命令、应用商店徽章、源代码、SHA-256 指纹及校验说明。</li>
+<li><b>离开前明确提示。</b>下载文件直接来自 get.videolan.org，下载前会显示文件名和指纹。尚未改版的 VideoLAN 服务和第三方网站，都会在跳转前提示。</li>
+<li><b>一键捐赠。</b>全屏结账页面：通过 VideoLAN 的 Stripe 支持 Apple Pay、Google Pay、银行卡和 SEPA，另有 PayPal（单次或按月）、银行转账和比特币。</li>
+<li><b>真实呈现 VLC。</b>Windows、macOS、Linux、Android、iPhone 和 Apple TV 上的播放器样机，播放的是 Blender 基金会的开放影片。</li>
+<li><b>多语言。</b>英文、法文、简体中文和阿拉伯文（从右到左）已完成；语言选择器已列出 81 种语言。</li>
+<li><b>无障碍且轻量。</b>不用框架、不用网络字体、没有 Cookie、没有追踪。可调节文字大小、对比度、动画、链接与间距，全程支持键盘操作。动效只在允许动画的新式浏览器中运行，旧浏览器会看到同样的内容，只是静态呈现。</li>
+</ul><p>本方案为 Paul Fleury 的非官方设计概念，以 MIT 许可证赠予 VideoLAN。VLC、VideoLAN 及路锥标志均为 VideoLAN 的商标。内容改编自 videolan.org。</p><p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">网站索引</a></p></article></div></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN——一个项目，也是一家非营利组织，自 1996 年起开发自由的多媒体软件。</p><div class="langs"><a href="../../p/design-notes.html" hreflang="en" lang="en">English</a><a href="../../fr/p/design-notes.html" hreflang="fr" lang="fr">Français</a><a href="../../zh/p/design-notes.html" hreflang="zh-Hans" lang="zh-Hans" aria-current="true">简体中文</a><a href="../../ar/p/design-notes.html" hreflang="ar" lang="ar">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">下载</a></li><li><a href="../p/vlc--features.html">功能</a></li><li><a href="../p/vlc--skins.php.html">皮肤</a></li><li><a href="https://addons.videolan.org/">扩展</a></li><li><a href="../p/vlc--releases--3.0.24.html">发行说明</a></li><li><a href="../p/security.html">安全</a></li></ul></div><div><h4>项目</h4><ul><li><a href="../p/section--projects.html">全部项目</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>社区</h4><ul><li><a href="https://forum.videolan.org/">论坛</a></li><li><a href="https://wiki.videolan.org/">Wiki</a></li><li><a href="../p/support--faq.html">常见问题</a></li><li><a href="https://docs.videolan.me/vlc-user/">文档</a></li><li><a href="../p/contribute.html">参与贡献</a></li><li><a href="../p/videolan--events.html">活动</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">关于</a></li><li><a href="../p/videolan--team.html">团队与组织</a></li><li><a href="../p/videolan--partners.html">合作伙伴</a></li><li><a href="../p/press.html">新闻中心</a></li><li><a href="../p/legal.html">法律信息</a></li><li><a href="../p/privacy.html">隐私</a></li><li><a href="../p/contact.html">联系我们</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC、VideoLAN 和 x264 是 VideoLAN 的注册商标。本改版为 Paul Fleury 的非官方概念设计。 影片画面：Big Buck Bunny、Sintel、Tears of Steel、Caminandes、Elephants Dream © Blender Foundation，CC BY。</p><p><a href="../p/sitemap.html">网站索引</a> · <a href="../p/design-notes.html">关于本次改版</a> · 无 Cookie · 无追踪 · 静态 HTML5</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../../site.js" defer></script>
+</body></html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr" dir="ltr" data-root="../../" data-base="../" data-slug="vlc--releases--2.0.8" data-lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VLC reaches 2.0.8 — VideoLAN</title>
+<meta name="description" content="Chaque version de VLC depuis la 1.1, avec ses nouveautés et changements.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../../p/vlc--releases--2.0.8.html"><link rel="alternate" hreflang="fr" href="../../fr/p/vlc--releases--2.0.8.html"><link rel="alternate" hreflang="zh-Hans" href="../../zh/p/vlc--releases--2.0.8.html"><link rel="alternate" hreflang="ar" href="../../ar/p/vlc--releases--2.0.8.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">Proposition de refonte de videolan.org — un concept indépendant offert à l’équipe VideoLAN.</span><span class="s">Proposition de refonte ·</span> <a href="../p/design-notes.html">Lire les notes de conception</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — Accueil"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="Menu"><a href="../p/download.html">Télécharger</a><a href="../index.html#features">Fonctionnalités</a><a href="../p/news.html">Actualités</a><a href="../p/section--projects.html">Projets</a><a href="../p/support.html">Assistance</a><a href="../p/contribute.html">Contribuer</a><a href="../index.html#about">À propos</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="Rechercher" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="Langue: Français"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-globe"/></svg><span class="code">FR</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="Passer au thème sombre" data-l-dark="Passer au thème sombre" data-l-light="Passer au thème clair"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="Affichage et accessibilité"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>Faire un don</a>
+<details class="menu"><summary class="ib" aria-label="Menu"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-download"/></svg>Télécharger</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-sparkle"/></svg>Fonctionnalités</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-news"/></svg>Actualités</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-box"/></svg>Projets</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-chat"/></svg>Assistance</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-users"/></svg>Contribuer</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-home"/></svg>À propos</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>Faire un don</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="section--releases.html">Notes de version</a></nav>
+<p class="kick">Notes de version · 3 min de lecture</p>
+<h1 lang="en" dir="ltr">VLC reaches 2.0.8</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><p class="untr"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-info"/></svg><span>Cette page n’a pas encore été traduite. Elle s’affiche dans sa version anglaise d’origine.</span></p><div class="pw"><aside class="toc" aria-label="Sur cette page"><p class="kick">Sur cette page</p><ul lang="en" dir="ltr"><li><a href="#features">Features</a></li><li><a href="#screenshots">Screenshots</a></li><li><a href="#2-0-8-specific-changes">2.0.8 specific changes</a></li><li><a href="#spread-the-news">Spread the news</a></li><li><a href="#download-vlc">Download VLC</a></li><li><a href="#windows">Windows</a></li><li><a href="#mac-os-x">Mac OS X</a></li><li><a href="#linux">Linux</a></li><li><a href="#sources">Sources</a></li><li><a href="#contact">Contact</a></li></ul></aside><article class="prose" lang="en" dir="ltr">
+<p>VLC 2.0.8 "Twoflower" is a small update to our 2.0 media player.</p>
+<div class="gallery"><img alt="Large Orange VLC media player Traffic Cone Logo" decoding="async" loading="lazy" src="https://images.videolan.org/images/largeVLC.png"/></div>
+<p><strong>2.0.8</strong> is a small update that fixes some regressions of the 2.0.x branch of VLC.</p>
+<p><strong>2.0.8</strong> fixes numerous crashes and dangerous behaviors.</p>
+<p><strong>2.0.8</strong> also fixes ISDB-S tunning and some OSX issues.</p>
+<p>With faster decoding on multi-core, GPU, and mobile hardware and the ability to open more formats, notably professional, HD and 10bits codecs, 2.0 was a major upgrade for VLC.</p>
+
+<h2 id="features">Features</h2>
+<p>Video</p>
+<ul> <li>Rewritten video output core and modules, allowing subpicture blending in GPU.</li> <li>Shader support in the OpenGL output, for colorspace conversion, including 10bits.</li> <li>New video outputs for Windows 7, Android, iOS and OS/2.</li> <li>New debanding, grain, denoising and anti-flickering filters.</li> <li>New deinterlacing filter, including an Inverse Telecine algorithm.</li> </ul>
+<p>Audio</p>
+<ul> <li>New resamplers for higher quality audio.</li> <li>New dynamic range compressor and karaoke filters.</li> <li>Simplification of the audio core for faster processing.</li> <li>New audio outputs for iOS, Android and OS/2.</li> </ul>
+<p>Formats</p>
+<ul> <li>Multi-threaded decoding for H.264, MPEG-4/Xvid and WebM.</li> <li>Support for 10bits codecs, WMV image and some other codecs.</li> <li>Rewritten support for images, including jpeg, png, xcf, bmp...</li> <li>Important changes in RealVideo and Real Format support.</li> <li>CrystalHD cards and Android OpenMAX support for hardware decoding.</li> </ul>
+<p>Input and Devices</p>
+<ul> <li>Experimental support for BluRay discs: <br> - Menus are deactivated in this release (will come soon).<br> - <a href="developers--libaacs.html">AACS</a> and BD+ DRM libraries and keys are not shipped, for legal reasons.</li> <li>Support for SDI capture cards and QTKit devices.</li> <li>Support for new adaptive streaming protocols, like HLS and DASH.</li> </ul>
+<p>For Mac Users</p>
+<ul> <li>Completely new, single window interface:<br> - Available in 2 colors: Lion grey and QTX black.<br> - Extensions support and better Lion integration.</li> <li>Support for all QTKit devices through qtcapture and qtsound modules.</li> <li>Continued support for X 10.5 and PPC users (1080p and ProRes on Dual-G5!).</li> </ul>
+<p>For Anime Fans</p>
+<ul> <li>Vastly improved MKV demuxer.</li> <li>Rewritten linked segments and ordered chapter files support.</li> <li>Correct support for FLAC, RV and Hi10p in MKV.</li> <li>Rewritten seeking support in cue files.</li> <li>Various ASS subtitles improvements.</li> </ul>
+<p>For professional Users</p>
+<ul> <li>Support for ProRes 422 and 4444, AVC/Intra.</li> <li>Support for Jpeg-2000, Dirac and DNxHD/VC-3 in 10bits.</li> <li>Support for EBU subtitles (stl) and EIA-608.</li> <li>SDI and HD-SDI card support for input on Linux.</li> <li>New Dirac/VC-2 encoder, faster than the previous one.</li> </ul>
+<p>For Developers</p>
+<ul> <li>libVLC, libVLCcore and libcompat have switched from GPL to <a href="press--lgpl-libvlc.html">LGPLv2.1+</a>.</li> <li>New libVLC examples are available: media player, photobooth and mediainfo clones.</li> <li>New JSON requests on the web interface to control running VLC instances.</li> <li>Implementation of the <a href="http://www.mpris.org/">MPRIS2</a> interface to control media players.</li> <li>VLC's web plugins have been rewritten for better integration and stability in all browsers.</li> </ul>
+<h2 id="screenshots">Screenshots</h2>
+<p><a href="https://images.videolan.org/vlc/screenshots/2.0.0/vlc-2.0-macosx.jpg" data-dl><img alt="VLC media player - Mac OS X 10.6" decoding="async" loading="lazy" src="https://images.videolan.org/vlc/screenshots/2.0.0/tm_vlc-2.0-macosx.jpg"/></a></p>
+<p><a href="https://images.videolan.org/vlc/screenshots/2.0.0/vlc-2.0-win7.jpg" data-dl><img alt="VLC media player - Windows 7" decoding="async" loading="lazy" src="https://images.videolan.org/vlc/screenshots/2.0.0/tm_vlc-2.0-win7.jpg"/></a></p>
+<p><a href="https://images.videolan.org/vlc/screenshots/2.0.0/vlc-2.0-gnome2-mandriva.jpg" data-dl><img alt="VLC media player - Gnome 2 on Mandriva" decoding="async" loading="lazy" src="https://images.videolan.org/vlc/screenshots/2.0.0/tm_vlc-2.0-gnome2-mandriva.jpg"/></a></p>
+<p><a href="https://images.videolan.org/vlc/screenshots/2.0.0/vlc-2.0-lion-black.jpg" data-dl><img alt="VLC media player - Mac OS X 10.7 Lion" decoding="async" loading="lazy" src="https://images.videolan.org/vlc/screenshots/2.0.0/tm_vlc-2.0-lion-black.jpg"/></a></p>
+<p><a href="https://images.videolan.org/vlc/screenshots/2.0.0/vlc-2.0-poney.jpg" data-dl><img alt="VLC media player - Gnome 3 on debian" decoding="async" loading="lazy" src="https://images.videolan.org/vlc/screenshots/2.0.0/tm_vlc-2.0-poney.jpg"/></a></p>
+<p><a href="https://images.videolan.org/vlc/screenshots/2.0.0/vlc-2.0-gnome3-open.jpg" data-dl><img alt="VLC media player - Gnome 3" decoding="async" loading="lazy" src="https://images.videolan.org/vlc/screenshots/2.0.0/tm_vlc-2.0-gnome3-open.jpg"/></a></p>
+<h2 id="2-0-8-specific-changes">2.0.8 specific changes</h2>
+<p>2.0.8</p>
+<ul> <li>Fix ISDB-S tunning on Linux.</li> <li>Fix crash in QTsound.</li> <li>Fix use-after-free in sgimb module.</li> <li>New Kannada translation.</li> </ul>
+<p>2.0.8</p>
+<ul> <li>Fix crashes in libavcodec module.</li> <li>Fix invalid memcpy in MMS access module.</li> <li>Improve resitance against malformed MKV files.</li> </ul>
+<h2 id="spread-the-news">Spread the news</h2>
+<p> <a href="https://www.facebook.com/vlc.media.player/posts/10151594070196245">Facebook</a> <a href="https://plus.google.com/b/104597325891170264649/+vlc/posts/9dxTddPHFyh">Google Plus</a> <a href="https://twitter.com/videolan/status/344046214582505475">Twitter</a> </p>
+<h2 id="download-vlc">Download VLC</h2>
+<h2 id="windows">Windows</h2>
+<p><a href="https://get.videolan.org/vlc/2.0.8/win32/vlc-2.0.8-win32.exe" data-dl>  VLC for Windows Version 2.0.8 </a></p>
+<h2 id="mac-os-x">Mac OS X</h2>
+<h3 id="mac-os-x-10-6-10-7-amp-10-8">Mac OS X 10.6, 10.7 &amp; 10.8</h3>
+<p><a href="https://get.videolan.org/vlc/2.0.8/macosx/vlc-2.0.8-intel64.dmg" data-dl>  VLC for Mac OS X 10.6+ Version 2.0.8 </a></p>
+<h3 id="mac-os-x-10-5-intel">Mac OS X 10.5 Intel</h3>
+<p><a href="https://get.videolan.org/vlc/2.0.8/macosx/vlc-2.0.8-intel32.dmg" data-dl> VLC 2.0.8 for Mac OS X 10.5 (Intel)</a></p>
+<h3 id="mac-os-x-10-5-powerpc">Mac OS X 10.5 PowerPC</h3>
+<p><a href="https://get.videolan.org/vlc/2.0.8/macosx/vlc-2.0.8-powerpc.dmg" data-dl> VLC 2.0.8 for Mac OS X 10.5 (PowerPC)</a></p>
+<h2 id="linux">Linux</h2>
+<p>Ask your favorite packager for VLC 2.0!</p>
+<h2 id="sources">Sources</h2>
+<p><a href="vlc--download-sources.html">Get the source!</a></p>
+<h2 id="contact">Contact</h2>
+<p>For any questions related to this release, please <a href="contact.html">contact us</a>.</p><p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">Plan du site</a> · <a href="https://www.videolan.org/vlc/releases/2.0.8.html">Page d’origine</a></p></article></div><nav class="pn" aria-label="Notes de version"><a href="vlc--releases--2.1.0.html"><small>Précédent</small><b lang="en">VLC reaches 2.1</b></a><a class="r" href="vlc--releases--2.0.7.html"><small>Suivant</small><b lang="en">VLC reaches 2.0.7</b></a></nav></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN, un projet et une association, crée des logiciels multimédias libres depuis 1996.</p><div class="langs"><a href="../../p/vlc--releases--2.0.8.html" hreflang="en" lang="en">English</a><a href="../../fr/p/vlc--releases--2.0.8.html" hreflang="fr" lang="fr" aria-current="true">Français</a><a href="../../zh/p/vlc--releases--2.0.8.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="../../ar/p/vlc--releases--2.0.8.html" hreflang="ar" lang="ar">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">Télécharger</a></li><li><a href="../p/vlc--features.html">Fonctionnalités</a></li><li><a href="../p/vlc--skins.php.html">Skins</a></li><li><a href="https://addons.videolan.org/">Extensions</a></li><li><a href="../p/vlc--releases--3.0.24.html">Notes de version</a></li><li><a href="../p/security.html">Sécurité</a></li></ul></div><div><h4>Projets</h4><ul><li><a href="../p/section--projects.html">Tous les projets</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>Communauté</h4><ul><li><a href="https://forum.videolan.org/">Forums</a></li><li><a href="https://wiki.videolan.org/">Wiki</a></li><li><a href="../p/support--faq.html">FAQ</a></li><li><a href="https://docs.videolan.me/vlc-user/">Documentation</a></li><li><a href="../p/contribute.html">Contribuer</a></li><li><a href="../p/videolan--events.html">Événements</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">À propos</a></li><li><a href="../p/videolan--team.html">Équipe et organisation</a></li><li><a href="../p/videolan--partners.html">Partenaires</a></li><li><a href="../p/press.html">Presse</a></li><li><a href="../p/legal.html">Mentions légales</a></li><li><a href="../p/privacy.html">Confidentialité</a></li><li><a href="../p/contact.html">Contact</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC, VideoLAN et x264 sont des marques déposées de VideoLAN. Concept de refonte non officiel par Paul Fleury. Images de films : Big Buck Bunny, Sintel, Tears of Steel, Caminandes, Elephants Dream © Blender Foundation, CC BY.</p><p><a href="../p/sitemap.html">Plan du site</a> · <a href="../p/design-notes.html">À propos de cette refonte</a> · Sans cookie · Sans pisteur · HTML5 statique</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../../site.js" defer></script>
+</body></html>

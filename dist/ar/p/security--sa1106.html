@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-root="../../" data-base="../" data-slug="security--sa1106" data-lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Security Advisory 1106 — VideoLAN</title>
+<meta name="description" content="التنبيهات والنشرات الأمنية، وكيفية الإبلاغ عن ثغرة.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ff8800">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="en" href="../../p/security--sa1106.html"><link rel="alternate" hreflang="fr" href="../../fr/p/security--sa1106.html"><link rel="alternate" hreflang="zh-Hans" href="../../zh/p/security--sa1106.html"><link rel="alternate" hreflang="ar" href="../../ar/p/security--sa1106.html">
+<script>(function(d,w){var h=d.documentElement,s;try{s=w.localStorage}catch(e){}function g(k){try{return s&&s.getItem('vl-'+k)}catch(e){return null}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){var v=g(k);if(v)h.setAttribute('data-'+k,v)});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'})(document,window);</script>
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<a class="skip" href="#main">انتقل إلى المحتوى</a>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">مقترح لإعادة تصميم videolan.org — تصوّر مستقل مُهدى إلى فريق VideoLAN.</span><span class="s">مقترح إعادة التصميم ·</span> <a href="../p/design-notes.html">اقرأ ملاحظات التصميم</a></p></div></div>
+<header class="hd"><div class="wrap">
+<a class="brand" href="../index.html" aria-label="VideoLAN — الرئيسية"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<nav class="nav" aria-label="القائمة"><a href="../p/download.html">تنزيل</a><a href="../index.html#features">الميزات</a><a href="../p/news.html">الأخبار</a><a href="../p/section--projects.html">المشاريع</a><a href="../p/support.html">الدعم</a><a href="../p/contribute.html">ساهم</a><a href="../index.html#about">من نحن</a></nav>
+<div class="tools">
+<button type="button" class="ib" data-open="search" aria-label="بحث" aria-keyshortcuts="Control+K /"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-search"/></svg></button>
+<button type="button" class="ib" data-open="lang" aria-label="اللغة: العربية"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-globe"/></svg><span class="code">AR</span></button>
+<button type="button" class="ib hide-sm" data-open="theme" aria-label="التبديل إلى الوضع الداكن" data-l-dark="التبديل إلى الوضع الداكن" data-l-light="التبديل إلى الوضع الفاتح"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-moon"/></svg></button>
+<button type="button" class="ib" data-open="a11y" aria-label="العرض وسهولة الوصول"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-a11y"/></svg></button>
+<a class="btn btn-gh btn-sm hide-md" href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>تبرّع</a>
+<details class="menu"><summary class="ib" aria-label="القائمة"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-menu"/></svg></summary><div class="drawer"><a href="../p/download.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-download"/></svg>تنزيل</a><a href="../index.html#features"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-sparkle"/></svg>الميزات</a><a href="../p/news.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-news"/></svg>الأخبار</a><a href="../p/section--projects.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-box"/></svg>المشاريع</a><a href="../p/support.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-chat"/></svg>الدعم</a><a href="../p/contribute.html"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-users"/></svg>ساهم</a><a href="../index.html#about"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-home"/></svg>من نحن</a><a href="../p/contribute.html" data-donate><svg class="ic heart" aria-hidden="true"><use href="../../icons.svg#i-heart"/></svg>تبرّع</a></div></details>
+</div></div></header>
+<main id="main" tabindex="-1">
+<section class="ph"><div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">الرئيسية</a><span aria-hidden="true">/</span><a href="section--security.html">الأمان</a></nav>
+<p class="kick">الأمان · قراءة 1 دقائق</p>
+<h1 lang="en" dir="ltr">Security Advisory 1106</h1>
+</div></section>
+<div class="wrap" style="padding-bottom:3rem"><p class="untr"><svg class="ic" aria-hidden="true"><use href="../../icons.svg#i-info"/></svg><span>لم تُترجم هذه الصفحة بعد، وتظهر بنسختها الإنجليزية الأصلية.</span></p><div class="pw"><aside class="toc" aria-label="في هذه الصفحة"><p class="kick">في هذه الصفحة</p><ul lang="en" dir="ltr"><li><a href="#details">Details</a></li><li><a href="#impact">Impact</a></li><li><a href="#threat-mitigation">Threat mitigation</a></li><li><a href="#workarounds">Workarounds</a></li><li><a href="#solution">Solution</a></li><li><a href="#credits">Credits</a></li><li><a href="#references">References</a></li><li><a href="#history">History</a></li></ul></aside><article class="prose" lang="en" dir="ltr">
+<pre>Summary           : Heap overflow in AVI demuxer
+Date              : 12 July 2011
+Affected versions : VLC media player 1.1.10 down to 0.5.0
+ID                : VideoLAN-SA-1106
+CVE references    : CVE-2011-2588</pre>
+<h2 id="details">Details</h2>
+<p>VLC media player suffers from a heap overflow vulnerability in the AVI file parser. </p>
+<h2 id="impact">Impact</h2>
+<p>If successful, a malicious third party could crash the player instance. Arbitrary code execution within the context of VLC media player might be possible, though it was unconfirmed. </p>
+<h2 id="threat-mitigation">Threat mitigation</h2>
+<p>Exploitation of those bugs requires the user to explicitly open specifically crafted malicious files. </p>
+<h2 id="workarounds">Workarounds</h2>
+<p>The user may refrain from opening files from untrusted sources. </p>
+<p>Alternatively, the AVI plugin (demux/libavi_plugin.*) can be removed. This will however prevent use of any of AVI media files. </p>
+<h2 id="solution">Solution</h2>
+<p>VLC media player 1.1.11 addresses this issue and introduces further stability fixes. A source code patch is also available as an alternative. </p>
+<h2 id="credits">Credits</h2>
+<p>This vulnerability was discovered by Hossein Lotfi and reported via Secunia. </p>
+<h2 id="references">References</h2>
+<dl> <dt>The VideoLAN Project</dt> <dd><a href="../index.html">http://www.videolan.org/</a> </dd> <dt>Source code patch</dt> <dd><a href="http://git.videolan.org/?p=vlc.git;a=commit;h=9c14964bd11482d5c1d6c0e223440f9f1e5b1831">git commit 9c14964bd11482d5c1d6c0e223440f9f1e5b1831</a> </dd> <dt>Secunia</dt> <dd><a href="http://www.secunia.com/">http://www.secunia.com/</a> </dd> </dl>
+<h2 id="history">History</h2>
+<dl> <dt>15 July 2011</dt> <dd>VLC 1.1.11 released</dd> <dt>12 July 2011</dt> <dd>Initial advisory</dd> <dt>10 July 2011</dt> <dd>Issue resolved privately</dd> <dt>08 July 2011</dt> <dd>CVE identifier assigned</dd> <dt>07 June 2011</dt> <dd>Bug reported</dd> </dl>
+<p>Rémi Denis-Courmont,<br> on behalf of the VideoLAN project</p><p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">فهرس الموقع</a> · <a href="https://www.videolan.org/security/sa1106.html">الصفحة الأصلية</a></p></article></div><nav class="pn" aria-label="الأمان"><a href="security--sa1107.html"><small>السابق</small><b lang="en">Security Advisory 1107</b></a><a class="r" href="security--sa1105.html"><small>التالي</small><b lang="en">Security Advisory 1105</b></a></nav></div>
+</main>
+<footer class="ft"><div class="wrap"><div class="ft-g">
+<div class="ft-a"><a class="brand" href="../index.html"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="../../icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<p>VideoLAN، مشروع ومنظمة غير ربحية، تصنع برمجيات وسائط حرّة منذ 1996.</p><div class="langs"><a href="../../p/security--sa1106.html" hreflang="en" lang="en">English</a><a href="../../fr/p/security--sa1106.html" hreflang="fr" lang="fr">Français</a><a href="../../zh/p/security--sa1106.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="../../ar/p/security--sa1106.html" hreflang="ar" lang="ar" aria-current="true">العربية</a><button type="button" data-open="lang">+77</button></div></div>
+<div><h4>VLC</h4><ul><li><a href="../p/download.html">تنزيل</a></li><li><a href="../p/vlc--features.html">الميزات</a></li><li><a href="../p/vlc--skins.php.html">السمات</a></li><li><a href="https://addons.videolan.org/">الإضافات</a></li><li><a href="../p/vlc--releases--3.0.24.html">ملاحظات الإصدار</a></li><li><a href="../p/security.html">الأمان</a></li></ul></div><div><h4>المشاريع</h4><ul><li><a href="../p/section--projects.html">كل المشاريع</a></li><li><a href="../p/vlc--libvlc.html">libVLC</a></li><li><a href="../p/projects--dav1d.html">dav1d</a></li><li><a href="../p/developers--x264.html">x264</a></li><li><a href="../p/projects--dvblast.html">DVBlast</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div><div><h4>المجتمع</h4><ul><li><a href="https://forum.videolan.org/">المنتديات</a></li><li><a href="https://wiki.videolan.org/">الويكي</a></li><li><a href="../p/support--faq.html">الأسئلة الشائعة</a></li><li><a href="https://docs.videolan.me/vlc-user/">التوثيق</a></li><li><a href="../p/contribute.html">ساهم</a></li><li><a href="../p/videolan--events.html">الفعاليات</a></li></ul></div><div><h4>VideoLAN</h4><ul><li><a href="../p/videolan.html">من نحن</a></li><li><a href="../p/videolan--team.html">الفريق والمنظمة</a></li><li><a href="../p/videolan--partners.html">الشركاء</a></li><li><a href="../p/press.html">الصحافة</a></li><li><a href="../p/legal.html">الشؤون القانونية</a></li><li><a href="../p/privacy.html">الخصوصية</a></li><li><a href="../p/contact.html">اتصل بنا</a></li></ul></div>
+</div>
+<div class="ft-b"><p>VLC وVideoLAN وx264 علامات تجارية مسجّلة لـ VideoLAN. تصوّر غير رسمي لإعادة التصميم من Paul Fleury. لقطات الأفلام: Big Buck Bunny وSintel وTears of Steel وCaminandes وElephants Dream © Blender Foundation، رخصة CC BY.</p><p><a href="../p/sitemap.html">فهرس الموقع</a> · <a href="../p/design-notes.html">عن إعادة التصميم</a> · بلا ملفات تعريف · بلا متتبّعات · HTML5 ثابت</p></div>
+</div></footer>
+<script src="../l10n.js" defer></script>
+<script src="../../site.js" defer></script>
+</body></html>
