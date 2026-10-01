@@ -231,7 +231,7 @@ html.js.motion .c-chart.in .c-bar::before { transform: none; }
 .x-lede { font: italic 1.25rem/1.5 var(--serif); color: var(--ink-2); }
 .c-prose > .x-lede:first-child::first-letter { float: none; font: inherit; padding: 0; color: inherit; }
 .x-btn { display: inline-block; background: var(--orange); color: var(--on-orange) !important; font: 900 1rem/1 var(--sans); padding: 1rem 1.3rem; text-decoration: none; border: 3px solid var(--rule); }
-.c-prose:has(.x-dl), .c-prose:has(.x-map), .c-prose:has(.x-list) { max-width: none; }
+.c-prose:has(.x-dl), .c-prose:has(.x-map), .c-prose:has(.x-list), .c-prose:has(.x-news) { max-width: none; }
 .x-dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); margin: 1.5rem 0; }
 @media (max-width: 760px) { .x-dl { grid-template-columns: 1fr; } }
 .x-dlg { border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 1rem 1.2rem 1.2rem; }

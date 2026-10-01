@@ -7,8 +7,8 @@ from vlsite import e
 
 ROOT = S.ROOT
 DIST = ROOT / 'dist'
-if DIST.exists(): shutil.rmtree(DIST)
-(DIST / 'shared').mkdir(parents=True)
+if DIST.exists() and len(sys.argv) == 1: shutil.rmtree(DIST)
+(DIST / "shared").mkdir(parents=True, exist_ok=True)
 
 # ---------------------------------------------------------------- shared assets
 for f in ['ui.css', 'ui.js', 'favicon.svg']: shutil.copy(ROOT / 'shared' / f, DIST / 'shared' / f)
@@ -220,7 +220,7 @@ def b_transport(prev, nxt, at_home, words):
 <button type="button" class="b-tb hide-s" data-ui-open="lang" aria-label="Subtitles and language">{bi("cc")}</button>
 <span class="b-volw hide-s"><button type="button" class="b-tb" id="b-volbtn" aria-label="Text size">{bi("vol")}</button><label class="b-vol"><span class="ui-sr">Text size</span><input type="range" id="b-vol" min="0" max="2" step="1" value="0"></label></span>
 <button type="button" class="b-tb hide-s" data-b-act="shuffle" aria-label="Random page">{bi("shuffle")}</button>
-<button type="button" class="b-tb hide-s" data-b-act="playlist" aria-label="Toggle playlist">{bi("list")}</button>
+<button type="button" class="b-tb" data-b-act="playlist" aria-label="Toggle playlist">{bi("list")}</button>
 <button type="button" class="b-tb hide-s" data-b-act="focus" aria-label="Focus mode">{bi("full")}</button>
 <button type="button" class="b-tb b-heart" data-donate aria-label="Donate">{bi("heart")}</button>
 </div>'''
