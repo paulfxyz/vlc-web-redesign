@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VideoLAN — Official home of VLC media player (redesign proposal)</title>
+<meta name="description" content="VLC is a free and open source cross-platform multimedia player and framework that plays most multimedia files, discs, devices and streaming protocols. No ads, no tracking.">
+<meta name="theme-color" content="#fbf8f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f0e0d" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+/* Runs before paint: apply saved preferences, avoid flash. ES3-safe. */
+(function(){var d=document.documentElement;d.className=d.className.replace('no-js','js');
+try{var s=window.localStorage,t=s.getItem('vl-theme')||'auto';var dark=t==='dark'||(t==='auto'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);d.setAttribute('data-theme',dark?'dark':'light');
+var k=['contrast','size','motion','links','spacing'];for(var i=0;i<k.length;i++){var v=s.getItem('vl-'+k[i]);if(v)d.setAttribute('data-'+k[i],v);}
+var m=s.getItem('vl-motion');if(m!=='off'&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))d.className+=' motion';}catch(e){}})();
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="i-cone" viewBox="0 0 64 64"><defs><clipPath id="cc"><path d="M27.2 6.5c.9-2.6 8.7-2.6 9.6 0L50 51H14z"/></clipPath></defs><path d="M27.2 6.5c.9-2.6 8.7-2.6 9.6 0L50 51H14z" fill="#ff8800"/><g clip-path="url(#cc)" fill="#fff"><rect class="cone-stripe" x="0" y="19" width="64" height="7"/><rect class="cone-stripe" x="0" y="34" width="64" height="7.5" style="animation-delay:.25s"/></g><rect x="6" y="49" width="52" height="9" rx="3.5" fill="#ff8800"/><rect x="6" y="49" width="52" height="3" rx="1.5" fill="#e26f00" opacity=".6"/></symbol>
+<symbol id="i-windows" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5.6 10.4 4.6v6.9H3zM11.4 4.4 21 3v8.5h-9.6zM3 12.5h7.4v6.9L3 18.4zM11.4 12.5H21V21l-9.6-1.3z"/></symbol>
+<symbol id="i-apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.7c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.1-1.2 2.9-2.4.9-1.3 1.3-2.6 1.3-2.7 0 0-2.4-1-2.4-4zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></symbol>
+<symbol id="i-linux" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5c-2.3 0-3.6 1.9-3.6 4.4 0 1.5-.6 2.6-1.6 3.9C5.6 12.5 4.8 14.4 4.8 16.4c0 1 .3 1.9.9 2.6-.6.4-1.5.7-1.5 1.4 0 .9 1.6 1.1 3.3 1.1 1 0 1.7-.3 2.2-.6.7.1 1.5.2 2.3.2s1.6-.1 2.3-.2c.5.3 1.2.6 2.2.6 1.7 0 3.3-.2 3.3-1.1 0-.7-.9-1-1.5-1.4.6-.7.9-1.6.9-2.6 0-2-.8-3.9-2-5.6-1-1.3-1.6-2.4-1.6-3.9 0-2.5-1.3-4.4-3.6-4.4zm0 8.2c2 0 3.6 2.4 3.6 5.3S14 20 12 20s-3.6-1.1-3.6-4 1.6-5.3 3.6-5.3zM10.6 5.6a.8.9 0 1 1 0 1.8.8.9 0 0 1 0-1.8zm2.8 0a.8.9 0 1 1 0 1.8.8.9 0 0 1 0-1.8zM12 8l1.4.8L12 9.7l-1.4-.9z"/></symbol>
+<symbol id="i-android" viewBox="0 0 24 24"><path fill="currentColor" d="M6.5 9.5a5.5 5.5 0 0 1 11 0zm2.7-2.3a.7.7 0 1 0 0 1.4.7.7 0 0 0 0-1.4zm5.6 0a.7.7 0 1 0 0 1.4.7.7 0 0 0 0-1.4zM7.3 3.4l1.4 2.2-.6.4-1.4-2.2zm9.4 0 .6.4-1.4 2.2-.6-.4zM6.5 10.5h11v7a1.5 1.5 0 0 1-1.5 1.5h-.5v2.3a1.2 1.2 0 0 1-2.4 0V19h-2.2v2.3a1.2 1.2 0 0 1-2.4 0V19H8a1.5 1.5 0 0 1-1.5-1.5zM4 10.5a1.2 1.2 0 0 1 1.2 1.2v4.6a1.2 1.2 0 0 1-2.4 0v-4.6A1.2 1.2 0 0 1 4 10.5zm16 0a1.2 1.2 0 0 1 1.2 1.2v4.6a1.2 1.2 0 0 1-2.4 0v-4.6a1.2 1.2 0 0 1 1.2-1.2z"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></g></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></g></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.3 7.5 9.5 4.3-1.2 7.5-4.9 7.5-9.5V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></g></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path fill="currentColor" d="M12 20.5s-8-4.7-8-10.6C4 7 6.1 5 8.6 5c1.5 0 2.7.7 3.4 1.8C12.7 5.7 13.9 5 15.4 5 17.9 5 20 7 20 9.9c0 5.9-8 10.6-8 10.6z"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.6 5.2 3.6 8.5s-1.2 6.1-3.6 8.5c-2.4-2.4-3.6-5.2-3.6-8.5S9.6 5.9 12 3.5z"/></g></symbol>
+<symbol id="i-a11y" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="7.6" r="1.2" fill="currentColor"/><path d="M7.5 10.2 12 11l4.5-.8M12 11v3.2m0 0-2.2 3.8M12 14.2l2.2 3.8"/></g></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></g></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></g></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></g></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></g></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></g></symbol>
+<symbol id="i-ext" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></g></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M7 4.5v15l12.5-7.5z"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path fill="currentColor" d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z"/></symbol>
+<symbol id="i-prev" viewBox="0 0 24 24"><path fill="currentColor" d="M6 5h2.2v14H6zM19 5v14L9.5 12z"/></symbol>
+<symbol id="i-next" viewBox="0 0 24 24"><path fill="currentColor" d="M15.8 5H18v14h-2.2zM5 5v14l9.5-7z"/></symbol>
+<symbol id="i-volume" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></g></symbol>
+<symbol id="i-full" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></g></symbol>
+<symbol id="i-cc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M10.5 10.3a2.2 2.2 0 1 0 0 3.4M17 10.3a2.2 2.2 0 1 0 0 3.4"/></g></symbol>
+<symbol id="i-film" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M7.5 4v16M16.5 4v16M3 9h4.5M3 15h4.5M16.5 9H21M16.5 15H21"/></g></symbol>
+<symbol id="i-cast" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8V6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5H14M3 12a8 8 0 0 1 8 8M3 16a4 4 0 0 1 4 4"/><circle cx="3.5" cy="19.5" r=".6" fill="currentColor"/></g></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9.5 2.5V6M14.5 2.5V6M9.5 18v3.5M14.5 18v3.5M2.5 9.5H6M2.5 14.5H6M18 9.5h3.5M18 14.5h3.5"/></g></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9a13.5 13.5 0 0 1 19 0M5.5 12.5a9 9 0 0 1 13 0M8.6 16a4.5 4.5 0 0 1 6.8 0"/><circle cx="12" cy="19.3" r="1" fill="currentColor"/></g></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></g></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.3-4.3"/></g></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></g></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 5.2a3.5 3.5 0 0 1 0 6.6M18 14a6.5 6.5 0 0 1 3.5 6"/></g></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></g></symbol>
+<symbol id="i-bug" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M12 11v9M9 4.5l1.5 2.5M15 4.5 13.5 7M3.5 13H7M17 13h3.5M4.5 8.5 7.5 10M19.5 8.5l-3 1.5M4.5 18.5l3-1.5M19.5 18.5l-3-1.5"/></g></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a7.5 7.5 0 0 1-11 6.6L4 20l1.4-4.4A7.5 7.5 0 1 1 20 12z"/></g></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5zM3 8l9 5 9-5M12 13v8"/></g></symbol>
+<symbol id="i-tv" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="12.5" rx="2"/><path d="M8 21h8M12 17.5V21"/></g></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></g></symbol>
+<symbol id="i-monitor" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="19" height="13" rx="2"/><path d="M8 20.5h8M12 16.5v4"/></g></symbol>
+<symbol id="i-puzzle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4.5a2 2 0 1 1 4 0V6h4v4h-1.5a2 2 0 1 0 0 4H18v4h-4v-1.5a2 2 0 1 0-4 0V18H6v-4h1.5a2 2 0 1 0 0-4H6V6h4z"/></g></symbol>
+<symbol id="i-palette" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0 0 18c1.2 0 1.8-.8 1.8-1.7 0-1.2-1-1.5-1-2.6 0-1 .8-1.7 1.8-1.7H17a4 4 0 0 0 4-4C21 6.6 17 3 12 3z"/><circle cx="7.5" cy="11.5" r="1.1" fill="currentColor"/><circle cx="10" cy="7.5" r="1.1" fill="currentColor"/><circle cx="15" cy="7.5" r="1.1" fill="currentColor"/></g></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></g></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2.5 4.5 13.5H12L11 21.5l8.5-11H12z"/></g></symbol>
+<symbol id="i-disc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 5.5a6.5 6.5 0 0 1 6.5 6.5" stroke-linecap="round"/></g></symbol>
+<symbol id="i-stream" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8a6 6 0 0 1 0 8.4M7.8 16.2a6 6 0 0 1 0-8.4M19 5a10 10 0 0 1 0 14M5 19A10 10 0 0 1 5 5"/></g></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></symbol>
+<symbol id="i-scale" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 7a3.5 3.5 0 0 0 6 0zM19 7l-3 7a3.5 3.5 0 0 0 6 0z"/></g></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6 8.5 7 8.5-7"/></g></symbol>
+<symbol id="i-news" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h13v14a1.5 1.5 0 0 0 3 0V9h-3M7.5 9h6M7.5 12.5h6M7.5 16h4"/></g></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4l8.5 7M6 9.5V20h12V9.5"/></g></symbol>
+<symbol id="i-sparkle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 13.8 10l6.7 2-6.7 2L12 20.5 10.2 14l-6.7-2 6.7-2z"/></g></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></g></symbol>
+<symbol id="i-feather" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4c-8 0-13 5-13 13v3M7 17h7c4 0 6-4 6-13M4 20l3-3"/></g></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="ribbon" id="ribbon" role="region" aria-label="About this page">
+  <div class="wrap">
+    <p style="margin:0">Design proposal for videolan.org — an independent, unofficial concept offered to the VideoLAN team. <a href="#proposal">Read the design notes</a></p>
+    <button type="button" id="ribbon-close" aria-label="Hide this notice">Hide</button>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="VideoLAN home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-cone" xlink:href="#i-cone"/></svg>
+      <span>VideoLAN<small>Non-profit · Since 1996</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#download" data-nav="download">Download</a>
+      <a href="#features" data-nav="features">Features</a>
+      <a href="#projects" data-nav="projects">Projects</a>
+      <a href="#news" data-nav="news">News</a>
+      <a href="#support" data-nav="support">Support</a>
+      <a href="#contribute" data-nav="contribute">Contribute</a>
+      <a href="#videolan" data-nav="videolan">About</a>
+    </nav>
+    <div class="tools">
+      <button type="button" class="icon-btn" id="lang-btn" aria-haspopup="dialog" aria-controls="lang-dialog" aria-label="Language: English. Change language">
+        <svg aria-hidden="true"><use href="#i-globe" xlink:href="#i-globe"/></svg><span class="lbl-code" id="lang-code">EN</span>
+      </button>
+      <button type="button" class="icon-btn" id="a11y-btn" aria-haspopup="dialog" aria-controls="a11y-dialog" aria-label="Accessibility and display settings">
+        <svg aria-hidden="true"><use href="#i-a11y" xlink:href="#i-a11y"/></svg>
+      </button>
+      <button type="button" class="icon-btn" id="theme-btn" aria-label="Switch to dark theme">
+        <svg aria-hidden="true" id="theme-ico"><use href="#i-moon" xlink:href="#i-moon"/></svg>
+      </button>
+      <a class="btn btn-ghost btn-sm btn-donate hide-md" href="#contribute" data-goto="donate"><svg aria-hidden="true"><use href="#i-heart" xlink:href="#i-heart"/></svg>Donate</a>
+      <button type="button" class="icon-btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+        <svg aria-hidden="true"><use href="#i-menu" xlink:href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="drawer" id="drawer">
+    <div class="wrap">
+      <nav aria-label="Mobile">
+        <a href="#home" data-nav="home"><svg aria-hidden="true"><use href="#i-home" xlink:href="#i-home"/></svg>Home</a>
+        <a href="#download" data-nav="download"><svg aria-hidden="true"><use href="#i-download" xlink:href="#i-download"/></svg>Download</a>
+        <a href="#features" data-nav="features"><svg aria-hidden="true"><use href="#i-film" xlink:href="#i-film"/></svg>Features</a>
+        <a href="#projects" data-nav="projects"><svg aria-hidden="true"><use href="#i-box" xlink:href="#i-box"/></svg>Projects</a>
+        <a href="#news" data-nav="news"><svg aria-hidden="true"><use href="#i-news" xlink:href="#i-news"/></svg>News</a>
+        <a href="#support" data-nav="support"><svg aria-hidden="true"><use href="#i-chat" xlink:href="#i-chat"/></svg>Support</a>
+        <a href="#contribute" data-nav="contribute"><svg aria-hidden="true"><use href="#i-heart" xlink:href="#i-heart"/></svg>Contribute</a>
+        <a href="#videolan" data-nav="videolan"><svg aria-hidden="true"><use href="#i-users" xlink:href="#i-users"/></svg>About VideoLAN</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- =========================== HOME =========================== -->
+<div class="view" id="home" data-title="VideoLAN — Official home of VLC media player">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">VLC media player · Version <span class="v-num">3.0.24</span></p>
+        <h1>Plays <span class="accent">everything.</span><br>Tracks nothing.</h1>
+        <p class="lede">VLC is a free and open source cross-platform multimedia player and framework that plays most multimedia files, discs, devices and streaming protocols. Built by volunteers, with no spyware, no ads and no user tracking.</p>
+
+        <div class="dl-card" id="dl-card">
+          <div class="dl-main">
+            <a class="btn btn-primary" id="dl-primary" href="https://www.videolan.org/vlc/download-windows.html">
+              <svg aria-hidden="true"><use href="#i-download" xlink:href="#i-download"/></svg>
+              <span class="stack"><span id="dl-label">Download VLC for Windows</span><span class="sub" id="dl-sub">Version 3.0.24 · 64-bit · 39 MB</span></span>
+            </a>
+          </div>
+          <div class="dl-meta">
+            <span><svg aria-hidden="true"><use href="#i-shield" xlink:href="#i-shield"/></svg><b>Signed</b> &amp; verified builds</span>
+            <span><svg aria-hidden="true"><use href="#i-lock" xlink:href="#i-lock"/></svg>Free under <b>GPLv2</b></span>
+            <span><a href="#download">Other systems and versions</a></span>
+          </div>
+          <div class="os-pills" aria-label="Get VLC for another platform">
+            <a href="https://www.videolan.org/vlc/download-windows.html"><svg aria-hidden="true"><use href="#i-windows" xlink:href="#i-windows"/></svg>Windows</a>
+            <a href="https://www.videolan.org/vlc/download-macosx.html"><svg aria-hidden="true"><use href="#i-apple" xlink:href="#i-apple"/></svg>macOS</a>
+            <a href="#download" data-goto="os-linux"><svg aria-hidden="true"><use href="#i-linux" xlink:href="#i-linux"/></svg>Linux</a>
+            <a href="https://www.videolan.org/vlc/download-android.html"><svg aria-hidden="true"><use href="#i-android" xlink:href="#i-android"/></svg>Android</a>
+            <a href="https://www.videolan.org/vlc/download-ios.html"><svg aria-hidden="true"><use href="#i-apple" xlink:href="#i-apple"/></svg>iOS · iPadOS</a>
+            <a href="https://www.videolan.org/vlc/download-appletv.html"><svg aria-hidden="true"><use href="#i-tv" xlink:href="#i-tv"/></svg>Apple TV</a>
+          </div>
+        </div>
+
+        <ul class="trust" aria-label="Promises">
+          <li><svg aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg>No ads</li>
+          <li><svg aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg>No tracking</li>
+          <li><svg aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg>No codec packs needed</li>
+        </ul>
+      </div>
+
+      <div class="stage" aria-hidden="true">
+        <div class="mock-desktop">
+          <div class="mock-bar"><i></i><i></i><i></i><span class="t">Sunset over the hills — 4K HDR.mkv</span></div>
+          <div class="mock-body">
+            <div class="mock-video">
+              <div class="scene"><div class="sun"></div><div class="glint"></div><div class="hill"></div><div class="hill h2"></div></div>
+              <span class="osd">HEVC · HDR10 · 5.1</span>
+              <span class="subtitle">Some things are worth watching twice.</span>
+            </div>
+            <div class="mock-side">
+              <h4>Playlist</h4>
+              <div class="pl-item on"><span class="pl-thumb"></span><span><b>Sunset over the hills</b><small>01:42:10</small></span></div>
+              <div class="pl-item"><span class="pl-thumb"></span><span><b>Live concert stream</b><small>RTSP · live</small></span></div>
+              <div class="pl-item"><span class="pl-thumb"></span><span><b>Field recordings.flac</b><small>48 min</small></span></div>
+              <div class="pl-item"><span class="pl-thumb"></span><span><b>Holiday 2009.avi</b><small>12:04</small></span></div>
+              <div class="pl-item"><span class="pl-thumb"></span><span><b>DVD — Disc 1</b><small>Menu</small></span></div>
+            </div>
+          </div>
+          <div class="mock-controls">
+            <svg><use href="#i-prev" xlink:href="#i-prev"/></svg>
+            <span class="play"><svg><use href="#i-pause" xlink:href="#i-pause"/></svg></span>
+            <svg><use href="#i-next" xlink:href="#i-next"/></svg>
+            <span>00:38:51</span>
+            <span class="seek"><span></span></span>
+            <span>01:42:10</span>
+            <svg><use href="#i-cc" xlink:href="#i-cc"/></svg>
+            <svg><use href="#i-volume" xlink:href="#i-volume"/></svg><span class="vol"></span>
+            <svg><use href="#i-full" xlink:href="#i-full"/></svg>
+          </div>
+        </div>
+        <div class="mock-phone">
+          <div class="screen">
+            <div class="ph-top"><span>Video</span><svg><use href="#i-search" xlink:href="#i-search"/></svg></div>
+            <div class="ph-tabs"><span class="on">All</span><span>Folders</span><span>Network</span></div>
+            <div class="ph-grid"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div class="ph-mini"><i></i><span><b>Sunset over the hills</b><small>38:51 / 1:42:10</small></span><svg><use href="#i-pause" xlink:href="#i-pause"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="ticker"><span>H.264</span><span>HEVC</span><span>AV1</span><span>VP9</span><span>MPEG-2</span><span>MKV</span><span>WebM</span><span>MP4</span><span>MOV</span><span>AVI</span><span>FLAC</span><span>Opus</span><span>AAC</span><span>MP3</span><span>DTS</span><span>TrueHD</span><span>AC-3</span><span>WMV</span><span>OGG</span><span>DVD</span><span>Blu-ray</span><span>HLS</span><span>DASH</span><span>RTSP</span><span>SRT</span><span>WebVTT</span><span>ASS</span><span>4K</span><span>8K</span><span>HDR10</span><span>360°</span><span>H.264</span><span>HEVC</span><span>AV1</span><span>VP9</span><span>MPEG-2</span><span>MKV</span><span>WebM</span><span>MP4</span><span>MOV</span><span>AVI</span><span>FLAC</span><span>Opus</span><span>AAC</span><span>MP3</span><span>DTS</span><span>TrueHD</span><span>AC-3</span><span>WMV</span><span>OGG</span><span>DVD</span><span>Blu-ray</span><span>HLS</span><span>DASH</span><span>RTSP</span><span>SRT</span><span>WebVTT</span><span>ASS</span><span>4K</span><span>8K</span><span>HDR10</span><span>360°</span></div>
+  </div>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="stats reveal">
+        <div class="stat"><b data-count="1996">1996</b><span>Started as a student project at École Centrale Paris</span></div>
+        <div class="stat"><b><em>40</em>+</b><span>Countries our volunteer developers come from</span></div>
+        <div class="stat"><b data-count="20">20</b><b class="sr-only">plus</b><span>Platforms and systems, from Windows to OS/2</span></div>
+        <div class="stat"><b>0</b><span>Ads, trackers or spyware. Ever.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Simple, fast and powerful</p>
+          <h2>One player for every file you will ever find.</h2>
+        </div>
+        <p>From a 1998 MPEG-1 clip to 8K HDR, from a scratched DVD to a live multicast stream: VLC opens it, without hunting for codec packs.</p>
+      </div>
+      <div class="bento">
+        <article class="tile t-a reveal">
+          <svg class="ico" aria-hidden="true"><use href="#i-film" xlink:href="#i-film"/></svg>
+          <h3>Plays most codecs, no packs needed</h3>
+          <p>Files, discs, webcams, devices and streams. Hardware decoding on most platforms, with 0-copy on the GPU and software fallback when required.</p>
+          <div class="chips" aria-label="Examples of supported formats">
+            <span class="chip">H.264</span><span class="chip">HEVC</span><span class="chip">AV1</span><span class="chip">VP9</span><span class="chip">MPEG-2</span><span class="chip">MKV</span><span class="chip">WebM</span><span class="chip">MP4</span><span class="chip">WMV</span><span class="chip">FLAC</span><span class="chip">Opus</span><span class="chip">DTS</span><span class="chip">TrueHD</span><span class="chip">SRT</span><span class="chip">ASS</span>
+          </div>
+        </article>
+        <article class="tile t-b reveal">
+          <svg class="ico" aria-hidden="true"><use href="#i-monitor" xlink:href="#i-monitor"/></svg>
+          <h3>Runs on all platforms</h3>
+          <p>Windows, Linux, macOS, Unix, iOS, Android and more.</p>
+          <div class="platform-row" aria-hidden="true">
+            <svg><use href="#i-windows" xlink:href="#i-windows"/></svg><svg><use href="#i-apple" xlink:href="#i-apple"/></svg><svg><use href="#i-linux" xlink:href="#i-linux"/></svg><svg><use href="#i-android" xlink:href="#i-android"/></svg><svg><use href="#i-tv" xlink:href="#i-tv"/></svg>
+          </div>
+        </article>
+        <article class="tile t-c reveal">
+          <svg class="ico" aria-hidden="true"><use href="#i-stream" xlink:href="#i-stream"/></svg>
+          <h3>Streams, discs, devices</h3>
+          <p>HLS, DASH, RTSP, SRT, multicast, DVD, Blu-ray, audio CD, DVB and capture cards.</p>
+        </article>
+        <article class="tile t-d reveal">
+          <svg class="ico" aria-hidden="true"><use href="#i-puzzle" xlink:href="#i-puzzle"/></svg>
+          <h3>Make it yours</h3>
+          <p>Add skins, create your own with the VLC skin editor, and install extensions.</p>
+        </article>
+        <article class="tile t-e reveal">
+          <svg class="ico" aria-hidden="true"><use href="#i-shield" xlink:href="#i-shield"/></svg>
+          <h3>Completely free</h3>
+          <p>No spyware, no ads and no user tracking. Made by a non-profit, released under the GPL.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Everywhere you watch</p>
+          <h2>The same trusted cone, on every screen.</h2>
+        </div>
+        <p>Desktop, phone, tablet and TV share one open engine, libVLC, so the file that plays on your laptop plays in your pocket too.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Device showcase">
+        <button type="button" role="tab" id="tab-desk" aria-controls="pan-desk" aria-selected="true"><svg aria-hidden="true"><use href="#i-monitor" xlink:href="#i-monitor"/></svg>Desktop</button>
+        <button type="button" role="tab" id="tab-mob" aria-controls="pan-mob" aria-selected="false" tabindex="-1"><svg aria-hidden="true"><use href="#i-phone" xlink:href="#i-phone"/></svg>Mobile</button>
+        <button type="button" role="tab" id="tab-tv" aria-controls="pan-tv" aria-selected="false" tabindex="-1"><svg aria-hidden="true"><use href="#i-tv" xlink:href="#i-tv"/></svg>TV</button>
+      </div>
+
+      <div class="panel showcase" role="tabpanel" id="pan-desk" aria-labelledby="tab-desk">
+        <div class="mock-desktop" style="transform:none" aria-hidden="true">
+          <div class="mock-bar"><i></i><i></i><i></i><span class="t">VLC media player</span></div>
+          <div class="mock-video" style="aspect-ratio:16/8.4"><div class="scene"><div class="sun"></div><div class="glint"></div><div class="hill"></div><div class="hill h2"></div></div><span class="osd">Speed 1.25×</span></div>
+          <div class="mock-controls"><span class="play"><svg><use href="#i-play" xlink:href="#i-play"/></svg></span><span>00:38:51</span><span class="seek"><span></span></span><span>01:42:10</span><svg><use href="#i-cc" xlink:href="#i-cc"/></svg><svg><use href="#i-cast" xlink:href="#i-cast"/></svg><svg><use href="#i-full" xlink:href="#i-full"/></svg></div>
+        </div>
+        <ul class="points">
+          <li><svg aria-hidden="true"><use href="#i-cpu" xlink:href="#i-cpu"/></svg><span><b>Hardware decoding</b><span>GPU acceleration on Windows, macOS and Linux, including HEVC and 10-bit HDR.</span></span></li>
+          <li><svg aria-hidden="true"><use href="#i-cc" xlink:href="#i-cc"/></svg><span><b>Subtitles, synchronised</b><span>SRT, ASS, WebVTT, DVB and closed captions, with per-file delay control.</span></span></li>
+          <li><svg aria-hidden="true"><use href="#i-cast" xlink:href="#i-cast"/></svg><span><b>Chromecast and network shares</b><span>Browse SMB, FTP, SFTP, NFS and UPnP, then cast to the big screen.</span></span></li>
+        </ul>
+      </div>
+
+      <div class="panel showcase" role="tabpanel" id="pan-mob" aria-labelledby="tab-mob" hidden>
+        <div class="mock-phones" aria-hidden="true">
+          <div class="mock-phone"><div class="screen">
+            <div class="ph-top"><span>Video</span><svg><use href="#i-search" xlink:href="#i-search"/></svg></div>
+            <div class="ph-tabs"><span class="on">All</span><span>Folders</span><span>Network</span></div>
+            <div class="ph-grid"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div class="ph-mini"><i></i><span><b>Sunset over the hills</b><small>38:51</small></span><svg><use href="#i-pause" xlink:href="#i-pause"/></svg></div>
+          </div></div>
+          <div class="mock-phone"><div class="screen">
+            <div class="ph-top"><span>Now playing</span><svg><use href="#i-cast" xlink:href="#i-cast"/></svg></div>
+            <div class="ph-player">
+              <div class="ph-art"><svg viewBox="0 0 64 64"><use href="#i-cone" xlink:href="#i-cone"/></svg></div>
+              <span><b>Field recordings</b><br><small>Lisbon, 2026 · FLAC 24-bit</small></span>
+              <div class="seek" style="flex:none"><span></span></div>
+              <div class="ph-ctrl"><svg><use href="#i-prev" xlink:href="#i-prev"/></svg><span class="big"><svg><use href="#i-pause" xlink:href="#i-pause"/></svg></span><svg><use href="#i-next" xlink:href="#i-next"/></svg></div>
+            </div>
+          </div></div>
+        </div>
+        <ul class="points">
+          <li><svg aria-hidden="true"><use href="#i-film" xlink:href="#i-film"/></svg><span><b>Your library, organised</b><span>Media library, playback history, favourite folders and resume where you left off.</span></span></li>
+          <li><svg aria-hidden="true"><use href="#i-wifi" xlink:href="#i-wifi"/></svg><span><b>Wi-Fi sharing and remote access</b><span>Send files from your computer and control playback from any browser.</span></span></li>
+          <li><svg aria-hidden="true"><use href="#i-lock" xlink:href="#i-lock"/></svg><span><b>Parental control and privacy</b><span>Lock settings and keep media private. Still no ads and no accounts.</span></span></li>
+        </ul>
+      </div>
+
+      <div class="panel showcase" role="tabpanel" id="pan-tv" aria-labelledby="tab-tv" hidden>
+        <div class="mock-tv" aria-hidden="true">
+          <div class="tv-screen">
+            <h4>Continue watching</h4>
+            <div class="tv-row"><div class="focus"></div><div></div><div></div><div></div></div>
+            <span class="tv-label">Network shares</span>
+            <div class="tv-row"><div></div><div></div><div></div><div></div></div>
+          </div>
+        </div>
+        <ul class="points">
+          <li><svg aria-hidden="true"><use href="#i-tv" xlink:href="#i-tv"/></svg><span><b>Apple TV and Android TV</b><span>A 10-foot interface designed for the remote, with single-click mode support.</span></span></li>
+          <li><svg aria-hidden="true"><use href="#i-wifi" xlink:href="#i-wifi"/></svg><span><b>Your NAS, natively</b><span>Play files from local network servers in their original format, with no conversion.</span></span></li>
+          <li><svg aria-hidden="true"><use href="#i-volume" xlink:href="#i-volume"/></svg><span><b>HD audio passthrough</b><span>Send Dolby and DTS straight to your receiver.</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="eyebrow">Latest news</p><h2>What the team has shipped.</h2></div>
+        <a class="btn btn-ghost" href="#news">All news <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></a>
+      </div>
+      <div class="home-news reveal" id="home-news"><a class="card" href="https://www.videolan.org/vlc/releases/3.0.24.html"><time>Sep 2026 · Desktop</time><h3>VLC 3.0.24 “Vetinari”</h3><p>A large update to VLC’s 3.0 branch: more than 130 security fixes across VLC and bundled libraries, 49 third-party libraries updated, FFmpeg moved from 4.4 to 8.1, ATRAC3 and ATRAC9 decoding, CEA-708 captions in MP4, SRT listener mode and SFTP public-key authentication. Update checks now use a new RSA-4096 key.</p><span class="more">Read more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/vlc/download-android.html"><time>2024 · Mobile</time><h3>VLC for Android 3.6</h3><p>The new Remote Access feature, parental control and a lot of fixes.</p><span class="more">Read more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/vlc/download-ios.html"><time>2024 · Mobile</time><h3>Major update of VLC for iOS, iPadOS and tvOS</h3><p>Playback history, A to B playback, Siri integration, external subtitles and audio tracks, favourite folders on local…</p><span class="more">Read more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/videolan/events/"><time>2024 · Community</time><h3>VideoLAN Dev Days 2024 in South Korea</h3><p>Two days of technical talks with multimedia hackers from around the globe, hosted with the support of Kwangwoon…</p><span class="more">Read more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/vlc/releases/3.0.21.html"><time>2024 · Desktop</time><h3>VLC 3.0.21</h3><p>The 22nd update to the 3.0 branch: codec updates, Super Resolution and VQ Enhancement filtering with AMD GPUs, NVIDIA…</p><span class="more">Read more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a></div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="eyebrow">Beyond the player</p><h2>The open multimedia stack behind the cone.</h2></div>
+        <a class="btn btn-ghost" href="#projects">All projects <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></a>
+      </div>
+      <div class="grid-4 reveal">
+        <a class="card" href="https://www.videolan.org/vlc/libvlc.html"><h3><svg aria-hidden="true"><use href="#i-code" xlink:href="#i-code"/></svg>libVLC</h3><p>The cross-platform multimedia framework. Bring VLC power into your app.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a>
+        <a class="card" href="https://code.videolan.org/videolan/dav1d"><h3><svg aria-hidden="true"><use href="#i-zap" xlink:href="#i-zap"/></svg>dav1d</h3><p>An AV1 decoder focused on speed, size and correctness.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a>
+        <a class="card" href="https://www.videolan.org/developers/x264.html"><h3><svg aria-hidden="true"><use href="#i-film" xlink:href="#i-film"/></svg>x264</h3><p>Encode video streams into the H.264/MPEG-4 AVC format.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a>
+        <a class="card" href="https://www.videolan.org/projects/dvblast.html"><h3><svg aria-hidden="true"><use href="#i-stream" xlink:href="#i-stream"/></svg>DVBlast</h3><p>A simple and powerful MPEG-2/TS demux and streaming application.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="donate-band reveal" id="donate-home"><div style="position:relative">
+<p class="eyebrow">Support VideoLAN</p>
+<h2>Keep VLC free, for everyone, forever.</h2>
+<p>VLC has no ads and no tracking because it does not need them. It is made by volunteers and run by a non-profit. Your donation pays for servers, bandwidth, test hardware and developer meetings.</p>
+</div>
+<form class="amounts" action="https://www.videolan.org/contribute.html#money" method="get" aria-label="Choose a donation amount">
+<fieldset class="freq" style="border:0;padding:0;margin:0 0 .2rem"><legend class="sr-only">Frequency</legend>
+<label><input type="radio" name="fh" value="once" checked> One time</label>
+<label><input type="radio" name="fh" value="monthly"> Monthly</label></fieldset>
+<button type="button" aria-pressed="false" data-amt="5">€5</button>
+<button type="button" aria-pressed="true" data-amt="10">€10</button>
+<button type="button" aria-pressed="false" data-amt="25">€25</button>
+<button type="button" aria-pressed="false" data-amt="50">€50</button>
+<button type="button" aria-pressed="false" data-amt="100">€100</button>
+<button type="button" aria-pressed="false" data-amt="other">Other</button>
+<a class="btn btn-primary" href="https://www.videolan.org/contribute.html#money" data-donate><svg aria-hidden="true"><use href="#i-heart" xlink:href="#i-heart"/></svg><span>Donate <span data-amt-label>€10</span></span></a>
+<small>Secure payment via PayPal, bank transfer, Monero or Bitcoin.</small>
+</form></div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><p class="eyebrow">With thanks</p><h2>Partners who keep the servers humming.</h2></div>
+        <a class="btn btn-ghost" href="#videolan" data-goto="partners">Partners &amp; consultants <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></a>
+      </div>
+      <div class="partners reveal">
+        <div class="partner"><span class="wm">Free</span><span>Hosts 3 servers near Paris</span></div>
+        <div class="partner"><span class="wm">Gandi</span><span>Domain names and admin help</span></div>
+        <div class="partner"><span class="wm">MacStadium</span><span>Mac mini for CI builds</span></div>
+        <div class="partner"><span class="wm">Videolabs</span><span>Editor of the VLC mobile apps</span></div>
+        <div class="partner"><span class="wm">MetaBrainz</span><span>MusicBrainz &amp; Cover Art Archive</span></div>
+        <div class="partner"><span class="wm">École Centrale</span><span>Where it all began, 1996</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== DOWNLOAD =========================== -->
+<div class="view" id="download" data-title="Download VLC media player — VideoLAN">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="#home">Home</a><span aria-hidden="true">/</span><span>Download</span></p>
+      <p class="eyebrow">Official downloads · Version <span class="v-num">3.0.24</span> “Vetinari”</p>
+      <h1>Get VLC for every device you own.</h1>
+      <p class="lede">Always download VLC from videolan.org or your platform’s official store. Our builds are free, signed, and never bundled with anything else.</p>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="grid-2">
+        <article class="os-block" data-os="windows">
+          <header><svg aria-hidden="true"><use href="#i-windows" xlink:href="#i-windows"/></svg><h2 class="h3" style="font-size:var(--text-xl);margin:0">Windows</h2><span class="badge-detected">Your system</span></header>
+          <div class="os-links">
+            <a href="https://www.videolan.org/vlc/download-windows.html">Windows 64-bit <small>Windows 7 and later · .exe / .msi</small></a>
+            <a href="https://www.videolan.org/vlc/download-windows.html">Windows ARM 64 <small>Snapdragon PCs</small></a>
+            <a href="https://www.videolan.org/vlc/download-windows.html">Windows 32-bit <small>Older PCs · XP via 3.0 legacy</small></a>
+            <a href="https://apps.microsoft.com/detail/9NBLGGH4VVNH">Microsoft Store <svg aria-hidden="true"><use href="#i-ext" xlink:href="#i-ext"/></svg></a>
+          </div>
+        </article>
+        <article class="os-block" data-os="mac">
+          <header><svg aria-hidden="true"><use href="#i-apple" xlink:href="#i-apple"/></svg><h2 style="font-size:var(--text-xl);margin:0">Apple platforms</h2><span class="badge-detected">Your system</span></header>
+          <div class="os-links">
+            <a href="https://www.videolan.org/vlc/download-macosx.html">macOS Universal <small>Apple Silicon &amp; Intel · .dmg</small></a>
+            <a href="https://www.videolan.org/vlc/download-ios.html">iPhone &amp; iPad <small>App Store</small></a>
+            <a href="https://www.videolan.org/vlc/download-appletv.html">Apple TV <small>App Store</small></a>
+            <a href="https://www.videolan.org/vlc/download-macosx.html">Older Macs <small>Legacy builds back to 10.6</small></a>
+          </div>
+        </article>
+        <article class="os-block" data-os="linux" id="os-linux" style="grid-column:1/-1">
+          <header><svg aria-hidden="true"><use href="#i-linux" xlink:href="#i-linux"/></svg><h2 style="font-size:var(--text-xl);margin:0">GNU/Linux</h2><span class="badge-detected">Your system</span></header>
+          <p style="color:var(--text-2);margin-bottom:1rem">VLC is packaged by most distributions. Install it from your package manager, or get the Flatpak and Snap builds.</p>
+          <div class="kbd-line" style="margin-bottom:1rem"><span style="color:var(--text-3)">$</span><code>sudo apt install vlc</code><span style="color:var(--text-3);margin-left:auto;font-family:var(--font);font-size:var(--text-xs)">Debian · Ubuntu · Mint</span></div>
+          <div class="os-links distro-grid">
+            <a href="https://www.videolan.org/vlc/download-debian.html">Debian</a>
+            <a href="https://www.videolan.org/vlc/download-ubuntu.html">Ubuntu</a>
+            <a href="https://www.videolan.org/vlc/download-mint.html">Mint</a>
+            <a href="https://www.videolan.org/vlc/download-fedora.html">Fedora</a>
+            <a href="https://www.videolan.org/vlc/download-archlinux.html">Arch Linux</a>
+            <a href="https://www.videolan.org/vlc/download-suse.html">openSUSE</a>
+            <a href="https://www.videolan.org/vlc/download-gentoo.html">Gentoo</a>
+            <a href="https://www.videolan.org/vlc/download-slackware.html">Slackware</a>
+            <a href="https://www.videolan.org/vlc/download-redhat.html">Red Hat</a>
+            <a href="https://flathub.org/apps/org.videolan.VLC">Flatpak</a>
+            <a href="https://snapcraft.io/vlc">Snap</a>
+          </div>
+        </article>
+        <article class="os-block" data-os="android">
+          <header><svg aria-hidden="true"><use href="#i-android" xlink:href="#i-android"/></svg><h2 style="font-size:var(--text-xl);margin:0">Android</h2><span class="badge-detected">Your system</span></header>
+          <div class="os-links">
+            <a href="https://www.videolan.org/vlc/download-android.html">Phones, tablets, Chromebooks <small>Google Play · F-Droid · APK</small></a>
+            <a href="https://www.videolan.org/vlc/download-android.html">Android TV <small>Google Play</small></a>
+            <a href="https://www.videolan.org/vlc/download-chromeos.html">ChromeOS <small>Google Play</small></a>
+          </div>
+        </article>
+        <article class="os-block" data-os="other">
+          <header><svg aria-hidden="true"><use href="#i-box" xlink:href="#i-box"/></svg><h2 style="font-size:var(--text-xl);margin:0">Other systems</h2></header>
+          <div class="os-links distro-grid">
+            <a href="https://www.videolan.org/vlc/download-freebsd.html">FreeBSD</a>
+            <a href="https://www.videolan.org/vlc/download-netbsd.html">NetBSD</a>
+            <a href="https://www.videolan.org/vlc/download-openbsd.html">OpenBSD</a>
+            <a href="https://www.videolan.org/vlc/download-solaris.html">Solaris</a>
+            <a href="https://www.videolan.org/vlc/download-qnx.html">QNX</a>
+            <a href="https://www.videolan.org/vlc/download-os2.html">OS/2</a>
+            <a href="https://www.videolan.org/vlc/download-sources.html">Source code</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid-2" style="margin-top:1.5rem">
+        <div class="callout"><svg aria-hidden="true"><use href="#i-shield" xlink:href="#i-shield"/></svg><p><b>Verify your download.</b> Every release ships with SHA-256 checksums and a GPG signature. Update checks now use a new RSA-4096 key. <a href="https://www.videolan.org/security/">Security centre</a></p></div>
+        <div class="callout"><svg aria-hidden="true"><use href="#i-code" xlink:href="#i-code"/></svg><p><b>Build it yourself.</b> All source code lives on <a href="https://code.videolan.org/videolan/vlc">code.videolan.org</a>, released under GPLv2 and LGPL. Nightly builds are available for testers.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== FEATURES =========================== -->
+<div class="view" id="features" data-title="Features — VLC media player">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="#home">Home</a><span aria-hidden="true">/</span><span>Features</span></p>
+      <p class="eyebrow">The most complete feature-set</p>
+      <h1>Video, audio, subtitles, streams. All of it.</h1>
+      <p class="lede">VLC handles video, subtitle synchronisation, video filters and audio filters, across almost every format ever made. Expand a category to see the full list.</p>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0">
+    <div class="wrap split">
+      <div>
+        <div class="callout" style="margin-bottom:1rem"><svg aria-hidden="true"><use href="#i-cpu" xlink:href="#i-cpu"/></svg><p><b>Hardware decoding</b> on most platforms. Supports 0-copy on the GPU and falls back on software when required.</p></div>
+        <div class="callout" style="margin-bottom:1rem"><svg aria-hidden="true"><use href="#i-sparkle" xlink:href="#i-sparkle"/></svg><p><b>New in 3.0.24:</b> FFmpeg 8.1, ATRAC3 and ATRAC9 decoding, CEA-708 captions in MP4, SRT listener mode, SFTP public-key authentication, and over 130 security fixes.</p></div>
+        <div class="callout"><svg aria-hidden="true"><use href="#i-palette" xlink:href="#i-palette"/></svg><p><b>Customise</b> with <a href="https://www.videolan.org/vlc/skins.html">skins</a>, build your own in the <a href="https://www.videolan.org/vlc/skineditor.html">VLC skin editor</a>, and add <a href="https://addons.videolan.org/">extensions</a>.</p></div>
+      </div>
+      <div id="spec-list"><details class="spec" open><summary><svg class="ico" aria-hidden="true"><use href="#i-film" xlink:href="#i-film"/></svg>Video codecs<span class="count">23</span><svg class="chev" aria-hidden="true"><use href="#i-chev" xlink:href="#i-chev"/></svg></summary><div class="chips"><span class="chip">MPEG-1/2</span><span class="chip">DivX® (1/2/3/4/5/6)</span><span class="chip">MPEG-4 ASP</span><span class="chip">XviD</span><span class="chip">3ivX D4</span><span class="chip">H.261</span><span class="chip">H.263 / H.263i</span><span class="chip">H.264 / MPEG-4 AVC</span><span class="chip">H.265 / HEVC</span><span class="chip">AV1 (dav1d)</span><span class="chip">VP8</span><span class="chip">VP9</span><span class="chip">Cinepak</span><span class="chip">Theora</span><span class="chip">Dirac / VC-2</span><span class="chip">MJPEG (A/B)</span><span class="chip">WMV 1/2</span><span class="chip">WMV 3 / WMV-9 / VC-1</span><span class="chip">Sorenson 1/3</span><span class="chip">DV</span><span class="chip">On2 VP3/VP5/VP6</span><span class="chip">Indeo Video v3 (IV32)</span><span class="chip">Real Video (1/2/3/4)</span></div></details><details class="spec"><summary><svg class="ico" aria-hidden="true"><use href="#i-volume" xlink:href="#i-volume"/></svg>Audio codecs<span class="count">31</span><svg class="chev" aria-hidden="true"><use href="#i-chev" xlink:href="#i-chev"/></svg></summary><div class="chips"><span class="chip">MPEG Layer 1/2</span><span class="chip">MP3</span><span class="chip">AAC</span><span class="chip">Vorbis</span><span class="chip">Opus</span><span class="chip">AC3 - A/52</span><span class="chip">E-AC-3</span><span class="chip">MLP / TrueHD</span><span class="chip">DTS</span><span class="chip">WMA 1/2</span><span class="chip">WMA 3</span><span class="chip">FLAC</span><span class="chip">ALAC</span><span class="chip">Speex</span><span class="chip">Musepack / MPC</span><span class="chip">ATRAC 3</span><span class="chip">ATRAC 9</span><span class="chip">Wavpack</span><span class="chip">Mod</span><span class="chip">TrueAudio</span><span class="chip">APE</span><span class="chip">Real Audio</span><span class="chip">Alaw/µlaw</span><span class="chip">AMR (3GPP)</span><span class="chip">MIDI</span><span class="chip">LPCM</span><span class="chip">ADPCM</span><span class="chip">QCELP</span><span class="chip">DV Audio</span><span class="chip">QDM2/QDMC</span><span class="chip">MACE</span></div></details><details class="spec"><summary><svg class="ico" aria-hidden="true"><use href="#i-cc" xlink:href="#i-cc"/></svg>Subtitles<span class="count">17</span><svg class="chev" aria-hidden="true"><use href="#i-chev" xlink:href="#i-chev"/></svg></summary><div class="chips"><span class="chip">DVD</span><span class="chip">MicroDVD</span><span class="chip">SubRip</span><span class="chip">SubViewer</span><span class="chip">SSA 1-5</span><span class="chip">SAMI</span><span class="chip">VPlayer</span><span class="chip">WebVTT</span><span class="chip">Closed captions</span><span class="chip">CEA-708</span><span class="chip">Vobsub</span><span class="chip">Universal Subtitle Format (USF)</span><span class="chip">SVCD / CVD</span><span class="chip">DVB</span><span class="chip">OGM</span><span class="chip">CMML</span><span class="chip">Kate</span></div></details><details class="spec"><summary><svg class="ico" aria-hidden="true"><use href="#i-box" xlink:href="#i-box"/></svg>Containers &amp; formats<span class="count">17</span><svg class="chev" aria-hidden="true"><use href="#i-chev" xlink:href="#i-chev"/></svg></summary><div class="chips"><span class="chip">MPEG (ES, PS, TS, PVA, MP3)</span><span class="chip">AVI</span><span class="chip">ASF / WMV / WMA</span><span class="chip">MP4 / MOV / 3GP</span><span class="chip">OGG / OGM / Annodex</span><span class="chip">Matroska (MKV)</span><span class="chip">WebM</span><span class="chip">Real</span><span class="chip">WAV (incl. DTS)</span><span class="chip">Raw audio: DTS, AAC, AC3/A52</span><span class="chip">Raw DV</span><span class="chip">FLAC</span><span class="chip">FLV (Flash)</span><span class="chip">MXF</span><span class="chip">Nut</span><span class="chip">Standard MIDI / SMF</span><span class="chip">Creative™ Voice</span></div></details><details class="spec"><summary><svg class="ico" aria-hidden="true"><use href="#i-stream" xlink:href="#i-stream"/></svg>Inputs &amp; sources<span class="count">23</span><svg class="chev" aria-hidden="true"><use href="#i-chev" xlink:href="#i-chev"/></svg></summary><div class="chips"><span class="chip">UDP/RTP Unicast</span><span class="chip">UDP/RTP Multicast</span><span class="chip">HTTP / FTP</span><span class="chip">HLS</span><span class="chip">DASH</span><span class="chip">MMS</span><span class="chip">TCP/RTP Unicast</span><span class="chip">DCCP/RTP Unicast</span><span class="chip">SRT</span><span class="chip">RIST</span><span class="chip">SMB</span><span class="chip">SFTP</span><span class="chip">NFS</span><span class="chip">UPnP</span><span class="chip">File</span><span class="chip">DVD Video</span><span class="chip">Blu-ray</span><span class="chip">Video CD / VCD</span><span class="chip">SVCD</span><span class="chip">Audio CD (no DTS-CD)</span><span class="chip">DVB (Satellite, Digital TV, Cable TV)</span><span class="chip">MPEG encoder</span><span class="chip">Video acquisition</span></div></details><details class="spec"><summary><svg class="ico" aria-hidden="true"><use href="#i-news" xlink:href="#i-news"/></svg>Metadata<span class="count">5</span><svg class="chev" aria-hidden="true"><use href="#i-chev" xlink:href="#i-chev"/></svg></summary><div class="chips"><span class="chip">ID3 tags</span><span class="chip">APEv2</span><span class="chip">Vorbis comment</span><span class="chip">MusicBrainz</span><span class="chip">Cover Art Archive</span></div></details><details class="spec"><summary><svg class="ico" aria-hidden="true"><use href="#i-sparkle" xlink:href="#i-sparkle"/></svg>Other features<span class="count">16</span><svg class="chev" aria-hidden="true"><use href="#i-chev" xlink:href="#i-chev"/></svg></summary><div class="chips"><span class="chip">Hardware decoding</span><span class="chip">0-copy GPU</span><span class="chip">HDR10</span><span class="chip">360° video</span><span class="chip">Ambisonics</span><span class="chip">Chromecast</span><span class="chip">SAP/SDP announces</span><span class="chip">Bonjour protocol</span><span class="chip">SVCD menus</span><span class="chip">Localisation</span><span class="chip">CD-Text</span><span class="chip">CDDB CD info</span><span class="chip">IGMPv3</span><span class="chip">IPv6</span><span class="chip">MLDv2</span><span class="chip">CPU acceleration</span></div></details></div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== PROJECTS =========================== -->
+<div class="view" id="projects" data-title="Projects — VideoLAN">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="#home">Home</a><span aria-hidden="true">/</span><span>Projects</span></p>
+      <p class="eyebrow">VideoLAN projects</p>
+      <h1>Open source that powers the multimedia world.</h1>
+      <p class="lede">VLC is the best known, but VideoLAN maintains a whole family of players, encoders, decoders and libraries used by broadcasters, browsers and apps everywhere.</p>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0"><div class="wrap" id="project-list"><div style="margin-bottom:3rem"><p class="eyebrow">For everyone</p><div class="grid-3"><a class="card" href="#download"><span class="tag hot" style="margin-bottom:.8rem">Flagship</span><h3><svg aria-hidden="true"><use href="#i-play" xlink:href="#i-play"/></svg>VLC media player</h3><p>A powerful media player playing most of the media codecs and video formats out there.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/vlmc/"><h3><svg aria-hidden="true"><use href="#i-film" xlink:href="#i-film"/></svg>VLMC</h3><p>VideoLAN Movie Creator, a non-linear editing software for video creation.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/vlc/skineditor.html"><h3><svg aria-hidden="true"><use href="#i-palette" xlink:href="#i-palette"/></svg>VLC Skin Editor</h3><p>Create your own skins for VLC media player.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a></div></div><div style="margin-bottom:3rem"><p class="eyebrow">For professionals</p><div class="grid-3"><a class="card" href="https://www.videolan.org/projects/dvblast.html"><h3><svg aria-hidden="true"><use href="#i-stream" xlink:href="#i-stream"/></svg>DVBlast</h3><p>A simple and powerful MPEG-2/TS demux and streaming application.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/developers/x264.html"><span class="tag hot" style="margin-bottom:.8rem">Industry standard</span><h3><svg aria-hidden="true"><use href="#i-film" xlink:href="#i-film"/></svg>x264</h3><p>A free application for encoding video streams into the H.264/MPEG-4 AVC format.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/developers/x265.html"><h3><svg aria-hidden="true"><use href="#i-film" xlink:href="#i-film"/></svg>x262 &amp; x265</h3><p>Encoders for MPEG-2 and H.265/HEVC video.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/projects/multicat.html"><h3><svg aria-hidden="true"><use href="#i-wifi" xlink:href="#i-wifi"/></svg>multicat</h3><p>A set of tools to easily and efficiently manipulate multicast streams and TS.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/projects/"><h3><svg aria-hidden="true"><use href="#i-tv" xlink:href="#i-tv"/></svg>VLMa</h3><p>Manage broadcasts of TV channels received through digital terrestrial or satellite.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a></div></div><div style="margin-bottom:3rem"><p class="eyebrow">For developers</p><div class="grid-3"><a class="card" href="https://www.videolan.org/vlc/libvlc.html"><span class="tag hot" style="margin-bottom:.8rem">Popular</span><h3><svg aria-hidden="true"><use href="#i-code" xlink:href="#i-code"/></svg>libVLC</h3><p>The cross-platform multimedia framework. Bring VLC power into your app.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://code.videolan.org/videolan/dav1d"><span class="tag hot" style="margin-bottom:.8rem">Popular</span><h3><svg aria-hidden="true"><use href="#i-zap" xlink:href="#i-zap"/></svg>dav1d</h3><p>An AV1 cross-platform decoder, open source, focused on speed, size and correctness.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://code.videolan.org/videolan/vlc-unity"><h3><svg aria-hidden="true"><use href="#i-box" xlink:href="#i-box"/></svg>vlc-unity</h3><p>VLC for the Unity game engine.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/developers/libdvdcss.html"><h3><svg aria-hidden="true"><use href="#i-disc" xlink:href="#i-disc"/></svg>libdvdcss</h3><p>The reference open source cross-platform library for DVD CSS decryption.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/developers/libdvdnav.html"><h3><svg aria-hidden="true"><use href="#i-disc" xlink:href="#i-disc"/></svg>libdvdnav</h3><p>The reference library for DVD menu handling.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/developers/libdvdnav.html"><h3><svg aria-hidden="true"><use href="#i-disc" xlink:href="#i-disc"/></svg>libdvdread</h3><p>The reference library for reading DVD video images.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/developers/libbluray.html"><h3><svg aria-hidden="true"><use href="#i-disc" xlink:href="#i-disc"/></svg>libbluray</h3><p>The reference open source cross-platform library for Blu-ray disc access.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/developers/libaacs.html"><h3><svg aria-hidden="true"><use href="#i-lock" xlink:href="#i-lock"/></svg>libaacs &amp; libbdplus</h3><p>Research projects implementing the AACS and BD+ standards.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/developers/libdvbcsa.html"><h3><svg aria-hidden="true"><use href="#i-lock" xlink:href="#i-lock"/></svg>libdvbcsa</h3><p>Decrypt and encrypt using the DVB-CSA algorithm.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/developers/libdvbpsi.html"><h3><svg aria-hidden="true"><use href="#i-stream" xlink:href="#i-stream"/></svg>libdvbpsi</h3><p>Parse TS and DVB tables without headaches.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/developers/bitstream.html"><h3><svg aria-hidden="true"><use href="#i-code" xlink:href="#i-code"/></svg>biTStream</h3><p>Abstract access to binary structures such as those found in MPEG or DVB.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a><a class="card" href="https://www.videolan.org/developers/libdca.html"><h3><svg aria-hidden="true"><use href="#i-volume" xlink:href="#i-volume"/></svg>libdca</h3><p>Decode the DTS Coherent Acoustics audio codec.</p><span class="more">Learn more <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a></div></div></div></section>
+</div>
+
+<!-- =========================== NEWS =========================== -->
+<div class="view" id="news" data-title="News — VideoLAN">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="#home">Home</a><span aria-hidden="true">/</span><span>News</span></p>
+      <p class="eyebrow">News &amp; releases</p>
+      <h1>Releases, statements and stories.</h1>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="news-filter" role="group" aria-label="Filter news">
+        <button type="button" aria-pressed="true" data-filter="all">All</button>
+        <button type="button" aria-pressed="false" data-filter="Desktop">Desktop</button>
+        <button type="button" aria-pressed="false" data-filter="Mobile">Mobile</button>
+        <button type="button" aria-pressed="false" data-filter="Community">Community</button>
+      </div>
+      <div class="news-list" id="news-list"><article class="news-item" data-cat="Desktop"><time>Sep 2026</time><div><h3><a href="https://www.videolan.org/vlc/releases/3.0.24.html" style="color:inherit">VLC 3.0.24 “Vetinari”</a></h3><p>A large update to VLC’s 3.0 branch: more than 130 security fixes across VLC and bundled libraries, 49 third-party libraries updated, FFmpeg moved from 4.4 to 8.1, ATRAC3 and ATRAC9 decoding, CEA-708 captions in MP4, SRT listener mode and SFTP public-key authentication. Update checks now use a new RSA-4096 key.</p><div class="tags"><span class="tag hot">Desktop</span></div></div></article><article class="news-item" data-cat="Desktop"><time>Jan 2026</time><div><h3><a href="https://www.videolan.org/security/" style="color:inherit">VLC 3.0.23</a></h3><p>A maintenance and security release fixing several vulnerabilities in the handling of various media formats.</p><div class="tags"><span class="tag">Desktop</span></div></div></article><article class="news-item" data-cat="Community"><time>2024</time><div><h3><a href="https://www.videolan.org/videolan/events/" style="color:inherit">VideoLAN Dev Days 2024 in South Korea</a></h3><p>Two days of technical talks with multimedia hackers from around the globe, hosted with the support of Kwangwoon University.</p><div class="tags"><span class="tag">Community</span></div></div></article><article class="news-item" data-cat="Mobile"><time>2024</time><div><h3><a href="https://www.videolan.org/vlc/download-android.html" style="color:inherit">VLC for Android 3.6</a></h3><p>The new Remote Access feature, parental control and a lot of fixes.</p><div class="tags"><span class="tag">Mobile</span></div></div></article><article class="news-item" data-cat="Desktop"><time>2024</time><div><h3><a href="https://www.videolan.org/vlc/releases/3.0.21.html" style="color:inherit">VLC 3.0.21</a></h3><p>The 22nd update to the 3.0 branch: codec updates, Super Resolution and VQ Enhancement filtering with AMD GPUs, NVIDIA TrueHDR for SDR sources, and improved subtitle rendering, notably on macOS with Asian languages. Also fixes a security issue.</p><div class="tags"><span class="tag">Desktop</span></div></div></article><article class="news-item" data-cat="Mobile"><time>2024</time><div><h3><a href="https://www.videolan.org/vlc/download-ios.html" style="color:inherit">Major update of VLC for iOS, iPadOS and tvOS</a></h3><p>Playback history, A to B playback, Siri integration, external subtitles and audio tracks, favourite folders on local network servers, and improved CarPlay integration.</p><div class="tags"><span class="tag">Mobile</span></div></div></article><article class="news-item" data-cat="Desktop"><time>2023</time><div><h3><a href="https://www.videolan.org/vlc/releases/3.0.20.html" style="color:inherit">VLC 3.0.20</a></h3><p>Codec updates, a FLAC quality fix, improved subtitle rendering and a fix for a freeze during frame-by-frame actions. Audio layout problems on macOS are resolved, and interface translations are updated. Also fixes two security issues.</p><div class="tags"><span class="tag">Desktop</span></div></div></article><article class="news-item" data-cat="Mobile"><time>2023</time><div><h3><a href="https://www.videolan.org/press/" style="color:inherit">VLC for iOS, iPadOS and tvOS: new audio interface and CarPlay</a></h3><p>A new audio playback interface, CarPlay integration, local media library improvements, and tvOS support for the Apple Remote’s single click mode.</p><div class="tags"><span class="tag">Mobile</span></div></div></article><article class="news-item" data-cat="Desktop"><time>2022</time><div><h3><a href="https://www.videolan.org/vlc/releases/3.0.18.html" style="color:inherit">VLC 3.0.18</a></h3><p>Support for a few more formats, improved adaptive streaming, crash fixes and many updated third-party libraries, plus multiple security fixes.</p><div class="tags"><span class="tag">Desktop</span></div></div></article><article class="news-item" data-cat="Community"><time>2022</time><div><h3><a href="https://www.videolan.org/press/" style="color:inherit">VideoLAN supports the UNHCR</a></h3><p>VideoLAN is a de-facto pacifist organisation that believes in cooperation across countries and in the power of knowledge and sharing. In response to Russia’s invasion of Ukraine, it decided to financially support the United Nations High Commissioner for Refugees.</p><div class="tags"><span class="tag">Community</span></div></div></article><article class="news-item" data-cat="Mobile"><time>2022</time><div><h3><a href="https://www.videolan.org/vlc/download-android.html" style="color:inherit">A new major version of VLC for Android</a></h3><p>New widgets, network media indexation, better tablet and foldable support, a redesigned audio screen, improved accessibility and performance.</p><div class="tags"><span class="tag">Mobile</span></div></div></article></div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== SUPPORT =========================== -->
+<div class="view" id="support" data-title="Support — VideoLAN">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="#home">Home</a><span aria-hidden="true">/</span><span>Support</span></p>
+      <p class="eyebrow">Get help</p>
+      <h1>Help is here, made by volunteers.</h1>
+      <p class="lede">VideoLAN is free and open source software and is not backed by any company. Every answer you get comes from someone giving their free time, so a good question goes a long way.</p>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <p class="eyebrow">Start here</p>
+      <div class="grid-3" style="margin-bottom:3rem">
+        <a class="card" href="https://www.videolan.org/support/faq.html"><span class="tag hot">Step 1</span><h3 style="margin-top:.8rem"><svg aria-hidden="true"><use href="#i-info" xlink:href="#i-info"/></svg>Read the FAQ</h3><p>Most questions are already answered in the official FAQ.</p><span class="more">Open FAQ <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a>
+        <a class="card" href="https://docs.videolan.me/vlc-user/"><span class="tag">Step 2</span><h3 style="margin-top:.8rem"><svg aria-hidden="true"><use href="#i-book" xlink:href="#i-book"/></svg>User documentation</h3><p>Guides for playback, streaming, conversion and settings.</p><span class="more">Read the docs <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a>
+        <a class="card" href="https://wiki.videolan.org/"><span class="tag">Step 3</span><h3 style="margin-top:.8rem"><svg aria-hidden="true"><use href="#i-users" xlink:href="#i-users"/></svg>Community wiki</h3><p>The good old community-driven knowledge base.</p><span class="more">Browse the wiki <svg aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></span></a>
+      </div>
+      <div class="split">
+        <div>
+          <h2 style="font-size:var(--text-2xl)">Still stuck? Ask the community.</h2>
+          <p style="color:var(--text-2)">Prepare a correct report first using the VLC report page, then ask your question in one of these places.</p>
+        </div>
+        <div class="grid-2">
+          <a class="card" href="https://forum.videolan.org/"><h3><svg aria-hidden="true"><use href="#i-chat" xlink:href="#i-chat"/></svg>Forums</h3><p>Ask and search thousands of answered threads.</p></a>
+          <a class="card" href="https://kiwiirc.com/nextclient/irc.libera.chat/#videolan"><h3><svg aria-hidden="true"><use href="#i-chat" xlink:href="#i-chat"/></svg>IRC chat</h3><p><code>#videolan</code> on <code>irc.libera.chat</code>, or via KiwiIRC in your browser.</p></a>
+          <a class="card" href="https://code.videolan.org/videolan/vlc/-/issues"><h3><svg aria-hidden="true"><use href="#i-bug" xlink:href="#i-bug"/></svg>Report a bug</h3><p>Read the reporting policy, then open an issue for VLC.</p></a>
+          <a class="card" href="#videolan" data-goto="consultants"><h3><svg aria-hidden="true"><use href="#i-users" xlink:href="#i-users"/></svg>Professional support</h3><p>Companies offering paid services around our products.</p></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== CONTRIBUTE =========================== -->
+<div class="view" id="contribute" data-title="Contribute — VideoLAN">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="#home">Home</a><span aria-hidden="true">/</span><span>Contribute</span></p>
+      <p class="eyebrow">Get involved</p>
+      <h1>VLC is made by people like you.</h1>
+      <p class="lede">VideoLAN welcomes all contributions: time, material or money. Pick whatever fits you best.</p>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="grid-3" style="margin-bottom:3rem">
+        <a class="card" href="https://wiki.videolan.org/Hacker_Guide"><h3><svg aria-hidden="true"><use href="#i-code" xlink:href="#i-code"/></svg>Write code</h3><p>Start with the Hacker Guide and send merge requests on GitLab.</p></a>
+        <a class="card" href="https://wiki.videolan.org/Translations"><h3><svg aria-hidden="true"><use href="#i-globe" xlink:href="#i-globe"/></svg>Translate</h3><p>Bring VLC and this website to your language.</p></a>
+        <a class="card" href="https://wiki.videolan.org/Documentation:Documentation"><h3><svg aria-hidden="true"><use href="#i-book" xlink:href="#i-book"/></svg>Write docs</h3><p>Improve guides that millions of people read.</p></a>
+        <a class="card" href="https://code.videolan.org/videolan/vlc/-/issues"><h3><svg aria-hidden="true"><use href="#i-bug" xlink:href="#i-bug"/></svg>Test &amp; triage</h3><p>Try nightly builds and help confirm bug reports.</p></a>
+        <a class="card" href="https://forum.videolan.org/"><h3><svg aria-hidden="true"><use href="#i-chat" xlink:href="#i-chat"/></svg>Support users</h3><p>Answer questions on the forums and IRC.</p></a>
+        <a class="card" href="https://www.videolan.org/contact.html"><h3><svg aria-hidden="true"><use href="#i-disc" xlink:href="#i-disc"/></svg>Donate material</h3><p>Got a disc VLC cannot play? Developers may be able to fix it.</p></a>
+      </div>
+      <div class="donate-band" id="donate"><div style="position:relative">
+<p class="eyebrow">Support VideoLAN</p>
+<h2>Keep VLC free, for everyone, forever.</h2>
+<p>VLC has no ads and no tracking because it does not need them. It is made by volunteers and run by a non-profit. Your donation pays for servers, bandwidth, test hardware and developer meetings.</p>
+</div>
+<form class="amounts" action="https://www.videolan.org/contribute.html#money" method="get" aria-label="Choose a donation amount">
+<fieldset class="freq" style="border:0;padding:0;margin:0 0 .2rem"><legend class="sr-only">Frequency</legend>
+<label><input type="radio" name="fc" value="once" checked> One time</label>
+<label><input type="radio" name="fc" value="monthly"> Monthly</label></fieldset>
+<button type="button" aria-pressed="false" data-amt="5">€5</button>
+<button type="button" aria-pressed="true" data-amt="10">€10</button>
+<button type="button" aria-pressed="false" data-amt="25">€25</button>
+<button type="button" aria-pressed="false" data-amt="50">€50</button>
+<button type="button" aria-pressed="false" data-amt="100">€100</button>
+<button type="button" aria-pressed="false" data-amt="other">Other</button>
+<a class="btn btn-primary" href="https://www.videolan.org/contribute.html#money" data-donate><svg aria-hidden="true"><use href="#i-heart" xlink:href="#i-heart"/></svg><span>Donate <span data-amt-label>€10</span></span></a>
+<small>Secure payment via PayPal, bank transfer, Monero or Bitcoin.</small>
+</form></div>
+      <div class="grid-2" style="margin-top:1.5rem">
+        <div class="callout"><svg aria-hidden="true"><use href="#i-scale" xlink:href="#i-scale"/></svg><p><b>Where does the money go?</b> VideoLAN is a non-profit organisation under French law, with its own bank account. Donations fund servers, bandwidth, hardware and developer events. No profits are distributed.</p></div>
+        <div class="callout"><svg aria-hidden="true"><use href="#i-heart" xlink:href="#i-heart"/></svg><p><b>Other ways to give.</b> PayPal, bank transfer, Monero and Bitcoin are all accepted. <a href="https://www.videolan.org/contribute.html#money">See all donation options</a>.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== VIDEOLAN =========================== -->
+<div class="view" id="videolan" data-title="About VideoLAN — Team, history and partners">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="#home">Home</a><span aria-hidden="true">/</span><span>About</span></p>
+      <p class="eyebrow">VideoLAN, a project and a non-profit organisation</p>
+      <h1>Volunteers who believe in open source.</h1>
+      <p class="lede">The VideoLAN project is led by a team of volunteers who believe in the power of open source to rock the multimedia world. It is supported by the VideoLAN non-profit organisation, based in France.</p>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0">
+    <div class="wrap split">
+      <div><p class="eyebrow">History</p><h2 style="font-size:var(--text-2xl)">From a campus network to the whole world.</h2><p style="color:var(--text-2)">VideoLAN produces free software for multimedia, released under the General Public License, with developers from 40 countries.</p></div>
+      <div class="timeline">
+        <div class="tl reveal"><b class="y">1996</b><div><h3>A student project</h3><p>Started at the French École Centrale Paris to stream video across the campus network.</p></div></div>
+        <div class="tl reveal"><b class="y">1998</b><div><h3>A complete rewrite</h3><p>The code base is rebuilt from the ground up.</p></div></div>
+        <div class="tl reveal"><b class="y">2001</b><div><h3>Open source under the GPL</h3><p>Thanks to the agreement of École Centrale Paris, the project opens to developers worldwide.</p></div></div>
+        <div class="tl reveal"><b class="y">2009</b><div><h3>An independent non-profit</h3><p>The project becomes fully separate from the school, driven by an autonomous non-profit organisation.</p></div></div>
+        <div class="tl reveal"><b class="y">2024</b><div><h3>Dev Days in South Korea</h3><p>Multimedia hackers from around the globe meet for two days of technical talks.</p></div></div>
+        <div class="tl reveal"><b class="y">2026</b><div><h3>VLC 3.0.24</h3><p>FFmpeg 8.1, 49 updated libraries and more than 130 security fixes.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-alt">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">Team &amp; organisation</p><h2>Some of the people behind VLC.</h2></div><p>A small selection from hundreds of contributors. Everyone who writes, tests, translates or answers questions is part of the project.</p></div>
+      <div class="people" id="people"><div class="person"><span class="avatar" aria-hidden="true">JK</span><span><b>Jean-Baptiste Kempf</b><span>President · VLC maintainer</span></span></div><div class="person"><span class="avatar" aria-hidden="true">CM</span><span><b>Christophe Massiot</b><span>Co-founder · DVBlast, multicat</span></span></div><div class="person"><span class="avatar" aria-hidden="true">RC</span><span><b>Rémi Denis-Courmont</b><span>Core developer</span></span></div><div class="person"><span class="avatar" aria-hidden="true">FK</span><span><b>Felix Paul Kühne</b><span>macOS, iOS &amp; tvOS</span></span></div><div class="person"><span class="avatar" aria-hidden="true">TG</span><span><b>Thomas Guillem</b><span>Core &amp; Android</span></span></div><div class="person"><span class="avatar" aria-hidden="true">SL</span><span><b>Steve Lhomme</b><span>Windows &amp; Matroska</span></span></div><div class="person"><span class="avatar" aria-hidden="true">FC</span><span><b>François Cartegnie</b><span>Demux &amp; streaming</span></span></div><div class="person"><span class="avatar" aria-hidden="true">HL</span><span><b>Hugo Beauzée-Luyssen</b><span>Media library</span></span></div><div class="person"><span class="avatar" aria-hidden="true">MS</span><span><b>Martin Storsjö</b><span>Toolchains &amp; ARM</span></span></div><div class="person"><span class="avatar" aria-hidden="true">LA</span><span><b>Laurent Aimar</b><span>Core &amp; codecs</span></span></div><div class="person"><span class="avatar" aria-hidden="true">MS</span><span><b>Marvin Scholz</b><span>macOS &amp; infrastructure</span></span></div><div class="person"><span class="avatar" aria-hidden="true">PD</span><span><b>Pierre d’Herbemont</b><span>Early macOS &amp; iOS</span></span></div></div>
+      <details class="spec" style="margin-top:1.5rem"><summary><svg class="ico" aria-hidden="true"><use href="#i-users" xlink:href="#i-users"/></svg>Acknowledged contributors <svg class="chev" aria-hidden="true"><use href="#i-chev" xlink:href="#i-chev"/></svg></summary><p class="contrib-cloud" style="padding:0 1.25rem 1.25rem">Laurent Aimar · Gildas Bazin · Rafaël Carré · Pierre d’Herbemont · Rémi Duraffort · Derk-Jan Hartman · Antoine Cellerier · Samuel Hocevar · Jean-Paul Saman · Christophe Mutricy · Clément Stenac · Ilkka Ollakka · Pierre Ynard · Damien Fouilleul · Erwan Tulou · David Fuhrmann · Marvin Scholz · Olivier Teulière · Eric Petit · Rocky Bernstein · Olivier Aubert · Jakob Leben · Benjamin Pracht · Jean-Philippe André · Stéphane Borel · Geoffroy Couprie · Marian Ďurkovič · Ludovic Fauvet · Petri Hintukainen · Denis Charmet · Sébastien Escudier · Jon Lech Johansen · KO Myung-Hun · Faustino Osuna · Sean McGovern · Jérôme Decoodt · Loïc Minier · David Flynn · Vittorio Giovara · Naohiro Koriyama · and many more.</p></details>
+    </div>
+  </section>
+
+  <section class="band" id="partners">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">Partners</p><h2>Technical and financial partners.</h2></div><p>VLC would never have grown without the invaluable cooperation of these organisations.</p></div>
+      <div class="partners" id="partner-list"><div class="partner"><span class="wm">Free</span><span>French ISP hosting 3 VideoLAN servers near Paris; sponsored the 2008 and 2013 Dev Days.</span></div><div class="partner"><span class="wm">Gandi</span><span>Manages VideoLAN domain names and helps with administrative tasks.</span></div><div class="partner"><span class="wm">MacStadium</span><span>Provides a Mac mini for continuous integration builds.</span></div><div class="partner"><span class="wm">Videolabs</span><span>Founded by VideoLAN members; editor of the VLC mobile apps.</span></div><div class="partner"><span class="wm">MetaBrainz</span><span>MusicBrainz and Cover Art Archive data enrich VLC.</span></div><div class="partner"><span class="wm">École Centrale Paris</span><span>Historic partner where the project was born.</span></div><div class="partner"><span class="wm">EPITECH</span><span>Hosted and sponsored the second Dev Days in 2009.</span></div><div class="partner"><span class="wm">Anevia</span><span>Founded by four VideoLAN team members; professional video servers.</span></div><div class="partner"><span class="wm">Puget Systems</span><span>Donated an Echo II for Intel GPU acceleration work.</span></div><div class="partner"><span class="wm">Panasonic</span><span>Lent a 5.1 setup to fix optical audio output on macOS.</span></div><div class="partner"><span class="wm">TASCAM</span><span>Lent a MIDI interface for multi-buffer audio output support.</span></div><div class="partner"><span class="wm">ZF Electronics</span><span>Donated Cherry keyboards for media hotkey support.</span></div><div class="partner"><span class="wm">WD</span><span>Donated wireless drives to improve UPnP and network discovery.</span></div><div class="partner"><span class="wm">Andrew Beveridge</span><span>Donated a virtual server to help build each release.</span></div></div>
+    </div>
+  </section>
+
+  <section class="band band-alt" id="consultants">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">Consulting services</p><h2>Professional services around VideoLAN.</h2></div><p>Individuals and companies experienced with multimedia and VideoLAN solutions. Contact them directly for professional work.</p></div>
+      <div class="grid-3">
+        <article class="card"><h3>Videolabs</h3><p>Founded by VideoLAN members, editor of the VLC mobile apps and one of the largest contributors to VLC. Consulting, VLC support and custom development.</p></article>
+        <article class="card"><h3>OpenHeadend</h3><p>Founded by VLC co-founder Christophe Massiot, main developer of DVBlast and multicat. A modular broadcast platform and the force behind Upipe.</p></article>
+        <article class="card"><h3>M2X</h3><p>Open source solutions for networking, embedded and multimedia, founded by VideoLAN developer Jean-Paul Saman.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap grid-3">
+      <a class="card" href="https://www.videolan.org/videolan/events/"><h3><svg aria-hidden="true"><use href="#i-calendar" xlink:href="#i-calendar"/></svg>Events</h3><p>VideoLAN Dev Days, FOSDEM and more. Photos and stories from each trip.</p></a>
+      <a class="card" href="https://www.videolan.org/press/"><h3><svg aria-hidden="true"><use href="#i-news" xlink:href="#i-news"/></svg>Press centre</h3><p>Press releases, statements and media kit.</p></a>
+      <a class="card" href="https://www.videolan.org/legal.html"><h3><svg aria-hidden="true"><use href="#i-scale" xlink:href="#i-scale"/></svg>Legal &amp; trademarks</h3><p>A non-profit under the French law of 1901. Licences, trademarks and patents explained.</p></a>
+      <a class="card" href="https://www.videolan.org/contact.html"><h3><svg aria-hidden="true"><use href="#i-mail" xlink:href="#i-mail"/></svg>Contact us</h3><p>For important queries, questions and remarks.</p></a>
+      <a class="card" href="https://www.videolan.org/goodies.html"><h3><svg aria-hidden="true"><use href="#i-sparkle" xlink:href="#i-sparkle"/></svg>Goodies</h3><p>Logos, artwork and wallpapers for fans.</p></a>
+      <a class="card" href="https://www.videolan.org/security/"><h3><svg aria-hidden="true"><use href="#i-shield" xlink:href="#i-shield"/></svg>Security</h3><p>Advisories and how to report a vulnerability responsibly.</p></a>
+    </div>
+  </section>
+</div>
+
+<!-- =========================== PROPOSAL NOTES =========================== -->
+<div class="view" id="proposal" data-title="Design notes — videolan.org redesign proposal">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="#home">Home</a><span aria-hidden="true">/</span><span>Design notes</span></p>
+      <p class="eyebrow">About this proposal</p>
+      <h1>A modern videolan.org that still loads on a 2009 netbook.</h1>
+      <p class="lede">This concept keeps the content, tone and values of today’s site, and rebuilds the presentation as one small static HTML5 bundle that any volunteer can edit.</p>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="stats" style="margin-bottom:3rem">
+        <div class="stat"><b id="weight-kb">~90<em>KB</em>lt;40<em>KB</em></b><span>Total transfer, gzipped. No images, no web fonts.</span></div>
+        <div class="stat"><b>0</b><span>Third-party requests, cookies or analytics</span></div>
+        <div class="stat"><b>81</b><span>Languages ready in the selector, with right-to-left support</span></div>
+        <div class="stat"><b>AA</b><span>WCAG 2.2 contrast, keyboard and screen-reader support</span></div>
+      </div>
+      <div class="grid-2">
+        <article class="card"><h3><svg aria-hidden="true"><use href="#i-feather" xlink:href="#i-feather"/></svg>Static and lightweight</h3><p>Three files: HTML, CSS and a small vanilla script. No framework, no build step, no database. Host it on any mirror. Without JavaScript every page still renders as one long, readable document.</p></article>
+        <article class="card"><h3><svg aria-hidden="true"><use href="#i-a11y" xlink:href="#i-a11y"/></svg>Accessible to everyone</h3><p>Semantic landmarks, a skip link, visible focus, 44px touch targets, reduced-motion support, Windows high-contrast mode, and a settings panel for text size, contrast, link underlines and reading spacing.</p></article>
+        <article class="card"><h3><svg aria-hidden="true"><use href="#i-globe" xlink:href="#i-globe"/></svg>Built for 81 languages</h3><p>The selector lists each language in its own script, with search and right-to-left layout for Arabic, Hebrew, Persian, Urdu and Pashto. Only English is written so far; the structure is ready for translators.</p></article>
+        <article class="card"><h3><svg aria-hidden="true"><use href="#i-download" xlink:href="#i-download"/></svg>Smarter downloads</h3><p>The main button detects Windows, macOS, Linux, Android and iOS and points to the right build. Every other system is one tap away, and checksum verification is promoted instead of hidden.</p></article>
+        <article class="card"><h3><svg aria-hidden="true"><use href="#i-moon" xlink:href="#i-moon"/></svg>Light and dark</h3><p>Follows the system setting by default and remembers your choice. Colours keep the famous orange, warm and recognisable, with darker tones for text so contrast stays above AA.</p></article>
+        <article class="card"><h3><svg aria-hidden="true"><use href="#i-palette" xlink:href="#i-palette"/></svg>Respectful of the legacy</h3><p>The cone, the orange, “Simple, fast and powerful”, “Plays everything”, the volunteer spirit and the no-tracking promise all stay front and centre. Mockups are pure CSS, so they never go stale like screenshots.</p></article>
+      </div>
+      <div class="callout" style="margin-top:2rem"><svg aria-hidden="true"><use href="#i-info" xlink:href="#i-info"/></svg><p><b>Unofficial concept.</b> Designed by Paul Fleury as a free gift to the VideoLAN team, offered under the MIT licence. VLC, VideoLAN and the cone are trademarks of VideoLAN. Content is adapted from videolan.org; download links point to the official pages. Companion icon concepts: <a href="https://paulfleury.com/vlc">paulfleury.com/vlc</a>.</p></div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <a class="brand" href="#home"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-cone" xlink:href="#i-cone"/></svg><span>VideoLAN</span></a>
+        <p style="margin-top:1rem">VideoLAN, a project and a non-profit organisation, producing free software for multimedia since 1996.</p>
+        <button type="button" class="icon-btn" data-open-lang style="margin-top:.5rem"><svg aria-hidden="true"><use href="#i-globe" xlink:href="#i-globe"/></svg><span id="foot-lang">English</span></button>
+      </div>
+      <div><h4>VLC</h4><ul><li><a href="#download">Download</a></li><li><a href="#features">Features</a></li><li><a href="https://www.videolan.org/vlc/skins.html">Skins</a></li><li><a href="https://addons.videolan.org/">Extensions</a></li><li><a href="https://www.videolan.org/goodies.html">Goodies</a></li></ul></div>
+      <div><h4>Projects</h4><ul><li><a href="https://www.videolan.org/vlc/libvlc.html">libVLC</a></li><li><a href="https://code.videolan.org/videolan/dav1d">dav1d</a></li><li><a href="https://www.videolan.org/developers/x264.html">x264</a></li><li><a href="https://www.videolan.org/projects/dvblast.html">DVBlast</a></li><li><a href="#projects">All projects</a></li></ul></div>
+      <div><h4>Community</h4><ul><li><a href="#contribute">Contribute</a></li><li><a href="#contribute" data-goto="donate">Donate</a></li><li><a href="#support">Support</a></li><li><a href="https://forum.videolan.org/">Forums</a></li><li><a href="https://code.videolan.org/">GitLab</a></li></ul></div>
+      <div><h4>VideoLAN</h4><ul><li><a href="#videolan">Team &amp; history</a></li><li><a href="#videolan" data-goto="partners">Partners</a></li><li><a href="https://www.videolan.org/press/">Press centre</a></li><li><a href="https://www.videolan.org/legal.html">Legal</a></li><li><a href="https://www.videolan.org/contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <p>VLC, VideoLAN and x264 are registered trademarks of VideoLAN. This is an unofficial redesign concept by Paul Fleury. <a href="#proposal">Design notes</a></p>
+      <p class="weight">No cookies · No trackers · <span id="page-kb">Static HTML5 · under 40 KB</span></p>
+    </div>
+  </div>
+</footer>
+
+<!-- Language dialog -->
+<div class="overlay" id="lang-dialog" aria-hidden="true">
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="lang-title">
+    <header><svg aria-hidden="true" style="width:24px;height:24px;color:var(--orange-ink)"><use href="#i-globe" xlink:href="#i-globe"/></svg><h2 id="lang-title">Choose your language</h2><button type="button" class="icon-btn" data-close aria-label="Close"><svg aria-hidden="true"><use href="#i-close" xlink:href="#i-close"/></svg></button></header>
+    <div class="body">
+      <label class="sr-only" for="lang-q">Search languages</label>
+      <input class="lang-search" id="lang-q" type="search" placeholder="Search 81 languages… (e.g. Português, 日本語, Arabic)" autocomplete="off">
+      <p class="lang-note"><svg aria-hidden="true"><use href="#i-info" xlink:href="#i-info"/></svg><span>Translations are coming with the help of VideoLAN’s volunteer translators. For now the site stays in English, and your choice is remembered for when your language is ready.</span></p>
+      <div class="lang-grid" id="lang-grid"><button type="button" lang="en" data-lang="en" data-native="English" data-en="English" aria-pressed="true"><b>English</b><span class="st">Available</span></button><button type="button" lang="fr" data-lang="fr" data-native="Français" data-en="French" aria-pressed="false"><b>Français</b><span>French</span></button><button type="button" lang="de" data-lang="de" data-native="Deutsch" data-en="German" aria-pressed="false"><b>Deutsch</b><span>German</span></button><button type="button" lang="es" data-lang="es" data-native="Español" data-en="Spanish" aria-pressed="false"><b>Español</b><span>Spanish</span></button><button type="button" lang="pt-PT" data-lang="pt-PT" data-native="Português (Portugal)" data-en="Portuguese" aria-pressed="false"><b>Português (Portugal)</b><span>Portuguese</span></button><button type="button" lang="pt-BR" data-lang="pt-BR" data-native="Português (Brasil)" data-en="Brazilian Portuguese" aria-pressed="false"><b>Português (Brasil)</b><span>Brazilian Portuguese</span></button><button type="button" lang="it" data-lang="it" data-native="Italiano" data-en="Italian" aria-pressed="false"><b>Italiano</b><span>Italian</span></button><button type="button" lang="nl" data-lang="nl" data-native="Nederlands" data-en="Dutch" aria-pressed="false"><b>Nederlands</b><span>Dutch</span></button><button type="button" lang="pl" data-lang="pl" data-native="Polski" data-en="Polish" aria-pressed="false"><b>Polski</b><span>Polish</span></button><button type="button" lang="ru" data-lang="ru" data-native="Русский" data-en="Russian" aria-pressed="false"><b>Русский</b><span>Russian</span></button><button type="button" lang="uk" data-lang="uk" data-native="Українська" data-en="Ukrainian" aria-pressed="false"><b>Українська</b><span>Ukrainian</span></button><button type="button" lang="cs" data-lang="cs" data-native="Čeština" data-en="Czech" aria-pressed="false"><b>Čeština</b><span>Czech</span></button><button type="button" lang="sk" data-lang="sk" data-native="Slovenčina" data-en="Slovak" aria-pressed="false"><b>Slovenčina</b><span>Slovak</span></button><button type="button" lang="hu" data-lang="hu" data-native="Magyar" data-en="Hungarian" aria-pressed="false"><b>Magyar</b><span>Hungarian</span></button><button type="button" lang="ro" data-lang="ro" data-native="Română" data-en="Romanian" aria-pressed="false"><b>Română</b><span>Romanian</span></button><button type="button" lang="bg" data-lang="bg" data-native="Български" data-en="Bulgarian" aria-pressed="false"><b>Български</b><span>Bulgarian</span></button><button type="button" lang="el" data-lang="el" data-native="Ελληνικά" data-en="Greek" aria-pressed="false"><b>Ελληνικά</b><span>Greek</span></button><button type="button" lang="tr" data-lang="tr" data-native="Türkçe" data-en="Turkish" aria-pressed="false"><b>Türkçe</b><span>Turkish</span></button><button type="button" lang="ar" data-lang="ar" data-native="العربية" data-en="Arabic" aria-pressed="false"><b dir="rtl">العربية</b><span>Arabic</span></button><button type="button" lang="he" data-lang="he" data-native="עברית" data-en="Hebrew" aria-pressed="false"><b dir="rtl">עברית</b><span>Hebrew</span></button><button type="button" lang="fa" data-lang="fa" data-native="فارسی" data-en="Persian" aria-pressed="false"><b dir="rtl">فارسی</b><span>Persian</span></button><button type="button" lang="ur" data-lang="ur" data-native="اردو" data-en="Urdu" aria-pressed="false"><b dir="rtl">اردو</b><span>Urdu</span></button><button type="button" lang="ps" data-lang="ps" data-native="پښتو" data-en="Pashto" aria-pressed="false"><b dir="rtl">پښتو</b><span>Pashto</span></button><button type="button" lang="hi" data-lang="hi" data-native="हिन्दी" data-en="Hindi" aria-pressed="false"><b>हिन्दी</b><span>Hindi</span></button><button type="button" lang="bn" data-lang="bn" data-native="বাংলা" data-en="Bengali" aria-pressed="false"><b>বাংলা</b><span>Bengali</span></button><button type="button" lang="pa" data-lang="pa" data-native="ਪੰਜਾਬੀ" data-en="Punjabi" aria-pressed="false"><b>ਪੰਜਾਬੀ</b><span>Punjabi</span></button><button type="button" lang="gu" data-lang="gu" data-native="ગુજરાતી" data-en="Gujarati" aria-pressed="false"><b>ગુજરાતી</b><span>Gujarati</span></button><button type="button" lang="mr" data-lang="mr" data-native="मराठी" data-en="Marathi" aria-pressed="false"><b>मराठी</b><span>Marathi</span></button><button type="button" lang="ta" data-lang="ta" data-native="தமிழ்" data-en="Tamil" aria-pressed="false"><b>தமிழ்</b><span>Tamil</span></button><button type="button" lang="te" data-lang="te" data-native="తెలుగు" data-en="Telugu" aria-pressed="false"><b>తెలుగు</b><span>Telugu</span></button><button type="button" lang="kn" data-lang="kn" data-native="ಕನ್ನಡ" data-en="Kannada" aria-pressed="false"><b>ಕನ್ನಡ</b><span>Kannada</span></button><button type="button" lang="ml" data-lang="ml" data-native="മലയാളം" data-en="Malayalam" aria-pressed="false"><b>മലയാളം</b><span>Malayalam</span></button><button type="button" lang="si" data-lang="si" data-native="සිංහල" data-en="Sinhala" aria-pressed="false"><b>සිංහල</b><span>Sinhala</span></button><button type="button" lang="ne" data-lang="ne" data-native="नेपाली" data-en="Nepali" aria-pressed="false"><b>नेपाली</b><span>Nepali</span></button><button type="button" lang="th" data-lang="th" data-native="ไทย" data-en="Thai" aria-pressed="false"><b>ไทย</b><span>Thai</span></button><button type="button" lang="vi" data-lang="vi" data-native="Tiếng Việt" data-en="Vietnamese" aria-pressed="false"><b>Tiếng Việt</b><span>Vietnamese</span></button><button type="button" lang="id" data-lang="id" data-native="Bahasa Indonesia" data-en="Indonesian" aria-pressed="false"><b>Bahasa Indonesia</b><span>Indonesian</span></button><button type="button" lang="ms" data-lang="ms" data-native="Bahasa Melayu" data-en="Malay" aria-pressed="false"><b>Bahasa Melayu</b><span>Malay</span></button><button type="button" lang="fil" data-lang="fil" data-native="Filipino" data-en="Filipino" aria-pressed="false"><b>Filipino</b><span>Filipino</span></button><button type="button" lang="zh-Hans" data-lang="zh-Hans" data-native="简体中文" data-en="Chinese (Simplified)" aria-pressed="false"><b>简体中文</b><span>Chinese (Simplified)</span></button><button type="button" lang="zh-Hant" data-lang="zh-Hant" data-native="繁體中文" data-en="Chinese (Traditional)" aria-pressed="false"><b>繁體中文</b><span>Chinese (Traditional)</span></button><button type="button" lang="ja" data-lang="ja" data-native="日本語" data-en="Japanese" aria-pressed="false"><b>日本語</b><span>Japanese</span></button><button type="button" lang="ko" data-lang="ko" data-native="한국어" data-en="Korean" aria-pressed="false"><b>한국어</b><span>Korean</span></button><button type="button" lang="sv" data-lang="sv" data-native="Svenska" data-en="Swedish" aria-pressed="false"><b>Svenska</b><span>Swedish</span></button><button type="button" lang="nb" data-lang="nb" data-native="Norsk bokmål" data-en="Norwegian" aria-pressed="false"><b>Norsk bokmål</b><span>Norwegian</span></button><button type="button" lang="da" data-lang="da" data-native="Dansk" data-en="Danish" aria-pressed="false"><b>Dansk</b><span>Danish</span></button><button type="button" lang="fi" data-lang="fi" data-native="Suomi" data-en="Finnish" aria-pressed="false"><b>Suomi</b><span>Finnish</span></button><button type="button" lang="is" data-lang="is" data-native="Íslenska" data-en="Icelandic" aria-pressed="false"><b>Íslenska</b><span>Icelandic</span></button><button type="button" lang="et" data-lang="et" data-native="Eesti" data-en="Estonian" aria-pressed="false"><b>Eesti</b><span>Estonian</span></button><button type="button" lang="lv" data-lang="lv" data-native="Latviešu" data-en="Latvian" aria-pressed="false"><b>Latviešu</b><span>Latvian</span></button><button type="button" lang="lt" data-lang="lt" data-native="Lietuvių" data-en="Lithuanian" aria-pressed="false"><b>Lietuvių</b><span>Lithuanian</span></button><button type="button" lang="sl" data-lang="sl" data-native="Slovenščina" data-en="Slovenian" aria-pressed="false"><b>Slovenščina</b><span>Slovenian</span></button><button type="button" lang="hr" data-lang="hr" data-native="Hrvatski" data-en="Croatian" aria-pressed="false"><b>Hrvatski</b><span>Croatian</span></button><button type="button" lang="sr" data-lang="sr" data-native="Српски" data-en="Serbian" aria-pressed="false"><b>Српски</b><span>Serbian</span></button><button type="button" lang="bs" data-lang="bs" data-native="Bosanski" data-en="Bosnian" aria-pressed="false"><b>Bosanski</b><span>Bosnian</span></button><button type="button" lang="mk" data-lang="mk" data-native="Македонски" data-en="Macedonian" aria-pressed="false"><b>Македонски</b><span>Macedonian</span></button><button type="button" lang="sq" data-lang="sq" data-native="Shqip" data-en="Albanian" aria-pressed="false"><b>Shqip</b><span>Albanian</span></button><button type="button" lang="ca" data-lang="ca" data-native="Català" data-en="Catalan" aria-pressed="false"><b>Català</b><span>Catalan</span></button><button type="button" lang="eu" data-lang="eu" data-native="Euskara" data-en="Basque" aria-pressed="false"><b>Euskara</b><span>Basque</span></button><button type="button" lang="gl" data-lang="gl" data-native="Galego" data-en="Galician" aria-pressed="false"><b>Galego</b><span>Galician</span></button><button type="button" lang="cy" data-lang="cy" data-native="Cymraeg" data-en="Welsh" aria-pressed="false"><b>Cymraeg</b><span>Welsh</span></button><button type="button" lang="ga" data-lang="ga" data-native="Gaeilge" data-en="Irish" aria-pressed="false"><b>Gaeilge</b><span>Irish</span></button><button type="button" lang="br" data-lang="br" data-native="Brezhoneg" data-en="Breton" aria-pressed="false"><b>Brezhoneg</b><span>Breton</span></button><button type="button" lang="oc" data-lang="oc" data-native="Occitan" data-en="Occitan" aria-pressed="false"><b>Occitan</b><span>Occitan</span></button><button type="button" lang="eo" data-lang="eo" data-native="Esperanto" data-en="Esperanto" aria-pressed="false"><b>Esperanto</b><span>Esperanto</span></button><button type="button" lang="sw" data-lang="sw" data-native="Kiswahili" data-en="Swahili" aria-pressed="false"><b>Kiswahili</b><span>Swahili</span></button><button type="button" lang="af" data-lang="af" data-native="Afrikaans" data-en="Afrikaans" aria-pressed="false"><b>Afrikaans</b><span>Afrikaans</span></button><button type="button" lang="zu" data-lang="zu" data-native="isiZulu" data-en="Zulu" aria-pressed="false"><b>isiZulu</b><span>Zulu</span></button><button type="button" lang="am" data-lang="am" data-native="አማርኛ" data-en="Amharic" aria-pressed="false"><b>አማርኛ</b><span>Amharic</span></button><button type="button" lang="ha" data-lang="ha" data-native="Hausa" data-en="Hausa" aria-pressed="false"><b>Hausa</b><span>Hausa</span></button><button type="button" lang="yo" data-lang="yo" data-native="Yorùbá" data-en="Yoruba" aria-pressed="false"><b>Yorùbá</b><span>Yoruba</span></button><button type="button" lang="kk" data-lang="kk" data-native="Қазақ тілі" data-en="Kazakh" aria-pressed="false"><b>Қазақ тілі</b><span>Kazakh</span></button><button type="button" lang="uz" data-lang="uz" data-native="Oʻzbekcha" data-en="Uzbek" aria-pressed="false"><b>Oʻzbekcha</b><span>Uzbek</span></button><button type="button" lang="az" data-lang="az" data-native="Azərbaycanca" data-en="Azerbaijani" aria-pressed="false"><b>Azərbaycanca</b><span>Azerbaijani</span></button><button type="button" lang="ka" data-lang="ka" data-native="ქართული" data-en="Georgian" aria-pressed="false"><b>ქართული</b><span>Georgian</span></button><button type="button" lang="hy" data-lang="hy" data-native="Հայերեն" data-en="Armenian" aria-pressed="false"><b>Հայերեն</b><span>Armenian</span></button><button type="button" lang="mn" data-lang="mn" data-native="Монгол" data-en="Mongolian" aria-pressed="false"><b>Монгол</b><span>Mongolian</span></button><button type="button" lang="km" data-lang="km" data-native="ភាសាខ្មែរ" data-en="Khmer" aria-pressed="false"><b>ភាសាខ្មែរ</b><span>Khmer</span></button><button type="button" lang="lo" data-lang="lo" data-native="ລາວ" data-en="Lao" aria-pressed="false"><b>ລາວ</b><span>Lao</span></button><button type="button" lang="my" data-lang="my" data-native="မြန်မာ" data-en="Burmese" aria-pressed="false"><b>မြန်မာ</b><span>Burmese</span></button><button type="button" lang="ku" data-lang="ku" data-native="Kurdî" data-en="Kurdish" aria-pressed="false"><b>Kurdî</b><span>Kurdish</span></button></div>
+      <p class="lang-count" id="lang-count" aria-live="polite"></p>
+    </div>
+  </div>
+</div>
+
+<!-- Accessibility dialog -->
+<div class="overlay" id="a11y-dialog" aria-hidden="true">
+  <div class="dialog sm" role="dialog" aria-modal="true" aria-labelledby="a11y-title">
+    <header><svg aria-hidden="true" style="width:24px;height:24px;color:var(--orange-ink)"><use href="#i-a11y" xlink:href="#i-a11y"/></svg><h2 id="a11y-title">Display &amp; accessibility</h2><button type="button" class="icon-btn" data-close aria-label="Close"><svg aria-hidden="true"><use href="#i-close" xlink:href="#i-close"/></svg></button></header>
+    <div class="body">
+      <div class="a11y-row"><span><b>Theme</b><span>Follows your system by default</span></span><span class="seg" data-pref="theme"><button type="button" data-v="auto">Auto</button><button type="button" data-v="light">Light</button><button type="button" data-v="dark">Dark</button></span></div>
+      <div class="a11y-row"><span><b>Text size</b><span>Scales the whole page</span></span><span class="seg" data-pref="size"><button type="button" data-v="" aria-label="Normal text">A</button><button type="button" data-v="l" aria-label="Large text" style="font-size:1.1em">A</button><button type="button" data-v="xl" aria-label="Extra large text" style="font-size:1.25em">A</button></span></div>
+      <div class="a11y-row"><span><b>High contrast</b><span>Pure black and white surfaces</span></span><span class="seg" data-pref="contrast"><button type="button" data-v="">Off</button><button type="button" data-v="high">On</button></span></div>
+      <div class="a11y-row"><span><b>Motion</b><span>Stops animations and transitions</span></span><span class="seg" data-pref="motion"><button type="button" data-v="">On</button><button type="button" data-v="off">Off</button></span></div>
+      <div class="a11y-row"><span><b>Underline links</b><span>Easier to spot links</span></span><span class="seg" data-pref="links"><button type="button" data-v="">Off</button><button type="button" data-v="underline">On</button></span></div>
+      <div class="a11y-row"><span><b>Reading spacing</b><span>Wider letter and line spacing</span></span><span class="seg" data-pref="spacing"><button type="button" data-v="">Off</button><button type="button" data-v="wide">On</button></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
