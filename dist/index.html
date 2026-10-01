@@ -139,7 +139,7 @@ var m=s.getItem('vl-motion');if(m!=='off'&&!(window.matchMedia&&matchMedia('(pre
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow">VLC media player · Version <span class="v-num">3.0.24</span></p>
-        <h1>Plays <span class="accent">everything.</span><br>Tracks nothing.</h1>
+        <h1><span class="ln">Plays <span class="accent">everything.</span></span><span class="ln">Tracks nothing.</span></h1>
         <p class="lede">VLC is a free and open source cross-platform multimedia player and framework that plays most multimedia files, discs, devices and streaming protocols. Built by volunteers, with no spyware, no ads and no user tracking.</p>
 
         <div class="dl-card" id="dl-card">
@@ -195,9 +195,9 @@ var m=s.getItem('vl-motion');if(m!=='off'&&!(window.matchMedia&&matchMedia('(pre
             <svg><use href="#i-next" xlink:href="#i-next"/></svg>
             <span>00:38:51</span>
             <span class="seek"><span></span></span>
-            <span>01:42:10</span>
+            <span class="hide-s">01:42:10</span>
             <svg><use href="#i-cc" xlink:href="#i-cc"/></svg>
-            <svg><use href="#i-volume" xlink:href="#i-volume"/></svg><span class="vol"></span>
+            <svg class="hide-s"><use href="#i-volume" xlink:href="#i-volume"/></svg><span class="vol"></span>
             <svg><use href="#i-full" xlink:href="#i-full"/></svg>
           </div>
         </div>
@@ -222,7 +222,7 @@ var m=s.getItem('vl-motion');if(m!=='off'&&!(window.matchMedia&&matchMedia('(pre
       <div class="stats reveal">
         <div class="stat"><b data-count="1996">1996</b><span>Started as a student project at École Centrale Paris</span></div>
         <div class="stat"><b><em>40</em>+</b><span>Countries our volunteer developers come from</span></div>
-        <div class="stat"><b data-count="20">20</b><b class="sr-only">plus</b><span>Platforms and systems, from Windows to OS/2</span></div>
+        <div class="stat"><b data-count="20">20</b><b class="sr-only">plus</b><span>Operating systems and distributions, from Windows to OS/2</span></div>
         <div class="stat"><b>0</b><span>Ads, trackers or spyware. Ever.</span></div>
       </div>
     </div>
@@ -239,6 +239,7 @@ var m=s.getItem('vl-motion');if(m!=='off'&&!(window.matchMedia&&matchMedia('(pre
       </div>
       <div class="bento">
         <article class="tile t-a reveal">
+          <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
           <svg class="ico" aria-hidden="true"><use href="#i-film" xlink:href="#i-film"/></svg>
           <h3>Plays most codecs, no packs needed</h3>
           <p>Files, discs, webcams, devices and streams. Hardware decoding on most platforms, with 0-copy on the GPU and software fallback when required.</p>
@@ -426,9 +427,9 @@ var m=s.getItem('vl-motion');if(m!=='off'&&!(window.matchMedia&&matchMedia('(pre
         <article class="os-block" data-os="windows">
           <header><svg aria-hidden="true"><use href="#i-windows" xlink:href="#i-windows"/></svg><h2 class="h3" style="font-size:var(--text-xl);margin:0">Windows</h2><span class="badge-detected">Your system</span></header>
           <div class="os-links">
-            <a href="https://www.videolan.org/vlc/download-windows.html">Windows 64-bit <small>Windows 7 and later · .exe / .msi</small></a>
+            <a href="https://www.videolan.org/vlc/download-windows.html">Windows 64-bit <small>Installer · .exe · .msi · .zip</small></a>
             <a href="https://www.videolan.org/vlc/download-windows.html">Windows ARM 64 <small>Snapdragon PCs</small></a>
-            <a href="https://www.videolan.org/vlc/download-windows.html">Windows 32-bit <small>Older PCs · XP via 3.0 legacy</small></a>
+            <a href="https://www.videolan.org/vlc/download-windows.html">Windows 32-bit <small>Older PCs</small></a>
             <a href="https://apps.microsoft.com/detail/9NBLGGH4VVNH">Microsoft Store <svg aria-hidden="true"><use href="#i-ext" xlink:href="#i-ext"/></svg></a>
           </div>
         </article>
@@ -438,7 +439,7 @@ var m=s.getItem('vl-motion');if(m!=='off'&&!(window.matchMedia&&matchMedia('(pre
             <a href="https://www.videolan.org/vlc/download-macosx.html">macOS Universal <small>Apple Silicon &amp; Intel · .dmg</small></a>
             <a href="https://www.videolan.org/vlc/download-ios.html">iPhone &amp; iPad <small>App Store</small></a>
             <a href="https://www.videolan.org/vlc/download-appletv.html">Apple TV <small>App Store</small></a>
-            <a href="https://www.videolan.org/vlc/download-macosx.html">Older Macs <small>Legacy builds back to 10.6</small></a>
+            <a href="https://www.videolan.org/vlc/download-macosx.html">Older Macs <small>Legacy builds</small></a>
           </div>
         </article>
         <article class="os-block" data-os="linux" id="os-linux" style="grid-column:1/-1">

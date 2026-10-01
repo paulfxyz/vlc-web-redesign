@@ -105,7 +105,7 @@
     if (!silent) {
       closeDialog($('#lang-dialog'));
       if (code === 'en') toast('English selected.');
-      else toast(native + ' (' + b.getAttribute('data-en') + ') is not translated yet. Showing English for now.');
+      else toast(native + ' is not translated yet. Showing English for now, and your choice is saved.');
     }
   }
   langBtns.forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); }); });
