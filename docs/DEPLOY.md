@@ -1,6 +1,6 @@
 # Deploy
 
-**Single source of truth: https://vlc.paulfleury.com**
+**Single source of truth: https://vlc.paulfleury.com** · code: https://github.com/paulfxyz/vlc-web-redesign
 
 ```
 python3 tools/build_site.py                          # build dist/ (EN + FR/ZH/AR)

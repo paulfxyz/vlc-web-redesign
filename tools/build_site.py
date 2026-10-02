@@ -266,6 +266,7 @@ def head(c, title, desc, slug, cur=''):
 <meta name="description" content="{e(desc)}">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#ff8800">
+<meta property="og:type" content="website"><meta property="og:site_name" content="VideoLAN"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:image" content="{SITE_URL}media/og.png"><meta property="og:locale" content="{m['html'].replace('-', '_')}"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{c.root}favicon.svg" type="image/svg+xml">
 {alts}
 <script>(function(d,w){{var h=d.documentElement,s;try{{s=w.localStorage}}catch(e){{}}function g(k){{try{{return s&&s.getItem('vl-'+k)}}catch(e){{return null}}}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){{var v=g(k);if(v)h.setAttribute('data-'+k,v)}});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';if(g('rib')==='off')h.className+=' rib-off';h.className+=' js'}})(document,window);</script>
@@ -795,6 +796,11 @@ def main():
         write(base / 'p' / 'section--developers.html', '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=projects.html"><link rel="canonical" href="projects.html"><title>VideoLAN</title><a href="projects.html">VideoLAN</a>')
     for o in ('a', 'b', 'c'):
         write(DIST / o / 'index.html', '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../index.html"><link rel="canonical" href="../index.html"><title>VideoLAN</title><a href="../index.html">VideoLAN</a>')
+    # one-file download of the whole static site
+    import zipfile
+    with zipfile.ZipFile(DIST / 'dump.zip', 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+        for f in sorted(DIST.rglob('*')):
+            if f.is_file() and f.name not in ('dump.zip', '.htaccess'): z.write(f, 'vlc-web-redesign/' + str(f.relative_to(DIST)))
     print('pages', n)
 
 if __name__ == '__main__':
