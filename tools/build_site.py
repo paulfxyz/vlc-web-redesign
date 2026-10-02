@@ -508,8 +508,8 @@ def home(c):
 <p style="margin-top:1rem"><a class="more" href="{c.page('videolan--partners')}">{e(c.t('partners'))}{c.ico('arrow', 'ic flip')}</a></p>
 </div></section>''')
     intents = ''.join(f'<button type="button" class="chip" data-go="{g}" data-sel="{sel}">{c.ico(ic)}{e(c.t(k))}</button>' for k, ic, g, sel in [
-        ('i_install', 'download', 'auto', '.file'), ('i_portable', 'box', 'windows', '[data-arch]:not([hidden]) .alts > :nth-child(2)'),
-        ('i_store', 'phone', 'store', '.badges'), ('i_cli', 'code', 'linux', '.distros'), ('i_older', 'disc', '', 'older'), ('i_src', 'code', 'source', '.file')])
+        ('i_install', 'download', 'auto', '.pf'), ('i_portable', 'box', 'windows', '[data-arch]:not([hidden]) .alts > :nth-child(2)'),
+        ('i_store', 'phone', 'store', '.badges'), ('i_cli', 'code', 'linux', '.distros'), ('i_older', 'disc', '', 'older'), ('i_src', 'code', 'source', '.pf')])
     h.append(f'<template id="dlt"><div class="ly dlm" id="dlm" aria-hidden="true"><div class="scrim" data-x></div><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlm-t"><div class="st-h"><span class="st-logo"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg></span><div><h2 id="dlm-t">{e(c.t("dlm_h"))}</h2><p>VLC {V} · {e(c.t("dlm_p"))}</p></div><button type="button" class="x" data-x aria-label="{e(c.t("close"))}">{c.ico("x")}</button></div><div class="dlm-int" role="group" aria-label="{e(c.t("dlm_q"))}"><span>{e(c.t("dlm_q"))}</span>{intents}</div><div class="dlm-b">{download_block(c, "dlm")}</div></div></div></template>')
     h.append(foot(c))
     return '\n'.join(h)

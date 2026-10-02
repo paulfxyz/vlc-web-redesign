@@ -1525,3 +1525,7 @@ html[data-theme=dark] .c-mobile{color:#5fd08f}
 .chipsel button small{color:inherit;opacity:1;font-size:.75rem}
 a[aria-current] small{color:inherit}
 @media (min-width:900px) and (max-width:1340px){.dlm-int>span{display:none}}
+@media (min-width:900px){.dlm-int{flex-wrap:nowrap;overflow-x:auto}.dlm-int>span{display:none}.dlm-int .chip{padding:0 .85rem}.dlm-int .chip:first-of-type{margin-inline-start:auto}.dlm-int .chip:last-child{margin-inline-end:auto}}
+.dpanel{container-type:inline-size}
+@media (min-width:901px) and (max-width:1180px){.dlx{grid-template-columns:250px minmax(0,1fr)}}
+@container (max-width:600px){.pf{grid-template-columns:auto minmax(0,1fr)}.pf .btn{grid-column:1/-1;grid-row:auto;justify-content:center}}
