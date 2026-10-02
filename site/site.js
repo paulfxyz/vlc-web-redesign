@@ -428,6 +428,16 @@
     if (k) selectOS(k);
   }
   if (location.hash === '#choose' && $('#dlt')) setTimeout(function () { dlModal(); }, 60);
+  /* the host caches HTML hard: if this page is older than the latest deploy, refresh it once */
+  (function () {
+    var mine = d.documentElement.getAttribute('data-v'); if (!mine || !W.fetch) return;
+    var k = 'vl-upd-' + location.pathname; try { if (sessionStorage.getItem(k)) return; } catch (x) { return; }
+    fetch(ROOT + 'version.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || !j.v || j.v === mine) return;
+      try { sessionStorage.setItem(k, '1'); } catch (x) {}
+      fetch(location.href, { cache: 'reload' }).then(function () { location.reload(); });
+    }).catch(function () {});
+  })();
   function tabKeys(e) {
     var tabs = $$('[role=tab]', e.currentTarget), i = tabs.indexOf(d.activeElement); if (i < 0) return;
     var n = { ArrowDown: 1, ArrowRight: RTL ? -1 : 1, ArrowUp: -1, ArrowLeft: RTL ? 1 : -1, Home: -99, End: 99 }[e.key]; if (!n) return;

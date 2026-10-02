@@ -255,7 +255,7 @@ def head(c, title, desc, slug, cur=''):
     def absu(l): return SITE_URL + ('' if l == 'en' else l + '/') + ('' if slug == 'home' else 'p/' + slug + '.html')
     alts = ''.join(f'<link rel="alternate" hreflang="{I.META[l]["html"]}" href="{absu(l)}">' for l in I.LANGS) + f'<link rel="alternate" hreflang="x-default" href="{absu("en")}"><link rel="canonical" href="{absu(c.lang)}">'
     return f'''<!doctype html>
-<html lang="{m['html']}" dir="{m['dir']}" data-root="{c.root}" data-base="{c.base}" data-slug="{slug}" data-lang="{c.lang}">
+<html lang="{m['html']}" dir="{m['dir']}" data-root="{c.root}" data-base="{c.base}" data-slug="{slug}" data-lang="{c.lang}" data-v="{AV}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -788,6 +788,7 @@ def main():
         base = DIST if lang == 'en' else DIST / lang
         write(base / 'lite.html', LT.page(lang, F, V, STORE, LINUX))
     write(DIST / '.htaccess', HTACCESS)
+    write(DIST / 'version.json', json.dumps({'v': AV}))
     # redirects from previous option URLs
     for lang in I.LANGS:
         base = DIST if lang == 'en' else DIST / lang
