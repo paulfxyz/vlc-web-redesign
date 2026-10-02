@@ -703,8 +703,14 @@ def min_css(s):
     s = re.sub(r':\s+', ':', s)
     return s.replace(';}', '}').strip()
 
+import hashlib as _hl
+AV = _hl.md5(b''.join((ROOT / f).read_bytes() for f in ('site/site.css', 'site/site.js', 'site/icons.svg', 'tools/i18n.py', 'tools/build_site.py'))).hexdigest()[:8]
+def bust(txt):  # long-cached static assets get a content version so every deploy is picked up at once
+    return (txt.replace('site.css"', f'site.css?v={AV}"').replace('site.js"', f'site.js?v={AV}"').replace('l10n.js"', f'l10n.js?v={AV}"')
+               .replace('icons.svg#', f'icons.svg?v={AV}#').replace("'search.js'", f"'search.js?v={AV}'").replace('"search.js"', f'"search.js?v={AV}"'))
 def write(path, txt):
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.suffix in ('.html', '.js') and path.name not in ('search.js',): txt = bust(txt)
     if path.suffix == '.html':
         txt = re.sub(r'<a [^>]*>\s*</a>', '', txt)                       # empty legacy links
         txt = re.sub(r'<pre(?![^>]*tabindex)', '<pre tabindex="0"', txt)  # scrollable code is keyboard-reachable

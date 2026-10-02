@@ -1524,3 +1524,4 @@ html.fx .hl{animation:hlp 1.6s var(--ease)}
 html[data-theme=dark] .c-mobile{color:#5fd08f}
 .chipsel button small{color:inherit;opacity:1;font-size:.75rem}
 a[aria-current] small{color:inherit}
+@media (min-width:900px) and (max-width:1340px){.dlm-int>span{display:none}}
