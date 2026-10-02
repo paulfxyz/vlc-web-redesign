@@ -5,6 +5,7 @@ import json, re, shutil, pathlib, sys, html as H
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import vlsite as S
 import i18n as I
+import curated as CU
 from vlsite import e
 
 ROOT = S.ROOT
@@ -72,6 +73,25 @@ X = {
  'qr_scan': ('Scan with your phone', 'Scannez avec votre téléphone', '用手机扫码', 'امسح الرمز بهاتفك'),
  'qr_p': ('Point your phone’s camera at the code to open the store directly.', 'Visez le code avec l’appareil photo de votre téléphone pour ouvrir directement la boutique.', '用手机相机对准二维码，即可直接打开应用商店。', 'وجّه كاميرا هاتفك نحو الرمز لفتح المتجر مباشرة.'),
  'qr_or': ('Or open it here', 'Ou ouvrez-la ici', '或在此打开', 'أو افتحه هنا'),
+ 'set_title': ('Settings', 'Réglages', '设置', 'الإعدادات'),
+ 'set_sub': ('Search, language, appearance and accessibility, all in one place.', 'Recherche, langue, apparence et accessibilité, au même endroit.', '搜索、语言、外观与无障碍，集中在一处。', 'البحث واللغة والمظهر وسهولة الوصول في مكان واحد.'),
+ 'set_search': ('Search', 'Recherche', '搜索', 'البحث'),
+ 'set_lang': ('Language', 'Langue', '语言', 'اللغة'),
+ 'set_look': ('Appearance', 'Apparence', '外观', 'المظهر'),
+ 'set_a11y': ('Accessibility', 'Accessibilité', '无障碍', 'سهولة الوصول'),
+ 'set_keys': ('Shortcuts', 'Raccourcis', '快捷键', 'الاختصارات'),
+ 'set_popular': ('Popular pages', 'Pages populaires', '热门页面', 'صفحات شائعة'),
+ 'set_k1': ('Open search', 'Ouvrir la recherche', '打开搜索', 'افتح البحث'),
+ 'set_k2': ('Close any window', 'Fermer une fenêtre', '关闭任意窗口', 'أغلق أي نافذة'),
+ 'set_k3': ('Move through results', 'Parcourir les résultats', '在结果中移动', 'تنقّل بين النتائج'),
+ 'set_k4': ('Open the selected result', 'Ouvrir le résultat choisi', '打开所选结果', 'افتح النتيجة المحددة'),
+ 'set_k5': ('Skip to the content', 'Aller au contenu', '跳到正文', 'انتقل إلى المحتوى'),
+ 'set_preview': ('Preview', 'Aperçu', '预览', 'معاينة'),
+ 'set_reset': ('Reset all settings', 'Réinitialiser les réglages', '恢复默认设置', 'إعادة ضبط الإعدادات'),
+ 'set_saved': ('Saved on this device only. No cookies.', 'Enregistré sur cet appareil uniquement. Sans cookie.', '仅保存在本设备，不使用 Cookie。', 'يُحفظ على هذا الجهاز فقط، دون ملفات تعريف.'),
+ 'set_results': ('{n} results', '{n} résultats', '{n} 个结果', '{n} نتيجة'),
+ 'hp_dl_h': ('Get VLC for your device', 'VLC pour votre appareil', '为你的设备获取 VLC', 'احصل على VLC لجهازك'),
+ 'hp_dl_all': ('Open the download centre', 'Ouvrir le centre de téléchargement', '打开下载中心', 'افتح مركز التنزيل'),
  'dl_tab_hint': ('Choose a platform', 'Choisir une plateforme', '选择平台', 'اختر منصة'),
 }
 I.T.update(X)
@@ -210,8 +230,8 @@ def mk_tv(c, cls=''):
 # ------------------------------------------------------------------ shell
 NAV = [('download', 'nav_download'), ('features', 'nav_features'), ('news', 'nav_news'), ('projects', 'nav_projects'), ('support', 'nav_support'), ('contribute', 'nav_contribute'), ('about', 'nav_about')]
 def nav_href(c, k):
-    return {'download': c.page('download') if not c.home else '#download', 'features': c.page('home', '#features'), 'news': c.page('news'),
-            'projects': c.page('section--projects'), 'support': c.page('support'), 'contribute': c.page('contribute'), 'about': c.page('home', '#about')}[k]
+    return {'download': c.page('download'), 'features': c.page('vlc--features'), 'news': c.page('news'),
+            'projects': c.page('projects'), 'support': c.page('support'), 'contribute': c.page('contribute'), 'about': c.page('videolan')}[k]
 NAV_ICO = dict(download='download', features='sparkle', news='news', projects='box', support='chat', contribute='users', about='home')
 
 def lang_href(lang, slug, from_ctx):
@@ -242,10 +262,7 @@ def head(c, title, desc, slug, cur=''):
 <a class="brand" href="{c.page('home')}" aria-label="VideoLAN — {e(c.t('home'))}"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
 <nav class="nav" aria-label="{e(c.t('menu'))}">{''.join(f'<a href="{nav_href(c, k)}"' + (' aria-current="page"' if k == cur else '') + f'>{e(c.t(l))}</a>' for k, l in NAV)}</nav>
 <div class="tools">
-<button type="button" class="ib" data-open="search" aria-label="{e(c.t('search'))}" aria-keyshortcuts="Control+K /">{c.ico('search')}</button>
-<button type="button" class="ib" data-open="lang" aria-label="{e(c.t('language'))}: {e(m['name'])}">{c.ico('globe')}<span class="code">{c.lang.upper()}</span></button>
-<button type="button" class="ib hide-sm" data-open="theme" aria-label="{e(c.t('theme_dark'))}" data-l-dark="{e(c.t('theme_dark'))}" data-l-light="{e(c.t('theme_light'))}">{c.ico('moon')}</button>
-<button type="button" class="ib" data-open="a11y" aria-label="{e(c.t('display'))}">{c.ico('a11y')}</button>
+<button type="button" class="setb" data-open="settings" aria-label="{e(c.t('set_title'))}: {e(c.t('set_sub'))}" aria-keyshortcuts="Control+K /"><span class="setb-i">{c.ico('search')}{c.ico('globe')}{c.ico('sun')}{c.ico('a11y')}</span><span class="setb-l">{e(c.t('set_title'))}</span><span class="setb-c">{c.lang.upper()}</span></button>
 <a class="btn btn-gh btn-sm hide-md" href="{c.page('contribute')}" data-donate>{c.ico('heart', 'ic heart')}{e(c.t('donate'))}</a>
 <details class="menu"><summary class="ib" aria-label="{e(c.t('menu'))}">{c.ico('menu')}</summary><div class="drawer">{''.join(f'<a href="{nav_href(c, k)}">{c.ico(NAV_ICO[k])}{e(c.t(l))}</a>' for k, l in NAV)}<a href="{c.page('contribute')}" data-donate>{c.ico('heart', 'ic heart')}{e(c.t('donate'))}</a></div></details>
 </div></div></header>
@@ -365,9 +382,9 @@ def home(c):
     pop = (f'<a href="{F["arm64"]["url"]}"{dlattrs(F["arm64"])}>Windows ARM64<span>{c.t("mb", n=F["arm64"]["mb"])}</span></a>'
            f'<a href="{F["win32"]["url"]}"{dlattrs(F["win32"])}>Windows {e(c.t("dl_32"))}<span>{c.t("mb", n=F["win32"]["mb"])}</span></a>'
            f'<a href="{F["macu"]["url"]}"{dlattrs(F["macu"])}>macOS · {e(c.t("dl_universal"))}<span>{c.t("mb", n=F["macu"]["mb"])}</span></a>'
-           f'<a href="#download" data-tab="linux">Linux<span>apt · dnf · Flatpak</span></a>'
+           f'<a href="{c.page("download", "#download-linux")}">Linux<span>apt · dnf · Flatpak</span></a>'
            f'<a href="{STORE["play"]}">Android<span>Google Play</span></a><a href="{STORE["ios"]}">iPhone · iPad · Apple TV<span>App Store</span></a>'
-           f'<hr><a href="#download">{e(c.t("cta_all"))}<span>{c.ico("arrow", "ic flip")}</span></a>')
+           f'<hr><a href="{c.page("download")}">{e(c.t("cta_all"))}<span>{c.ico("arrow", "ic flip")}</span></a>')
     hero_sub = f'{c.t("cta_for", os="Windows")} · {c.t("dl_64")} · {c.t("mb", n=w["mb"])}'
     h.append(f'''<section class="hero"><div class="wrap hero-g">
 <div>
@@ -386,7 +403,7 @@ def home(c):
 </div></section>''')
     # ---------- platform strip
     plats = [('windows', 'windows', 'Windows'), ('apple', 'mac', 'macOS'), ('linux', 'linux', 'Linux'), ('android', 'android', 'Android'), ('phone', 'ios', 'iOS · iPadOS'), ('tv', 'ios', 'tvOS'), ('code', 'source', c.t('os_source'))]
-    h.append(f'<div class="plat"><div class="wrap"><b>{e(c.t("os_other").split()[0] if False else c.t("dl_choose"))}</b>' + ''.join(f'<a href="#download" data-tab="{k}">{c.ico(i)}{e(n)}</a>' for i, k, n in plats) + '</div></div>')
+    h.append(f'<div class="plat"><div class="wrap"><b>{e(c.t("os_other").split()[0] if False else c.t("dl_choose"))}</b>' + ''.join(f'<a href="{c.page("download", "#download-" + k)}">{c.ico(i)}{e(n)}</a>' for i, k, n in plats) + '</div></div>')
     # ---------- showcase
     tabs = [('win', 'windows', 'os_windows'), ('mac', 'apple', 'os_mac'), ('lin', 'linux', 'os_linux'), ('and', 'android', 'os_android'), ('ios', 'phone', 'os_ios'), ('tv', 'tv', 'os_tv')]
     shows = {
@@ -401,7 +418,7 @@ def home(c):
     panes = ''
     for k, (mk, lk, pre, dk) in shows.items():
         pts = ''.join(f'<li>{c.ico("check")}<span>{e(c.t(pre + "_" + str(n)))}</span></li>' for n in (1, 2, 3))
-        panes += f'<div class="show" role="tabpanel" id="sp-{k}" aria-labelledby="st-{k}"{"" if k == "win" else " hidden"}><div>{mk}</div><div><h3>VLC · {e(c.t(lk))}</h3><ul class="pts">{pts}</ul><a class="btn btn-gh" href="#download" data-tab="{dk}">{c.ico("download")}{e(c.t("get_for", os=c.t(lk)))}</a></div></div>'
+        panes += f'<div class="show" role="tabpanel" id="sp-{k}" aria-labelledby="st-{k}"{"" if k == "win" else " hidden"}><div>{mk}</div><div><h3>VLC · {e(c.t(lk))}</h3><ul class="pts">{pts}</ul><a class="btn btn-gh" href="{c.page("download", "#download-" + dk)}">{c.ico("download")}{e(c.t("get_for", os=c.t(lk)))}</a></div></div>'
     h.append(f'''<section class="band" id="platforms"><div class="wrap">
 <div class="sh"><div><p class="kick">{e(c.t('show_k'))}</p><h2>{e(c.t('show_h'))}</h2></div><p>{e(c.t('show_p'))}</p></div>
 <div class="tabs" role="tablist" aria-label="{e(c.t('show_k'))}">{tabh}</div>{panes}
@@ -425,10 +442,15 @@ def home(c):
 <div class="wn-big rv"><p class="kick" style="color:#ffb366">{e(c.t('new_k'))} · {V}</p><b data-count="130">130+</b><span>{e(c.t('new_fixes'))}</span><a class="btn btn-or" href="{c.page('vlc--releases--3.0.24')}">{e(c.t('dl_notes'))}{c.ico('arrow', 'ic flip')}</a></div>
 <div><h2 style="font-size:clamp(1.7rem,1.2rem + 1.8vw,2.5rem);margin-bottom:1.5rem">{e(c.t('new_h', v=V))}</h2><ul>{wn}</ul></div>
 </div></section>''')
-    # ---------- download
+    # ---------- download (compact; full centre lives on its own page)
+    cards = [('windows', 'windows', 'Windows', f'{c.t("dl_installer")} · MSI · ZIP', F['win64']), ('mac', 'apple', 'macOS', c.t('dl_universal_d'), F['macu']),
+             ('linux', 'linux', 'Linux', 'apt · dnf · pacman · Flatpak · Snap', None), ('android', 'android', 'Android', 'Google Play · F-Droid · APK', None),
+             ('ios', 'phone', c.t('dl_ios_h'), 'App Store', None), ('source', 'code', c.t('os_source'), 'tar.xz · git', F['src'])]
+    ch = ''.join(f'<a class="pc glow rv d{i % 3}" href="{c.page("download", "#download-" + k)}" data-pc="{k}"><span class="fic">{c.ico(ic)}</span><b>{e(n)}</b><small>{e(sub)}</small>' + (f'<span class="sz">{e(c.t("mb", n=f_["mb"]))}</span>' if f_ else '<span class="sz"></span>') + f'{c.ico("arrow", "ic flip go")}</a>' for i, (k, ic, n, sub, f_) in enumerate(cards))
     h.append(f'''<section class="band band-alt" id="download"><div class="wrap">
-<div class="sh"><div><p class="kick">{e(c.t('dl_k'))}</p><h2>{e(c.t('dl_h', v=V))}</h2></div><p>{e(c.t('dl_p'))}<br><span style="color:var(--tx-3);font-size:.9rem">{e(c.t('dl_meta', code=CODE, date=I.date(c.lang, REL_DATE)))} · <a href="{c.page('vlc--releases--3.0.24')}">{e(c.t('dl_notes'))}</a></span></p></div>
-{download_block(c)}
+<div class="sh"><div><p class="kick">{e(c.t('dl_k'))}</p><h2>{e(c.t('hp_dl_h'))}</h2></div><p>{e(c.t('dl_p'))}<br><span style="color:var(--tx-3);font-size:.9rem">VLC {V} · {e(c.t('dl_meta', code=CODE, date=I.date(c.lang, REL_DATE)))}</span></p></div>
+<div class="pcs">{ch}</div>
+<p class="center"><a class="btn btn-or" href="{c.page('download')}">{c.ico('download')}{e(c.t('hp_dl_all'))}</a></p>
 </div></section>''')
     # ---------- tips
     tips = [('convert', 't1'), ('record', 't2'), ('bandage', 't3'), ('gauge', 't4'), ('camera', 't5'), ('cast', 't6')]
@@ -480,7 +502,8 @@ def page_display(c, p):
         y = s[6:]; return c.t('news_year', y=y) if y != 'undated' else c.t('undated')
     if s == 'sitemap': return c.t('site_index')
     if s == 'design-notes': return c.t('design_notes')
-    return p['display']
+    if s in CU.CUR_TITLE: return CU.P(c, CU.CUR_TITLE[s])
+    return H.unescape(p['display'])
 
 def localized_body(c, p):
     """Return (html, translated?)"""
@@ -488,6 +511,11 @@ def localized_body(c, p):
     if s == 'download':
         return f'<p class="x-lede">{e(c.t("dl_p"))}</p>' + download_block(c, 'dlp'), True
     if p.get('hub'):
+        return CU.section_hub(c, p['hub']), True
+    if s == 'news': return CU.news_hub(c), c.lang == 'en'
+    if s.startswith('news--'): return CU.news_year(c, s[6:]), c.lang == 'en'
+    if s in CU.CURATED: return CU.CURATED[s](c, p), True
+    if False:
         k = p['hub']; items = S.ordered(k)
         hh = [f'<p class="x-lede">{e(sec(c.lang, k, 1))}</p><div class="x-list">']
         for q in items: hh.append(f'<a class="x-li" href="{q["slug"]}.html" lang="en"><b>{e(q["display"])}</b><span>{e(q["path"])}</span></a>')
@@ -518,41 +546,63 @@ def add_sha(htm):
         return m.group(0) + (f' data-sha="{f["sha"]}" data-size="{f["size"]}"' if f else '')
     return re.sub(r'href="([^"]*)" data-dl', rep, htm)
 
+SEC_ICON = CU.SEC_ICON
 def content_page(c, p):
     slug = p['slug']; c.slug = slug
     title = page_display(c, p)
     k = p['hub'] if p.get('hub') else S.sec_key(p)
+    if slug == 'vlc--features': k = 'vlc'
     body, tr = localized_body(c, p)
     body = add_sha(body)
-    body, toc = S.toc(body)
+    wide = bool(p.get('hub')) or slug in CU.CURATED or slug in ('download', 'news', 'sitemap', 'design-notes') or slug.startswith('news--')
+    body, toc = S.toc(body) if not slug in CU.CURATED else (body, [])
     cur = {'download': 'download', 'news': 'news', 'projects': 'projects', 'support': 'support', 'contribute': 'contribute', 'videolan': 'about', 'vlc': 'features'}.get(k, '')
-    out = [head(c, f'{title} — VideoLAN', p.get('desc') or strip(sec(c.lang, k, 1)) if k in S.SECTIONS else 'VideoLAN', slug, cur)]
+    if slug == 'vlc--features': cur = 'features'
+    desc = p.get('desc') or (strip(sec(c.lang, k, 1)) if k in S.SECTIONS else 'VideoLAN')
+    out = [head(c, f'{title} — VideoLAN', desc, slug, cur)]
     seclabel = sec(c.lang, k, 0) if k in S.SECTIONS else p['section']
-    bits = [seclabel]
-    if not p.get('virtual'): bits.append(c.t('min_read', n=S.read_min(p['words'])))
+    chips = [f'<span>{c.ico(SEC_ICON.get(k, "book"))}{e(seclabel)}</span>']
+    if not p.get('virtual') and not slug in CU.CURATED: chips.append(f'<span>{c.ico("book")}{e(c.t("min_read", n=S.read_min(p["words"])))}</span>')
+    if p.get('path') and not p.get('virtual'): chips.append(f'<a href="https://www.videolan.org{e(p["path"])}">{c.ico("ext")}{e(c.t("p_source"))}</a>')
     note = '' if tr else f'<p class="untr">{c.ico("info")}<span>{e(c.t("untranslated"))}</span></p>'
     lang_attr = '' if tr or c.lang == 'en' else ' lang="en" dir="ltr"'
     h1_lang = ' lang="en" dir="ltr"' if (not tr and c.lang != 'en' and title == p['display']) else ''
+    lede = ''
+    if not wide and p.get('desc') and len(p['desc']) < 240: lede = f'<p class="lede"{lang_attr}>{e(p["desc"])}</p>'
+    icon = CU.CUR_ICON.get(slug) or SEC_ICON.get(k, 'book')
+    # sidebar: siblings in section
+    side = ''
+    if not wide and k in S.SECTIONS:
+        sib = S.ordered(k); idx = next((i for i, q in enumerate(sib) if q['slug'] == slug), 0)
+        lo = max(0, idx - 10); win = sib[lo:lo + 22]
+        side = (f'<aside class="side"><details open><summary>{c.ico(SEC_ICON.get(k, "book"))}<span>{e(CU.P(c, CU.U["in_section"]))}</span><small>{len(sib)}</small></summary><ul{lang_attr}>' +
+                ''.join(f'<li><a href="{q["slug"]}.html"' + (' aria-current="page"' if q['slug'] == slug else '') + f'>{e(page_display(c, q))}</a></li>' for q in win) +
+                f'</ul><a class="all" href="section--{k}.html">{e(CU.P(c, CU.U["everything"]).replace("{s}", seclabel))}{c.ico("arrow", "ic flip")}</a></details></aside>')
     tochtml = ''
-    if len(toc) >= 3 and slug != 'download':
+    if len(toc) >= 3 and not wide:
         tochtml = f'<aside class="toc" aria-label="{e(c.t("on_page"))}"><p class="kick">{e(c.t("on_page"))}</p><ul{lang_attr}>' + ''.join(f'<li><a href="#{i}">{e(x)}</a></li>' for i, x in toc[:18]) + '</ul></aside>'
     prev, nxt = S.seq(slug)
     pn = ''
-    if prev or nxt:
-        pn = f'<nav class="pn" aria-label="{e(seclabel)}">' + (f'<a href="{prev}.html"><small>{e(c.t("previous"))}</small><b lang="en">{e(page_display(c, S.ALL[prev]))}</b></a>' if prev else '<span></span>') + (f'<a class="r" href="{nxt}.html"><small>{e(c.t("next"))}</small><b lang="en">{e(page_display(c, S.ALL[nxt]))}</b></a>' if nxt else '<span></span>') + '</nav>'
-    src = f' · <a href="https://www.videolan.org{e(p["path"])}">{e(c.t("p_source"))}</a>' if p.get('path') and not p.get('virtual') else ''
-    out.append(f'''<section class="ph"><div class="wrap">
+    if (prev or nxt) and not wide:
+        pn = f'<nav class="pn" aria-label="{e(seclabel)}">' + (f'<a href="{prev}.html"><small>{c.ico("arrow", "ic back")}{e(c.t("previous"))}</small><b lang="en">{e(page_display(c, S.ALL[prev]))}</b></a>' if prev else '<span></span>') + (f'<a class="r" href="{nxt}.html"><small>{e(c.t("next"))}{c.ico("arrow", "ic flip")}</small><b lang="en">{e(page_display(c, S.ALL[nxt]))}</b></a>' if nxt else '<span></span>') + '</nav>'
+    lay = 'pw3 wide' if wide else 'pw3' + (' has-side' if side else '') + (' has-toc' if tochtml else '')
+    out.append(f'''<div class="rprog" aria-hidden="true"><i></i></div>
+<section class="ph"><div class="wrap ph-g"><div>
 <nav class="crumbs" aria-label="Breadcrumb"><a href="{c.page('home')}">{e(c.t('home'))}</a><span aria-hidden="true">/</span><a href="section--{k}.html">{e(seclabel)}</a></nav>
-<p class="kick">{' · '.join(e(b) for b in bits)}</p>
-<h1{h1_lang}>{e(title)}</h1>
+<h1{h1_lang}>{e(title)}</h1>{lede}
+<div class="ph-meta">{''.join(chips)}</div></div>
+<span class="ph-ic" aria-hidden="true">{c.ico(icon)}</span>
 </div></section>
-<div class="wrap" style="padding-bottom:3rem">{note}<div class="pw{'' if tochtml else ' nt'}">{tochtml}<article class="prose"{lang_attr}>{body}<p style="margin-top:2.5rem;font-size:.85rem;color:var(--tx-3)"><a href="sitemap.html">{e(c.t('site_index'))}</a>{src}</p></article></div>{pn}</div>''')
+<div class="wrap pgw">{note}<div class="{lay}">{side}<article class="prose{' pz' if wide else ''}"{lang_attr}>{body}</article>{tochtml}</div>{pn}</div>''')
     out.append(foot(c))
     return '\n'.join(out)
 
 NOTES = {
  'en': '''<p class="x-lede">An independent proposal for videolan.org: the whole current site, rebuilt as one fast, accessible, static HTML5 bundle, in four languages to start.</p>
 <h2>What changes</h2><ul>
+<li><b>One settings hub.</b> Search, language, theme, text size, contrast, motion and shortcuts live behind a single Settings button that opens a full-screen panel.</li>
+<li><b>Real landing pages.</b> Features, Projects, Team, About, Contribute, Support, libVLC and News each have their own redesigned page, with section hubs, sidebars and on-page navigation for the 300 carried-over pages.</li>
+
 <li><b>One download button that knows your device.</b> It picks the right file for Windows (x64, ARM64 or 32-bit), macOS, Linux, Android or iOS, shows its size, and keeps every other option one click away.</li>
 <li><b>A real download centre.</b> Every platform in one place: installers, MSI, portable ZIP and 7z, Apple Silicon and Intel builds, copy-ready commands for eight Linux distributions, store badges, source code, SHA-256 fingerprints and verification help.</li>
 <li><b>Honest exits.</b> Downloads come straight from get.videolan.org, after a short confirmation that shows the file and its fingerprint. VideoLAN services that are not redesigned yet, and third-party sites, are announced before you leave.</li>
@@ -563,6 +613,9 @@ NOTES = {
 </ul><p>Unofficial concept by Paul Fleury, offered to VideoLAN under the MIT licence. VLC, VideoLAN and the cone are trademarks of VideoLAN. Content is adapted from videolan.org.</p>''',
  'fr': '''<p class="x-lede">Une proposition indépendante pour videolan.org : tout le site actuel, reconstruit en un seul ensemble HTML5 statique, rapide et accessible, en quatre langues pour commencer.</p>
 <h2>Ce qui change</h2><ul>
+<li><b>Un seul centre de réglages.</b> Recherche, langue, thème, taille du texte, contraste, animations et raccourcis sont réunis derrière un bouton Réglages qui ouvre un panneau plein écran.</li>
+<li><b>De vraies pages d’accueil.</b> Fonctionnalités, Projets, Équipe, À propos, Contribuer, Assistance, libVLC et Actualités ont chacune leur page repensée, avec des rubriques, une barre latérale et une navigation interne pour les 300 pages reprises.</li>
+
 <li><b>Un bouton de téléchargement qui reconnaît votre appareil.</b> Il choisit le bon fichier pour Windows (x64, ARM64 ou 32 bits), macOS, Linux, Android ou iOS, affiche sa taille et garde toutes les autres options à portée de clic.</li>
 <li><b>Un vrai centre de téléchargement.</b> Toutes les plateformes au même endroit : installateurs, MSI, ZIP portable et 7z, versions Apple Silicon et Intel, commandes prêtes à copier pour huit distributions Linux, badges des boutiques, code source, empreintes SHA-256 et aide à la vérification.</li>
 <li><b>Des sorties annoncées.</b> Les téléchargements viennent directement de get.videolan.org, après une courte confirmation qui affiche le fichier et son empreinte. Les services VideoLAN pas encore redessinés et les sites tiers sont signalés avant de partir.</li>
@@ -573,6 +626,9 @@ NOTES = {
 </ul><p>Concept non officiel de Paul Fleury, offert à VideoLAN sous licence MIT. VLC, VideoLAN et le cône sont des marques de VideoLAN. Le contenu est adapté de videolan.org.</p>''',
  'zh': '''<p class="x-lede">这是一份为 videolan.org 准备的独立提案：把现有网站的全部内容重建为一个快速、无障碍的静态 HTML5 站点，首批提供四种语言。</p>
 <h2>有哪些改变</h2><ul>
+<li><b>统一的设置中心。</b>搜索、语言、主题、文字大小、对比度、动画和快捷键都收进一个“设置”按钮，点开即是全屏面板。</li>
+<li><b>真正的栏目首页。</b>功能、项目、团队、关于、参与贡献、支持、libVLC 和新闻都有重新设计的独立页面；迁移过来的 300 个页面也配有栏目页、侧边栏和页内导航。</li>
+
 <li><b>一个能识别设备的下载按钮。</b>它会为 Windows（x64、ARM64 或 32 位）、macOS、Linux、Android 或 iOS 自动选择正确的文件并显示大小，其他选项也只需一次点击。</li>
 <li><b>真正的下载中心。</b>所有平台集中在一处：安装程序、MSI、便携 ZIP 与 7z、Apple 芯片和 Intel 版本、八个 Linux 发行版的可复制命令、应用商店徽章、源代码、SHA-256 指纹及校验说明。</li>
 <li><b>离开前明确提示。</b>下载文件直接来自 get.videolan.org，下载前会显示文件名和指纹。尚未改版的 VideoLAN 服务和第三方网站，都会在跳转前提示。</li>
@@ -583,6 +639,9 @@ NOTES = {
 </ul><p>本方案为 Paul Fleury 的非官方设计概念，以 MIT 许可证赠予 VideoLAN。VLC、VideoLAN 及路锥标志均为 VideoLAN 的商标。内容改编自 videolan.org。</p>''',
  'ar': '''<p class="x-lede">مقترح مستقل لموقع videolan.org: الموقع الحالي كاملًا، أُعيد بناؤه حزمةً واحدة من HTML5 الثابت، سريعة وسهلة الوصول، بأربع لغات كبداية.</p>
 <h2>ما الذي يتغيّر</h2><ul>
+<li><b>مركز إعدادات واحد.</b> البحث واللغة والسمة وحجم النص والتباين والحركة والاختصارات كلها خلف زر «الإعدادات» الذي يفتح لوحة بملء الشاشة.</li>
+<li><b>صفحات رئيسية حقيقية.</b> للميزات والمشاريع والفريق ومن نحن والمساهمة والدعم وlibVLC والأخبار صفحات أُعيد تصميمها، مع صفحات أقسام وشريط جانبي وتنقّل داخلي للصفحات الـ300 المنقولة.</li>
+
 <li><b>زر تنزيل واحد يتعرّف على جهازك.</b> يختار الملف المناسب لـ Windows (x64 أو ARM64 أو 32 بت) أو macOS أو Linux أو Android أو iOS، ويعرض حجمه، ويُبقي كل الخيارات الأخرى على بُعد نقرة.</li>
 <li><b>مركز تنزيل حقيقي.</b> كل المنصّات في مكان واحد: برامج التثبيت وMSI وZIP المحمول و7z، وإصدارات Apple Silicon وIntel، وأوامر جاهزة للنسخ لثماني توزيعات Linux، وشارات المتاجر، والشيفرة المصدرية، وبصمات SHA-256 وطريقة التحقّق.</li>
 <li><b>مغادرة واضحة.</b> تأتي التنزيلات مباشرة من get.videolan.org بعد تأكيد قصير يعرض الملف وبصمته. ويُنبَّه الزائر قبل الانتقال إلى خدمات VideoLAN التي لم يُعَد تصميمها بعد أو إلى مواقع خارجية.</li>
@@ -594,7 +653,7 @@ NOTES = {
 }
 
 # ------------------------------------------------------------------ l10n.js per language
-JS_KEYS = [k for k in I.T if k.startswith(('js_', 'x_', 'd_', 'dl_copy', 'dl_copied', 'search', 'close', 'language', 'display', 'theme_', 'mb', 'cta_', 'dl_64', 'dl_32', 'dl_arm', 'dl_universal', 'os_', 'mk_sub', 'mk_speed', 'osd_vol', 'mk_alt', 'qr_'))]
+JS_KEYS = [k for k in I.T if k.startswith(('js_', 'x_', 'd_', 'dl_copy', 'dl_copied', 'search', 'close', 'language', 'display', 'theme_', 'mb', 'cta_', 'dl_64', 'dl_32', 'dl_arm', 'dl_universal', 'os_', 'mk_sub', 'mk_speed', 'osd_vol', 'mk_alt', 'qr_', 'set_'))]
 
 def l10n_js(lang):
     o = {k: t(lang, k) for k in JS_KEYS}
@@ -634,7 +693,7 @@ def main():
     shutil.copy(ROOT / 'shared' / 'favicon.svg', DIST / 'favicon.svg')
     (DIST / 'media').mkdir()
     for f in (SITE / 'media').iterdir(): shutil.copy(f, DIST / 'media' / f.name)
-    idx = [[k, page_display(Ctx('en', 1), p), S.sec_key(p) if not p.get('hub') else p['hub']] for k, p in S.ALL.items()]
+    idx = [[k, page_display(Ctx('en', 1), p), S.sec_key(p) if not p.get('hub') else p['hub'], CU.excerpt(p, 90) if not p.get('virtual') else ''] for k, p in S.ALL.items()]
     write(DIST / 'search.js', 'window.VL_INDEX=' + json.dumps(idx, ensure_ascii=False, separators=(',', ':')) + ';')
     n = 0
     for lang in I.LANGS:
