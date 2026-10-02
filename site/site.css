@@ -926,3 +926,4 @@ html.rib-off .rib{display:none}
  .rib .wrap{min-height:34px}
  .rib p{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.78rem}
 }
+@media (max-width:700px){.x-lede{font-size:1rem}}
