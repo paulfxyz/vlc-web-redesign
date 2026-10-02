@@ -333,6 +333,7 @@
     if ((c = closest(t, '[data-donate]'))) { e.preventDefault(); donate(); return; }
     if ((c = closest(t, '[data-open]'))) {
       e.preventDefault(); var o = c.getAttribute('data-open');
+      if (o === 'dl') { dlModal(c.getAttribute('data-os')); return; }
       settings({ lang: 'lang', a11y: 'a11y', search: 'search', theme: 'look', settings: 'search' }[o] || 'search');
       return;
     }
@@ -382,10 +383,10 @@
     var rail = $('.rail'); if (!rail) return;
     $$('[role=tab]', rail).forEach(function (b) { var on = b.getAttribute('data-os') === k; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; });
     $$('.dpanel').forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== k; });
-    if (scroll) { var s = $('#download') || $('.dlx'); if (s) s.scrollIntoView({ behavior: FX() ? 'smooth' : 'auto', block: 'start' }); }
+    if (scroll && !(dlL && dlL.contains($('.rail')))) { var s = $('#download') || $('.dlx'); if (s) s.scrollIntoView({ behavior: FX() ? 'smooth' : 'auto', block: 'start' }); }
   }
   function initDownload() {
-    var rail = $('.rail'); if (!rail) return;
+    var rail = $('.rail'); if (!rail || rail._ok) return; rail._ok = 1;
     var det = $('[data-os="' + OS + '"]', rail); if (det) det.className += ' is-det';
     selectOS(OS);
     var pick = OS === 'windows' ? ARCH : '64';
@@ -393,14 +394,24 @@
     $$('#dp-windows [data-arch]').forEach(function (x) { x.hidden = x.getAttribute('data-arch') !== pick; });
     rail.addEventListener('click', function (e) { var b = closest(e.target, '[role=tab]'); if (b) selectOS(b.getAttribute('data-os')); });
     rail.addEventListener('keydown', tabKeys);
-    d.addEventListener('click', function (e) {
-      var b = closest(e.target, '.seg button');
-      if (b) { var a = b.getAttribute('data-a'); $$('button', b.parentNode).forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); $$('#dp-windows [data-arch]').forEach(function (x) { x.hidden = x.getAttribute('data-arch') !== a; }); }
-      var dd = closest(e.target, '.distros button');
-      if (dd) { var k = dd.getAttribute('data-d'); $$('button', dd.parentNode).forEach(function (x) { x.setAttribute('aria-pressed', String(x === dd)); }); $$('[data-dterm]').forEach(function (x) { x.hidden = x.getAttribute('data-dterm') !== k; }); }
-    });
     if (OS === 'linux' && /Fedora/i.test(UA)) { var fb = $('.distros [data-d="fedora"]'); if (fb) fb.click(); }
     if (/^#download/.test(location.hash) && location.hash.length > 10) selectOS(location.hash.slice(10));
+  }
+  d.addEventListener('click', function (e) {
+    var b = closest(e.target, '.seg button');
+    if (b) { var a = b.getAttribute('data-a'); $$('button', b.parentNode).forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); $$('#dp-windows [data-arch]').forEach(function (x) { x.hidden = x.getAttribute('data-arch') !== a; }); }
+    var dd = closest(e.target, '.distros button');
+    if (dd) { var k = dd.getAttribute('data-d'); $$('button', dd.parentNode).forEach(function (x) { x.setAttribute('aria-pressed', String(x === dd)); }); $$('[data-dterm]').forEach(function (x) { x.hidden = x.getAttribute('data-dterm') !== k; }); }
+  });
+  /* download chooser modal (home): markup lives in a <template>, instantiated on first open */
+  var dlL = null;
+  function dlModal(k) {
+    if (!dlL) { var tp = $('#dlt'); if (!tp) { location.href = BASE + 'p/download.html'; return; }
+      var hold = d.createElement('div'); hold.innerHTML = tp.innerHTML; dlL = hold.firstElementChild; d.body.appendChild(dlL);
+      dlL.addEventListener('click', function (e) { if (closest(e.target, '[data-x]')) closeL(); });
+      initDownload(); reveal(); }
+    openLayer(dlL, '.rail [aria-selected="true"]');
+    if (k) selectOS(k);
   }
   function tabKeys(e) {
     var tabs = $$('[role=tab]', e.currentTarget), i = tabs.indexOf(d.activeElement); if (i < 0) return;

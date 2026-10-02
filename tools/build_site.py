@@ -92,6 +92,9 @@ X = {
  'set_results': ('{n} results', '{n} résultats', '{n} 个结果', '{n} نتيجة'),
  'hp_dl_h': ('Get VLC for your device', 'VLC pour votre appareil', '为你的设备获取 VLC', 'احصل على VLC لجهازك'),
  'hp_dl_all': ('Open the download centre', 'Ouvrir le centre de téléchargement', '打开下载中心', 'افتح مركز التنزيل'),
+ 'ft_simple': ('Simple version', 'Version simple', '简易版', 'النسخة المبسّطة'),
+ 'dlm_h': ('Choose your download', 'Choisissez votre téléchargement', '选择要下载的版本', 'اختر ما تريد تنزيله'),
+ 'dlm_p': ('Every system, every format: installers, archives, app stores, packages and source code.', 'Tous les systèmes, tous les formats : installateurs, archives, boutiques, paquets et code source.', '覆盖所有系统与格式：安装程序、压缩包、应用商店、软件包和源代码。', 'كل الأنظمة وكل الصيغ: برامج التثبيت والأرشيفات والمتاجر والحزم والشيفرة المصدرية.'),
  'dl_tab_hint': ('Choose a platform', 'Choisir une plateforme', '选择平台', 'اختر منصة'),
 }
 I.T.update(X)
@@ -176,7 +179,7 @@ def mk_win(c, img, ext='mkv', p=34, dur=596, sub=0, eager=False, cls=''):
     return f'''<figure class="mk mk-win {cls}" data-play data-dur="{dur}" data-p="{p}" role="img" aria-label="{e(c.t('mk_alt', film=film, os='Windows 11'))}">
 <div class="w-tb"><svg class="cone" viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg><span class="t">{e(film)}.{ext} - VLC media player</span><i>{c.ico('minus','')}</i><i>{c.ico('square','')}</i><i>{c.ico('x','')}</i></div>
 <div class="w-mb" aria-hidden="true">{''.join(f'<span>{e(m)}</span>' for m in menu)}</div>
-<div class="fr">{pic(c, img, '', eager=eager)}<p class="sub" data-subs="{e('|'.join(SUBS[c.lang]))}" lang="{I.META[c.lang]['html']}" dir="{I.META[c.lang]['dir']}">{e(SUBS[c.lang][sub])}</p><p class="osd" aria-hidden="true"></p></div>
+<div class="fr">{pic(c, img, '', eager=eager)}<p class="sub" aria-hidden="true" data-subs="{e('|'.join(SUBS[c.lang]))}" lang="{I.META[c.lang]['html']}" dir="{I.META[c.lang]['dir']}">{e(SUBS[c.lang][sub])}</p><p class="osd" aria-hidden="true"></p></div>
 <div class="w-cb" aria-hidden="true"><div class="w-seek"><span class="tc">{mmss(cur)}</span><div class="bar" style="--p:{p}%"><b></b></div><span>{mmss(dur)}</span></div>
 <div class="w-btns"><i class="pl">{c.ico('pause','')}</i><span class="gap"></span><i>{c.ico('prev','')}</i><i>{c.ico('stop','')}</i><i>{c.ico('next','')}</i><span class="gap"></span><i>{c.ico('full','')}</i><i>{c.ico('sliders','')}</i><i>{c.ico('playlist','')}</i><i>{c.ico('loop','')}</i><i>{c.ico('shuffle','')}</i>
 <span class="w-vol">{c.ico('volume','')}<span class="wedge"></span><span>74%</span></span></div></div></figure>'''
@@ -185,7 +188,7 @@ def mk_mac(c, img, p=58, dur=888, cls=''):
     film = FILMS[img]; cur = int(dur * p / 100)
     return f'''<figure class="mk mk-mac {cls}" data-play data-dur="{dur}" data-p="{p}" role="img" aria-label="{e(c.t('mk_alt', film=film, os='macOS'))}">
 <div class="fr">{pic(c, img, '')}<div class="m-tb" aria-hidden="true"><span class="tl"><i></i><i></i><i></i></span>{e(film)}.mp4</div>
-<p class="sub" data-subs="{e('|'.join(SUBS[c.lang][1:] + SUBS[c.lang][:1]))}" lang="{I.META[c.lang]['html']}" dir="{I.META[c.lang]['dir']}">{e(SUBS[c.lang][1])}</p>
+<p class="sub" aria-hidden="true" data-subs="{e('|'.join(SUBS[c.lang][1:] + SUBS[c.lang][:1]))}" lang="{I.META[c.lang]['html']}" dir="{I.META[c.lang]['dir']}">{e(SUBS[c.lang][1])}</p>
 <div class="hud" aria-hidden="true"><div class="hud-r"><span class="side l">{c.ico('volume','')}</span>{c.ico('prev','')}<span class="pl">{c.ico('pause','')}</span>{c.ico('next','')}<span class="side r">{c.ico('cc','')}{c.ico('playlist','')}{c.ico('full','')}</span></div>
 <div class="hud-s"><span class="tc">{mmss(cur)}</span><div class="bar" style="--p:{p}%"><b></b></div><span>-{mmss(dur - cur)}</span></div></div></div></figure>'''
 
@@ -218,7 +221,7 @@ def mk_iphone(c, img='sintel2', p=41, dur=888, cls=''):
     return f'''<figure class="mk mk-iph {cls}" data-play data-dur="{dur}" data-p="{p}" role="img" aria-label="{e(c.t('mk_alt', film=FILMS[img], os='iPhone'))}"><div class="scr"><span class="isl"></span>
 <div class="fr">{pic(c, img, '')}</div>
 <div class="i-ov" aria-hidden="true"><div class="i-top">{c.ico('x','')}<span>{e(FILMS[img])}</span><span class="r">{c.ico('airplay','')}{c.ico('cc','')}{c.ico('more','')}</span></div>
-<p class="sub" style="bottom:30%" lang="{I.META[c.lang]['html']}" dir="{I.META[c.lang]['dir']}" data-subs="{e('|'.join(SUBS[c.lang][2:] + SUBS[c.lang][:2]))}">{e(SUBS[c.lang][2])}</p>
+<p class="sub" aria-hidden="true" style="bottom:30%" lang="{I.META[c.lang]['html']}" dir="{I.META[c.lang]['dir']}" data-subs="{e('|'.join(SUBS[c.lang][2:] + SUBS[c.lang][:2]))}">{e(SUBS[c.lang][2])}</p>
 <div class="i-bot"><div class="bar" style="--p:{p}%"><b></b></div><div class="i-tm"><span class="tc">{mmss(cur)}</span><span>-{mmss(dur - cur)}</span></div>
 <div class="i-ctl"><span class="side l">{c.ico('lockscreen','')}{c.ico('aspect','')}</span>{c.ico('prev','')}<span class="pl">{c.ico('pause','')}</span>{c.ico('next','')}<span class="side r">{c.ico('gauge','')}{c.ico('playlist','')}</span></div></div></div></div></figure>'''
 
@@ -246,6 +249,9 @@ def head(c, title, desc, slug, cur=''):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!--[if IE]><meta http-equiv="refresh" content="0;url={c.base}lite.html"><![endif]-->
+<script>(function(w,d){{var s,ok;try{{s=w.localStorage;if(/[?&]full=1/.test(w.location.search))s.setItem('vl-full','1');ok=s.getItem('vl-full')}}catch(e){{}}if(ok)return;var C=w.CSS,n=w.navigator.userAgent;if(!(d.querySelector&&w.addEventListener&&w.Promise&&C&&C.supports&&C.supports('--a','0')&&C.supports('display','grid')&&C.supports('position','sticky'))||/Trident[/]|MSIE |Opera Mini|UCBrowser[/][0-9][.]|PlayStation|Nintendo|KaiOS/.test(n))w.location.replace('{c.base}lite.html')}})(window,document)</script>
+<noscript><style>.rv{{opacity:1!important;transform:none!important}}</style></noscript>
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 <meta name="color-scheme" content="light dark">
@@ -285,7 +291,7 @@ def foot(c):
 <p>{e(c.t('ft_about'))}</p><div class="langs">{langs}<button type="button" data-open="lang">+77</button></div></div>
 {''.join(f'<div><h4>{e(c.t(h))}</h4><ul>{"".join(li(x) for x in items)}</ul></div>' for h, items in cols)}
 </div>
-<div class="ft-b"><p>{e(c.t('ft_tm'))} {e(c.t('ft_films'))}</p><p><a href="{c.page('sitemap')}">{e(c.t('site_index'))}</a> · <a href="{c.page('design-notes')}">{e(c.t('design_notes'))}</a> · {e(c.t('ft_light'))}</p></div>
+<div class="ft-b"><p>{e(c.t('ft_tm'))} {e(c.t('ft_films'))}</p><p><a href="{c.page('sitemap')}">{e(c.t('site_index'))}</a> · <a href="{c.page('design-notes')}">{e(c.t('design_notes'))}</a> · <a href="{c.base}lite.html">{e(c.t('ft_simple'))}</a> · {e(c.t('ft_light'))}</p></div>
 </div></footer>
 <script src="{c.base}l10n.js" defer></script>
 <script src="{c.root}site.js" defer></script>
@@ -394,7 +400,7 @@ def home(c):
 <div class="cta">
 <div class="cta-row">
 <a class="cta-main" id="cta" href="{w['url']}"{dlattrs(w)}><span class="cta-os"><svg class="ic" aria-hidden="true"><use id="cta-ico" href="{c.root}icons.svg#i-windows"/></svg></span><span class="cta-t"><b id="cta-b">{e(c.t('cta_download'))}</b><span id="cta-s">{e(hero_sub)}</span></span><span class="cta-dl">{c.ico('download')}</span></a>
-<details class="cta-alt"><summary>{e(c.t('cta_other'))}{c.ico('chev')}</summary><div class="cta-pop">{pop}</div></details>
+<button type="button" class="cta-alt" data-open="dl"><span class="cta-alt-i" aria-hidden="true">{c.ico('windows')}{c.ico('apple')}{c.ico('linux')}{c.ico('android')}</span><span>{e(c.t('cta_other'))}</span></button>
 </div>
 <div class="stores"><span>{e(c.t('cta_alsoon'))}</span><a class="store" href="{STORE['ms']}">{c.ico('msstore')}Microsoft Store</a><a class="store" href="{STORE['ios']}">{c.ico('applef')}App Store</a><a class="store" href="{STORE['play']}">{c.ico('gplay')}Google Play</a><a class="store" href="{STORE['flathub']}">{c.ico('package')}Flathub</a></div>
 <ul class="trust"><li>{c.ico('check')}{e(c.t('trust_free'))}</li><li>{c.ico('shield')}{e(c.t('trust_signed'))}</li><li>{c.ico('lock')}{e(c.t('trust_sha'))}</li></ul>
@@ -403,7 +409,7 @@ def home(c):
 </div></section>''')
     # ---------- platform strip
     plats = [('windows', 'windows', 'Windows'), ('apple', 'mac', 'macOS'), ('linux', 'linux', 'Linux'), ('android', 'android', 'Android'), ('phone', 'ios', 'iOS · iPadOS'), ('tv', 'ios', 'tvOS'), ('code', 'source', c.t('os_source'))]
-    h.append(f'<div class="plat"><div class="wrap"><b>{e(c.t("os_other").split()[0] if False else c.t("dl_choose"))}</b>' + ''.join(f'<a href="{c.page("download", "#download-" + k)}">{c.ico(i)}{e(n)}</a>' for i, k, n in plats) + '</div></div>')
+    h.append(f'<div class="plat"><div class="wrap"><b>{e(c.t("os_other").split()[0] if False else c.t("dl_choose"))}</b>' + ''.join(f'<a href="{c.page("download", "#download-" + k)}" data-open="dl" data-os="{k}">{c.ico(i)}{e(n)}</a>' for i, k, n in plats) + '</div></div>')
     # ---------- showcase
     tabs = [('win', 'windows', 'os_windows'), ('mac', 'apple', 'os_mac'), ('lin', 'linux', 'os_linux'), ('and', 'android', 'os_android'), ('ios', 'phone', 'os_ios'), ('tv', 'tv', 'os_tv')]
     shows = {
@@ -430,7 +436,7 @@ def home(c):
 <div class="bento">
 <article class="tile b1 glow rv">{c.ico('film')}<h3>{e(c.t('f1_h'))}</h3><p>{e(c.t('f1_p'))}</p><div class="fmts" aria-hidden="true">{marq(FMTS1)}{marq(FMTS2)}{marq(FMTS3)}</div></article>
 <article class="tile b2 glow rv d1">{c.ico('gauge')}<h3>{e(c.t('f2_h'))}</h3><p>{e(c.t('f2_p'))}</p><div class="meter" aria-hidden="true"><div>4K60<i><b style="--v:28%"></b></i>28%</div><div>8K30<i><b style="--v:41%"></b></i>41%</div><div>HDR10<i><b style="--v:19%"></b></i>19%</div></div></article>
-<article class="tile b3 glow rv">{c.ico('cc')}<h3>{e(c.t('f3_h'))}</h3><p>{e(c.t('f3_p'))}</p><div class="subdemo" aria-hidden="true"><img src="{c.root}media/sintel-640.jpg" alt="" loading="lazy" width="640" height="334"><span class="dly" data-delay>+250 ms</span><p class="sub" lang="{m['html']}" dir="{m['dir']}">{e(SUBS[c.lang][1])}</p></div></article>
+<article class="tile b3 glow rv">{c.ico('cc')}<h3>{e(c.t('f3_h'))}</h3><p>{e(c.t('f3_p'))}</p><div class="subdemo" aria-hidden="true"><img src="{c.root}media/sintel-640.jpg" alt="" loading="lazy" width="640" height="334"><span class="dly" data-delay>+250 ms</span><p class="sub" aria-hidden="true" lang="{m['html']}" dir="{m['dir']}">{e(SUBS[c.lang][1])}</p></div></article>
 <article class="tile b4 glow rv d1">{c.ico('stream')}<h3>{e(c.t('f4_h'))}</h3><p>{e(c.t('f4_p'))}</p><div class="lan" aria-hidden="true"><div>{c.ico('folder')}<b>NAS</b><span>SMB · NFS</span><i></i></div><div>{c.ico('tv')}<b>Chromecast</b><span>1080p · HDR</span><i></i></div><div>{c.ico('stream')}<b>SRT listener</b><span>:9000</span><i></i></div></div><div class="net" aria-hidden="true">{''.join(f'<span>{x}</span>' for x in 'HLS DASH RTSP SRT RIST UDP SMB NFS UPnP SFTP'.split())}</div></article>
 <article class="tile b5 glow rv">{c.ico('shield')}<h3>{e(c.t('f5_h'))}</h3><p>{e(c.t('f5_p'))}</p><div class="badge-0"><b>0</b><span>{e(c.t('stat_ads'))}</span></div></article>
 <article class="tile b6 glow rv d1">{c.ico('heart')}<h3>{e(c.t('f6_h'))}</h3><p>{e(c.t('f6_p'))}</p></article>
@@ -446,7 +452,7 @@ def home(c):
     cards = [('windows', 'windows', 'Windows', f'{c.t("dl_installer")} · MSI · ZIP', F['win64']), ('mac', 'apple', 'macOS', c.t('dl_universal_d'), F['macu']),
              ('linux', 'linux', 'Linux', 'apt · dnf · pacman · Flatpak · Snap', None), ('android', 'android', 'Android', 'Google Play · F-Droid · APK', None),
              ('ios', 'phone', c.t('dl_ios_h'), 'App Store', None), ('source', 'code', c.t('os_source'), 'tar.xz · git', F['src'])]
-    ch = ''.join(f'<a class="pc glow rv d{i % 3}" href="{c.page("download", "#download-" + k)}" data-pc="{k}"><span class="fic">{c.ico(ic)}</span><b>{e(n)}</b><small>{e(sub)}</small>' + (f'<span class="sz">{e(c.t("mb", n=f_["mb"]))}</span>' if f_ else '<span class="sz"></span>') + f'{c.ico("arrow", "ic flip go")}</a>' for i, (k, ic, n, sub, f_) in enumerate(cards))
+    ch = ''.join(f'<a class="pc glow rv d{i % 3}" href="{c.page("download", "#download-" + k)}" data-pc="{k}" data-open="dl" data-os="{k}"><span class="fic">{c.ico(ic)}</span><b>{e(n)}</b><small>{e(sub)}</small>' + (f'<span class="sz">{e(c.t("mb", n=f_["mb"]))}</span>' if f_ else '<span class="sz"></span>') + f'{c.ico("arrow", "ic flip go")}</a>' for i, (k, ic, n, sub, f_) in enumerate(cards))
     h.append(f'''<section class="band band-alt" id="download"><div class="wrap">
 <div class="sh"><div><p class="kick">{e(c.t('dl_k'))}</p><h2>{e(c.t('hp_dl_h'))}</h2></div><p>{e(c.t('dl_p'))}<br><span style="color:var(--tx-3);font-size:.9rem">VLC {V} · {e(c.t('dl_meta', code=CODE, date=I.date(c.lang, REL_DATE)))}</span></p></div>
 <div class="pcs">{ch}</div>
@@ -489,6 +495,7 @@ def home(c):
 <div class="partners" dir="ltr">{''.join(f'<span>{e(p)}</span>' for p in partners)}</div>
 <p style="margin-top:1rem"><a class="more" href="{c.page('videolan--partners')}">{e(c.t('partners'))}{c.ico('arrow', 'ic flip')}</a></p>
 </div></section>''')
+    h.append(f'<template id="dlt"><div class="ly dlm" id="dlm" aria-hidden="true"><div class="scrim" data-x></div><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlm-t"><header class="st-h"><span class="st-logo"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg></span><div><h2 id="dlm-t">{e(c.t("dlm_h"))}</h2><p>VLC {V} · {e(c.t("dlm_p"))}</p></div><button type="button" class="x" data-x aria-label="{e(c.t("close"))}">{c.ico("x")}</button></header><div class="dlm-b">{download_block(c, "dlm")}</div></div></div></template>')
     h.append(foot(c))
     return '\n'.join(h)
 
@@ -686,6 +693,47 @@ def write(path, txt):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(txt)
 
+HTACCESS = r"""# VideoLAN redesign — server rules (Apache / SiteGround)
+Options -Indexes
+AddDefaultCharset utf-8
+AddType image/svg+xml .svg
+AddType image/webp .webp
+DirectoryIndex index.html
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# ?full=1 opts out of the simple version for a year
+RewriteCond %{QUERY_STRING} (^|&)full=1
+RewriteRule ^ - [CO=vlfull:1:%{HTTP_HOST}:525600:/]
+# Old or limited browsers -> simple page, per language
+RewriteCond %{QUERY_STRING} !(^|&)full=1
+RewriteCond %{HTTP_COOKIE} !vlfull=1
+RewriteCond %{HTTP_USER_AGENT} (MSIE\ [1-9]\.|MSIE\ 10|Trident/|Opera\ Mini|Opera/[0-9]\.|UCBrowser/[0-9]\.|KaiOS|Nintendo|PlayStation\ (3|4|Vita|Portable)|BlackBerry|BB10|Windows\ Phone|Symbian|Series60|Android\ [1-4]\.|CPU\ (iPhone\ )?OS\ [1-9]_|Firefox/[1-4][0-9]\.|Chrome/[1-4][0-9]\.) [NC]
+RewriteCond %{REQUEST_URI} !lite\.html$
+RewriteCond %{REQUEST_URI} \.html$|/$
+RewriteRule ^(fr|zh|ar)/ /$1/lite.html [R=302,L]
+RewriteCond %{QUERY_STRING} !(^|&)full=1
+RewriteCond %{HTTP_COOKIE} !vlfull=1
+RewriteCond %{HTTP_USER_AGENT} (MSIE\ [1-9]\.|MSIE\ 10|Trident/|Opera\ Mini|Opera/[0-9]\.|UCBrowser/[0-9]\.|KaiOS|Nintendo|PlayStation\ (3|4|Vita|Portable)|BlackBerry|BB10|Windows\ Phone|Symbian|Series60|Android\ [1-4]\.|CPU\ (iPhone\ )?OS\ [1-9]_|Firefox/[1-4][0-9]\.|Chrome/[1-4][0-9]\.) [NC]
+RewriteCond %{REQUEST_URI} !lite\.html$
+RewriteCond %{REQUEST_URI} \.html$|/$
+RewriteRule ^ /lite.html [R=302,L]
+</IfModule>
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+<FilesMatch "\.(css|js|svg|webp|jpg|png)$">
+Header set Cache-Control "public, max-age=604800"
+</FilesMatch>
+<FilesMatch "\.html$">
+Header set Cache-Control "public, max-age=300"
+Header append Vary "User-Agent"
+</FilesMatch>
+</IfModule>
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>
+"""
+
 def main():
     if DIST.exists(): shutil.rmtree(DIST)
     DIST.mkdir()
@@ -712,6 +760,11 @@ def main():
         write(base / 'index.html', home(Ctx(lang, 0))); n += 1
         for slug, p in S.ALL.items():
             write(base / 'p' / f'{slug}.html', content_page(Ctx(lang, 1), p)); n += 1
+    import lite as LT
+    for lang in I.LANGS:
+        base = DIST if lang == 'en' else DIST / lang
+        write(base / 'lite.html', LT.page(lang, F, V, STORE, LINUX))
+    write(DIST / '.htaccess', HTACCESS)
     # redirects from previous option URLs
     for lang in I.LANGS:
         base = DIST if lang == 'en' else DIST / lang

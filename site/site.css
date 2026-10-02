@@ -1466,3 +1466,40 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;appeara
 .tsub{display:block;font-size:.78rem;color:var(--tx-3);font-weight:500}
 .tl2 span{min-width:0}
 .pw3.has-toc .pband .facts{grid-template-columns:1fr 1fr}
+/* ---------- download chooser modal */
+button.cta-alt{display:flex;align-items:center;justify-content:center;gap:.65rem;min-height:68px;padding:0 1.1rem;border-radius:var(--r3);border:1px solid var(--ln);background:var(--sf);font-weight:680;font-size:.92rem;color:var(--tx);transition:border-color .2s,box-shadow .25s,transform .25s var(--ease)}
+button.cta-alt:hover{border-color:var(--ln-2);box-shadow:var(--sh)}
+html.fx button.cta-alt:hover{transform:translateY(-2px)}
+.cta-alt-i{display:inline-grid;grid-template-columns:1fr 1fr;gap:2px;width:32px;height:32px;padding:4px;border-radius:10px;background:var(--sf-2)}
+.cta-alt-i .ic{width:11px;height:11px;color:var(--tx-2)}
+html.fx button.cta-alt:hover .cta-alt-i .ic{animation:aiB .5s var(--ease)}
+html.fx button.cta-alt:hover .cta-alt-i .ic:nth-child(2){animation-delay:.06s}html.fx button.cta-alt:hover .cta-alt-i .ic:nth-child(3){animation-delay:.12s}html.fx button.cta-alt:hover .cta-alt-i .ic:nth-child(4){animation-delay:.18s}
+.ly.dlm .dlg{position:absolute;inset:clamp(0px,3vh,32px) clamp(0px,3vw,48px);max-width:1200px;margin:0 auto;background:var(--bg);border:1px solid var(--ln);border-radius:var(--r4);box-shadow:var(--sh-2);display:flex;flex-direction:column;overflow:hidden}
+.dlm-b{flex:1;min-height:0;overflow-y:auto;padding:clamp(1rem,2.5vw,1.8rem);-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.dlm .rail{top:0}
+html.fx .ly.open .dlg{animation:pop .3s var(--ease) both}
+@media (max-width:700px){.ly.dlm .dlg{inset:0;border-radius:0;border:0}.dlm .st-h p{display:none}}
+/* ---------- audit: legibility floor (≥12px) and WCAG 2.2 target size (≥24px) */
+.brand small,.rail .det,.en-tag,.setb-c,.ncat,.facts dt,kbd,.toc h4,span.lang,small{font-size:max(.75rem,1em*.66)}
+.brand small{font-size:.72rem}
+.rail .det,.en-tag,.ncat,.facts dt{font-size:.75rem}
+.setb-c,kbd{font-size:.75rem}
+.toc h4{font-size:.78rem}
+pre code,pre{font-size:max(.78rem,1em)}
+@media (max-width:700px){pre,pre code{font-size:.8rem}}
+.crumbs a,.kick a,a.kick{display:inline-flex;align-items:center;min-height:24px;padding-block:2px}
+.crumbs{align-items:center}
+.brand small{font-size:.75rem}
+.sbadge small{font-size:.75rem;opacity:.85}
+.bind .lang{font-size:.75rem}
+.pdir h4{font-size:.75rem}
+:lang(ar) .pdir h4,:lang(zh) .pdir h4{font-size:.8rem}
+.w-tb .t{font-size:max(.75rem,1em)}
+.pg small,.prose small{font-size:.8rem}
+.cta{max-width:38rem}
+.cta-row{flex-wrap:wrap}
+.cta-row .cta-main{flex:3 1 19rem}
+button.cta-alt{flex:1 0 auto}
+/* large & ultra-wide screens: scale the whole rem system */
+@media (min-width:1800px){html{font-size:17.5px}}
+@media (min-width:2300px){html{font-size:19.5px}:root{--w:1320px}}
