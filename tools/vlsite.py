@@ -18,8 +18,7 @@ SECTIONS = OrderedDict([
     ('releases',   dict(label='Release notes', blurb='Every VLC release since 1.1, with highlights and changelogs.', match=['Releases'])),
     ('news',       dict(label='News', blurb='Announcements from VideoLAN since 1999.', match=['News'])),
     ('security',   dict(label='Security', blurb='Advisories and bulletins, and how to report a vulnerability.', match=['Security'])),
-    ('projects',   dict(label='Projects', blurb='DVBlast, x264, dav1d, multicat, VLMC, VLMa and the libraries behind VLC.', match=['Projects', 'VLMa'])),
-    ('developers', dict(label='Developers', blurb='Developer documentation, libraries, mailing lists and translation.', match=['Developers', 'Translation'])),
+    ('projects',   dict(label='Projects & developers', blurb='Every VideoLAN project and library, with developer documentation, mailing lists and translation.', match=['Projects', 'VLMa', 'Developers', 'Translation'])),
     ('support',    dict(label='Support', blurb='FAQ, documentation, forums, IRC and mailing lists.', match=['Support'])),
     ('contribute', dict(label='Contribute', blurb='Give time, hardware or money. VLC is made by people like you.', match=['Contribute'])),
     ('events',     dict(label='Events', blurb='VideoLAN Dev Days, FOSDEM and 25 years of photos and stories.', match=['Events'])),
@@ -43,7 +42,7 @@ def ordered(sec):
     elif sec == 'security': items.sort(key=lambda p: (p['slug'] != 'security', p['slug']), reverse=False); items = [x for x in items if x['slug'] == 'security'] + sorted([x for x in items if x['slug'] != 'security'], key=lambda p: p['slug'], reverse=True)
     elif sec == 'events': items = [x for x in items if x['slug'] == 'videolan--events'] + sorted([x for x in items if x['slug'] != 'videolan--events'], key=lambda p: p['slug'], reverse=True)
     else:
-        hub = {'download': 'vlc', 'vlc': 'vlc--features', 'projects': 'projects', 'developers': 'developers', 'support': 'support', 'contribute': 'contribute', 'press': 'press', 'videolan': 'videolan'}.get(sec)
+        hub = {'download': 'vlc', 'vlc': 'vlc--features', 'projects': 'projects', 'support': 'support', 'contribute': 'contribute', 'press': 'press', 'videolan': 'videolan'}.get(sec)
         items.sort(key=lambda p: (p['slug'] != hub, p['slug']))
     return items
 

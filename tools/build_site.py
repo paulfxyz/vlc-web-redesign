@@ -571,8 +571,14 @@ def content_page(c, p):
     if not wide and p.get('desc') and len(p['desc']) < 240: lede = f'<p class="lede"{lang_attr}>{e(p["desc"])}</p>'
     icon = CU.CUR_ICON.get(slug) or SEC_ICON.get(k, 'book')
     # sidebar: siblings in section
-    side = ''
-    if not wide and k in S.SECTIONS:
+    side = ''; bandhtml = ''
+    projmode = (not wide or slug == 'projects') and CU.in_dir(slug, p) and slug != 'section--projects'
+    if projmode:
+        k = 'projects'; seclabel = sec(c.lang, 'projects', 0)
+        side = CU.directory(c, slug)
+        if slug == 'projects': side = ''
+        bandhtml = CU.band(c, slug) if slug != 'projects' else ''
+    elif not wide and k in S.SECTIONS:
         sib = S.ordered(k); idx = next((i for i, q in enumerate(sib) if q['slug'] == slug), 0)
         lo = max(0, idx - 10); win = sib[lo:lo + 22]
         side = (f'<aside class="side"><details open><summary>{c.ico(SEC_ICON.get(k, "book"))}<span>{e(CU.P(c, CU.U["in_section"]))}</span><small>{len(sib)}</small></summary><ul{lang_attr}>' +
@@ -583,17 +589,21 @@ def content_page(c, p):
         tochtml = f'<aside class="toc" aria-label="{e(c.t("on_page"))}"><p class="kick">{e(c.t("on_page"))}</p><ul{lang_attr}>' + ''.join(f'<li><a href="#{i}">{e(x)}</a></li>' for i, x in toc[:18]) + '</ul></aside>'
     prev, nxt = S.seq(slug)
     pn = ''
-    if (prev or nxt) and not wide:
+    if (prev or nxt) and not wide and not projmode:
         pn = f'<nav class="pn" aria-label="{e(seclabel)}">' + (f'<a href="{prev}.html"><small>{c.ico("arrow", "ic back")}{e(c.t("previous"))}</small><b lang="en">{e(page_display(c, S.ALL[prev]))}</b></a>' if prev else '<span></span>') + (f'<a class="r" href="{nxt}.html"><small>{e(c.t("next"))}{c.ico("arrow", "ic flip")}</small><b lang="en">{e(page_display(c, S.ALL[nxt]))}</b></a>' if nxt else '<span></span>') + '</nav>'
+    crumb_extra = ''
+    own = CU.owner(slug) if projmode else None
+    if own and own != slug and own in S.ALL: crumb_extra = f'<span aria-hidden="true">/</span><a href="{own}.html" dir="ltr">{e(page_display(c, S.ALL[own]))}</a>'
+    if projmode and not tochtml == '' and slug != 'projects': pass
     lay = 'pw3 wide' if wide else 'pw3' + (' has-side' if side else '') + (' has-toc' if tochtml else '')
     out.append(f'''<div class="rprog" aria-hidden="true"><i></i></div>
 <section class="ph"><div class="wrap ph-g"><div>
-<nav class="crumbs" aria-label="Breadcrumb"><a href="{c.page('home')}">{e(c.t('home'))}</a><span aria-hidden="true">/</span><a href="section--{k}.html">{e(seclabel)}</a></nav>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="{c.page('home')}">{e(c.t('home'))}</a><span aria-hidden="true">/</span><a href="{'projects' if k == 'projects' else 'section--' + k}.html">{e(seclabel)}</a>{crumb_extra}</nav>
 <h1{h1_lang}>{e(title)}</h1>{lede}
 <div class="ph-meta">{''.join(chips)}</div></div>
 <span class="ph-ic" aria-hidden="true">{c.ico(icon)}</span>
 </div></section>
-<div class="wrap pgw">{note}<div class="{lay}">{side}<article class="prose{' pz' if wide else ''}"{lang_attr}>{body}</article>{tochtml}</div>{pn}</div>''')
+<div class="wrap pgw">{bandhtml}{note}<div class="{lay}">{side}<article class="prose{' pz' if wide else ''}"{lang_attr}>{body}</article>{tochtml}</div>{pn}</div>''')
     out.append(foot(c))
     return '\n'.join(out)
 
@@ -703,6 +713,9 @@ def main():
         for slug, p in S.ALL.items():
             write(base / 'p' / f'{slug}.html', content_page(Ctx(lang, 1), p)); n += 1
     # redirects from previous option URLs
+    for lang in I.LANGS:
+        base = DIST if lang == 'en' else DIST / lang
+        write(base / 'p' / 'section--developers.html', '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=projects.html"><link rel="canonical" href="projects.html"><title>VideoLAN</title><a href="projects.html">VideoLAN</a>')
     for o in ('a', 'b', 'c'):
         write(DIST / o / 'index.html', '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../index.html"><link rel="canonical" href="../index.html"><title>VideoLAN</title><a href="../index.html">VideoLAN</a>')
     print('pages', n)

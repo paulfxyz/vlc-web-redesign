@@ -8,6 +8,8 @@ import i18n as I
 e = H.escape
 LI = {'en': 0, 'fr': 1, 'zh': 2, 'ar': 3}
 
+FACTW = {'All': ('All platforms', 'Toutes plateformes', '全平台', 'كل المنصّات'), 'Desktop': ('Desktop', 'Ordinateur', '桌面端', 'سطح المكتب'), 'Desktop · Mobile · TV': ('Desktop · Mobile · TV', 'Ordinateur · Mobile · TV', '桌面 · 移动 · 电视', 'سطح المكتب · الجوّال · التلفاز')}
+def FW(c, v): return P(c, FACTW[v]) if v in FACTW else v
 def P(c, x):
     """pick translation from a 4-tuple"""
     return x[LI[c.lang]] if isinstance(x, tuple) else x
@@ -183,17 +185,20 @@ PJ_H = ('Two decades of open multimedia, all under one roof.', 'Vingt ans de mul
 
 def projects(c, p):
     h = [f'<p class="x-lede">{e(P(c, PJ_H))}</p>', hero_kpis([(str(len(PJ)), P(c, ('projects', 'projets', '个项目', 'مشروعًا'))), ('25+', P(c, ('years', 'ans', '年', 'عامًا'))), ('GPL · LGPL · BSD · MIT', P(c, ('open licences', 'licences libres', '开源许可', 'رخص مفتوحة')))])]
-    h.append('<nav class="jump">' + ''.join(f'<a href="#g-{g}">{e(P(c, t))}</a>' for g, t, _ in PJ_GROUPS) + '</nav>')
+    h.append(f'<div class="ntools" data-pfilter><span class="sbox">{c.ico("search")}<input class="srch" type="search" autocomplete="off" placeholder="{e(P(c, DU["find"]))}" aria-label="{e(P(c, DU["find"]))}"></span></div>')
+    h.append('<nav class="jump">' + ''.join(f'<a href="#g-{g}">{e(P(c, t))}</a>' for g, t, _ in PJ_GROUPS) + f'<a href="#g-res">{e(P(c, DU["res"]))}</a><a href="#g-arch">{e(P(c, DU["arch"]))}</a></nav>')
     for g, gt, gd in PJ_GROUPS:
         items = [x for x in PJ if x[3] == g]
         h.append(f'<section class="pgrp" id="g-{g}"><h2>{e(P(c, gt))}</h2><p class="gd">{e(P(c, gd))}</p><div class="pgrid">')
         for i, (slug, name, il, _, tag, facts, code) in enumerate(items):
             big = ' big' if i < 2 else ''
-            fl = [(P(c, U['language']), facts[0]), (P(c, U['license']), facts[1]), (P(c, U['platforms']), facts[2]), (P(c, U['since']), facts[3])]
+            fl = [(P(c, U['language']), facts[0]), (P(c, U['license']), facts[1]), (P(c, U['platforms']), FW(c, facts[2])), (P(c, U['since']), facts[3])]
             links = (f'<a class="btn btn-or btn-sm" href="{slug}.html">{e(P(c, U["learn"]))}{c.ico("arrow", "ic flip")}</a>' if slug in S.ALL else '') + (f'<a class="btn btn-gh btn-sm" href="{code}">{c.ico("git")}{e(P(c, U["code"]))}</a>' if code else '')
-            h.append(f'<article class="pcard glow rv d{i % 3}{big}"><div class="pill">{illo(il)}</div><div class="pbody"><h3 dir="ltr">{e(name)}</h3><p>{e(P(c, tag))}</p>'
+            h.append(f'<article class="pcard glow rv d{i % 3}{big}" data-q="{e((name + " " + P(c, tag) + " " + " ".join(facts)).lower())}"><div class="pill">{illo(il)}</div><div class="pbody"><h3 dir="ltr">{e(name)}</h3><p>{e(P(c, tag))}</p>'
                      f'<dl class="facts">{"".join(f"<div><dt>{e(a)}</dt><dd dir=ltr>{e(b)}</dd></div>" for a, b in fl)}</dl><div class="plinks">{links}</div></div></article>')
         h.append('</div></section>')
+    h.append(projects_extra(c))
+    h.append(f'<p class="wall-empty" hidden>{e(P(c, U["no_match"]))}</p>')
     h.append(ref_block(c, p))
     return '\n'.join(h)
 
@@ -418,7 +423,7 @@ def libvlc(c, p):
          f'<dl class="facts big"><div><dt>{e(P(c, U["language"]))}</dt><dd dir="ltr">C</dd></div><div><dt>{e(P(c, U["license"]))}</dt><dd dir="ltr">LGPL 2.1</dd></div><div><dt>{e(V_("facts_v"))}</dt><dd>{e(V_("facts_vv"))}</dd></div><div><dt>{e(P(c, U["platforms"]))}</dt><dd dir="ltr">Windows · macOS · Linux · Android · iOS · tvOS</dd></div></dl></div>']
     h.append(f'<h2>{e(V_("why"))}</h2><ul class="checks">' + ''.join(f'<li class="rv d{i % 3}">{c.ico("check")}<span>{e(P(c, x))}</span></li>' for i, x in enumerate(LV['w'])) + '</ul>')
     def bgrid(items, official):
-        return '<div class="binds">' + ''.join(f'<a class="bind glow rv d{i % 3}{" off" if official else ""}" href="{u}" dir="ltr"><span class="lang">{e(lang.split(" · ")[0])}</span><b>{e(n)}</b><small>{e(lang)} · {e(pl)}</small>{c.ico("ext")}</a>' for i, (n, lang, u, pl) in enumerate(items)) + '</div>'
+        return '<div class="binds">' + ''.join(f'<a class="bind glow rv d{i % 3}{" off" if official else ""}" href="{u}" dir="ltr"><span class="lang">{e(lang.split(" · ")[0])}</span><b>{e(n)}</b><small>{e(lang)} · {e(FW(c, pl))}</small>{c.ico("ext")}</a>' for i, (n, lang, u, pl) in enumerate(items)) + '</div>'
     h.append(f'<h2>{e(V_("by_vl"))}</h2>{bgrid(BIND_VL, True)}<h2>{e(V_("by_com"))}</h2>{bgrid(BIND_COM, False)}')
     h.append(f'<h2>{e(V_("samples"))}</h2><p>{e(V_("samples_p"))}</p><div class="samples" dir="ltr">' + ''.join(f'<a href="{u}">{c.ico("git")}{e(n)}</a>' for n, u in SAMPLES) + '</div>')
     h.append(f'<h2>{e(V_("gallery"))}</h2><div class="gal">' + ''.join(f'<figure class="rv d{i % 3}"><img src="https://images.videolan.org/images/{f}" alt="{e(P(c, cap))}" loading="lazy"><figcaption>{e(P(c, cap))}</figcaption></figure>' for i, (f, cap) in enumerate(GAL)) + '</div>')
@@ -475,7 +480,7 @@ SEC_ICON = dict(download='download', vlc='cone', releases='zap', news='news', se
 FEATURED = {
  'vlc': ['vlc--features', 'vlc--screenshots', 'vlc--skins', 'vlc--libvlc'], 'download': ['download', 'vlc--download-windows', 'vlc--download-macosx', 'vlc--download-android'],
  'releases': ['vlc--releases--3.0.24', 'vlc--releases--3.0.23', 'vlc--releases--3.0.0'], 'security': ['security', 'security--sb-vlc3024', 'security--sb-vlc3022'],
- 'projects': ['projects', 'projects--dav1d', 'developers--x264', 'projects--dvblast'], 'developers': ['developers', 'vlc--libvlc', 'developers--i18n', 'developers--lists'],
+ 'projects': ['projects', 'developers', 'vlc--libvlc', 'projects--dav1d', 'developers--x264', 'projects--dvblast', 'developers--i18n', 'developers--lists'],
  'support': ['support', 'support--faq', 'support--lists'], 'contribute': ['contribute', 'developers--i18n'], 'events': ['videolan--events', 'videolan--events--vdd25', 'videolan--events--vdd24'],
  'press': ['press', 'press--videolan-20'], 'videolan': ['videolan', 'videolan--team', 'videolan--partners', 'legal'],
 }
@@ -503,8 +508,99 @@ def section_hub(c, k):
 
 CURATED = {'vlc--features': features, 'projects': projects, 'videolan--team': team, 'videolan': about, 'contribute': contribute, 'support': support, 'vlc--libvlc': libvlc}
 CUR_TITLE = {
- 'vlc--features': FEAT_H[0], 'projects': ('Projects', 'Projets', '项目', 'المشاريع'), 'videolan--team': ('The VideoLAN team', 'L’équipe VideoLAN', 'VideoLAN 团队', 'فريق VideoLAN'),
+ 'vlc--features': FEAT_H[0], 'projects': ('Projects & developers', 'Projets et développeurs', '项目与开发者', 'المشاريع والمطوّرون'), 'videolan--team': ('The VideoLAN team', 'L’équipe VideoLAN', 'VideoLAN 团队', 'فريق VideoLAN'),
  'videolan': ('About VideoLAN', 'À propos de VideoLAN', '关于 VideoLAN', 'عن VideoLAN'), 'contribute': ('Get involved', 'Participer', '参与贡献', 'شارك معنا'),
  'support': ('Help & support', 'Aide et assistance', '帮助与支持', 'المساعدة والدعم'), 'vlc--libvlc': ('libVLC', 'libVLC', 'libVLC', 'libVLC'),
 }
 CUR_ICON = {'vlc--features': 'sparkle', 'projects': 'box', 'videolan--team': 'users', 'videolan': 'home', 'contribute': 'heart', 'support': 'chat', 'vlc--libvlc': 'code'}
+
+# ================================================================= PROJECTS & DEVELOPERS: one directory
+DU = {
+ 'dir': ('Projects & developers', 'Projets et développeurs', '项目与开发者', 'المشاريع والمطوّرون'),
+ 'find': ('Find a project or a guide…', 'Trouver un projet ou un guide…', '查找项目或指南…', 'ابحث عن مشروع أو دليل…'),
+ 'overview': ('Overview', 'Présentation', '概览', 'نظرة عامة'),
+ 'res': ('Developer resources', 'Ressources développeurs', '开发者资源', 'موارد المطوّرين'),
+ 'res_p': ('Documentation, mailing lists, translation and how to build from source.', 'Documentation, listes de diffusion, traduction et compilation depuis les sources.', '文档、邮件列表、翻译以及如何从源码编译。', 'التوثيق والقوائم البريدية والترجمة وكيفية البناء من المصدر.'),
+ 'arch': ('More libraries and archives', 'Autres bibliothèques et archives', '更多库与归档项目', 'مكتبات ومشاريع مؤرشفة أخرى'),
+ 'arch_p': ('Related encoders, and older projects kept for reference.', 'Encodeurs apparentés et anciens projets conservés pour référence.', '相关编码器，以及保留备查的旧项目。', 'مرمّزات ذات صلة، ومشاريع قديمة محفوظة للرجوع إليها.'),
+ 'pages': ('{n} pages', '{n} pages', '{n} 个页面', '{n} صفحات'),
+ 'all_proj': ('All projects', 'Tous les projets', '全部项目', 'كل المشاريع'),
+ 'archived': ('Archived', 'Archivé', '已归档', 'مؤرشف'),
+}
+RES = [('developers', 'code', ('Developer zone', 'Espace développeurs', '开发者专区', 'منطقة المطوّرين')),
+       ('vlc--download-sources', 'terminal', ('Build VLC from source', 'Compiler VLC depuis les sources', '从源码编译 VLC', 'ابنِ VLC من المصدر')),
+       ('developers--i18n', 'globe', ('Translate VideoLAN', 'Traduire VideoLAN', '翻译 VideoLAN', 'ترجم VideoLAN')),
+       ('developers--lists', 'mail', ('Mailing lists', 'Listes de diffusion', '邮件列表', 'القوائم البريدية')),
+       ('developers--vlc', 'cone', ('VLC for developers', 'VLC pour les développeurs', '面向开发者的 VLC', 'VLC للمطوّرين')),
+       ('developers--unity', 'box', ('VLC for Unity', 'VLC pour Unity', 'VLC for Unity', 'VLC لـ Unity'))]
+ARCH = [('developers--x262', 'x262', ('MPEG-2 encoder based on x264', 'Encodeur MPEG-2 basé sur x264', '基于 x264 的 MPEG-2 编码器', 'مرمّز MPEG-2 مبني على x264')),
+        ('developers--x265', 'x265', ('HEVC encoder (MulticoreWare)', 'Encodeur HEVC (MulticoreWare)', 'HEVC 编码器（MulticoreWare）', 'مرمّز HEVC من MulticoreWare')),
+        ('developers--libdvdplay', 'libdvdplay', ('Early DVD navigation library', 'Ancienne bibliothèque de navigation DVD', '早期 DVD 导航库', 'مكتبة قديمة للتنقّل في DVD')),
+        ('developers--vls', 'VideoLAN Server', ('Superseded by VLC streaming', 'Remplacé par la diffusion de VLC', '已由 VLC 串流功能取代', 'حلّ محلّه البث في VLC'))]
+PJMAP = {x[0]: x for x in PJ}
+EXTRA_KIDS = {'developers--libaacs': ['developers--libbdplus'], 'developers--i18n': ['developers--i18n--transifex-howto', 'developers--i18n--vlc-howto', 'developers--i18n--vlcstat']}
+ALL_DIR = [x[0] for x in PJ] + [x[0] for x in RES] + [x[0] for x in ARCH]
+
+def kids(slug):
+    if slug == 'vlc': return []
+    k = [s for s in S.ALL if s.startswith(slug + '--')]
+    return sorted(k, key=lambda s: (s.count('--'), s)) + [s for s in EXTRA_KIDS.get(slug, []) if s in S.ALL]
+def owner(slug):
+    """the directory entry a page belongs to (itself, or its parent project)"""
+    if slug in ALL_DIR: return slug
+    for o, ks in EXTRA_KIDS.items():
+        if slug in ks: return o
+    best = ''
+    for o in ALL_DIR:
+        if o != 'vlc' and slug.startswith(o + '--') and len(o) > len(best): best = o
+    return best or None
+def in_dir(slug, p):
+    return owner(slug) is not None or (S.sec_key(p) == 'projects' and not p.get('virtual'))
+def kid_label(parent_name, d):
+    d = H.unescape(d)
+    for pre in (parent_name + ' ', 'VLMa ', 'VideoLAN '):
+        if d.startswith(pre) and len(d) > len(pre) + 2: return d[len(pre):]
+    return d
+
+def directory(c, slug):
+    own = owner(slug)
+    def li(s, name, sub=''):
+        cur = ' aria-current="page"' if s == slug else (' class="own"' if s == own else '')
+        ch = ''
+        if s == own and kids(s):
+            ch = '<ul class="kids">' + ''.join(f'<li><a href="{k}.html"' + (' aria-current="page"' if k == slug else '') + f' lang="en">{e(kid_label(name, S.ALL[k]["display"]))}</a></li>' for k in kids(s)) + '</ul>'
+        return f'<li data-q="{e((name + " " + sub).lower())}"><a href="{s}.html"{cur}><span dir="ltr">{e(name)}</span>{f"<small>{e(sub)}</small>" if sub else ""}</a>{ch}</li>'
+    groups = []
+    for g, gt, _ in PJ_GROUPS:
+        groups.append((P(c, gt), ''.join(li(x[0], x[1]) for x in PJ if x[3] == g)))
+    groups.append((P(c, DU['res']), ''.join(li(s, P(c, t)) for s, _, t in RES if s in S.ALL)))
+    groups.append((P(c, DU['arch']), ''.join(li(s, n) for s, n, _ in ARCH if s in S.ALL)))
+    body = ''.join(f'<section class="pg"><h4>{e(t)}</h4><ul>{u}</ul></section>' for t, u in groups)
+    return (f'<aside class="side pdir" data-pdir><details open><summary>{c.ico("box")}<span>{e(P(c, DU["dir"]))}</span><small>{len(ALL_DIR)}</small></summary>'
+            f'<div class="pdir-s">{c.ico("search")}<input type="search" autocomplete="off" placeholder="{e(P(c, DU["find"]))}" aria-label="{e(P(c, DU["find"]))}"></div>'
+            f'<nav aria-label="{e(P(c, DU["dir"]))}">{body}</nav><p class="pdir-none" hidden>{e(P(c, U["no_match"]))}</p>'
+            f'<a class="all" href="projects.html">{e(P(c, DU["all_proj"]))}{c.ico("arrow", "ic flip")}</a></details></aside>')
+
+def band(c, slug):
+    """project identity band shown on a project page and all of its sub-pages"""
+    own = owner(slug)
+    if not own or own not in PJMAP: return ''
+    _, name, il, _, tag, facts, code = PJMAP[own]
+    ks = kids(own)
+    tabs = ''
+    if ks:
+        tabs = '<nav class="ptabs" aria-label="' + e(name) + '">' + f'<a href="{own}.html"' + (' aria-current="page"' if slug == own else '') + f'>{e(P(c, DU["overview"]))}</a>' + ''.join(f'<a href="{k}.html"' + (' aria-current="page"' if k == slug else '') + f' lang="en">{e(kid_label(name, S.ALL[k]["display"]))}</a>' for k in ks) + '</nav>'
+    fl = [(P(c, U['language']), facts[0]), (P(c, U['license']), facts[1]), (P(c, U['platforms']), FW(c, facts[2])), (P(c, U['since']), facts[3])]
+    links = (f'<a class="btn btn-gh btn-sm" href="{code}">{c.ico("git")}{e(P(c, U["code"]))}</a>' if code else '')
+    grp = P(c, dict((g, t) for g, t, _ in PJ_GROUPS)[PJMAP[own][3]])
+    return (f'<section class="pband"><div class="pb-il">{illo(il)}</div><div class="pb-t"><p class="kick">{e(grp)}</p><h2 dir="ltr">{e(name)}</h2><p>{e(P(c, tag))}</p>'
+            f'<dl class="facts">{"".join(f"<div><dt>{e(a)}</dt><dd dir=ltr>{e(b)}</dd></div>" for a, b in fl)}</dl><div class="plinks">{links}</div></div></section>{tabs}')
+
+def projects_extra(c):
+    """resources + archives on the merged landing page"""
+    h = [f'<section class="pgrp" id="g-res"><h2>{e(P(c, DU["res"]))}</h2><p class="gd">{e(P(c, DU["res_p"]))}</p><div class="tiles">']
+    h += [f'<a class="tl2 glow pcf" data-q="{e(P(c, t).lower())}" href="{s}.html">{c.ico(ic)}<b>{e(P(c, t))}</b>{c.ico("arrow", "ic flip go")}</a>' for s, ic, t in RES if s in S.ALL]
+    h.append(f'</div></section><section class="pgrp" id="g-arch"><h2>{e(P(c, DU["arch"]))}</h2><p class="gd">{e(P(c, DU["arch_p"]))}</p><div class="tiles">')
+    h += [f'<a class="tl2 glow pcf" data-q="{e((n + " " + P(c, d)).lower())}" href="{s}.html">{c.ico("disc")}<span><b dir="ltr">{e(n)}</b><small class="tsub">{e(P(c, d))}</small></span>{c.ico("arrow", "ic flip go")}</a>' for s, n, d in ARCH if s in S.ALL]
+    h.append('</div></section>')
+    return ''.join(h)
