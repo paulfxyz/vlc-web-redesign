@@ -768,3 +768,8 @@ html.fx .news .card:first-child:hover::after{opacity:.3;transform:rotate(-6deg) 
 .dn-legal2{display:none;font-size:.78rem;color:var(--tx-3);text-align:center;margin:0}
 
 :lang(ar) body *{letter-spacing:0!important}
+
+.rib-x{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;margin-inline-end:-.4rem;border-radius:50%;opacity:.8!important;padding:0!important}
+.rib-x:hover{opacity:1!important;background:rgba(255,255,255,.12)}
+.rib-x .ic{width:16px;height:16px}
+html.rib-off .rib{display:none}

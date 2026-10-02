@@ -229,12 +229,12 @@ def head(c, title, desc, slug, cur=''):
 <meta name="theme-color" content="#ff8800">
 <link rel="icon" href="{c.root}favicon.svg" type="image/svg+xml">
 {alts}
-<script>(function(d,w){{var h=d.documentElement,s;try{{s=w.localStorage}}catch(e){{}}function g(k){{try{{return s&&s.getItem('vl-'+k)}}catch(e){{return null}}}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){{var v=g(k);if(v)h.setAttribute('data-'+k,v)}});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';h.className+=' js'}})(document,window);</script>
+<script>(function(d,w){{var h=d.documentElement,s;try{{s=w.localStorage}}catch(e){{}}function g(k){{try{{return s&&s.getItem('vl-'+k)}}catch(e){{return null}}}}var t=g('theme')||'auto',dk=t==='dark'||(t==='auto'&&w.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);h.setAttribute('data-theme',dk?'dark':'light');['contrast','size','motion','links','spacing'].forEach(function(k){{var v=g(k);if(v)h.setAttribute('data-'+k,v)}});var rm=w.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&g('motion')!=='off'&&w.CSS&&CSS.supports&&CSS.supports('inset','0')&&'IntersectionObserver' in w)h.className+=' fx';if(g('rib')==='off')h.className+=' rib-off';h.className+=' js'}})(document,window);</script>
 <link rel="stylesheet" href="{c.root}site.css">
 </head>
 <body>
 <a class="skip" href="#main">{e(c.t('skip'))}</a>
-<div class="rib" id="rib"><div class="wrap"><p><span class="l">{e(c.t('proposal_bar'))}</span><span class="s">{e(c.t('proposal_short'))} ·</span> <a href="{c.page('design-notes')}">{e(c.t('read_notes'))}</a></p></div></div>
+<div class="rib" id="rib"><div class="wrap"><p><span class="l">{e(c.t('proposal_bar'))}</span><span class="s">{e(c.t('proposal_short'))} ·</span> <a href="{c.page('design-notes')}">{e(c.t('read_notes'))}</a></p><button type="button" class="rib-x" data-rib-close aria-label="{e(c.t('hide'))}" title="{e(c.t('hide'))}">{c.ico('x')}</button></div></div>
 <header class="hd"><div class="wrap">
 <a class="brand" href="{c.page('home')}" aria-label="VideoLAN — {e(c.t('home'))}"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
 <nav class="nav" aria-label="{e(c.t('menu'))}">{''.join(f'<a href="{nav_href(c, k)}"' + (' aria-current="page"' if k == cur else '') + f'>{e(c.t(l))}</a>' for k, l in NAV)}</nav>

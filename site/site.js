@@ -300,6 +300,7 @@
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     var t = e.target, c;
     if ((c = closest(t, '[data-copy]'))) { e.preventDefault(); copy(c.getAttribute('data-copy'), c); return; }
+    if ((c = closest(t, '[data-rib-close]'))) { e.preventDefault(); store('rib', 'off'); html.className += ' rib-off'; var mn = $('#main'); if (mn) mn.focus(); return; }
     if ((c = closest(t, '[data-donate]'))) { e.preventDefault(); donate(); return; }
     if ((c = closest(t, '[data-open]'))) {
       e.preventDefault(); var o = c.getAttribute('data-open');
