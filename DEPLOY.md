@@ -11,4 +11,7 @@ VLC_FTP_PASS='…' python3 tools/deploy_ftp.py --full  # force re-upload of ever
 - FTP host `ftp.paulfleury.com`, user `vlc2@paulfleury.com`, port 21 (password kept out of the repo).
 - Uploads only changed files (MD5 manifest in `.ftp-manifest.json`, git-ignored) and removes files deleted locally.
 - The host (SiteGround) shows a bot challenge to some automated clients; real browsers pass.
+- Old-browser redirect to `lite.html` is done in-page (feature test + UA list in `<head>`, plus an IE conditional comment). The `.htaccess` rules are uploaded but SiteGround serves static files from nginx, so they are not applied (verified 2026-10-02).
+- SiteGround's firewall answers Opera Mini with 403 and drops very old Chrome UAs (e.g. Chrome 49/XP) before the page loads; fix in SiteGround Site Tools > Security if those visitors matter.
+- Static assets are cached for a year by the host, so the build appends `?v=<hash>` to site.css/site.js/l10n.js/icons.svg/search.js.
 - vlc-web-redesign.pplx.app is a legacy preview and is no longer updated.
