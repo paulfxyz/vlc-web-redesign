@@ -748,8 +748,9 @@ Header always set Referrer-Policy "strict-origin-when-cross-origin"
 <FilesMatch "\.(css|js|svg|webp|jpg|png)$">
 Header set Cache-Control "public, max-age=604800"
 </FilesMatch>
-<FilesMatch "\.html$">
-Header set Cache-Control "public, max-age=300"
+<FilesMatch "\.(html|json)$">
+Header set Cache-Control "no-cache, must-revalidate"
+Header set X-Accel-Expires "0"
 Header append Vary "User-Agent"
 </FilesMatch>
 </IfModule>
@@ -798,9 +799,9 @@ def main():
         write(DIST / o / 'index.html', '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../index.html"><link rel="canonical" href="../index.html"><title>VideoLAN</title><a href="../index.html">VideoLAN</a>')
     # one-file download of the whole static site
     import zipfile
-    with zipfile.ZipFile(DIST / 'dump.zip', 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+    with zipfile.ZipFile(DIST / 'vlc-web-redesign.zip', 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         for f in sorted(DIST.rglob('*')):
-            if f.is_file() and f.name not in ('dump.zip', '.htaccess'): z.write(f, 'vlc-web-redesign/' + str(f.relative_to(DIST)))
+            if f.is_file() and f.name not in ('vlc-web-redesign.zip', 'dump.zip', '.htaccess'): z.write(f, 'vlc-web-redesign/' + str(f.relative_to(DIST)))
     print('pages', n)
 
 if __name__ == '__main__':

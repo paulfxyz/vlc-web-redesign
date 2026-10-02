@@ -40,4 +40,4 @@ First public release, live at [vlc.paulfleury.com](https://vlc.paulfleury.com).
 ### Infrastructure
 - Python generator, content-hash asset versioning, self-refresh via `version.json` when a host serves a stale page.
 - Absolute `hreflang` with `x-default`, canonical URLs, Open Graph images.
-- Incremental FTP deploy, `dump.zip` of the whole site, screenshot generator for the README.
+- Incremental FTP deploy, `vlc-web-redesign.zip` of the whole site, screenshot generator for the README.

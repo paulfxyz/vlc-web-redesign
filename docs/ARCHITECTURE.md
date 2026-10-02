@@ -9,7 +9,7 @@ tools/i18n.py (strings) ─┐                                ▼
 tools/curated.py (hubs) ─┼──▶ tools/build_site.py ──▶ dist/  (1,236 HTML pages + assets)
 site/ (css · js · svg)  ─┘            │                    │
 tools/lite.py (simple page) ──────────┘                    ├─▶ tools/deploy_ftp.py ──▶ vlc.paulfleury.com
-                                                           └─▶ dump.zip
+                                                           └─▶ vlc-web-redesign.zip
 ```
 
 ## Content model — `tools/vlsite.py`
@@ -28,7 +28,7 @@ tools/lite.py (simple page) ──────────┘                   
 | `content_page()` | every other page: reading layout, or the project layout (`band()` + `directory()`) for projects |
 | `l10n_js()` | per-language strings used by `site.js` |
 | `write()` | post-processing: asset versioning, empty-link removal, focusable `<pre>` |
-| `main()` | builds all languages, `search.js` index, `lite.html`, `.htaccess`, `version.json`, redirects, `dump.zip` |
+| `main()` | builds all languages, `search.js` index, `lite.html`, `.htaccess`, `version.json`, redirects, `vlc-web-redesign.zip` |
 
 Curated landing pages live in `tools/curated.py`; every string shown to users lives in `tools/i18n.py` (or in the `X` table at the top of `build_site.py`) with four translations side by side.
 

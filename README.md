@@ -7,13 +7,13 @@
 **An unofficial, free redesign of [videolan.org](https://www.videolan.org), offered to the VideoLAN team.**<br>
 Every page of the current site rebuilt as one static, accessible, multilingual website, with a real download centre for VLC 3.0.24.
 
-Everything is live at **[vlc.paulfleury.com](https://vlc.paulfleury.com)**. Prefer not to clone? Grab the whole built site in one archive: **[dump.zip](https://vlc.paulfleury.com/dump.zip)**.
+Everything is live at **[vlc.paulfleury.com](https://vlc.paulfleury.com)**. Prefer not to clone? Grab the whole built site in one archive: **[vlc-web-redesign.zip](https://vlc.paulfleury.com/vlc-web-redesign.zip)**.
 
 <br>
 
 [![license: MIT](https://img.shields.io/badge/license-MIT-0a0a0a?style=for-the-badge&labelColor=282828)](LICENSE)
 [![live: vlc.paulfleury.com](https://img.shields.io/badge/live-vlc.paulfleury.com-ff8800?style=for-the-badge&labelColor=282828)](https://vlc.paulfleury.com)
-[![download: dump.zip](https://img.shields.io/badge/download-dump.zip-0a0a0a?style=for-the-badge&labelColor=282828)](https://vlc.paulfleury.com/dump.zip)
+[![download: vlc-web-redesign.zip](https://img.shields.io/badge/download-vlc--web--redesign.zip-0a0a0a?style=for-the-badge&labelColor=282828)](https://vlc.paulfleury.com/vlc-web-redesign.zip)
 
 [![version: 1.0.0](https://img.shields.io/badge/version-1.0.0-ff8800?style=flat-square&labelColor=282828)](CHANGELOG.md)
 [![pages: 1,236](https://img.shields.io/badge/pages-1%2C236-0a0a0a?style=flat-square&labelColor=282828)](#-whats-inside)
@@ -35,7 +35,7 @@ Everything is live at **[vlc.paulfleury.com](https://vlc.paulfleury.com)**. Pref
 [![VLC: 3.0.24](https://img.shields.io/badge/VLC-3.0.24-ff8800?style=flat-square&labelColor=282828&logo=vlcmediaplayer&logoColor=ededed)](https://vlc.paulfleury.com/p/download.html)
 [![vibe designed: Perplexity Computer](https://img.shields.io/badge/vibe%20designed-Perplexity%20Computer-20808d?style=flat-square&labelColor=282828&logo=perplexity&logoColor=ededed)](#-this-is-vibe-designing)
 
-**[→ Open the site](https://vlc.paulfleury.com)** &nbsp;·&nbsp; **[→ Choose a download](https://vlc.paulfleury.com/#choose)** &nbsp;·&nbsp; **[→ Design notes](https://vlc.paulfleury.com/p/design-notes.html)** &nbsp;·&nbsp; **[→ Simple version](https://vlc.paulfleury.com/lite.html)** &nbsp;·&nbsp; **[↓ Download](https://vlc.paulfleury.com/dump.zip)**
+**[→ Open the site](https://vlc.paulfleury.com)** &nbsp;·&nbsp; **[→ Choose a download](https://vlc.paulfleury.com/#choose)** &nbsp;·&nbsp; **[→ Design notes](https://vlc.paulfleury.com/p/design-notes.html)** &nbsp;·&nbsp; **[→ Simple version](https://vlc.paulfleury.com/lite.html)** &nbsp;·&nbsp; **[↓ Download](https://vlc.paulfleury.com/vlc-web-redesign.zip)**
 
 </div>
 
@@ -187,7 +187,7 @@ Details: **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** · deploy: **[docs/DEP
 site/               site.css · site.js · icons.svg · media/ (film stills, QR codes, portraits, og.png)
 content/            pages.json · news.json, extracted from videolan.org
 tools/
-  build_site.py     generator: shell, home, download centre, chooser, content pages, l10n, dump.zip
+  build_site.py     generator: shell, home, download centre, chooser, content pages, l10n, vlc-web-redesign.zip
   curated.py        landing pages: features, projects & developers, team, libVLC, news, support…
   i18n.py           string tables for EN · FR · ZH · AR, dates, section names
   vlsite.py         content model, link rewriting, navigation order
