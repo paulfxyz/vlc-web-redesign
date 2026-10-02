@@ -93,6 +93,13 @@ X = {
  'hp_dl_h': ('Get VLC for your device', 'VLC pour votre appareil', '为你的设备获取 VLC', 'احصل على VLC لجهازك'),
  'hp_dl_all': ('Open the download centre', 'Ouvrir le centre de téléchargement', '打开下载中心', 'افتح مركز التنزيل'),
  'ft_simple': ('Simple version', 'Version simple', '简易版', 'النسخة المبسّطة'),
+ 'dlm_q': ('What do you need?', 'Que cherchez-vous ?', '你需要什么？', 'ما الذي تحتاجه؟'),
+ 'i_install': ('Install on this device', 'Installer sur cet appareil', '安装到本设备', 'التثبيت على هذا الجهاز'),
+ 'i_portable': ('Portable, no install', 'Portable, sans installation', '便携版，免安装', 'نسخة محمولة بلا تثبيت'),
+ 'i_store': ('From an app store', 'Depuis une boutique', '从应用商店获取', 'من متجر تطبيقات'),
+ 'i_cli': ('Command line', 'En ligne de commande', '命令行安装', 'عبر سطر الأوامر'),
+ 'i_older': ('Older versions', 'Anciennes versions', '旧版本', 'الإصدارات القديمة'),
+ 'i_src': ('Source code', 'Code source', '源代码', 'الشيفرة المصدرية'),
  'dlm_h': ('Choose your download', 'Choisissez votre téléchargement', '选择要下载的版本', 'اختر ما تريد تنزيله'),
  'dlm_p': ('Every system, every format: installers, archives, app stores, packages and source code.', 'Tous les systèmes, tous les formats : installateurs, archives, boutiques, paquets et code source.', '覆盖所有系统与格式：安装程序、压缩包、应用商店、软件包和源代码。', 'كل الأنظمة وكل الصيغ: برامج التثبيت والأرشيفات والمتاجر والحزم والشيفرة المصدرية.'),
  'dl_tab_hint': ('Choose a platform', 'Choisir une plateforme', '选择平台', 'اختر منصة'),
@@ -162,7 +169,7 @@ class Ctx:
 
 def dlattrs(f): return f' data-dl data-sha="{f["sha"]}" data-size="{f["size"]}"'
 
-def pic(c, name, alt, sizes='(max-width: 900px) 92vw, 640px', eager=False, big=True):
+def pic(c, name, alt, sizes='(max-width: 900px) 72vw, 640px', eager=False, big=True):
     ld = 'eager" fetchpriority="high' if eager else 'lazy'
     ss = f'{c.root}media/{name}-640.webp 640w' + (f', {c.root}media/{name}-1280.webp 1280w' if big else '')
     return (f'<picture><source type="image/webp" srcset="{ss}" sizes="{sizes}">'
@@ -237,20 +244,23 @@ def nav_href(c, k):
             'projects': c.page('projects'), 'support': c.page('support'), 'contribute': c.page('contribute'), 'about': c.page('videolan')}[k]
 NAV_ICO = dict(download='download', features='sparkle', news='news', projects='box', support='chat', contribute='users', about='home')
 
+SITE_URL = 'https://vlc.paulfleury.com/'
+
 def lang_href(lang, slug, from_ctx):
     b = from_ctx.root + ('' if lang == 'en' else lang + '/')
     return b + ('index.html' if slug == 'home' else 'p/' + slug + '.html')
 
 def head(c, title, desc, slug, cur=''):
     m = I.META[c.lang]
-    alts = ''.join(f'<link rel="alternate" hreflang="{I.META[l]["html"]}" href="{lang_href(l, slug, c)}">' for l in I.LANGS)
+    def absu(l): return SITE_URL + ('' if l == 'en' else l + '/') + ('' if slug == 'home' else 'p/' + slug + '.html')
+    alts = ''.join(f'<link rel="alternate" hreflang="{I.META[l]["html"]}" href="{absu(l)}">' for l in I.LANGS) + f'<link rel="alternate" hreflang="x-default" href="{absu("en")}"><link rel="canonical" href="{absu(c.lang)}">'
     return f'''<!doctype html>
 <html lang="{m['html']}" dir="{m['dir']}" data-root="{c.root}" data-base="{c.base}" data-slug="{slug}" data-lang="{c.lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <!--[if IE]><meta http-equiv="refresh" content="0;url={c.base}lite.html"><![endif]-->
-<script>(function(w,d){{var s,ok;try{{s=w.localStorage;if(/[?&]full=1/.test(w.location.search))s.setItem('vl-full','1');ok=s.getItem('vl-full')}}catch(e){{}}if(ok)return;var C=w.CSS,n=w.navigator.userAgent;if(!(d.querySelector&&w.addEventListener&&w.Promise&&C&&C.supports&&C.supports('--a','0')&&C.supports('display','grid')&&C.supports('position','sticky'))||/Trident[/]|MSIE |Opera Mini|UCBrowser[/][0-9][.]|PlayStation|Nintendo|KaiOS/.test(n))w.location.replace('{c.base}lite.html')}})(window,document)</script>
+<script>(function(w,d){{var s,ok;try{{s=w.localStorage;if(/[?&]full=1/.test(w.location.search))s.setItem('vl-full','1');ok=s.getItem('vl-full')}}catch(e){{}}if(ok)return;var C=w.CSS,n=w.navigator.userAgent;if(!(d.querySelector&&w.addEventListener&&w.Promise&&C&&C.supports&&C.supports('--a','0')&&C.supports('display','grid')&&C.supports('position','sticky'))||/Trident[/]|MSIE |Opera Mini|Presto[/]|UCBrowser[/][0-9][.]|PlayStation|Nintendo|KaiOS|BlackBerry|BB10|Windows Phone|Symbian|Android [1-4][.]|CPU (iPhone )?OS ([1-9]|1[01])_|Firefox[/]([1-4]?[0-9]|5[0-1])[.]|Chrome[/]([1-4]?[0-9]|5[0-6])[.]/.test(n))w.location.replace('{c.base}lite.html')}})(window,document)</script>
 <noscript><style>.rv{{opacity:1!important;transform:none!important}}</style></noscript>
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
@@ -263,12 +273,12 @@ def head(c, title, desc, slug, cur=''):
 </head>
 <body>
 <a class="skip" href="#main">{e(c.t('skip'))}</a>
-<div class="rib" id="rib"><div class="wrap"><p><span class="l">{e(c.t('proposal_bar'))}</span><span class="s">{e(c.t('proposal_short'))} ·</span> <a href="{c.page('design-notes')}">{e(c.t('read_notes'))}</a></p><button type="button" class="rib-x" data-rib-close aria-label="{e(c.t('hide'))}" title="{e(c.t('hide'))}">{c.ico('x')}</button></div></div>
+<div class="rib" id="rib" role="region" aria-label="{e(c.t('proposal_short'))}"><div class="wrap"><p><span class="l">{e(c.t('proposal_bar'))}</span><span class="s">{e(c.t('proposal_short'))} ·</span> <a href="{c.page('design-notes')}">{e(c.t('read_notes'))}</a></p><button type="button" class="rib-x" data-rib-close aria-label="{e(c.t('hide'))}" title="{e(c.t('hide'))}">{c.ico('x')}</button></div></div>
 <header class="hd"><div class="wrap">
-<a class="brand" href="{c.page('home')}" aria-label="VideoLAN — {e(c.t('home'))}"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<a class="brand" href="{c.page('home')}" aria-label="VideoLAN VLC media player — {e(c.t('home'))}"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
 <nav class="nav" aria-label="{e(c.t('menu'))}">{''.join(f'<a href="{nav_href(c, k)}"' + (' aria-current="page"' if k == cur else '') + f'>{e(c.t(l))}</a>' for k, l in NAV)}</nav>
 <div class="tools">
-<button type="button" class="setb" data-open="settings" aria-label="{e(c.t('set_title'))}: {e(c.t('set_sub'))}" aria-keyshortcuts="Control+K /"><span class="setb-i">{c.ico('search')}{c.ico('globe')}{c.ico('sun')}{c.ico('a11y')}</span><span class="setb-l">{e(c.t('set_title'))}</span><span class="setb-c">{c.lang.upper()}</span></button>
+<button type="button" class="setb" data-open="settings" aria-keyshortcuts="Control+K /"><span class="setb-i">{c.ico('search')}{c.ico('globe')}{c.ico('sun')}{c.ico('a11y')}</span><span class="setb-l">{e(c.t('set_title'))}</span><span class="setb-c">{c.lang.upper()}</span><span class="sr"> — {e(c.t('set_sub'))}</span></button>
 <a class="btn btn-gh btn-sm hide-md" href="{c.page('contribute')}" data-donate>{c.ico('heart', 'ic heart')}{e(c.t('donate'))}</a>
 <details class="menu"><summary class="ib" aria-label="{e(c.t('menu'))}">{c.ico('menu')}</summary><div class="drawer">{''.join(f'<a href="{nav_href(c, k)}">{c.ico(NAV_ICO[k])}{e(c.t(l))}</a>' for k, l in NAV)}<a href="{c.page('contribute')}" data-donate>{c.ico('heart', 'ic heart')}{e(c.t('donate'))}</a></div></details>
 </div></div></header>
@@ -289,7 +299,7 @@ def foot(c):
 <footer class="ft"><div class="wrap"><div class="ft-g">
 <div class="ft-a"><a class="brand" href="{c.page('home')}"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
 <p>{e(c.t('ft_about'))}</p><div class="langs">{langs}<button type="button" data-open="lang">+77</button></div></div>
-{''.join(f'<div><h4>{e(c.t(h))}</h4><ul>{"".join(li(x) for x in items)}</ul></div>' for h, items in cols)}
+{''.join(f'<div><h2 class="fh">{e(c.t(h))}</h2><ul>{"".join(li(x) for x in items)}</ul></div>' for h, items in cols)}
 </div>
 <div class="ft-b"><p>{e(c.t('ft_tm'))} {e(c.t('ft_films'))}</p><p><a href="{c.page('sitemap')}">{e(c.t('site_index'))}</a> · <a href="{c.page('design-notes')}">{e(c.t('design_notes'))}</a> · <a href="{c.base}lite.html">{e(c.t('ft_simple'))}</a> · {e(c.t('ft_light'))}</p></div>
 </div></footer>
@@ -325,8 +335,9 @@ def download_block(c, hid='download'):
     tabs = [('windows', 'windows', 'os_windows', f'x64 · ARM64 · x86'), ('mac', 'apple', 'os_mac', 'Apple Silicon · Intel'), ('linux', 'linux', 'os_linux', 'apt · dnf · pacman · Flatpak'),
             ('android', 'android', 'os_android', 'Google Play · F-Droid · APK'), ('ios', 'phone', 'dl_ios_h', 'App Store'), ('source', 'code', 'os_source', 'tar.xz · git'), ('other', 'box', 'os_other', 'ChromeOS · FreeBSD · OS/2')]
     rail = ''.join(f'<button type="button" role="tab" id="tab-{k}" aria-controls="dp-{k}" aria-selected="{"true" if k == "windows" else "false"}" data-os="{k}">{c.ico(i)}<span><b>{e(c.t(l))}</b><small>{e(s)}</small></span><span class="det">{e(c.t("dl_detected"))}</span></button>' for k, i, l, s in tabs)
+    hx = 'h3' if hid == 'dlm' else 'h2'
     def ph(k, ico, title, sub, extra=''):
-        return f'<div class="dp-h"><span class="big">{c.ico(ico)}</span><div><h3>{e(title)}</h3><p>{e(sub)}</p></div>{extra}</div>'
+        return f'<div class="dp-h"><span class="big">{c.ico(ico)}</span><div><{hx} class="dp-t">{e(title)}</{hx}><p>{e(sub)}</p></div>{extra}</div>'
     def meta(*items): return '<div class="dmeta">' + ''.join(f'<span>{c.ico(i)}{x}</span>' for i, x in items) + '</div>'
     # windows: three arch variants
     def winvar(a, main, msi, zp, z7, label):
@@ -495,7 +506,10 @@ def home(c):
 <div class="partners" dir="ltr">{''.join(f'<span>{e(p)}</span>' for p in partners)}</div>
 <p style="margin-top:1rem"><a class="more" href="{c.page('videolan--partners')}">{e(c.t('partners'))}{c.ico('arrow', 'ic flip')}</a></p>
 </div></section>''')
-    h.append(f'<template id="dlt"><div class="ly dlm" id="dlm" aria-hidden="true"><div class="scrim" data-x></div><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlm-t"><header class="st-h"><span class="st-logo"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg></span><div><h2 id="dlm-t">{e(c.t("dlm_h"))}</h2><p>VLC {V} · {e(c.t("dlm_p"))}</p></div><button type="button" class="x" data-x aria-label="{e(c.t("close"))}">{c.ico("x")}</button></header><div class="dlm-b">{download_block(c, "dlm")}</div></div></div></template>')
+    intents = ''.join(f'<button type="button" class="chip" data-go="{g}" data-sel="{sel}">{c.ico(ic)}{e(c.t(k))}</button>' for k, ic, g, sel in [
+        ('i_install', 'download', 'auto', '.file'), ('i_portable', 'box', 'windows', '[data-arch]:not([hidden]) .alts > :nth-child(2)'),
+        ('i_store', 'phone', 'store', '.badges'), ('i_cli', 'code', 'linux', '.distros'), ('i_older', 'disc', '', 'older'), ('i_src', 'code', 'source', '.file')])
+    h.append(f'<template id="dlt"><div class="ly dlm" id="dlm" aria-hidden="true"><div class="scrim" data-x></div><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlm-t"><div class="st-h"><span class="st-logo"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg></span><div><h2 id="dlm-t">{e(c.t("dlm_h"))}</h2><p>VLC {V} · {e(c.t("dlm_p"))}</p></div><button type="button" class="x" data-x aria-label="{e(c.t("close"))}">{c.ico("x")}</button></div><div class="dlm-int" role="group" aria-label="{e(c.t("dlm_q"))}"><span>{e(c.t("dlm_q"))}</span>{intents}</div><div class="dlm-b">{download_block(c, "dlm")}</div></div></div></template>')
     h.append(foot(c))
     return '\n'.join(h)
 
@@ -691,6 +705,9 @@ def min_css(s):
 
 def write(path, txt):
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.suffix == '.html':
+        txt = re.sub(r'<a [^>]*>\s*</a>', '', txt)                       # empty legacy links
+        txt = re.sub(r'<pre(?![^>]*tabindex)', '<pre tabindex="0"', txt)  # scrollable code is keyboard-reachable
     path.write_text(txt)
 
 HTACCESS = r"""# VideoLAN redesign — server rules (Apache / SiteGround)

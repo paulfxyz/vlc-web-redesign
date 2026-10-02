@@ -41,7 +41,7 @@ CSS = ('body{margin:0;padding:0;background:#fff;color:#1a1a1a;font-family:Arial,
  '.s{display:block;text-align:left;color:#555;font-size:13px;font-family:"Courier New",monospace;word-wrap:break-word;overflow-wrap:anywhere}'
  'pre{background:#f3f3f3;border:1px solid #ddd;padding:8px 10px;font-size:15px;white-space:pre-wrap;word-wrap:break-word;margin:4px 0 12px}'
  '.b{display:inline-block;background:#ff8800;color:#000;font-weight:bold;padding:12px 18px;text-decoration:none;font-size:19px;margin:6px 0}'
- '.f{margin-top:36px;padding-top:14px;border-top:1px solid #ddd;font-size:15px;color:#444}'
+ '.f{display:block;margin-top:36px;padding-top:14px;border-top:1px solid #ddd;font-size:15px;color:#444}'
  '@media (prefers-color-scheme:dark){body{background:#111;color:#eee}.n{background:#2a1c08;border-color:#7a4a10}a,a:visited{color:#ffad5c}h2,.f{border-color:#333}pre{background:#1d1d1d;border-color:#333}.s,.f{color:#bbb}a:focus{outline-color:#fff}}')
 
 def page(lang, F, V, STORE, LINUX):
@@ -60,11 +60,14 @@ def page(lang, F, V, STORE, LINUX):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>{e(L('title'))}</title>
-<link rel="canonical" href="{base}index.html">
+<meta name="description" content="{e(L('lead'))}">
+<link rel="canonical" href="https://vlc.paulfleury.com/{"" if lang == "en" else lang + "/"}lite.html">
+<link rel="icon" href="{root}favicon.svg" type="image/svg+xml">
 <style>{CSS}</style>
 </head>
 <body>
 <div class="w">
+<main>
 <p class="n">{e(L('note'))} <a href="{base}index.html?full=1"><b>{e(L('full'))}</b></a></p>
 <h1>VLC media player</h1>
 <p>{e(L('lead'))}</p>
@@ -89,7 +92,8 @@ def page(lang, F, V, STORE, LINUX):
 <li><a href="https://www.videolan.org/news.html">{e(L('news'))}</a></li>
 <li><a href="https://www.videolan.org/videolan/">{e(L('about'))}</a></li></ul>
 <p><b>{e(L('lang'))}:</b> {langs}</p>
-<p class="f">{e(L('np'))}</p>
+</main>
+<footer class="f">{e(L('np'))}</footer>
 </div>
 </body>
 </html>'''

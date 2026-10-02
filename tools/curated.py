@@ -255,7 +255,7 @@ def team(c, p):
              f'<div class="wall" data-wall><div class="wall-bar"><label class="sr" for="wq">{e(T("search", n=total))}</label><input class="srch" id="wq" type="search" placeholder="{e(T("search", n=total))}" autocomplete="off">'
              '<div class="chipsel" role="group">' + ''.join(f'<button type="button" data-g="{k}" aria-pressed="{"true" if k == "Programming" else "false"}">{e(T(l))} <small>{len(L.get(k, []))}</small></button>' for k, l in tabs) + '</div></div>')
     for k, _ in tabs:
-        h.append(f'<ul class="names" data-names="{k}"{"" if k == "Programming" else " hidden"} dir="auto">' + ''.join(f'<li><span class="ini sm" aria-hidden="true">{e(initials(x) or "·")}</span>{e(x)}</li>' for x in L.get(k, [])) + '</ul>')
+        h.append(f'<ul class="names" tabindex="0" aria-label="{e(k)}" data-names="{k}"{"" if k == "Programming" else " hidden"} dir="auto">' + ''.join(f'<li><span class="ini sm" aria-hidden="true">{e(initials(x) or "·")}</span>{e(x)}</li>' for x in L.get(k, [])) + '</ul>')
     h.append(f'<p class="wall-empty" hidden>{e(P(c, U["no_match"]))}</p></div></section>')
     h.append(f'<div class="dband rv"><div><h2>{e(T("join"))}</h2><p>{e(T("join_p"))}</p></div><div><a class="btn btn-or" href="contribute.html">{c.ico("users")}{e(c.t("nav_contribute"))}</a></div></div>')
     h.append(ref_block(c, p))
@@ -442,7 +442,7 @@ def news_card(c, n, big=False, base=''):
     d = I.date(c.lang, n['date']) if n['date'][:4] not in ('', '1970') else c.t('undated')
     return (f'<a class="ncard glow{" big" if big else ""}" href="{href}" data-cat="{cat}" data-q="{e((n["title"] + " " + txt[:400]).lower())}">'
             f'<span class="nmeta"><span class="ncat c-{cat}">{e(P(c, cl))}</span><time datetime="{e(n["date"])}">{e(d)}</time></span>'
-            f'<h3 lang="en" dir="ltr">{e(n["title"])}</h3><p lang="en" dir="ltr">{e(ex)}</p><span class="more">{e(P(c, U["read_story"]))}{c.ico("arrow", "ic flip")}</span></a>')
+            f'<h{2 if big else 3} class="nt" lang="en" dir="ltr">{e(n["title"])}</h{2 if big else 3}><p lang="en" dir="ltr">{e(ex)}</p><span class="more">{e(P(c, U["read_story"]))}{c.ico("arrow", "ic flip")}</span></a>')
 
 def news_tools(c, count):
     chips = f'<button type="button" data-cat="" aria-pressed="true">{e(P(c, U["all"]))}</button>' + ''.join(f'<button type="button" data-cat="{k}" aria-pressed="false">{e(P(c, l))}</button>' for k, l in NEWS_CATS)
@@ -575,7 +575,7 @@ def directory(c, slug):
         groups.append((P(c, gt), ''.join(li(x[0], x[1]) for x in PJ if x[3] == g)))
     groups.append((P(c, DU['res']), ''.join(li(s, P(c, t)) for s, _, t in RES if s in S.ALL)))
     groups.append((P(c, DU['arch']), ''.join(li(s, n) for s, n, _ in ARCH if s in S.ALL)))
-    body = ''.join(f'<section class="pg"><h4>{e(t)}</h4><ul>{u}</ul></section>' for t, u in groups)
+    body = ''.join(f'<section class="pg"><h2 class="pdh">{e(t)}</h2><ul>{u}</ul></section>' for t, u in groups)
     return (f'<aside class="side pdir" data-pdir><details open><summary>{c.ico("box")}<span>{e(P(c, DU["dir"]))}</span><small>{len(ALL_DIR)}</small></summary>'
             f'<div class="pdir-s">{c.ico("search")}<input type="search" autocomplete="off" placeholder="{e(P(c, DU["find"]))}" aria-label="{e(P(c, DU["find"]))}"></div>'
             f'<nav aria-label="{e(P(c, DU["dir"]))}">{body}</nav><p class="pdir-none" hidden>{e(P(c, U["no_match"]))}</p>'

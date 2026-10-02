@@ -148,7 +148,7 @@
     var themes = [['auto', 'js_auto'], ['light', 'js_light'], ['dark', 'js_dark']].map(function (x) { return '<button type="button" class="thc th-' + x[0] + '" data-v="' + x[0] + '"><span class="thp" aria-hidden="true"><i></i><i></i><i></i></span><b>' + esc(T(x[1])) + '</b></button>'; }).join('');
     var keys = [['/', 'set_k1'], ['Ctrl K', 'set_k1'], ['Esc', 'set_k2'], ['↑ ↓', 'set_k3'], ['Enter', 'set_k4'], ['Tab', 'set_k5']].map(function (k) { return '<li><span dir="ltr">' + k[0].split(' ').map(function (x) { return '<kbd>' + esc(x) + '</kbd>'; }).join('') + '</span><b>' + esc(T(k[1])) + '</b></li>'; }).join('');
     var h = '<div class="ly st" id="stl" aria-hidden="true"><div class="scrim" data-x></div><div class="stg" role="dialog" aria-modal="true" aria-labelledby="st-t">' +
-      '<header class="st-h"><span class="st-logo">' + CONE + '</span><div><h2 id="st-t">' + esc(T('set_title')) + '</h2><p>' + esc(T('set_sub')) + '</p></div><button type="button" class="x" data-x aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></header>' +
+      '<div class="st-h"><span class="st-logo">' + CONE + '</span><div><h2 id="st-t">' + esc(T('set_title')) + '</h2><p>' + esc(T('set_sub')) + '</p></div><button type="button" class="x" data-x aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div>' +
       '<div class="st-b"><nav class="st-tabs" role="tablist" aria-orientation="vertical">' + TABS.map(function (t) { return '<button type="button" role="tab" id="stt-' + t[0] + '" aria-controls="stp-' + t[0] + '" data-st="' + t[0] + '"><span class="ai ai-' + t[0] + '">' + ico(t[1]) + '</span><b>' + esc(T(t[2])) + '</b></button>'; }).join('') + '</nav>' +
       '<div class="st-p">' +
       '<section role="tabpanel" id="stp-search" aria-labelledby="stt-search"><div class="sbig">' + ico('search') + '<label class="sr" for="sq">' + esc(T('set_search')) + '</label><input id="sq" type="search" autocomplete="off" placeholder="…"></div><p class="lgc" id="sc" aria-live="polite"></p><div id="sr" class="sres"></div></section>' +
@@ -158,7 +158,7 @@
       '<section role="tabpanel" id="stp-a11y" aria-labelledby="stt-a11y" hidden><div class="sws">' + sw('contrast', 'high', 'js_contrast', 'js_bw', 'sun') + sw('motion', 'off', 'js_motion', 'js_stop', 'zap') + sw('links', 'underline', 'js_links', 'js_spot', 'arrow') + sw('spacing', 'wide', 'js_spacing', 'js_wide', 'book') + '</div>' +
       '<h3>' + esc(T('js_size')) + '</h3><div class="szs" data-k="size" role="group" aria-label="' + esc(T('js_size')) + '"><button type="button" data-v="">A<small>' + esc(T('js_n')) + '</small></button><button type="button" data-v="l" style="font-size:1.25em">A<small>' + esc(T('js_l')) + '</small></button><button type="button" data-v="xl" style="font-size:1.5em">A<small>' + esc(T('js_xl')) + '</small></button></div></section>' +
       '<section role="tabpanel" id="stp-keys" aria-labelledby="stt-keys" hidden><ul class="keys">' + keys + '</ul></section>' +
-      '</div></div><footer class="st-f"><span>' + ico('lock') + esc(T('set_saved')) + '</span><button type="button" class="btn btn-gh btn-sm" data-reset>' + esc(T('set_reset')) + '</button></footer></div></div>';
+      '</div></div><div class="st-f"><span>' + ico('lock') + esc(T('set_saved')) + '</span><button type="button" class="btn btn-gh btn-sm" data-reset>' + esc(T('set_reset')) + '</button></div></div></div>';
     stL = el(h); d.body.appendChild(stL);
     stL.addEventListener('click', function (e) {
       var t = e.target, b;
@@ -403,16 +403,31 @@
     var dd = closest(e.target, '.distros button');
     if (dd) { var k = dd.getAttribute('data-d'); $$('button', dd.parentNode).forEach(function (x) { x.setAttribute('aria-pressed', String(x === dd)); }); $$('[data-dterm]').forEach(function (x) { x.hidden = x.getAttribute('data-dterm') !== k; }); }
   });
+  function intent(t) {
+    var k = t.getAttribute('data-go'), sel = t.getAttribute('data-sel'), body = $('.dlm-b', dlL);
+    if (k === 'auto') k = OS;
+    if (k === 'store') k = ({ windows: 'windows', linux: 'linux', android: 'android', ios: 'ios' })[OS] || 'ios';
+    if (k) selectOS(k);
+    var p = $('.dpanel:not([hidden])', dlL), el = sel === 'older' ? $('.dl-foot a', dlL) : (sel && $(sel, p)) || p;
+    if (!el) return;
+    $$('.chip', dlL).forEach(function (x) { x.setAttribute('aria-pressed', String(x === t)); });
+    var top = el.getBoundingClientRect().top - body.getBoundingClientRect().top + body.scrollTop - 16;
+    try { body.scrollTo({ top: top, behavior: FX() ? 'smooth' : 'auto' }); } catch (x) { body.scrollTop = top; }
+    el.classList.remove('hl'); void el.offsetWidth; el.classList.add('hl');
+    setTimeout(function () { el.classList.remove('hl'); }, 1800);
+    var f = el.matches('a,button') ? el : $('a,button', el); if (f) try { f.focus({ preventScroll: true }); } catch (x) {}
+  }
   /* download chooser modal (home): markup lives in a <template>, instantiated on first open */
   var dlL = null;
   function dlModal(k) {
     if (!dlL) { var tp = $('#dlt'); if (!tp) { location.href = BASE + 'p/download.html'; return; }
       var hold = d.createElement('div'); hold.innerHTML = tp.innerHTML; dlL = hold.firstElementChild; d.body.appendChild(dlL);
-      dlL.addEventListener('click', function (e) { if (closest(e.target, '[data-x]')) closeL(); });
+      dlL.addEventListener('click', function (e) { if (closest(e.target, '[data-x]')) closeL(); var ch = closest(e.target, '.chip[data-go]'); if (ch) intent(ch); });
       initDownload(); reveal(); }
     openLayer(dlL, '.rail [aria-selected="true"]');
     if (k) selectOS(k);
   }
+  if (location.hash === '#choose' && $('#dlt')) setTimeout(function () { dlModal(); }, 60);
   function tabKeys(e) {
     var tabs = $$('[role=tab]', e.currentTarget), i = tabs.indexOf(d.activeElement); if (i < 0) return;
     var n = { ArrowDown: 1, ArrowRight: RTL ? -1 : 1, ArrowUp: -1, ArrowLeft: RTL ? 1 : -1, Home: -99, End: 99 }[e.key]; if (!n) return;
