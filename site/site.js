@@ -68,7 +68,9 @@
   /* ---------- exit notices (download / not redesigned / leaving) */
   var OWNED = /(^|\.)videolan\.(org|me)$|(^|\.)videolabs\.io$/i;
   var NAMES = { 'wiki.videolan.org': 'x_names_wiki', 'forum.videolan.org': 'x_names_forum', 'code.videolan.org': 'x_names_code', 'addons.videolan.org': 'x_names_addons', 'docs.videolan.me': 'x_names_docs' };
-  var xL = null;
+  var xL = null, ST0 = L._store || {}, QRS = {};
+  QRS[ST0.play] = 'play'; QRS[ST0.fdroid] = 'fdroid'; QRS[ST0.ios] = 'ios'; QRS[ST0.apk] = 'apk';
+  function desk() { return W.matchMedia && matchMedia('(min-width: 900px) and (hover: hover)').matches; }
   function exitNotice(a) {
     var href = a.href, host = (a.hostname || '').toLowerCase(), isDl = a.hasAttribute('data-dl') && !/\/$/.test(a.pathname || '');
     if (!xL) xL = layer('xl', '<span id="xl-h"></span>', '<div class="dg-b"><div class="xi" id="xl-i"></div><p id="xl-p"></p><div id="xl-x"></div><div class="btns"><a class="btn btn-or" id="xl-go" href="#" rel="noopener"></a><button type="button" class="btn btn-gh" data-x>' + esc(T('x_stay')) + '</button></div></div>');
@@ -85,6 +87,11 @@
       $('#xl-h', xL).textContent = T('x_vl_h'); $('#xl-i', xL).innerHTML = CONE;
       $('#xl-p', xL).innerHTML = esc(T('x_vl_p')).replace('{name}', '<b>' + esc(T(NAMES[host] || 'x_names_other')) + '</b>');
       x.innerHTML = '<div class="url">' + esc(href) + '</div>'; go.innerHTML = esc(T('x_continue')) + ico('ext');
+    } else if (QRS[href] && desk()) {
+      $('#xl-h', xL).textContent = T('qr_scan'); $('#xl-i', xL).innerHTML = ico('phone');
+      $('#xl-p', xL).textContent = T('qr_p');
+      x.innerHTML = '<div class="qr-m"><img src="' + ROOT + 'media/qr-' + QRS[href] + '.svg" width="200" height="200" alt="QR"><span>' + esc(host.replace(/^www\./, '')) + '</span></div><p style="font-size:.88rem;margin:0 0 .8rem">' + esc(T('qr_or')) + ' · ' + esc(T('x_out_p').replace('{host}', host.replace(/^www\./, ''))) + '</p>';
+      go.innerHTML = esc(T('x_continue')) + ico('ext');
     } else {
       $('#xl-h', xL).textContent = T('x_out_h'); $('#xl-i', xL).innerHTML = ico('ext');
       $('#xl-p', xL).innerHTML = esc(T('x_out_p')).replace('{host}', '<b>' + esc(host.replace(/^www\./, '')) + '</b>');

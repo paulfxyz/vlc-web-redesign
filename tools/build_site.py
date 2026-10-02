@@ -69,6 +69,9 @@ X = {
  'stat_langs': ('languages in VLC', 'langues dans VLC', '种 VLC 界面语言', 'لغة في VLC'),
  'hero_badge': ('New', 'Nouveau', '新版', 'جديد'),
  'tl_title': ('Since 1996', 'Depuis 1996', '始于 1996', 'منذ 1996'),
+ 'qr_scan': ('Scan with your phone', 'Scannez avec votre téléphone', '用手机扫码', 'امسح الرمز بهاتفك'),
+ 'qr_p': ('Point your phone’s camera at the code to open the store directly.', 'Visez le code avec l’appareil photo de votre téléphone pour ouvrir directement la boutique.', '用手机相机对准二维码，即可直接打开应用商店。', 'وجّه كاميرا هاتفك نحو الرمز لفتح المتجر مباشرة.'),
+ 'qr_or': ('Or open it here', 'Ou ouvrez-la ici', '或在此打开', 'أو افتحه هنا'),
  'dl_tab_hint': ('Choose a platform', 'Choisir une plateforme', '选择平台', 'اختر منصة'),
 }
 I.T.update(X)
@@ -287,6 +290,10 @@ def link_row(c, href, title, desc, ico='arrow'):
 def badge(c, href, ico, small, big):
     return f'<a class="sbadge" href="{href}">{c.ico(ico)}<span><small>{e(small)}</small><b>{e(big)}</b></span></a>'
 
+def qrs(c, items):
+    cards = ''.join(f'<a class="qr-c" href="{STORE[k]}"><img src="{c.root}media/qr-{k}.svg" width="132" height="132" alt="QR — {e(n)}" loading="lazy"><b>{e(n)}</b></a>' for k, n in items)
+    return f'<div class="qrs"><div class="qr-t">{c.ico("phone")}<div><b>{e(c.t("qr_scan"))}</b><p>{e(c.t("qr_p"))}</p></div></div><div class="qr-g">{cards}</div></div>'
+
 def term(c, cmd, note='', label=None):
     lines = '\n'.join(f'<span class="p">$ </span>{e(x)}' for x in cmd.split('\n'))
     return f'<div class="term"><div class="tt"><i></i><i></i><i></i><span>{e(label or c.t("dl_cmd"))}</span><button type="button" class="cp" data-copy="{e(cmd)}">{c.ico("copy")}{e(c.t("dl_copy"))}</button></div><pre><code>{lines}</code></pre>{f"<p class=note>{e(note)}</p>" if note else ""}</div>'
@@ -315,9 +322,9 @@ def download_block(c, hid='download'):
     lin = (ph('linux', 'linux', 'GNU/Linux', c.t('dl_linux_p')) + f'<div class="distros" role="group" aria-label="{e(c.t("dl_linux_h"))}">{dbtn}</div>{dterm}' +
            f'<div class="badges">{badge(c, STORE["flathub"], "package", c.t("dl_get_on"), "Flathub")}{badge(c, STORE["snap"], "package", c.t("dl_get_on"), "Snap Store")}</div>' +
            '<div class="alts" style="margin-top:1rem">' + ''.join(link_row(c, c.page(s), n, '') for s, n in [('vlc--download-redhat', 'Red Hat · CentOS'), ('vlc--download-slackware', 'Slackware'), ('vlc--download-altlinux', 'ALT Linux'), ('vlc--download-crux', 'CRUX')] if s in S.ALL) + '</div>')
-    andr = (ph('android', 'android', 'Android', c.t('dl_req_and')) + f'<div class="badges">{badge(c, STORE["play"], "gplay", c.t("dl_get_on"), "Google Play")}{badge(c, STORE["fdroid"], "fdroid", c.t("dl_get_on"), "F-Droid")}</div>' +
+    andr = (ph('android', 'android', 'Android', c.t('dl_req_and')) + qrs(c, [('play', 'Google Play'), ('fdroid', 'F-Droid'), ('apk', 'APK')]) + f'<div class="badges">{badge(c, STORE["play"], "gplay", c.t("dl_get_on"), "Google Play")}{badge(c, STORE["fdroid"], "fdroid", c.t("dl_get_on"), "F-Droid")}</div>' +
             '<div class="alts" style="margin-top:1rem">' + link_row(c, STORE['apk'], c.t('dl_apk') + ' · VLC for Android 3.7.0', c.t('dl_apk_d'), 'download') + link_row(c, c.page('vlc--download-android'), c.t('dl_all_opts', os='Android'), 'Android TV · Chromebook') + '</div>')
-    ios = (ph('ios', 'phone', c.t('dl_ios_h'), c.t('dl_same_app')) + f'<div class="badges">{badge(c, STORE["ios"], "applef", c.t("dl_download_on"), "App Store")}</div>' +
+    ios = (ph('ios', 'phone', c.t('dl_ios_h'), c.t('dl_same_app')) + qrs(c, [('ios', 'App Store')]) + f'<div class="badges">{badge(c, STORE["ios"], "applef", c.t("dl_download_on"), "App Store")}</div>' +
            meta(('phone', e(c.t('dl_req_ios'))), ('tv', e(c.t('dl_req_tv')))) +
            '<div class="alts" style="margin-top:1rem">' + link_row(c, c.page('vlc--download-ios'), 'VLC for iOS', 'iPhone · iPad · iPod touch · Vision Pro') + link_row(c, c.page('vlc--download-appletv'), 'VLC for Apple TV', 'tvOS') + '</div>')
     src = (ph('source', 'code', c.t('os_source'), c.t('dl_src_d')) + file_row(c, F['src'], c.t('dl_src_tar'), '', 'code') +
@@ -587,7 +594,7 @@ NOTES = {
 }
 
 # ------------------------------------------------------------------ l10n.js per language
-JS_KEYS = [k for k in I.T if k.startswith(('js_', 'x_', 'd_', 'dl_copy', 'dl_copied', 'search', 'close', 'language', 'display', 'theme_', 'mb', 'cta_', 'dl_64', 'dl_32', 'dl_arm', 'dl_universal', 'os_', 'mk_sub', 'mk_speed', 'osd_vol', 'mk_alt'))]
+JS_KEYS = [k for k in I.T if k.startswith(('js_', 'x_', 'd_', 'dl_copy', 'dl_copied', 'search', 'close', 'language', 'display', 'theme_', 'mb', 'cta_', 'dl_64', 'dl_32', 'dl_arm', 'dl_universal', 'os_', 'mk_sub', 'mk_speed', 'osd_vol', 'mk_alt', 'qr_'))]
 
 def l10n_js(lang):
     o = {k: t(lang, k) for k in JS_KEYS}
