@@ -17,7 +17,11 @@ IPH = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.
 SHOTS = [
     ('home-light', 'index.html', 1440, 900, 'light', WIN, None, 1),
     ('home-dark', 'index.html', 1440, 900, 'dark', WIN, None, 1),
-    ('chooser', 'index.html', 1440, 900, 'light', WIN, 'button.cta-alt', 1),
+    ('vlc-page', 'p/vlc.html', 1440, 900, 'light', WIN, None, 1),
+    ('org-stack', 'index.html', 1440, 900, 'light', WIN, 'scroll:#stack', 1),
+    ('org-story', 'index.html', 1440, 900, 'dark', WIN, 'scroll:#about .rail-h', 1),
+    ('org-people', 'index.html', 1440, 900, 'light', WIN, 'scroll:.vdd', 1),
+    ('chooser', 'p/vlc.html', 1440, 900, 'light', WIN, 'button.cta-alt', 1),
     ('chooser-dark', 'fr/index.html', 1440, 900, 'dark', WIN, 'button.cta-alt', 1),
     ('settings', 'index.html', 1440, 900, 'dark', WIN, 'button.setb', 1),
     ('download', 'p/download.html', 1440, 900, 'light', WIN, None, 1),
@@ -30,7 +34,7 @@ SHOTS = [
     ('m-fr', 'fr/p/download.html', 390, 844, 'dark', IPH, None, 2),
     ('m-zh', 'zh/p/vlc--features.html', 390, 844, 'light', IPH, None, 2),
     ('m-ar', 'ar/index.html', 390, 844, 'dark', IPH, None, 2),
-    ('m-chooser', 'index.html', 390, 844, 'light', IPH, 'button.cta-alt', 2),
+    ('m-chooser', 'p/vlc.html', 390, 844, 'light', IPH, 'button.cta-alt', 2),
 ]
 
 def b64(p): return 'data:image/png;base64,' + base64.b64encode(p.read_bytes()).decode()
@@ -60,7 +64,9 @@ async def main():
             await ctx.add_init_script("try{localStorage.setItem('vl-rib','off')}catch(e){}")
             pg = await ctx.new_page()
             await pg.goto(BASE + path, wait_until='networkidle'); await pg.wait_for_timeout(400)
-            if click: await pg.click(click); await pg.wait_for_timeout(700)
+            if click and click.startswith('scroll:'):
+                await pg.evaluate("s => { const e = document.querySelector(s); e.scrollIntoView({block: 'start'}); window.scrollBy(0, -30); document.querySelectorAll('.rv').forEach(x => x.classList.add('in')); }", click[7:]); await pg.wait_for_timeout(700)
+            elif click: await pg.click(click); await pg.wait_for_timeout(700)
             await pg.screenshot(path=str(OUT / f'{name}.png'))
             await ctx.close(); print('shot', name)
         shots = {f.stem: b64(f) for f in OUT.glob('*.png')}

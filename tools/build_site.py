@@ -100,6 +100,7 @@ X = {
  'i_cli': ('Command line', 'En ligne de commande', '命令行安装', 'عبر سطر الأوامر'),
  'i_older': ('Older versions', 'Anciennes versions', '旧版本', 'الإصدارات القديمة'),
  'i_src': ('Source code', 'Code source', '源代码', 'الشيفرة المصدرية'),
+ 'nav_vlc': ('VLC', 'VLC', 'VLC', 'VLC'),
  'dlm_h': ('Choose your download', 'Choisissez votre téléchargement', '选择要下载的版本', 'اختر ما تريد تنزيله'),
  'dlm_p': ('Every system, every format: installers, archives, app stores, packages and source code.', 'Tous les systèmes, tous les formats : installateurs, archives, boutiques, paquets et code source.', '覆盖所有系统与格式：安装程序、压缩包、应用商店、软件包和源代码。', 'كل الأنظمة وكل الصيغ: برامج التثبيت والأرشيفات والمتاجر والحزم والشيفرة المصدرية.'),
  'dl_tab_hint': ('Choose a platform', 'Choisir une plateforme', '选择平台', 'اختر منصة'),
@@ -238,11 +239,11 @@ def mk_tv(c, cls=''):
 <div class="tv-ui" aria-hidden="true"><h4 dir="{I.META[c.lang]['dir']}">{e(c.t('mk_lan'))}</h4><p dir="{I.META[c.lang]['dir']}">{e(c.t('mk_lan_p'))}</p><div class="tv-row" data-tvrow>{''.join(f'<div{" class=f" if i == 1 else ""}><img src="{c.root}media/{n}-640.jpg" alt="" loading="lazy" width="640" height="334"></div>' for i, n in enumerate(row))}</div></div></div><div class="stand"></div></figure>'''
 
 # ------------------------------------------------------------------ shell
-NAV = [('download', 'nav_download'), ('features', 'nav_features'), ('news', 'nav_news'), ('projects', 'nav_projects'), ('support', 'nav_support'), ('contribute', 'nav_contribute'), ('about', 'nav_about')]
+NAV = [('vlc', 'nav_vlc'), ('download', 'nav_download'), ('news', 'nav_news'), ('projects', 'nav_projects'), ('support', 'nav_support'), ('contribute', 'nav_contribute'), ('about', 'nav_about')]
 def nav_href(c, k):
-    return {'download': c.page('download'), 'features': c.page('vlc--features'), 'news': c.page('news'),
+    return {'vlc': c.page('vlc'), 'download': c.page('download'), 'features': c.page('vlc--features'), 'news': c.page('news'),
             'projects': c.page('projects'), 'support': c.page('support'), 'contribute': c.page('contribute'), 'about': c.page('videolan')}[k]
-NAV_ICO = dict(download='download', features='sparkle', news='news', projects='box', support='chat', contribute='users', about='home')
+NAV_ICO = dict(vlc='cone', download='download', features='sparkle', news='news', projects='box', support='chat', contribute='users', about='home')
 
 SITE_URL = 'https://vlc.paulfleury.com/'
 
@@ -276,7 +277,7 @@ def head(c, title, desc, slug, cur=''):
 <a class="skip" href="#main">{e(c.t('skip'))}</a>
 <div class="rib" id="rib" role="region" aria-label="{e(c.t('proposal_short'))}"><div class="wrap"><p><span class="l">{e(c.t('proposal_bar'))}</span><span class="s">{e(c.t('proposal_short'))} ·</span> <a href="{c.page('design-notes')}">{e(c.t('read_notes'))}</a></p><button type="button" class="rib-x" data-rib-close aria-label="{e(c.t('hide'))}" title="{e(c.t('hide'))}">{c.ico('x')}</button></div></div>
 <header class="hd"><div class="wrap">
-<a class="brand" href="{c.page('home')}" aria-label="VideoLAN VLC media player — {e(c.t('home'))}"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<a class="brand" href="{c.page('home')}" aria-label="VideoLAN — {e(c.t('home'))}"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>{'Open source multimedia' if c.lang == 'en' else 'VLC media player'}</small></span></a>
 <nav class="nav" aria-label="{e(c.t('menu'))}">{''.join(f'<a href="{nav_href(c, k)}"' + (' aria-current="page"' if k == cur else '') + f'>{e(c.t(l))}</a>' for k, l in NAV)}</nav>
 <div class="tools">
 <button type="button" class="setb" data-open="settings" aria-keyshortcuts="Control+K /"><span class="setb-i">{c.ico('search')}{c.ico('globe')}{c.ico('sun')}{c.ico('a11y')}</span><span class="setb-l">{e(c.t('set_title'))}</span><span class="setb-c">{c.lang.upper()}</span><span class="sr"> — {e(c.t('set_sub'))}</span></button>
@@ -298,7 +299,7 @@ def foot(c):
     langs = ''.join(f'<a href="{lang_href(l, c.slug, c)}" hreflang="{I.META[l]["html"]}" lang="{I.META[l]["html"]}"' + (' aria-current="true"' if l == c.lang else '') + f'>{e(I.META[l]["name"])}</a>' for l in I.LANGS)
     return f'''</main>
 <footer class="ft"><div class="wrap"><div class="ft-g">
-<div class="ft-a"><a class="brand" href="{c.page('home')}"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>VLC media player</small></span></a>
+<div class="ft-a"><a class="brand" href="{c.page('home')}"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>{'Open source multimedia' if c.lang == 'en' else 'VLC media player'}</small></span></a>
 <p>{e(c.t('ft_about'))}</p><div class="langs">{langs}<button type="button" data-open="lang">+77</button></div></div>
 {''.join(f'<div><h2 class="fh">{e(c.t(h))}</h2><ul>{"".join(li(x) for x in items)}</ul></div>' for h, items in cols)}
 </div>
@@ -391,10 +392,16 @@ def news_cards(c):
         out.append(f'<a class="card glow rv d{i % 3}" href="{href}"><time datetime="{n["date"]}">{e(I.date(c.lang, n["date"]))}</time><h3 lang="en" dir="ltr">{e(n["title"])}{tag}</h3>' + (f'<p lang="en" dir="ltr">{e(txt)}</p>' if i < 3 else '') + f'<span class="more">{e(c.t("news_more"))}{c.ico("arrow", "ic flip")}</span></a>')
     return ''.join(out)
 
-def home(c):
-    c.slug = 'home'
+def dl_template(c):
+    intents = ''.join(f'<button type="button" class="chip" data-go="{g}" data-sel="{sel}">{c.ico(ic)}{e(c.t(k))}</button>' for k, ic, g, sel in [
+        ('i_install', 'download', 'auto', '.pf'), ('i_portable', 'box', 'windows', '[data-arch]:not([hidden]) .alts > :nth-child(2)'),
+        ('i_store', 'phone', 'store', '.badges'), ('i_cli', 'code', 'linux', '.distros'), ('i_older', 'disc', '', 'older'), ('i_src', 'code', 'source', '.pf')])
+    return (f'<template id="dlt"><div class="ly dlm" id="dlm" aria-hidden="true"><div class="scrim" data-x></div><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlm-t"><div class="st-h"><span class="st-logo"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg></span><div><h2 id="dlm-t">{e(c.t("dlm_h"))}</h2><p>VLC {V} · {e(c.t("dlm_p"))}</p></div><button type="button" class="x" data-x aria-label="{e(c.t("close"))}">{c.ico("x")}</button></div><div class="dlm-int" role="group" aria-label="{e(c.t("dlm_q"))}"><span>{e(c.t("dlm_q"))}</span>{intents}</div><div class="dlm-b">{download_block(c, "dlm")}</div></div></div></template>')
+
+def home(c, slug='home'):
+    c.slug = slug
     m = I.META[c.lang]
-    h = [head(c, f'VideoLAN — VLC media player · {c.t("hero_a")} {c.t("hero_b")}', strip(c.t('hero_lede')), 'home')]
+    h = [head(c, f'VLC media player — {c.t("hero_a")} {c.t("hero_b")} · VideoLAN' if slug == 'vlc' else f'VideoLAN — VLC media player · {c.t("hero_a")} {c.t("hero_b")}', strip(c.t('hero_lede')), slug, 'vlc' if slug == 'vlc' else '')]
     w = F['win64']
     # ---------- hero
     pop = (f'<a href="{F["arm64"]["url"]}"{dlattrs(F["arm64"])}>Windows ARM64<span>{c.t("mb", n=F["arm64"]["mb"])}</span></a>'
@@ -507,10 +514,143 @@ def home(c):
 <div class="partners" dir="ltr">{''.join(f'<span>{e(p)}</span>' for p in partners)}</div>
 <p style="margin-top:1rem"><a class="more" href="{c.page('videolan--partners')}">{e(c.t('partners'))}{c.ico('arrow', 'ic flip')}</a></p>
 </div></section>''')
-    intents = ''.join(f'<button type="button" class="chip" data-go="{g}" data-sel="{sel}">{c.ico(ic)}{e(c.t(k))}</button>' for k, ic, g, sel in [
-        ('i_install', 'download', 'auto', '.pf'), ('i_portable', 'box', 'windows', '[data-arch]:not([hidden]) .alts > :nth-child(2)'),
-        ('i_store', 'phone', 'store', '.badges'), ('i_cli', 'code', 'linux', '.distros'), ('i_older', 'disc', '', 'older'), ('i_src', 'code', 'source', '.pf')])
-    h.append(f'<template id="dlt"><div class="ly dlm" id="dlm" aria-hidden="true"><div class="scrim" data-x></div><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlm-t"><div class="st-h"><span class="st-logo"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg></span><div><h2 id="dlm-t">{e(c.t("dlm_h"))}</h2><p>VLC {V} · {e(c.t("dlm_p"))}</p></div><button type="button" class="x" data-x aria-label="{e(c.t("close"))}">{c.ico("x")}</button></div><div class="dlm-int" role="group" aria-label="{e(c.t("dlm_q"))}"><span>{e(c.t("dlm_q"))}</span>{intents}</div><div class="dlm-b">{download_block(c, "dlm")}</div></div></div></template>')
+    h.append(dl_template(c))
+    h.append(foot(c))
+    return '\n'.join(h)
+
+# ------------------------------------------------------------------ VideoLAN landing (EN)
+VDD = [('2008', 'Paris', None), ('2009', 'Paris', 'videolan--events--vdd09'), ('2011', 'Paris', 'videolan--events--vdd11'), ('2012', 'Paris', 'videolan--events--vdd12'), ('2013', 'Paris', 'videolan--events--vdd13'),
+       ('2014', 'Dublin', None), ('2015', 'Paris', 'videolan--events--vdd15'), ('2016', 'Berlin', 'videolan--events--vdd16'), ('2017', 'Paris', 'videolan--events--vdd17'), ('2018', 'Paris', 'videolan--events--vdd18'),
+       ('2019', 'Tokyo', 'videolan--events--vdd19'), ('2023', 'Dublin', 'videolan--events--vdd23'), ('2024', 'Seoul', 'videolan--events--vdd24'), ('2025', 'London', 'videolan--events--vdd25'), ('2026', 'Rome', 'videolan--events--vdd26')]
+
+def org_home(c):
+    c.slug = 'home'
+    w = F['win64']
+    L = CU.team_lists(); people = sum(len(v) for v in L.values())
+    h = [head(c, 'VideoLAN — Open source multimedia, for everyone', 'VideoLAN is the non-profit behind VLC media player and a family of open source multimedia projects: dav1d, x264, libVLC, libdvdcss, libbluray, DVBlast and more.', 'home')]
+    hero_sub = f'{c.t("cta_for", os="Windows")} · {c.t("dl_64")} · {c.t("mb", n=w["mb"])}'
+    # ---------- hero: VideoLAN headline, VLC as the star
+    h.append(f"""<section class="hero og-hero"><div class="wrap hero-g">
+<div>
+<p class="kick">VideoLAN · non-profit · 30 years of open source</p>
+<h1><span class="l">Open source multimedia,</span><span class="l"><em>for everyone.</em></span></h1>
+<p class="lede">VideoLAN is the volunteer project and non-profit organisation behind <a href="{c.page('vlc')}">VLC media player</a>, and a family of open source libraries and tools used across the media world: from the AV1 decoder in your browser to the encoders behind online video. No ads, no tracking, no investors.</p>
+<div class="cta">
+<div class="cta-row">
+<a class="cta-main" id="cta" href="{w['url']}"{dlattrs(w)}><span class="cta-os"><svg class="ic" aria-hidden="true"><use id="cta-ico" href="{c.root}icons.svg#i-windows"/></svg></span><span class="cta-t"><b id="cta-b">{e(c.t('cta_download'))}</b><span id="cta-s">{e(hero_sub)}</span></span><span class="cta-dl">{c.ico('download')}</span></a>
+<a class="cta-alt cta-alt-l" href="#projects"><span class="cta-alt-i" aria-hidden="true">{c.ico('box')}{c.ico('code')}{c.ico('film')}{c.ico('disc')}</span><span>Explore all projects</span></a>
+</div>
+<ul class="trust"><li>{c.ico('check')}Free and open source</li><li>{c.ico('shield')}Non-profit, independent</li><li>{c.ico('lock')}No ads, no tracking</li></ul>
+</div></div>
+<a class="stage vspot" href="{c.page('vlc')}" aria-label="Discover VLC media player"><div class="tilt">{mk_win(c, 'bbb', eager=True)}</div>{mk_android(c)}
+<span class="vspot-tag"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg><span><b>VLC media player {V}</b><small>Plays everything. Tracks nothing.</small></span><span class="go">Discover VLC{c.ico('arrow', 'ic flip')}</span></span></a>
+</div></section>""")
+    # ---------- key numbers
+    nums = [('1996', 'a student project at École Centrale Paris'), ('7 billion+', 'VLC downloads counted since 2005'), (str(len(CU.PJ)), 'open source projects'), (f'{people:,}', 'named contributors'), (str(len(VDD)), 'Dev Days in seven cities'), ('0', 'ads, trackers or investors')]
+    h.append('<div class="kstrip" role="list" aria-label="VideoLAN in numbers"><div class="wrap">' + ''.join(f'<div role="listitem" class="rv d{i % 3}"><b>{e(n)}</b><span>{e(t)}</span></div>' for i, (n, t) in enumerate(nums)) + '</div></div>')
+    # ---------- VLC flagship
+    vp = [('film', 'Plays everything', 'Files, discs, webcams, devices and streams, with no codec packs to install.'),
+          ('gauge', 'Fast everywhere', 'Hardware decoding on most platforms, from 8K HDR to old laptops.'),
+          ('phone', 'On every screen', 'Windows, macOS, Linux, Android, iOS, Apple TV, ChromeOS and more.'),
+          ('shield', 'Private by design', 'No ads, no tracking, no accounts. Ever.')]
+    h.append(f"""<section class="band vband" id="vlc"><div class="wrap vband-g">
+<div class="rv"><p class="kick" style="color:#ffb366">Our flagship</p><h2>VLC media player</h2>
+<p class="vband-lede">The free, cross-platform player that plays just about anything, used by hundreds of millions of people. Built on libVLC, the same engine developers embed in their own apps.</p>
+<div class="vfeat">{''.join(f'<div>{c.ico(ic)}<b>{e(t)}</b><span>{e(d)}</span></div>' for ic, t, d in vp)}</div>
+<div class="vband-cta"><a class="btn btn-or" href="{c.page('vlc')}">{c.ico('cone')}Discover VLC</a><a class="btn btn-gh-d" href="{c.page('download')}">{c.ico('download')}All downloads</a><a class="btn btn-gh-d" href="{c.page('vlc--features')}">{c.ico('sparkle')}Features</a><a class="btn btn-gh-d" href="{c.page('vlc--libvlc')}">{c.ico('code')}libVLC</a></div></div>
+<div class="vband-art rv d1" aria-hidden="true">{mk_tv(c)}{mk_iphone(c, cls="vb-ph")}</div>
+</div></section>""")
+    # ---------- the VideoLAN stack
+    def chip(sl, name, url=None):
+        href = c.page(sl) if sl in S.ALL else (url or c.page('projects'))
+        return f'<a class="sk-chip" href="{href}" dir="ltr">{e(name)}</a>'
+    layers = [('Apps', 'What people install', [chip('vlc', 'VLC media player'), chip('vlmc', 'VLMC'), chip('projects--vlma', 'VLMa'), '<span class="sk-chip sk-you">Your app</span>']),
+              ('Engine', 'Embed it anywhere', [chip('vlc--libvlc', 'libVLC'), '<span class="sk-note">LGPL since 2011 · bindings for most languages</span>']),
+              ('Codecs', 'Decode and encode', [chip('projects--dav1d', 'dav1d · AV1'), chip('developers--x264', 'x264 · H.264'), chip('developers--libdca', 'libdca · DTS')]),
+              ('Discs', 'DVD and Blu-ray', [chip('developers--libdvdcss', 'libdvdcss'), chip('developers--libdvdnav', 'libdvdnav · libdvdread'), chip('developers--libbluray', 'libbluray'), chip('developers--libaacs', 'libaacs · libbdplus')]),
+              ('Broadcast', 'TV networks and studios', [chip('projects--dvblast', 'DVBlast'), chip('projects--multicat', 'multicat'), chip('developers--libdvbpsi', 'libdvbpsi'), chip('developers--bitstream', 'biTStream'), chip('developers--libdvbcsa', 'libdvbcsa')])]
+    facts = [('tiles', 'dav1d', 'The fastest AV1 software decoder, built with the FFmpeg community for the Alliance for Open Media.', 'projects--dav1d'),
+             ('film', 'x264', 'The most popular software video encoder in the world, behind a huge share of online video.', 'developers--x264'),
+             ('stack', 'libVLC', 'The engine of VLC, ready to embed in your own app on desktop, mobile and TV.', 'vlc--libvlc')]
+    h.append(f"""<section class="band" id="stack"><div class="wrap">
+<div class="sh"><div><p class="kick">Inside the video you watch</p><h2>You already use VideoLAN</h2></div><p>Even if you have never opened VLC, chances are VideoLAN code decoded, encoded or carried the last video you watched. Here is how the pieces fit together.</p></div>
+<div class="sk-g">
+<div class="sk rv" role="list" aria-label="The VideoLAN software stack">{''.join(f'<div class="sk-l" role="listitem" style="--i:{i}"><div class="sk-h"><b>{e(t)}</b><small>{e(d)}</small></div><div class="sk-c">{"".join(ch)}</div></div>' for i, (t, d, ch) in enumerate(layers))}</div>
+<div class="sk-f">{''.join(f'<a class="sk-fact glow rv d{i % 3}" href="{c.page(sl)}"><span class="pi-il">{CU.illo(il)}</span><span><b dir="ltr">{e(n)}</b><span>{e(d)}</span></span></a>' for i, (il, n, d, sl) in enumerate(facts))}</div>
+</div></div></section>""")
+    # ---------- what VideoLAN is
+    vals = [('feather', 'Independent', 'No investors and no company behind it. An autonomous non-profit association under French law since 2009.'),
+            ('code', 'Open', 'Every line of code is free software, released under the GPL, LGPL, BSD and other open licences.'),
+            ('shield', 'Private', 'No ads, no tracking, no data sold. Not now, not ever.'),
+            ('globe', 'Worldwide', 'Developers from more than 40 countries; VLC translated into more than 100 languages.')]
+    story = [('1996', 'Campus TV', 'Students at École Centrale Paris start VideoLAN to stream video across the campus network.'),
+             ('1998', 'A fresh start', 'The code is rewritten from scratch, laying the foundations of today’s VLC.'),
+             ('2001', 'Free software', 'On 1 February, the École agrees to release everything under the GNU GPL.'),
+             ('2004', 'x264', 'Work starts on x264, which becomes the reference H.264 encoder.'),
+             ('2008', 'First Dev Days', 'The community meets in Paris for the first VideoLAN Dev Days.'),
+             ('2009', 'Independent', 'VideoLAN separates from the École and is run by its own non-profit.'),
+             ('2011', 'libVLC goes LGPL', 'The engine is relicensed so any app, free or not, can embed it.'),
+             ('2012', 'Backed by 3,080 people', 'A Kickstarter raises £47,056 to bring VLC to Windows 8, RT and Phone.'),
+             ('2013', 'Back on iPhone', 'VLC for iOS returns to the App Store, free in every country.'),
+             ('2016', 'Apple TV', 'VLC arrives on the living-room screen.'),
+             ('2017', 'AV1', 'VideoLAN joins the Alliance for Open Media to build a royalty-free codec.'),
+             ('2018', 'dav1d', 'The AV1 decoder starts with the FFmpeg community and soon ships in browsers.'),
+             ('2021', '20 years open', 'Two decades of free software and more than 3.5 billion downloads.'),
+             ('2025', 'AI subtitles', 'At CES, VideoLAN demos on-device subtitle generation and translation for VLC 4.0.'),
+             ('2026', 'Thirty years', f'The 15th Dev Days in Rome, VLC {V} with 130+ security fixes, and 7 billion downloads.')]
+    h.append(f"""<section class="band" id="about"><div class="wrap">
+<div class="sh"><div><p class="kick">About VideoLAN</p><h2>A project, and a non-profit</h2></div><p>VideoLAN started as a student project in Paris and grew into one of the largest open source multimedia communities in the world. Today it is run by volunteers and a small board, funded by donations and partners, and accountable to no one but its users.</p></div>
+<div class="vals">{''.join(f'<div class="val glow rv d{i % 3}"><span class="fic">{c.ico(ic)}</span><h3>{e(t)}</h3><p>{e(d)}</p></div>' for i, (ic, t, d) in enumerate(vals))}</div>
+<div class="rail-h"><h3 class="og-h3">Thirty years, 1996–2026</h3><div class="rail-nav"><button type="button" class="rail-b" data-rail="-1" aria-label="Earlier">{c.ico('arrow', 'ic flip r180')}</button><button type="button" class="rail-b" data-rail="1" aria-label="Later">{c.ico('arrow', 'ic flip')}</button></div></div>
+<ol class="trail" tabindex="0" aria-label="VideoLAN timeline, 1996 to 2026" data-railbox>{''.join(f'<li{" class=now" if y == "2026" else ""}><b>{y}</b><strong>{e(t)}</strong><span>{e(d)}</span></li>' for y, t, d in story)}</ol>
+<p class="center"><a class="btn btn-gh" href="{c.page('videolan')}">{c.ico('home')}About the organisation</a></p>
+</div></section>""")
+    # ---------- projects
+    groups = [('everyone', 'For everyone', 'Apps you can install today.'), ('pro', 'For broadcasters and professionals', 'Encoding and streaming tools that run TV networks and studios.'), ('dev', 'For developers', 'Libraries you can build on, from codecs to disc access.')]
+    def item(x):
+        slug, name, il, _, tag, facts, code = x
+        href = c.page(slug) if slug in S.ALL else code
+        return f'<a class="pitem glow" href="{href}"><span class="pi-il">{CU.illo(il)}</span><span class="pi-t"><b dir="ltr">{e(name)}</b><span>{e(tag[0])}</span><small dir="ltr">{e(facts[1])} · since {e(facts[3])}</small></span></a>'
+    cols = ''.join(f'<div class="pcol pcol-{g} rv d{i % 3}"><h3>{e(t)}</h3><p class="gd">{e(d)}</p>' + ''.join(item(x) for x in CU.PJ if x[3] == g) + '</div>' for i, (g, t, d) in enumerate(groups))
+    h.append(f"""<section class="band band-alt" id="projects"><div class="wrap">
+<div class="sh"><div><p class="kick">Projects</p><h2>Much more than a media player</h2></div><p>VLC is the best known, but VideoLAN maintains {len(CU.PJ)} open source projects: codecs, disc libraries and broadcast tools that power browsers, operating systems, streaming services and TV networks.</p></div>
+<div class="pcols">{cols}</div>
+<p class="center"><a class="btn btn-or" href="{c.page('projects')}">{c.ico('box')}Projects &amp; developers</a> <a class="btn btn-gh" href="https://code.videolan.org">{c.ico('git')}code.videolan.org</a></p>
+</div></section>""")
+    # ---------- people
+    board = ''.join(f'<a class="person sm" href="{c.page("videolan--team")}"><div class="av">' + (f'<img src="{c.root}media/jbk-160.webp" width="160" height="200" alt="" loading="lazy">' if ph else f'<span class="ini">{CU.initials(n)}</span>') + f'</div><div><p class="role">{e(role[0])}</p><h3 dir="ltr">{e(n)}</h3></div></a>' for n, role, ph, _ in CU.BOARD)
+    partners = 'Free · Gandi · MacStadium · Videolabs · MetaBrainz · École Centrale · EPITECH · Puget Systems · Panasonic · TASCAM'.split(' · ')
+    h.append(f"""<section class="band" id="people"><div class="wrap">
+<div class="sh"><div><p class="kick">People</p><h2>Made by a community</h2></div><p>{people:,} named contributors in code, translation, artwork and documentation, from more than 40 countries, meeting every year at the VideoLAN Dev Days.</p></div>
+<div class="og-people">
+<figure class="gphoto rv"><picture><source type="image/webp" srcset="{c.root}media/vdd14.webp"><img src="{c.root}media/vdd14.jpg" width="750" height="287" alt="VideoLAN Dev Days 2014 group photo" loading="lazy"></picture><figcaption>{c.ico('camera')}VideoLAN Dev Days 2014</figcaption></figure>
+<div><h3 class="og-h3">The board</h3><div class="board mini">{board}</div>
+<p class="og-links"><a class="more" href="{c.page('videolan--team')}">Meet the team{c.ico('arrow', 'ic flip')}</a><a class="more" href="{c.page('videolan--events')}">Events &amp; Dev Days{c.ico('arrow', 'ic flip')}</a></p></div>
+</div>
+<div class="vdd rv"><div class="vdd-t"><p class="kick">Video Dev Days</p><h3>{len(VDD)} editions, from Paris to Rome</h3><p>Every year the community meets for two or three days of talks and hacking, together with FFmpeg, x264, Kodi and friends. VideoLAN also has a booth at FOSDEM, CES, SCaLE, COSCUP and Open Source Experience.</p><a class="more" href="{c.page('videolan--events')}">All events{c.ico('arrow', 'ic flip')}</a></div>
+<ol class="vdd-l">{''.join(f'<li{" class=now" if y == VDD[-1][0] else ""}><a href="{c.page(sl) if sl and sl in S.ALL else c.page("videolan--events")}"><b>{y}</b><span>{e(city)}</span></a></li>' for y, city, sl in VDD)}</ol></div>
+<h3 class="og-h3" style="margin-top:2.5rem">Partners and supporters</h3>
+<div class="partners" dir="ltr">{''.join(f'<span>{e(x)}</span>' for x in partners)}</div>
+<p style="margin-top:1rem"><a class="more" href="{c.page('videolan--partners')}">All partners &amp; consultants{c.ico('arrow', 'ic flip')}</a></p>
+</div></section>""")
+    # ---------- news
+    h.append(f"""<section class="band band-alt" id="news"><div class="wrap">
+<div class="sh"><div><p class="kick">News</p><h2>Latest from VideoLAN</h2></div><a class="more" href="{c.page('news')}">{e(c.t('news_all', n=len(S.NEWS)))}{c.ico('arrow', 'ic flip')}</a></div>
+<div class="news">{news_cards(c)}</div></div></section>""")
+    # ---------- get involved
+    inv = [('code', 'Write code', 'Fix a bug or build a feature in VLC, dav1d, x264 or any other project.', 'developers'),
+           ('globe', 'Translate', 'Bring VLC and its website to your language.', 'developers--i18n' if 'developers--i18n' in S.ALL else 'contribute'),
+           ('chat', 'Help users', 'Answer questions on the forum, the wiki and IRC.', 'support'),
+           ('bug', 'Test and report', 'Try nightly builds and report what breaks.', 'contribute')]
+    h.append(f"""<section class="band" id="contribute"><div class="wrap">
+<div class="sh"><div><p class="kick">Get involved</p><h2>VideoLAN is made by people like you</h2></div><p>Everyone can help, whether you write code, speak another language, design, test or simply donate.</p></div>
+<div class="grid-4">{''.join(f'<a class="card glow rv d{i % 3}" href="{c.page(sl)}"><h3>{c.ico(ic)}{e(t)}</h3><p>{e(d)}</p><span class="more">{e(c.t("eco_more"))}{c.ico("arrow", "ic flip")}</span></a>' for i, (ic, t, d, sl) in enumerate(inv))}</div>
+<div class="dband rv"><div><p class="kick">{e(c.t('don_k'))}</p><h2>{e(c.t('don_h'))}</h2><p>{e(c.t('don_p'))}</p><small>{e(c.t('don_ways'))}</small></div><div><a class="btn btn-or" href="{c.page('contribute')}" data-donate>{c.ico('heart')}{e(c.t('don_btn'))}</a></div></div>
+</div></section>""")
+    # ---------- organisation links
+    res = [('press', 'news', 'Press'), ('legal', 'scale', 'Legal'), ('privacy', 'lock', 'Privacy'), ('security', 'shield', 'Security'), ('videolan--mirrors', 'disc', 'Mirrors'), ('contact', 'mail', 'Contact')]
+    h.append('<section class="band band-alt" id="org"><div class="wrap"><div class="sh"><div><p class="kick">The organisation</p><h2>Everything else, in one place</h2></div></div><div class="tiles og-tiles">' + ''.join(f'<a class="tl2 glow" href="{c.page(sl)}">{c.ico(ic)}<b>{e(t)}</b>{c.ico("arrow", "ic flip go")}</a>' for sl, ic, t in res if sl in S.ALL) + '</div></div></section>')
+    h.append(dl_template(c))
     h.append(foot(c))
     return '\n'.join(h)
 
@@ -578,8 +718,8 @@ def content_page(c, p):
     body = add_sha(body)
     wide = bool(p.get('hub')) or slug in CU.CURATED or slug in ('download', 'news', 'sitemap', 'design-notes') or slug.startswith('news--')
     body, toc = S.toc(body) if not slug in CU.CURATED else (body, [])
-    cur = {'download': 'download', 'news': 'news', 'projects': 'projects', 'support': 'support', 'contribute': 'contribute', 'videolan': 'about', 'vlc': 'features'}.get(k, '')
-    if slug == 'vlc--features': cur = 'features'
+    cur = {'download': 'download', 'news': 'news', 'projects': 'projects', 'support': 'support', 'contribute': 'contribute', 'videolan': 'about', 'vlc': 'vlc'}.get(k, '')
+    if slug == 'vlc--features': cur = 'vlc'
     desc = p.get('desc') or (strip(sec(c.lang, k, 1)) if k in S.SECTIONS else 'VideoLAN')
     out = [head(c, f'{title} — VideoLAN', desc, slug, cur)]
     seclabel = sec(c.lang, k, 0) if k in S.SECTIONS else p['section']
@@ -782,9 +922,10 @@ def main():
     for lang in I.LANGS:
         base = DIST if lang == 'en' else DIST / lang
         write(base / 'l10n.js', l10n_js(lang))
-        write(base / 'index.html', home(Ctx(lang, 0))); n += 1
+        write(base / 'index.html', org_home(Ctx(lang, 0)) if lang == 'en' else home(Ctx(lang, 0))); n += 1
         for slug, p in S.ALL.items():
             write(base / 'p' / f'{slug}.html', content_page(Ctx(lang, 1), p)); n += 1
+        write(base / 'p' / 'vlc.html', home(Ctx(lang, 1), 'vlc'))
     import lite as LT
     for lang in I.LANGS:
         base = DIST if lang == 'en' else DIST / lang

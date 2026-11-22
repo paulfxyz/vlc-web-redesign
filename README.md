@@ -5,7 +5,7 @@
 <br>
 
 **An unofficial, free redesign of [videolan.org](https://www.videolan.org), offered to the VideoLAN team.**<br>
-Every page of the current site rebuilt as one static, accessible, multilingual website, with a real download centre for VLC 3.0.24.
+Every page of the current site rebuilt as one static, accessible, multilingual website: a landing for the whole VideoLAN organisation, a dedicated VLC home, and a real download centre for VLC 3.0.24.
 
 Everything is live at **[vlc.paulfleury.com](https://vlc.paulfleury.com)**. Prefer not to clone? Grab the whole built site in one archive: **[vlc-web-redesign.zip](https://vlc.paulfleury.com/vlc-web-redesign.zip)**.
 
@@ -15,7 +15,7 @@ Everything is live at **[vlc.paulfleury.com](https://vlc.paulfleury.com)**. Pref
 [![live: vlc.paulfleury.com](https://img.shields.io/badge/live-vlc.paulfleury.com-ff8800?style=for-the-badge&labelColor=282828)](https://vlc.paulfleury.com)
 [![download: vlc-web-redesign.zip](https://img.shields.io/badge/download-vlc--web--redesign.zip-0a0a0a?style=for-the-badge&labelColor=282828)](https://vlc.paulfleury.com/vlc-web-redesign.zip)
 
-[![version: 1.0.0](https://img.shields.io/badge/version-1.0.0-ff8800?style=flat-square&labelColor=282828)](CHANGELOG.md)
+[![version: 1.1.0](https://img.shields.io/badge/version-1.1.0-ff8800?style=flat-square&labelColor=282828)](CHANGELOG.md)
 [![pages: 1,236](https://img.shields.io/badge/pages-1%2C236-0a0a0a?style=flat-square&labelColor=282828)](#-whats-inside)
 [![i18n: EN · FR · 中文 · العربية](https://img.shields.io/badge/i18n-EN%20%C2%B7%20FR%20%C2%B7%20%E4%B8%AD%E6%96%87%20%C2%B7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-0a0a0a?style=flat-square&labelColor=282828)](#-four-languages-one-rtl)
 [![RTL: Arabic](https://img.shields.io/badge/RTL-Arabic-0a0a0a?style=flat-square&labelColor=282828)](#-four-languages-one-rtl)
@@ -35,7 +35,7 @@ Everything is live at **[vlc.paulfleury.com](https://vlc.paulfleury.com)**. Pref
 [![VLC: 3.0.24](https://img.shields.io/badge/VLC-3.0.24-ff8800?style=flat-square&labelColor=282828&logo=vlcmediaplayer&logoColor=ededed)](https://vlc.paulfleury.com/p/download.html)
 [![vibe designed: Perplexity Computer](https://img.shields.io/badge/vibe%20designed-Perplexity%20Computer-20808d?style=flat-square&labelColor=282828&logo=perplexity&logoColor=ededed)](#-this-is-vibe-designing)
 
-**[→ Open the site](https://vlc.paulfleury.com)** &nbsp;·&nbsp; **[→ Choose a download](https://vlc.paulfleury.com/#choose)** &nbsp;·&nbsp; **[→ Design notes](https://vlc.paulfleury.com/p/design-notes.html)** &nbsp;·&nbsp; **[→ Simple version](https://vlc.paulfleury.com/lite.html)** &nbsp;·&nbsp; **[↓ Download](https://vlc.paulfleury.com/vlc-web-redesign.zip)**
+**[→ Open the site](https://vlc.paulfleury.com)** &nbsp;·&nbsp; **[→ Choose a download](https://vlc.paulfleury.com/p/vlc.html#choose)** &nbsp;·&nbsp; **[→ Design notes](https://vlc.paulfleury.com/p/design-notes.html)** &nbsp;·&nbsp; **[→ Simple version](https://vlc.paulfleury.com/lite.html)** &nbsp;·&nbsp; **[↓ Download](https://vlc.paulfleury.com/vlc-web-redesign.zip)**
 
 </div>
 
@@ -47,9 +47,10 @@ videolan.org carries twenty years of content: the player, libVLC, a dozen sister
 
 | # | Deliverable | What it is | Where |
 |---|---|---|---|
-| **1** | **The full site** | 308 content pages + home, in 4 languages: 1,236 static HTML pages | [vlc.paulfleury.com](https://vlc.paulfleury.com) |
+| **1** | **The full site** | VideoLAN landing + VLC home + 307 content pages, in 4 languages: 1,236 static HTML pages | [vlc.paulfleury.com](https://vlc.paulfleury.com) |
+| **1b** | **VLC home** | The player's own page: download, mockups, formats, features | [`/p/vlc.html`](https://vlc.paulfleury.com/p/vlc.html) |
 | **2** | **Download centre** | OS detection, every VLC 3.0.24 file from `get.videolan.org` with its SHA-256, Linux commands for 8 distributions, stores and QR codes | [`/p/download.html`](https://vlc.paulfleury.com/p/download.html) |
-| **3** | **"Choose your download"** | Full-screen chooser behind *Other versions*: pick a system, or say what you need | [`/#choose`](https://vlc.paulfleury.com/#choose) |
+| **3** | **"Choose your download"** | Full-screen chooser behind *Other versions*: pick a system, or say what you need | [`/#choose`](https://vlc.paulfleury.com/p/vlc.html#choose) |
 | **4** | **Settings hub** | One button for search, language, appearance and accessibility | any page, `Ctrl K` or `/` |
 | **5** | **Projects & developers** | One merged hub with a searchable directory on every project page | [`/p/projects.html`](https://vlc.paulfleury.com/p/projects.html) |
 | **6** | **Simple version** | A no-JavaScript page for old browsers and slow connections | [`/lite.html`](https://vlc.paulfleury.com/lite.html) |
@@ -62,9 +63,35 @@ videolan.org carries twenty years of content: the player, libVLC, a dozen sister
 
 ## 🌐 The site
 
-<div align="center"><a href="https://vlc.paulfleury.com"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/img/home-dark.png"><img src=".github/img/home-light.png" alt="The redesigned VideoLAN homepage: Plays everything. Tracks nothing." width="100%"></picture></a></div>
+<div align="center"><a href="https://vlc.paulfleury.com"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/img/home-dark.png"><img src=".github/img/home-light.png" alt="The VideoLAN landing: Open source multimedia, for everyone, with VLC in the hero" width="100%"></picture></a></div>
 
-The homepage leads with one job: get the right VLC. The main button already knows your system (Windows 64-bit, Apple Silicon or Intel, Android, iPhone), points at the real file, and shows its size. Below it: real player mockups built in HTML and CSS with Blender open movies, the format wall, features, projects, news and the non-profit.
+### 🏛️ VideoLAN, not just VLC
+
+Since 1.1.0 the English homepage presents the whole organisation, built from what videolan.org already publishes (the about page, the 25 press releases, the events archive, the download statistics). VLC stays the star of the hero and links to its own home at [`/p/vlc.html`](https://vlc.paulfleury.com/p/vlc.html).
+
+| Section | What it shows |
+|---|---|
+| **Hero** | VideoLAN in one sentence, the detected VLC download, and the VLC mockups as a link to the player's page |
+| **In numbers** | 1996 · 7 billion+ VLC downloads counted since 2005 · 16 projects · 1,062 named contributors · 15 Dev Days · 0 ads |
+| **VLC, our flagship** | Four promises, TV and iPhone mockups, links to downloads, features and libVLC |
+| **You already use VideoLAN** | The VideoLAN stack in five layers (apps, engine, codecs, discs, broadcast), with dav1d, x264 and libVLC called out |
+| **A project, and a non-profit** | Values, then a scrollable 30-year timeline: 1996 campus TV to the 15th Dev Days in Rome |
+| **Projects** | All 16 projects grouped for everyone, for broadcasters, for developers |
+| **People** | Board, Dev Days 2014 photo, all 15 Video Dev Days editions (Paris to Rome), partners |
+| **News, Get involved, The organisation** | Latest posts, four ways to help, donation, press, legal, privacy, security, mirrors, contact |
+
+<table>
+<tr>
+<td width="50%"><img src=".github/img/org-stack.png" alt="You already use VideoLAN: the five-layer VideoLAN stack"></td>
+<td width="50%"><img src=".github/img/org-story.png" alt="Thirty years timeline, 1996 to 2026, in dark mode"></td>
+</tr>
+<tr>
+<td width="50%"><img src=".github/img/org-people.png" alt="Video Dev Days: 15 editions from Paris to Rome"></td>
+<td width="50%"><img src=".github/img/vlc-page.png" alt="The VLC home: Plays everything. Tracks nothing."></td>
+</tr>
+</table>
+
+The VLC home leads with one job: get the right VLC. The main button already knows your system (Windows 64-bit, Apple Silicon or Intel, Android, iPhone), points at the real file, and shows its size. Below it: real player mockups built in HTML and CSS with Blender open movies, the format wall, features, projects, news and the non-profit. French, Chinese and Arabic still open on the VLC home until the landing is translated.
 
 <div align="center"><img src=".github/img/mobile.png" alt="Five phone screens: English home, French download centre, the download chooser, Chinese features and Arabic home in right-to-left" width="100%"></div>
 
@@ -109,7 +136,7 @@ On phones every page is compact and thumb-friendly: one-column layouts, horizont
 - **"What do you need?"** shortcuts: *Install on this device*, *Portable, no install*, *From an app store*, *Command line*, *Older versions*, *Source code*. Each one picks the system, scrolls to the right file and highlights it.
 - **Every file is real**: installers, MSI, ZIP and 7z for x64, ARM64 and 32-bit, Universal / Apple Silicon / Intel DMGs, `tar.xz` source, all linked to `get.videolan.org` with SHA-256 fingerprints and a copy button.
 - **Linux**: copy-ready commands for Ubuntu, Debian, Fedora (RPM Fusion), Arch, openSUSE, Gentoo, Flatpak and Snap.
-- **Light**: the chooser lives in a `<template>` and only enters the page when opened. Shareable as [`/#choose`](https://vlc.paulfleury.com/#choose). Without JavaScript, the button is a plain link to the download page.
+- **Light**: the chooser lives in a `<template>` and only enters the page when opened. Shareable as [`/#choose`](https://vlc.paulfleury.com/p/vlc.html#choose). Without JavaScript, the button is a plain link to the download page.
 - **Leaving the site** for a store or mirror shows a short notice first, so nobody is surprised by the jump.
 
 ---

@@ -2,6 +2,21 @@
 
 All notable changes to this project. Dates are in Europe/Lisbon time.
 
+## [1.1.0] — 2026-11-22
+
+VideoLAN, not just VLC. The English homepage now presents the whole organisation.
+
+### Added
+- New VideoLAN landing (`index.html`, English): hero with VLC as the star, numbers strip, VLC flagship band, "You already use VideoLAN" stack diagram, values and a scrollable 30-year timeline, 16 projects by audience, board, all 15 Video Dev Days editions, partners, news, get involved, organisation links.
+- Facts drawn from videolan.org itself: the about page, press releases (open-sourcing 2001, LGPL 2011, Kickstarter 2012, iOS 2013, Apple TV 2016, AOMedia 2017, 20 years 2021), the events archive and the download statistics (7,092,269,654 downloads counted on 1 October 2026).
+- Dedicated VLC home at `/p/vlc.html` in every language; "VLC" is now the first navigation item.
+- README screenshots for the landing sections; `tools/shots.py` can scroll to a section.
+
+### Changed
+- Brand subtitle reads "Open source multimedia" in English.
+- The download chooser template is shared between the VLC home and the landing.
+- French, Chinese and Arabic homepages stay on the VLC home until the landing is translated.
+
 ## [1.0.0] — 2026-10-02
 
 First public release, live at [vlc.paulfleury.com](https://vlc.paulfleury.com).
