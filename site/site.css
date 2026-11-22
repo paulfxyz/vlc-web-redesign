@@ -86,6 +86,7 @@ html[data-theme=dark] .hd{background:rgba(14,13,12,.84)}
 .drawer a{display:flex;align-items:center;gap:.6rem;padding:.85rem 1rem;border-radius:var(--r2);background:var(--sf);border:1px solid var(--ln);color:var(--tx);font-weight:650;min-height:52px}
 .drawer a .ic{color:var(--or-ink)}
 @media (max-width:1180px){.nav{display:none}.menu{display:block}.hide-md{display:none!important}}
+html.navc .nav{display:none}html.navc .menu{display:block}html.navc .hide-md{display:none!important}
 :lang(fr) .nav a{padding-inline:.55rem;font-size:.9rem}
 @media (max-width:1320px){:lang(fr) .nav{display:none}:lang(fr) .menu{display:block}:lang(fr) .hide-md{display:none!important}}
 @media (max-width:540px){.brand small{display:none}.ib .code{display:none}.tools{gap:.25rem}.ib{min-width:42px;height:42px;padding:0 .6rem}}
@@ -1465,6 +1466,7 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;appeara
 .ptabs a[aria-current]{background:var(--tx);color:var(--bg)!important}
 .tsub{display:block;font-size:.78rem;color:var(--tx-3);font-weight:500}
 .tl2 span{min-width:0}
+.tl2 b{min-width:0;overflow-wrap:anywhere;hyphens:auto}.tl2 .ic{flex-shrink:0}
 .pw3.has-toc .pband .facts{grid-template-columns:1fr 1fr}
 /* ---------- download chooser modal */
 button.cta-alt{display:flex;align-items:center;justify-content:center;gap:.65rem;min-height:68px;padding:0 1.1rem;border-radius:var(--r3);border:1px solid var(--ln);background:var(--sf);font-weight:680;font-size:.92rem;color:var(--tx);transition:border-color .2s,box-shadow .25s,transform .25s var(--ease)}
@@ -1488,6 +1490,7 @@ html.fx .ly.open .dlg{animation:pop .3s var(--ease) both}
 pre code,pre{font-size:max(.78rem,1em)}
 @media (max-width:700px){pre,pre code{font-size:.8rem}}
 .crumbs a,.kick a,a.kick{display:inline-flex;align-items:center;min-height:24px;padding-block:2px}
+.crumbs a{min-width:24px;justify-content:center}
 .crumbs{align-items:center}
 .brand small{font-size:.75rem}
 .sbadge small{font-size:.75rem;opacity:.85}
@@ -1574,7 +1577,7 @@ html.fx .pitem:hover{transform:translateY(-2px)}
 .pi-il{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 60%,rgba(255,136,0,.18),transparent 70%),var(--sf-2)}
 .pi-il .il{width:44px;height:44px}
 .pi-t b{display:block;font-size:1rem}
-.pi-t span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:.86rem;color:var(--tx-2);line-height:1.4}
+.pi-t span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:.86rem;color:var(--tx-2);line-height:1.4}
 .pi-t small{display:block;margin-top:.2rem;font-size:.75rem;color:var(--tx-3)}
 .og-people{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2rem;align-items:start}
 .og-people .gphoto{margin:0}
@@ -1646,7 +1649,7 @@ html.fx .sk.rv.in .sk-l{opacity:1;transform:none}
 @media (max-width:760px){.sk-f{grid-template-columns:1fr}.sk-l{grid-template-columns:1fr;gap:.5rem}.vdd-l{grid-template-columns:repeat(3,minmax(0,1fr))}.og-tiles{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.pcol-dev{grid-template-columns:1fr}.og-tiles{grid-template-columns:1fr}.vband-art{padding-bottom:30%}.vband-art .mk-tv{width:82%;margin-inline-start:auto}.vband-art .vb-ph{inset-inline-start:0;width:80%}}
 @media (prefers-reduced-motion:reduce){.trail{scroll-behavior:auto}}
-@media (max-width:640px){.pi-t span{display:block;-webkit-line-clamp:unset;overflow:visible}}
+@media (max-width:1000px){.pi-t span{display:block;-webkit-line-clamp:unset;overflow:visible}}
 @media (max-width:900px) and (min-width:641px){.vband-art{max-width:560px;margin-inline:auto;width:100%}}
 html[data-theme=dark] .trail li.now{background:#2a1a08;border-color:var(--or)}
 .vband{background:radial-gradient(900px 520px at 85% 15%,#2e1a07,transparent 70%),#140f0a}
@@ -1715,3 +1718,11 @@ html[dir=rtl] :is(.bt b,.bt-cap b,.sk-fact b,.pi-t b,.mg-i b,.person h3,.vband h
 @media (max-width:640px){.kstrip .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .kstrip div>span{max-width:15rem}
 :lang(fr) .og-hero h1,:lang(ar) .og-hero h1{font-size:clamp(2.3rem,1.5rem + 3.2vw,4rem)}
+h1,h2,h3,h4,.btn,.tl2 b,.card b{overflow-wrap:break-word}
+html.js .hero h1,html.js .og-hero h1{overflow-wrap:normal}
+:is(:lang(hi),:lang(bn),:lang(pa),:lang(gu),:lang(mr),:lang(ta),:lang(te),:lang(kn),:lang(ml),:lang(si),:lang(ne),:lang(th),:lang(km),:lang(lo),:lang(my),:lang(am),:lang(ka),:lang(hy)) :is(.hero h1,.og-hero h1,h2){letter-spacing:0;line-height:1.3}
+:is(:lang(he),:lang(fa),:lang(ur),:lang(ps)) :is(.hero h1,.og-hero h1){letter-spacing:0;line-height:1.25}
+:is(:lang(th),:lang(km),:lang(lo),:lang(my),:lang(si),:lang(ur)) body{line-height:1.75}
+:is(:lang(ar),:lang(zh),:lang(zh-Hant),:lang(ja),:lang(ko),:lang(he),:lang(fa),:lang(ur),:lang(ps),:lang(hi),:lang(bn),:lang(pa),:lang(gu),:lang(mr),:lang(ta),:lang(te),:lang(kn),:lang(ml),:lang(si),:lang(ne),:lang(th),:lang(km),:lang(lo),:lang(my),:lang(am),:lang(ka),:lang(hy)) :is(.kick,.brand small,.fh,.ey){letter-spacing:0}
+:is(:lang(ar),:lang(zh),:lang(zh-Hant),:lang(ja),:lang(ko),:lang(he),:lang(fa),:lang(ur),:lang(ps),:lang(hi),:lang(bn),:lang(pa),:lang(gu),:lang(mr),:lang(ta),:lang(te),:lang(kn),:lang(ml),:lang(si),:lang(ne),:lang(th),:lang(km),:lang(lo),:lang(my),:lang(am),:lang(ka),:lang(hy)) .kick{font-size:.85rem}
+:is(:lang(hi),:lang(bn),:lang(pa),:lang(gu),:lang(mr),:lang(ta),:lang(te),:lang(kn),:lang(ml),:lang(si),:lang(ne),:lang(th),:lang(km),:lang(lo),:lang(my),:lang(am),:lang(ka),:lang(hy)) :is(.cta-t b,.btn,.nav a,.tl2 b,.card h3,.bt b){line-height:1.45}

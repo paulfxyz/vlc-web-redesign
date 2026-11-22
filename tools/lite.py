@@ -45,13 +45,13 @@ CSS = ('body{margin:0;padding:0;background:#fff;color:#1a1a1a;font-family:Arial,
  '@media (prefers-color-scheme:dark){body{background:#111;color:#eee}.n{background:#2a1c08;border-color:#7a4a10}a,a:visited{color:#ffad5c}h2,.f{border-color:#333}pre{background:#1d1d1d;border-color:#333}.s,.f{color:#bbb}a:focus{outline-color:#fff}}')
 
 def page(lang, F, V, STORE, LINUX):
-    i = LI[lang]; L = lambda k, **kw: LS[k][i].format(**kw)
+    i = LI.get(lang); L = (lambda k, **kw: LS[k][i].format(**kw)) if i is not None else (lambda k, **kw: I.cat(lang, 'l:' + k).format(**kw))
     m = I.META[lang]; base = ''; root = '' if lang == 'en' else '../'
     def f(k, label):
-        x = F[k]; return f'<li><a href="{x["url"]}">{e(label)}</a> — <bdi dir="ltr">{e(x["name"])}</bdi>{"،" if lang == "ar" else ","} {L("mb", n=x["mb"])}<span class="s" dir="ltr">SHA-256 {x["sha"]}</span></li>'
+        x = F[k]; return f'<li><a href="{x["url"]}">{e(label)}</a> — <bdi dir="ltr">{e(x["name"])}</bdi>{"،" if lang in ("ar", "fa", "ur", "ps") else ","} {L("mb", n=x["mb"])}<span class="s" dir="ltr">SHA-256 {x["sha"]}</span></li>'
     win = lambda p, ks: ''.join(f(k, L(n)) for k, n in ks)
     linux = ''.join(f'<li>{e(n)}<pre dir="ltr">{e(cmd)}</pre></li>' for _, n, _, cmd, _, _ in LINUX)
-    langs = ' · '.join(f'<a href="{root}{"" if l == "en" else l + "/"}lite.html" hreflang="{I.META[l]["html"]}" lang="{I.META[l]["html"]}">{e(I.META[l]["name"])}</a>' for l in I.LANGS)
+    langs = ' · '.join(f'<a href="{root}{"" if l == "en" else I.META[l]["slug"] + "/"}lite.html" hreflang="{I.META[l]["html"]}" lang="{I.META[l]["html"]}">{e(I.META[l]["name"])}</a>' for l in I.LANGS)
     return f'''<!DOCTYPE html>
 <html lang="{m['html']}" dir="{m['dir']}">
 <head>
@@ -61,7 +61,7 @@ def page(lang, F, V, STORE, LINUX):
 <meta name="color-scheme" content="light dark">
 <title>{e(L('title'))}</title>
 <meta name="description" content="{e(L('lead'))}">
-<link rel="canonical" href="https://vlc.paulfleury.com/{"" if lang == "en" else lang + "/"}lite.html">
+<link rel="canonical" href="https://vlc.paulfleury.com/{"" if lang == "en" else I.META[lang]["slug"] + "/"}lite.html">
 <link rel="icon" href="{root}favicon.svg" type="image/svg+xml">
 <style>{CSS}</style>
 </head>

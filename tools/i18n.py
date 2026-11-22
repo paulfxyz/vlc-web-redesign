@@ -407,3 +407,87 @@ def t(lang, key, **kw):
     return v
 
 def sec(lang, k, i=0): return SECTIONS_T[k][i][LANGS.index(lang)]
+
+# ======================================================================= 81 languages
+# Every language videolan.org offers. The first four are hand-maintained above (tuples in T, SECTIONS_T,
+# curated.py, lite.py). All others come from content/l10n/<code>.json, a flat catalog produced by
+# tools/translate_all.py (OpenRouter: translate, then native-speaker proofread) from content/l10n/_source.json.
+import json as _json, pathlib as _pl, hashlib as _hl
+BASE = ['en', 'fr', 'zh', 'ar']
+_ROOT = _pl.Path(__file__).resolve().parent.parent
+ALL = [  # code (html lang), native name, English name
+ ('en', 'English', 'English'), ('fr', 'Français', 'French'), ('zh', '简体中文', 'Chinese (Simplified)'), ('ar', 'العربية', 'Arabic'),
+ ('de', 'Deutsch', 'German'), ('es', 'Español', 'Spanish'), ('pt-PT', 'Português (Portugal)', 'Portuguese (Portugal)'), ('pt-BR', 'Português (Brasil)', 'Portuguese (Brazil)'),
+ ('it', 'Italiano', 'Italian'), ('nl', 'Nederlands', 'Dutch'), ('pl', 'Polski', 'Polish'), ('ru', 'Русский', 'Russian'), ('uk', 'Українська', 'Ukrainian'),
+ ('cs', 'Čeština', 'Czech'), ('sk', 'Slovenčina', 'Slovak'), ('hu', 'Magyar', 'Hungarian'), ('ro', 'Română', 'Romanian'), ('bg', 'Български', 'Bulgarian'),
+ ('el', 'Ελληνικά', 'Greek'), ('tr', 'Türkçe', 'Turkish'), ('he', 'עברית', 'Hebrew'), ('fa', 'فارسی', 'Persian'), ('ur', 'اردو', 'Urdu'), ('ps', 'پښتو', 'Pashto'),
+ ('hi', 'हिन्दी', 'Hindi'), ('bn', 'বাংলা', 'Bengali'), ('pa', 'ਪੰਜਾਬੀ', 'Punjabi (Gurmukhi)'), ('gu', 'ગુજરાતી', 'Gujarati'), ('mr', 'मराठी', 'Marathi'),
+ ('ta', 'தமிழ்', 'Tamil'), ('te', 'తెలుగు', 'Telugu'), ('kn', 'ಕನ್ನಡ', 'Kannada'), ('ml', 'മലയാളം', 'Malayalam'), ('si', 'සිංහල', 'Sinhala'), ('ne', 'नेपाली', 'Nepali'),
+ ('th', 'ไทย', 'Thai'), ('vi', 'Tiếng Việt', 'Vietnamese'), ('id', 'Bahasa Indonesia', 'Indonesian'), ('ms', 'Bahasa Melayu', 'Malay'), ('fil', 'Filipino', 'Filipino'),
+ ('zh-Hant', '繁體中文', 'Chinese (Traditional, Taiwan)'), ('ja', '日本語', 'Japanese'), ('ko', '한국어', 'Korean'), ('sv', 'Svenska', 'Swedish'), ('nb', 'Norsk bokmål', 'Norwegian Bokmål'),
+ ('da', 'Dansk', 'Danish'), ('fi', 'Suomi', 'Finnish'), ('is', 'Íslenska', 'Icelandic'), ('et', 'Eesti', 'Estonian'), ('lv', 'Latviešu', 'Latvian'), ('lt', 'Lietuvių', 'Lithuanian'),
+ ('sl', 'Slovenščina', 'Slovenian'), ('hr', 'Hrvatski', 'Croatian'), ('sr', 'Српски', 'Serbian (Cyrillic)'), ('bs', 'Bosanski', 'Bosnian'), ('mk', 'Македонски', 'Macedonian'),
+ ('sq', 'Shqip', 'Albanian'), ('ca', 'Català', 'Catalan'), ('eu', 'Euskara', 'Basque'), ('gl', 'Galego', 'Galician'), ('cy', 'Cymraeg', 'Welsh'), ('ga', 'Gaeilge', 'Irish'),
+ ('br', 'Brezhoneg', 'Breton'), ('oc', 'Occitan', 'Occitan'), ('eo', 'Esperanto', 'Esperanto'), ('sw', 'Kiswahili', 'Swahili'), ('af', 'Afrikaans', 'Afrikaans'),
+ ('zu', 'isiZulu', 'Zulu'), ('am', 'አማርኛ', 'Amharic'), ('ha', 'Hausa', 'Hausa'), ('yo', 'Yorùbá', 'Yoruba'), ('kk', 'Қазақ тілі', 'Kazakh'), ('uz', 'Oʻzbekcha', 'Uzbek (Latin)'),
+ ('az', 'Azərbaycanca', 'Azerbaijani'), ('ka', 'ქართული', 'Georgian'), ('hy', 'Հայերեն', 'Armenian'), ('mn', 'Монгол', 'Mongolian (Cyrillic)'), ('km', 'ភាសាខ្មែរ', 'Khmer'),
+ ('lo', 'ລາວ', 'Lao'), ('my', 'မြန်မာ', 'Burmese'), ('ku', 'Kurdî', 'Kurdish (Kurmanji, Latin)')]
+RTL = {'ar', 'he', 'fa', 'ur', 'ps'}
+NOSPACE = {'zh', 'zh-Hant', 'ja'}            # scripts written without spaces between words
+def slug_of(code): return code.lower()       # output directory: pt-br/, zh-hant/ …
+for _c, _n, _en in ALL:
+    if _c not in META: META[_c] = dict(name=_n, html=_c, dir='rtl' if _c in RTL else 'ltr')
+    META[_c]['en_name'] = _en
+    META[_c].setdefault('slug', _c if _c in BASE else slug_of(_c))
+
+CAT = {}
+for _c, _n, _en in ALL:
+    _p = _ROOT / 'content' / 'l10n' / f'{_c}.json'
+    if _c not in BASE and _p.exists(): CAT[_c] = _json.loads(_p.read_text())
+
+def hk(s): return _hl.sha1(s.encode()).hexdigest()[:12]
+def cat(lang, key):
+    v = CAT.get(lang, {}).get(key)
+    if v is None: raise KeyError(f'{lang}: missing {key}')
+    return v
+
+EN_FILL = {'untranslated': 'This page has not been translated yet. It is shown in its original English version.', 'en_note': 'in English'}
+
+_t_base = t
+def t(lang, key, **kw):
+    if lang in BASE: return _t_base(lang, key, **kw)
+    v = cat(lang, 't:' + key)
+    for k, x in kw.items(): v = v.replace('{' + k + '}', str(x))
+    return v
+
+_sec_base = sec
+def sec(lang, k, i=0):
+    return _sec_base(lang, k, i) if lang in BASE else cat(lang, f's:{k}:{i}')
+
+_date_base = date
+def date(lang, iso):
+    if lang in BASE: return _date_base(lang, iso)
+    from babel.dates import format_date
+    import datetime
+    y, m, d = map(int, iso.split('-'))
+    loc = {'zh-Hant': 'zh_Hant_TW', 'pt-BR': 'pt_BR', 'pt-PT': 'pt_PT', 'sr': 'sr_Cyrl', 'uz': 'uz_Latn', 'mn': 'mn', 'ku': 'ku', 'fil': 'fil', 'pa': 'pa_Guru'}.get(lang, lang)
+    try: return format_date(datetime.date(y, m, d), format='long', locale=loc)
+    except Exception: return f'{y}-{m:02d}-{d:02d}'
+
+def num(lang, n):
+    if lang == 'en': return f'{n:,}'
+    if lang == 'fr': return f'{n:,}'.replace(',', '\u202f')
+    if lang in ('zh', 'ar'): return f'{n:,}'
+    from babel.numbers import format_decimal
+    loc = {'zh-Hant': 'zh_Hant_TW', 'pt-BR': 'pt_BR', 'pt-PT': 'pt_PT', 'sr': 'sr_Cyrl', 'uz': 'uz_Latn', 'pa': 'pa_Guru'}.get(lang, lang)
+    try: return format_decimal(n, locale=loc)
+    except Exception: return f'{n:,}'
+
+def complete(lang):
+    if lang in BASE: return True
+    src = _ROOT / 'content' / 'l10n' / '_source.json'
+    if lang not in CAT or not src.exists(): return False
+    need = _json.loads(src.read_text())['strings']
+    return all(k in CAT[lang] for k in need)
+
+LANGS = BASE + [c for c, _, _ in ALL if c not in BASE and complete(c)]

@@ -169,6 +169,8 @@ def source():
 
 def news_tr(lang, nid, part):
     if lang == 'en': return None
+    import i18n as I
+    if lang not in I.BASE: return I.CAT.get(lang, {}).get(f'o:nw_{nid}_{part}')
     return tr().get(f'nw_{nid}_{part}', {}).get(lang)
 
 _TR = None
@@ -180,6 +182,8 @@ def tr():
     return _TR
 
 def ot(lang, key, **kw):
-    s = EN[key] if lang == 'en' else tr().get(key, {}).get(lang)
+    import i18n as I
+    if lang not in I.BASE: s = I.cat(lang, 'o:' + key)
+    else: s = EN[key] if lang == 'en' else tr().get(key, {}).get(lang)
     if s is None: raise KeyError(f'missing {lang} translation for {key}')
     return s.format(**kw) if kw else s

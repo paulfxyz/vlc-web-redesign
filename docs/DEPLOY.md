@@ -3,12 +3,13 @@
 **Single source of truth: https://vlc.paulfleury.com** · code: https://github.com/paulfxyz/vlc-web-redesign
 
 ```
-python3 tools/build_site.py                          # build dist/ (EN + FR/ZH/AR)
+python3 tools/build_site.py                          # build dist/ (81 languages, about 1.3 GB)
 VLC_FTP_PASS='…' python3 tools/deploy_ftp.py         # mirror dist/ → ftp.paulfleury.com:/vlc.paulfleury.com/public_html
 VLC_FTP_PASS='…' python3 tools/deploy_ftp.py --full  # force re-upload of every file
 ```
 
-- FTP host `ftp.paulfleury.com`, user `vlc2@paulfleury.com`, port 21 (password kept out of the repo).
+- FTP host `ftp.paulfleury.com`, port 21; user in `VLC_FTP_USER`, password in `VLC_FTP_PASS` (both kept out of the repo).
+- A first full upload of the 81-language build is about 25,000 files; later deploys only send what changed.
 - Uploads only changed files (MD5 manifest in `.ftp-manifest.json`, git-ignored) and removes files deleted locally.
 - The host (SiteGround) shows a bot challenge to some automated clients; real browsers pass.
 - Old-browser redirect to `lite.html` is done in-page (feature test + UA list in `<head>`, plus an IE conditional comment). `.htaccess` adds the same rules and no-cache headers for HTML/JSON where the host applies them.

@@ -10,9 +10,13 @@ LI = {'en': 0, 'fr': 1, 'zh': 2, 'ar': 3}
 
 FACTW = {'All': ('All platforms', 'Toutes plateformes', '全平台', 'كل المنصّات'), 'Desktop': ('Desktop', 'Ordinateur', '桌面端', 'سطح المكتب'), 'Desktop · Mobile · TV': ('Desktop · Mobile · TV', 'Ordinateur · Mobile · TV', '桌面 · 移动 · 电视', 'سطح المكتب · الجوّال · التلفاز')}
 def FW(c, v): return P(c, FACTW[v]) if v in FACTW else v
+REC = None   # set() to record every translatable tuple used during a build (tools/extract_l10n.py)
 def P(c, x):
-    """pick translation from a 4-tuple"""
-    return x[LI[c.lang]] if isinstance(x, tuple) else x
+    """pick translation from a 4-tuple (en, fr, zh, ar); other languages come from the l10n catalog"""
+    if not isinstance(x, tuple): return x
+    if REC is not None: REC.add(x[0])
+    if c.lang in LI: return x[LI[c.lang]]
+    return I.cat(c.lang, 'p:' + I.hk(x[0]))
 
 # ---------------------------------------------------------------- shared strings
 U = {

@@ -146,12 +146,14 @@ LINUX = [
 ]
 
 FILMS = dict(bbb='Big Buck Bunny', sintel='Sintel', sintel2='Sintel', llama='Caminandes', tos='Tears of Steel', robot='Tears of Steel', ed='Elephants Dream')
-SUBS = {  # in-film subtitle lines (the "subtitle demo")
+class _Subs(dict):
+    def __missing__(self, lang): return [I.cat(lang, f'u:{i}') for i in range(3)]
+SUBS = _Subs({  # in-film subtitle lines (the "subtitle demo")
  'en': ['What a beautiful morning in the meadow.', 'I’ve been looking for you.', 'We have to go back.'],
  'fr': ['Quelle belle matinée dans la prairie.', 'Je t’ai cherché partout.', 'Il faut qu’on y retourne.'],
  'zh': ['草地上的早晨真美啊。', '我一直在找你。', '我们得回去了。'],
  'ar': ['يا له من صباح جميل في المرج.', 'كنت أبحث عنك.', 'علينا أن نعود.'],
-}
+})
 
 # ------------------------------------------------------------------ context
 class Ctx:
@@ -159,6 +161,7 @@ class Ctx:
         s.lang = lang
         s.base = '../' * depth_in_lang                       # to language root
         s.root = s.base + ('' if lang == 'en' else '../')    # to dist root
+        s.dir = I.META[lang]['dir']
         s.home = depth_in_lang == 0
     def ico(s, n, cls='ic'): return f'<svg class="{cls}" aria-hidden="true"><use href="{s.root}icons.svg#i-{n}"/></svg>'
     def page(s, slug, anchor=''):
@@ -263,12 +266,12 @@ NAV_ICO = dict(vlc='cone', download='download', features='sparkle', news='news',
 SITE_URL = 'https://vlc.paulfleury.com/'
 
 def lang_href(lang, slug, from_ctx):
-    b = from_ctx.root + ('' if lang == 'en' else lang + '/')
+    b = from_ctx.root + ('' if lang == 'en' else I.META[lang]['slug'] + '/')
     return b + ('index.html' if slug == 'home' else 'p/' + slug + '.html')
 
 def head(c, title, desc, slug, cur=''):
     m = I.META[c.lang]
-    def absu(l): return SITE_URL + ('' if l == 'en' else l + '/') + ('' if slug == 'home' else 'p/' + slug + '.html')
+    def absu(l): return SITE_URL + ('' if l == 'en' else I.META[l]['slug'] + '/') + ('' if slug == 'home' else 'p/' + slug + '.html')
     alts = ''.join(f'<link rel="alternate" hreflang="{I.META[l]["html"]}" href="{absu(l)}">' for l in I.LANGS) + f'<link rel="alternate" hreflang="x-default" href="{absu("en")}"><link rel="canonical" href="{absu(c.lang)}">'
     return f'''<!doctype html>
 <html lang="{m['html']}" dir="{m['dir']}" data-root="{c.root}" data-base="{c.base}" data-slug="{slug}" data-lang="{c.lang}" data-v="{AV}">
@@ -299,6 +302,7 @@ def head(c, title, desc, slug, cur=''):
 <a class="btn btn-gh btn-sm hide-md" href="{c.page('contribute')}" data-donate>{c.ico('heart', 'ic heart')}{e(c.t('donate'))}</a>
 <details class="menu"><summary class="ib" aria-label="{e(c.t('menu'))}">{c.ico('menu')}</summary><div class="drawer">{''.join(f'<a href="{nav_href(c, k)}">{c.ico(NAV_ICO[k])}{e(c.t(l))}</a>' for k, l in NAV)}<a href="{c.page('contribute')}" data-donate>{c.ico('heart', 'ic heart')}{e(c.t('donate'))}</a></div></details>
 </div></div></header>
+<script>(function(){{var h=document.documentElement,w=document.querySelector('.hd .wrap');if(!w||!w.scrollWidth)return;function f(){{h.classList.remove('navc');if(innerWidth>1180&&w.scrollWidth>w.clientWidth)h.classList.add('navc')}}f();addEventListener('resize',f);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f)}})()</script>
 <main id="main" tabindex="-1">'''
 
 def foot(c):
@@ -311,15 +315,16 @@ def foot(c):
     def li(x):
         if x[0] is None: return f'<li><a href="{x[2]}">{e(x[1])}</a></li>'
         return f'<li><a href="{x[1]}">{e(c.t(x[0]))}</a></li>'
-    langs = ''.join(f'<a href="{lang_href(l, c.slug, c)}" hreflang="{I.META[l]["html"]}" lang="{I.META[l]["html"]}"' + (' aria-current="true"' if l == c.lang else '') + f'>{e(I.META[l]["name"])}</a>' for l in I.LANGS)
+    langs = ''.join(f'<a href="{lang_href(l, c.slug, c)}" hreflang="{I.META[l]["html"]}" lang="{I.META[l]["html"]}"' + (' aria-current="true"' if l == c.lang else '') + f'>{e(I.META[l]["name"])}</a>' for l in I.LANGS if l in I.BASE or l == c.lang)
     return f'''</main>
 <footer class="ft"><div class="wrap"><div class="ft-g">
 <div class="ft-a"><a class="brand" href="{c.page('home')}"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="{c.root}icons.svg#i-cone"/></svg><span><b>VideoLAN</b><small>{e(OS.ot(c.lang, 'brand_sub'))}</small></span></a>
-<p>{e(c.t('ft_about'))}</p><div class="langs">{langs}<button type="button" data-open="lang">+77</button></div></div>
+<p>{e(c.t('ft_about'))}</p><div class="langs">{langs}<button type="button" data-open="lang">+{len(I.ALL) - len(I.BASE) - (0 if c.lang in I.BASE else 1)}</button></div></div>
 {''.join(f'<div><h2 class="fh">{e(c.t(h))}</h2><ul>{"".join(li(x) for x in items)}</ul></div>' for h, items in cols)}
 </div>
 <div class="ft-b"><p>{e(c.t('ft_tm'))} {e(c.t('ft_films'))}</p><p><a href="{c.page('sitemap')}">{e(c.t('site_index'))}</a> · <a href="{c.page('design-notes')}">{e(c.t('design_notes'))}</a> · <a href="{c.base}lite.html">{e(c.t('ft_simple'))}</a> · {e(c.t('ft_light'))}</p></div>
 </div></footer>
+<script>(function(){{var hs=document.querySelectorAll('.hero h1,.og-hero h1');function fit(){{for(var i=0;i<hs.length;i++){{var h=hs[i],n=0,z;h.style.fontSize='';z=parseFloat(getComputedStyle(h).fontSize);while(h.scrollWidth>h.clientWidth+1&&n++<14){{z*=.92;h.style.fontSize=z+'px'}}}}}}fit();addEventListener('resize',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit)}})()</script>
 <script src="{c.base}l10n.js" defer></script>
 <script src="{c.root}site.js" defer></script>
 </body></html>'''
@@ -547,8 +552,7 @@ VDD = [('2008', 'paris', None), ('2009', 'paris', 'videolan--events--vdd09'), ('
        ('2019', 'tokyo', 'videolan--events--vdd19'), ('2023', 'dublin', 'videolan--events--vdd23'), ('2024', 'seoul', 'videolan--events--vdd24'), ('2025', 'london', 'videolan--events--vdd25'), ('2026', 'rome', 'videolan--events--vdd26')]
 
 def fnum(c, n):
-    s = f'{n:,}'
-    return s.replace(',', '\u202f') if c.lang == 'fr' else s
+    return I.num(c.lang, n)
 
 def org_home(c):
     c.slug = 'home'
@@ -557,7 +561,7 @@ def org_home(c):
     L = CU.team_lists(); people = sum(len(v) for v in L.values())
     h = [head(c, OS.ot(c.lang, 'title'), OS.ot(c.lang, 'desc'), 'home')]
     hero_sub = f'{c.t("cta_for", os="Windows")} · {c.t("dl_64")} · {c.t("mb", n=w["mb"])}'
-    sp = '' if c.lang == 'zh' else ' '
+    sp = '' if c.lang in I.NOSPACE else ' '
     h.append(f"""<section class="hero og-hero"><div class="wrap hero-g">
 <div>
 <p class="kick">{t('kick')}</p>
@@ -774,7 +778,7 @@ def content_page(c, p):
     return '\n'.join(out)
 
 NOTES = {
- 'en': '''<p class="x-lede">An independent proposal for videolan.org: the whole current site, rebuilt as one fast, accessible, static HTML5 bundle, in four languages to start.</p>
+ 'en': '''<p class="x-lede">An independent proposal for videolan.org: the whole current site, rebuilt as one fast, accessible, static HTML5 bundle, in 81 languages.</p>
 <h2>What changes</h2><ul>
 <li><b>One settings hub.</b> Search, language, theme, text size, contrast, motion and shortcuts live behind a single Settings button that opens a full-screen panel.</li>
 <li><b>Real landing pages.</b> Features, Projects, Team, About, Contribute, Support, libVLC and News each have their own redesigned page, with section hubs, sidebars and on-page navigation for the 300 carried-over pages.</li>
@@ -784,10 +788,10 @@ NOTES = {
 <li><b>Honest exits.</b> Downloads come straight from get.videolan.org, after a short confirmation that shows the file and its fingerprint. VideoLAN services that are not redesigned yet, and third-party sites, are announced before you leave.</li>
 <li><b>Donations in one click.</b> A full-screen checkout with Apple Pay, Google Pay, card and SEPA through VideoLAN’s Stripe checkout, PayPal once or monthly, bank transfer and Bitcoin.</li>
 <li><b>VLC, shown for real.</b> Player mockups for Windows, macOS, Linux, Android, iPhone and Apple TV, playing open films from the Blender Foundation.</li>
-<li><b>Languages.</b> English, French, Simplified Chinese and Arabic (right-to-left) are written; the selector already lists 81 languages.</li>
+<li><b>81 languages.</b> Every language in the selector is translated: interface, VideoLAN landing, VLC home, download centre and curated pages, with right-to-left layouts for Arabic, Hebrew, Persian, Urdu and Pashto. Each language was drafted by one AI model and reread by a stronger one acting as a native editor. Original articles stay in English and say so.</li>
 <li><b>Accessible and light.</b> No framework, no web fonts, no cookies, no trackers. Text size, contrast, motion, link and spacing settings; full keyboard support. Effects only run on modern browsers that allow motion; older browsers get the same content, statically.</li>
 </ul><p>Unofficial concept by Paul Fleury, offered to VideoLAN under the MIT licence. VLC, VideoLAN and the cone are trademarks of VideoLAN. Content is adapted from videolan.org.</p>''',
- 'fr': '''<p class="x-lede">Une proposition indépendante pour videolan.org : tout le site actuel, reconstruit en un seul ensemble HTML5 statique, rapide et accessible, en quatre langues pour commencer.</p>
+ 'fr': '''<p class="x-lede">Une proposition indépendante pour videolan.org : tout le site actuel, reconstruit en un seul ensemble HTML5 statique, rapide et accessible, en 81 langues.</p>
 <h2>Ce qui change</h2><ul>
 <li><b>Un seul centre de réglages.</b> Recherche, langue, thème, taille du texte, contraste, animations et raccourcis sont réunis derrière un bouton Réglages qui ouvre un panneau plein écran.</li>
 <li><b>De vraies pages d’accueil.</b> Fonctionnalités, Projets, Équipe, À propos, Contribuer, Assistance, libVLC et Actualités ont chacune leur page repensée, avec des rubriques, une barre latérale et une navigation interne pour les 300 pages reprises.</li>
@@ -797,10 +801,10 @@ NOTES = {
 <li><b>Des sorties annoncées.</b> Les téléchargements viennent directement de get.videolan.org, après une courte confirmation qui affiche le fichier et son empreinte. Les services VideoLAN pas encore redessinés et les sites tiers sont signalés avant de partir.</li>
 <li><b>Des dons en un clic.</b> Un paiement plein écran avec Apple Pay, Google Pay, carte et SEPA via le Stripe de VideoLAN, PayPal ponctuel ou mensuel, virement et Bitcoin.</li>
 <li><b>VLC, montré pour de vrai.</b> Des maquettes du lecteur sous Windows, macOS, Linux, Android, iPhone et Apple TV, avec des films libres de la Blender Foundation.</li>
-<li><b>Les langues.</b> L’anglais, le français, le chinois simplifié et l’arabe (de droite à gauche) sont rédigés ; le sélecteur liste déjà 81 langues.</li>
+<li><b>81 langues.</b> Chaque langue du sélecteur est traduite : interface, accueil VideoLAN, page VLC, centre de téléchargement et pages éditorialisées, avec une mise en page de droite à gauche pour l’arabe, l’hébreu, le persan, l’ourdou et le pachto. Chaque langue a été rédigée par un premier modèle d’IA, puis relue par un modèle plus puissant dans le rôle d’un éditeur natif. Les articles d’origine restent en anglais, et c’est indiqué.</li>
 <li><b>Accessible et léger.</b> Ni framework, ni police web, ni cookie, ni pisteur. Réglages de taille du texte, de contraste, d’animations, de liens et d’espacement ; navigation complète au clavier. Les effets ne s’activent que sur les navigateurs récents qui autorisent les animations ; les anciens affichent le même contenu, sans mouvement.</li>
 </ul><p>Concept non officiel de Paul Fleury, offert à VideoLAN sous licence MIT. VLC, VideoLAN et le cône sont des marques de VideoLAN. Le contenu est adapté de videolan.org.</p>''',
- 'zh': '''<p class="x-lede">这是一份为 videolan.org 准备的独立提案：把现有网站的全部内容重建为一个快速、无障碍的静态 HTML5 站点，首批提供四种语言。</p>
+ 'zh': '''<p class="x-lede">这是一份为 videolan.org 准备的独立提案：把现有网站的全部内容重建为一个快速、无障碍的静态 HTML5 站点，提供 81 种语言。</p>
 <h2>有哪些改变</h2><ul>
 <li><b>统一的设置中心。</b>搜索、语言、主题、文字大小、对比度、动画和快捷键都收进一个“设置”按钮，点开即是全屏面板。</li>
 <li><b>真正的栏目首页。</b>功能、项目、团队、关于、参与贡献、支持、libVLC 和新闻都有重新设计的独立页面；迁移过来的 300 个页面也配有栏目页、侧边栏和页内导航。</li>
@@ -810,10 +814,10 @@ NOTES = {
 <li><b>离开前明确提示。</b>下载文件直接来自 get.videolan.org，下载前会显示文件名和指纹。尚未改版的 VideoLAN 服务和第三方网站，都会在跳转前提示。</li>
 <li><b>一键捐赠。</b>全屏结账页面：通过 VideoLAN 的 Stripe 支持 Apple Pay、Google Pay、银行卡和 SEPA，另有 PayPal（单次或按月）、银行转账和比特币。</li>
 <li><b>真实呈现 VLC。</b>Windows、macOS、Linux、Android、iPhone 和 Apple TV 上的播放器样机，播放的是 Blender 基金会的开放影片。</li>
-<li><b>多语言。</b>英文、法文、简体中文和阿拉伯文（从右到左）已完成；语言选择器已列出 81 种语言。</li>
+<li><b>81 种语言。</b>语言选择器中的每种语言均已翻译：界面、VideoLAN 首页、VLC 主页、下载中心和精选页面；阿拉伯语、希伯来语、波斯语、乌尔都语和普什图语采用从右到左排版。每种语言先由一个 AI 模型起草，再由更强的模型以母语编辑的身份通读润色。原始文章仍为英文，并有明确标注。</li>
 <li><b>无障碍且轻量。</b>不用框架、不用网络字体、没有 Cookie、没有追踪。可调节文字大小、对比度、动画、链接与间距，全程支持键盘操作。动效只在允许动画的新式浏览器中运行，旧浏览器会看到同样的内容，只是静态呈现。</li>
 </ul><p>本方案为 Paul Fleury 的非官方设计概念，以 MIT 许可证赠予 VideoLAN。VLC、VideoLAN 及路锥标志均为 VideoLAN 的商标。内容改编自 videolan.org。</p>''',
- 'ar': '''<p class="x-lede">مقترح مستقل لموقع videolan.org: الموقع الحالي كاملًا، أُعيد بناؤه حزمةً واحدة من HTML5 الثابت، سريعة وسهلة الوصول، بأربع لغات كبداية.</p>
+ 'ar': '''<p class="x-lede">مقترح مستقل لموقع videolan.org: الموقع الحالي كاملًا، أُعيد بناؤه حزمةً واحدة من HTML5 الثابت، سريعة وسهلة الوصول، بـ81 لغة.</p>
 <h2>ما الذي يتغيّر</h2><ul>
 <li><b>مركز إعدادات واحد.</b> البحث واللغة والسمة وحجم النص والتباين والحركة والاختصارات كلها خلف زر «الإعدادات» الذي يفتح لوحة بملء الشاشة.</li>
 <li><b>صفحات رئيسية حقيقية.</b> للميزات والمشاريع والفريق ومن نحن والمساهمة والدعم وlibVLC والأخبار صفحات أُعيد تصميمها، مع صفحات أقسام وشريط جانبي وتنقّل داخلي للصفحات الـ300 المنقولة.</li>
@@ -823,7 +827,7 @@ NOTES = {
 <li><b>مغادرة واضحة.</b> تأتي التنزيلات مباشرة من get.videolan.org بعد تأكيد قصير يعرض الملف وبصمته. ويُنبَّه الزائر قبل الانتقال إلى خدمات VideoLAN التي لم يُعَد تصميمها بعد أو إلى مواقع خارجية.</li>
 <li><b>تبرّع بنقرة واحدة.</b> صفحة دفع بملء الشاشة تدعم Apple Pay وGoogle Pay والبطاقة وSEPA عبر Stripe الخاص بـ VideoLAN، وPayPal لمرة واحدة أو شهريًا، والتحويل البنكي والبيتكوين.</li>
 <li><b>VLC كما هو فعلًا.</b> نماذج للمشغّل على Windows وmacOS وLinux وAndroid وiPhone وApple TV، تعرض أفلامًا مفتوحة من مؤسسة Blender.</li>
-<li><b>اللغات.</b> الإنجليزية والفرنسية والصينية المبسّطة والعربية (من اليمين إلى اليسار) مكتملة، وتضم قائمة اللغات 81 لغة.</li>
+<li><b>81 لغة.</b> كل لغة في القائمة مترجمة: الواجهة، والصفحة الرئيسية لـVideoLAN، وصفحة VLC، ومركز التنزيل، والصفحات المنسّقة، مع تخطيط من اليمين إلى اليسار للعربية والعبرية والفارسية والأردية والبشتوية. صاغ نموذج ذكاء اصطناعي كل لغة أولًا، ثم راجعها نموذج أقوى بصفته محررًا من أهل اللغة. تبقى المقالات الأصلية بالإنجليزية مع إشارة واضحة إلى ذلك.</li>
 <li><b>سهل الوصول وخفيف.</b> بلا أُطر عمل، ولا خطوط ويب، ولا ملفات تعريف ارتباط، ولا متتبّعات. إعدادات لحجم النص والتباين والحركة والروابط والتباعد، ودعم كامل للوحة المفاتيح. لا تعمل المؤثرات إلا في المتصفحات الحديثة التي تسمح بالحركة، أما المتصفحات القديمة فتعرض المحتوى نفسه بلا حركة.</li>
 </ul><p>تصوّر غير رسمي من Paul Fleury، مُهدى إلى VideoLAN برخصة MIT. ‏VLC وVideoLAN والمخروط علامات تجارية لـ VideoLAN. المحتوى مقتبس من videolan.org.</p>''',
 }
@@ -835,7 +839,8 @@ def l10n_js(lang):
     o = {k: t(lang, k) for k in JS_KEYS}
     o['_lang'] = lang; o['_dir'] = I.META[lang]['dir']
     o['_secs'] = {k: sec(lang, k, 0) for k in S.SECTIONS}
-    o['_avail'] = {'en': '', 'fr': 'fr', 'zh-Hans': 'zh', 'ar': 'ar'}
+    o['_avail'] = {('zh-Hans' if l == 'zh' else l): ('' if l == 'en' else I.META[l]['slug']) for l in I.LANGS}
+    o['_code'] = 'zh-Hans' if lang == 'zh' else lang
     o['_dl'] = {k: dict(url=F[k]['url'], sha=F[k]['sha'], size=F[k]['size']) for k in ('win64', 'arm64', 'win32', 'macu')}
     o['_store'] = STORE
     return 'window.VL=' + json.dumps(o, ensure_ascii=False, separators=(',', ':')) + ';'
@@ -924,21 +929,21 @@ def main():
     write(DIST / 'search.js', 'window.VL_INDEX=' + json.dumps(idx, ensure_ascii=False, separators=(',', ':')) + ';')
     n = 0
     for lang in I.LANGS:
-        base = DIST if lang == 'en' else DIST / lang
+        base = DIST if lang == 'en' else DIST / I.META[lang]['slug']
         write(base / 'l10n.js', l10n_js(lang))
-        write(base / 'index.html', org_home(Ctx(lang, 0)) if lang == 'en' or all(lang in OS.tr().get(k, {}) for k in OS.EN) else home(Ctx(lang, 0))); n += 1
+        write(base / 'index.html', org_home(Ctx(lang, 0))); n += 1
         for slug, p in S.ALL.items():
             write(base / 'p' / f'{slug}.html', content_page(Ctx(lang, 1), p)); n += 1
         write(base / 'p' / 'vlc.html', home(Ctx(lang, 1), 'vlc'))
     import lite as LT
     for lang in I.LANGS:
-        base = DIST if lang == 'en' else DIST / lang
+        base = DIST if lang == 'en' else DIST / I.META[lang]['slug']
         write(base / 'lite.html', LT.page(lang, F, V, STORE, LINUX))
     write(DIST / '.htaccess', HTACCESS)
     write(DIST / 'version.json', json.dumps({'v': AV}))
     # redirects from previous option URLs
     for lang in I.LANGS:
-        base = DIST if lang == 'en' else DIST / lang
+        base = DIST if lang == 'en' else DIST / I.META[lang]['slug']
         write(base / 'p' / 'section--developers.html', '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=projects.html"><link rel="canonical" href="projects.html"><title>VideoLAN</title><a href="projects.html">VideoLAN</a>')
     for o in ('a', 'b', 'c'):
         write(DIST / o / 'index.html', '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../index.html"><link rel="canonical" href="../index.html"><title>VideoLAN</title><a href="../index.html">VideoLAN</a>')

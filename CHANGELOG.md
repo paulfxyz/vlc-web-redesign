@@ -2,6 +2,36 @@
 
 All notable changes to this project. Dates are in Europe/Lisbon time.
 
+## [1.4.0] — 2026-11-22
+
+All 81 languages. Every language in the picker is now a complete site.
+
+### Added
+- 77 new languages, each with all 309 pages: interface, VideoLAN landing, VLC home, download centre, section names, curated pages, the simple page and the mockup subtitles. 81 languages, 25,029 pages in total.
+- Right-to-left layouts for Hebrew, Persian, Urdu and Pashto, alongside Arabic.
+- `tools/extract_l10n.py`: renders every page in memory and collects all 878 English strings (about 28,000 characters) with translator context into `content/l10n/_source.json`.
+- `tools/translate_all.py`: two OpenRouter passes per language, Gemini 3.8 Flash drafts and Claude Sonnet 4.6 rewrites as a native-speaking editor. Core terms are approved first and reused as a glossary; replies are checked for keys, placeholders, tags, numbers and leftover English; failing chunks are repaired, split and retried. Resumable and incremental, with per-call usage in `content/l10n/_log.jsonl`.
+- `tools/polish_loanwords.py`: a final pass on non-Latin scripts that replaces leftover English tech words with native terms.
+- Language notes for regional variants and scripts (pt-BR / pt-PT, zh-Hant for Taiwan, Serbian Cyrillic, Uzbek Latin, Persian punctuation…).
+- Locale dates and number grouping for every language (Babel), no spaces between words for Chinese and Japanese.
+
+### Changed
+- `tools/i18n.py` now describes all 81 languages (native name, English name, URL folder, direction, script) and loads a catalog per language; the build enables a language only when its catalog is complete.
+- Language folders use lowercase codes (`pt-br/`, `zh-hant/`); `hreflang` alternates, the settings language list and the footer cover every language.
+- Design notes describe the 81-language site.
+
+### Fixed
+- Long headlines shrink to fit instead of breaking inside a word (Malayalam, Tamil, German…); taller line height and no letter-spacing for complex scripts.
+- Breadcrumb *Home* links keep a 24 px target even when the word is one character wide.
+- Organisation tiles wrap very long words ("Конфиденциальность") instead of pushing the arrow out.
+- Project descriptions are no longer cut to two lines on tablets.
+- Header navigation switches to the compact menu whenever the labels do not fit, instead of overflowing on wide screens in languages with long words (Armenian, Georgian, Malayalam, Kazakh…).
+
+### Checked
+- Layout audit: landing, VLC home, projects hub and download centre in all 81 languages at 360, 768, 1200 and 1440 px (1,296 renders): no overflow, no clipped text, no text under 11.5 px, no tap target under 24 px.
+- axe-core: 0 violations on 29 pages in 22 languages (all right-to-left languages, Indic, Thai, Khmer, Burmese, Georgian, Armenian, CJK), light and dark, phone and desktop.
+- Translation cost for the 77 new languages: about $77 on OpenRouter.
+
 ## [1.3.0] — 2026-11-22
 
 The VideoLAN landing in all four languages.

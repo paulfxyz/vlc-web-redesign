@@ -1,11 +1,11 @@
 <div align="center">
 
-<img src=".github/img/banner.png" alt="VideoLAN Web Redesign: videolan.org rebuilt, 1,236 pages in English, French, Chinese and Arabic" width="100%">
+<img src=".github/img/banner.png" alt="VideoLAN Web Redesign: videolan.org rebuilt, 25,029 pages in 81 languages" width="100%">
 
 <br>
 
 **An unofficial, free redesign of [videolan.org](https://www.videolan.org), offered to the VideoLAN team.**<br>
-Every page of the current site rebuilt as one static, accessible, multilingual website: a landing for the whole VideoLAN organisation, a dedicated VLC home, and a real download centre for VLC 3.0.24.
+Every page of the current site rebuilt as one static, accessible website in 81 languages: a landing for the whole VideoLAN organisation, a dedicated VLC home, and a real download centre for VLC 3.0.24.
 
 Everything is live at **[vlc.paulfleury.com](https://vlc.paulfleury.com)**. Prefer not to clone? Grab the whole built site in one archive: **[vlc-web-redesign.zip](https://vlc.paulfleury.com/vlc-web-redesign.zip)**.
 
@@ -15,10 +15,11 @@ Everything is live at **[vlc.paulfleury.com](https://vlc.paulfleury.com)**. Pref
 [![live: vlc.paulfleury.com](https://img.shields.io/badge/live-vlc.paulfleury.com-ff8800?style=for-the-badge&labelColor=282828)](https://vlc.paulfleury.com)
 [![download: vlc-web-redesign.zip](https://img.shields.io/badge/download-vlc--web--redesign.zip-0a0a0a?style=for-the-badge&labelColor=282828)](https://vlc.paulfleury.com/vlc-web-redesign.zip)
 
-[![version: 1.3.0](https://img.shields.io/badge/version-1.3.0-ff8800?style=flat-square&labelColor=282828)](CHANGELOG.md)
-[![pages: 1,236](https://img.shields.io/badge/pages-1%2C236-0a0a0a?style=flat-square&labelColor=282828)](#-whats-inside)
-[![i18n: EN · FR · 中文 · العربية](https://img.shields.io/badge/i18n-EN%20%C2%B7%20FR%20%C2%B7%20%E4%B8%AD%E6%96%87%20%C2%B7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-0a0a0a?style=flat-square&labelColor=282828)](#-four-languages-one-rtl)
-[![RTL: Arabic](https://img.shields.io/badge/RTL-Arabic-0a0a0a?style=flat-square&labelColor=282828)](#-four-languages-one-rtl)
+[![version: 1.4.0](https://img.shields.io/badge/version-1.4.0-ff8800?style=flat-square&labelColor=282828)](CHANGELOG.md)
+[![pages: 25,029](https://img.shields.io/badge/pages-25%2C029-0a0a0a?style=flat-square&labelColor=282828)](#-whats-inside)
+[![i18n: 81 languages](https://img.shields.io/badge/i18n-81%20languages-0a0a0a?style=flat-square&labelColor=282828)](#-81-languages-five-rtl)
+[![RTL: Arabic · Hebrew · Persian · Urdu · Pashto](https://img.shields.io/badge/RTL-Arabic%20%C2%B7%20Hebrew%20%C2%B7%20Persian%20%C2%B7%20Urdu%20%C2%B7%20Pashto-0a0a0a?style=flat-square&labelColor=282828)](#-81-languages-five-rtl)
+[![translated: OpenRouter, 2 passes](https://img.shields.io/badge/translated-OpenRouter%2C%202%20passes-6467f2?style=flat-square&labelColor=282828&logo=openrouter&logoColor=ededed)](#-how-81-languages-are-translated)
 [![WCAG: 2.2 AA](https://img.shields.io/badge/WCAG-2.2%20AA-2e7d32?style=flat-square&labelColor=282828)](#-quality-what-was-checked)
 [![axe-core: 0 violations](https://img.shields.io/badge/axe--core-0%20violations-2e7d32?style=flat-square&labelColor=282828)](#-quality-what-was-checked)
 [![Lighthouse a11y: 100](https://img.shields.io/badge/Lighthouse%20a11y-100-2e7d32?style=flat-square&labelColor=282828&logo=lighthouse&logoColor=ededed)](#-quality-what-was-checked)
@@ -47,7 +48,7 @@ videolan.org carries twenty years of content: the player, libVLC, a dozen sister
 
 | # | Deliverable | What it is | Where |
 |---|---|---|---|
-| **1** | **The full site** | VideoLAN landing + VLC home + 307 content pages, in 4 languages: 1,236 static HTML pages | [vlc.paulfleury.com](https://vlc.paulfleury.com) |
+| **1** | **The full site** | VideoLAN landing + VLC home + 307 content pages, in 81 languages: 25,029 static HTML pages | [vlc.paulfleury.com](https://vlc.paulfleury.com) |
 | **1b** | **VLC home** | The player's own page: download, mockups, formats, features | [`/p/vlc.html`](https://vlc.paulfleury.com/p/vlc.html) |
 | **2** | **Download centre** | OS detection, every VLC 3.0.24 file from `get.videolan.org` with its SHA-256, Linux commands for 8 distributions, stores and QR codes | [`/p/download.html`](https://vlc.paulfleury.com/p/download.html) |
 | **3** | **"Choose your download"** | Full-screen chooser behind *Other versions*: pick a system, or say what you need | [`/#choose`](https://vlc.paulfleury.com/p/vlc.html#choose) |
@@ -67,7 +68,7 @@ videolan.org carries twenty years of content: the player, libVLC, a dozen sister
 
 ### 🏛️ VideoLAN, not just VLC
 
-Since 1.1.0 the homepage presents the whole organisation (in all four languages since 1.3.0), built from what videolan.org already publishes (the about page, the 25 press releases, the events archive, the download statistics). VLC stays the star of the hero and links to its own home at [`/p/vlc.html`](https://vlc.paulfleury.com/p/vlc.html).
+Since 1.1.0 the homepage presents the whole organisation (in all 81 languages since 1.4.0), built from what videolan.org already publishes (the about page, the 25 press releases, the events archive, the download statistics). VLC stays the star of the hero and links to its own home at [`/p/vlc.html`](https://vlc.paulfleury.com/p/vlc.html).
 
 | Section | What it shows |
 |---|---|
@@ -94,16 +95,20 @@ Since 1.1.0 the homepage presents the whole organisation (in all four languages 
 </tr>
 </table>
 
-### 🌍 How the landing is translated
+### 🌍 How 81 languages are translated
 
-Every landing string lives once in English in [`tools/org_strings.py`](tools/org_strings.py), with a note on where it appears. [`tools/translate_org.py`](tools/translate_org.py) runs two passes per language through [OpenRouter](https://openrouter.ai):
+Every string the site shows lives once in English. [`tools/extract_l10n.py`](tools/extract_l10n.py) renders every page in memory and collects them into one catalog, [`content/l10n/_source.json`](content/l10n/_source.json): 878 strings (about 28,000 characters) with a note on where each one appears. Interface labels, the VideoLAN landing, the VLC home, the download centre, section names, curated pages, the simple page and the movie subtitles in the mockups all come from it.
+
+[`tools/translate_all.py`](tools/translate_all.py) then runs two passes per language through [OpenRouter](https://openrouter.ai):
 
 1. **Translate** with a fast multilingual model (Gemini 3.8 Flash).
-2. **Proofread as a native speaker** with a stronger model (Claude Sonnet 4.6), asked to rewrite anything that sounds translated: wording, rhythm, logic between sentences, consistent terms, local typography.
+2. **Proofread as a native speaker** with a stronger model (Claude Sonnet 4.6), asked to rewrite anything that sounds translated: wording, rhythm, logic between sentences, consistent terms, local typography and register.
 
-The script checks every key, placeholder and number, only re-sends strings whose English changed, and logs token usage in `content/org_i18n.log.json`. The build will not switch a language to the landing until all its strings exist.
+The first chunk of each language holds the core terms (navigation, *Donate*, *Download*, section names); once approved they become a glossary for every other chunk, so the same word is used everywhere. Each reply is checked for missing keys, placeholders, HTML tags, numbers and leftover English; failed chunks are repaired, split and retried. Language notes cover the details that matter (Brazilian vs European Portuguese, Traditional Chinese for Taiwan, Serbian in Cyrillic, Persian punctuation…). [`tools/polish_loanwords.py`](tools/polish_loanwords.py) then rereads non-Latin-script languages and replaces leftover English tech words with native terms.
 
-The VLC home leads with one job: get the right VLC. The main button already knows your system (Windows 64-bit, Apple Silicon or Intel, Android, iPhone), points at the real file, and shows its size. Below it: real player mockups built in HTML and CSS with Blender open movies, the format wall, features, projects, news and the non-profit. The landing is available in English, French, Chinese and Arabic (right-to-left).
+The run is resumable and incremental: only new or changed English strings are sent again. Every call is logged with its token usage in `content/l10n/_log.jsonl`; the whole 77-language run cost about $77. The build only enables a language once its catalog is complete.
+
+The VLC home leads with one job: get the right VLC. The main button already knows your system (Windows 64-bit, Apple Silicon or Intel, Android, iPhone), points at the real file, and shows its size. Below it: real player mockups built in HTML and CSS with Blender open movies, the format wall, features, projects, news and the non-profit. The landing and the VLC home are available in all 81 languages.
 
 <div align="center"><img src=".github/img/mobile.png" alt="Five phone screens: English home, French download centre, the download chooser, Chinese features and Arabic home in right-to-left" width="100%"></div>
 
@@ -153,11 +158,21 @@ On phones every page is compact and thumb-friendly: one-column layouts, horizont
 
 ---
 
-## 🌍 Four languages, one RTL
+## 🌍 81 languages, five RTL
 
-English, French, Simplified Chinese and Arabic are complete: navigation, landing pages, the download centre, settings, notices and dates. Arabic is fully mirrored right-to-left, with bidirectional-safe file names, versions and commands.
+<div align="center"><img src=".github/img/languages.png" alt="Ten phone screens of the VideoLAN landing in German, Spanish, Japanese, Korean, Hindi, Russian, Hebrew, Thai, Khmer and Swahili" width="100%"></div>
 
-The original articles (news, docs, project pages) are still in English inside the translated layout, with a short notice and an `EN` tag. The language picker lists 81 languages; the other 77 are marked *Coming soon*, ready to be filled in once VideoLAN agrees on the direction.
+All 81 languages in the picker are live, each with 309 pages: navigation, the VideoLAN landing, the VLC home, the download centre, curated pages, settings, notices, dates and number formats. Arabic, Hebrew, Persian, Urdu and Pashto are fully mirrored right-to-left, with bidirectional-safe file names, versions and commands.
+
+| Group | Languages |
+|---|---|
+| Hand-tuned since 1.3.0 | English · Français · 简体中文 · العربية |
+| Europe | Deutsch · Español · Italiano · Português (Brasil, Portugal) · Nederlands · Polski · Čeština · Slovenčina · Magyar · Română · Български · Ελληνικά · Русский · Українська · Svenska · Dansk · Norsk bokmål · Suomi · Íslenska · Eesti · Latviešu · Lietuvių · Slovenščina · Hrvatski · Bosanski · Српски · Македонски · Shqip · Català · Galego · Euskara · Cymraeg · Gaeilge · Brezhoneg · Occitan · Esperanto |
+| Asia & Pacific | 繁體中文 · 日本語 · 한국어 · Tiếng Việt · ไทย · Bahasa Indonesia · Bahasa Melayu · Filipino · हिन्दी · বাংলা · ਪੰਜਾਬੀ · ગુજરાતી · मराठी · தமிழ் · తెలుగు · ಕನ್ನಡ · മലയാളം · සිංහල · नेपाली · ភាសាខ្មែរ · ລາວ · မြန်မာ · Монгол · Қазақ тілі · Oʻzbekcha |
+| Middle East & Caucasus | עברית · فارسی · اردو · پښتو · Türkçe · Azərbaycanca · ქართული · Հայերեն · Kurdî |
+| Africa | Kiswahili · Afrikaans · አማርኛ · Hausa · Yorùbá · isiZulu |
+
+The original articles (news, docs, project pages) are still in English inside the translated layout, with a short notice and an `EN` tag. Translations of smaller languages are machine-made and reviewed by a second model, not by people: native speakers from the VideoLAN community would be the best final check.
 
 ---
 
@@ -170,7 +185,7 @@ The header has one *Settings* button (`Ctrl K` or `/`) instead of four icons:
 | Tab | What it does |
 |---|---|
 | **Search** | Instant search across all 308 pages; the index loads on first use |
-| **Language** | EN · FR · 中文 · العربية, plus 77 more listed as *Coming soon* |
+| **Language** | All 81 languages, each in its own script, with the current one first |
 | **Appearance** | Light, dark or system |
 | **Accessibility** | Text size, high contrast, reduced motion, underlined links, wider spacing |
 | **Shortcuts** | Keyboard reference |
@@ -187,6 +202,8 @@ Everything is saved on the device in `localStorage`. No cookies, no account, no 
 | **Lighthouse 12** accessibility · best practices · SEO | home, download, team, Arabic home, lite · mobile & desktop | **100 · 100 · 100** (one desktop run at 96 for a team photo) |
 | **Lighthouse 12** performance | same pages | **100** desktop · **90–98** mobile |
 | **Layout audit** | 21 pages × 12 widths: 320, 360, 390, 414, 600, 768, 820, 1024, 1180, 1366, 1920, 2560 px | no horizontal overflow, no text under 12 px, tap targets ≥ 24 px |
+| **81-language audit** | landing, VLC home, projects hub and download centre × 81 languages × 360, 768, 1200 and 1440 px (1,296 renders) | no overflow, no clipped text, no text under 11.5 px, no tap target under 24 px |
+| **axe-core in 22 languages** | 29 pages incl. all five RTL languages, Indic, Thai, Khmer, Burmese, Georgian, Armenian, CJK · light & dark · 390 and 1366 px | **0 violations** |
 | **Links** | every `href` and `src` in the build | 0 broken internal links |
 | **Old-browser redirect** | live site, browser identities and disabled features | see below |
 
@@ -224,11 +241,15 @@ Details: **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** · deploy: **[docs/DEP
 
 ```
 site/               site.css · site.js · icons.svg · media/ (film stills, QR codes, portraits, og.png)
-content/            pages.json · news.json, extracted from videolan.org
+content/            pages.json · news.json, extracted from videolan.org · l10n/ (one catalog per language)
 tools/
   build_site.py     generator: shell, home, download centre, chooser, content pages, l10n, vlc-web-redesign.zip
   curated.py        landing pages: features, projects & developers, team, libVLC, news, support…
-  i18n.py           string tables for EN · FR · ZH · AR, dates, section names
+  i18n.py           81 languages (names, RTL, scripts), EN · FR · ZH · AR tables, catalog loader, dates and numbers
+  extract_l10n.py   collects every English string into content/l10n/_source.json
+  translate_all.py  OpenRouter translate → native proofread for every language, resumable
+  polish_loanwords.py  replaces leftover English tech words in non-Latin scripts
+  org_strings.py    landing source strings; translate_org.py for the hand-tuned FR · ZH · AR landing
   vlsite.py         content model, link rewriting, navigation order
   lite.py           the simple no-JavaScript page
   extract.py        turns the saved videolan.org pages into content/*.json
@@ -245,7 +266,7 @@ docs/               ARCHITECTURE.md · DEPLOY.md
 ```bash
 git clone https://github.com/paulfxyz/vlc-web-redesign.git
 cd vlc-web-redesign
-python3 tools/build_site.py           # writes dist/: EN at the root, fr/ zh/ ar/
+python3 tools/build_site.py           # writes dist/: EN at the root, one folder per language (fr/ de/ ja/ pt-br/ …)
 python3 -m http.server -d dist 8765   # open http://localhost:8765
 ```
 

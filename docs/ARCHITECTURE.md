@@ -5,8 +5,8 @@ The site is generated once by Python and served as plain files. There is no serv
 ```
 videolan.org ──(saved pages)──▶ tools/extract.py ──▶ content/pages.json · news.json
                                                           │
-tools/i18n.py (strings) ─┐                                ▼
-tools/curated.py (hubs) ─┼──▶ tools/build_site.py ──▶ dist/  (1,236 HTML pages + assets)
+tools/i18n.py + content/l10n/ ─┐                                ▼
+tools/curated.py (hubs) ─┼──▶ tools/build_site.py ──▶ dist/  (25,029 HTML pages + assets)
 site/ (css · js · svg)  ─┘            │                    │
 tools/lite.py (simple page) ──────────┘                    ├─▶ tools/deploy_ftp.py ──▶ vlc.paulfleury.com
                                                            └─▶ vlc-web-redesign.zip
@@ -26,7 +26,7 @@ tools/lite.py (simple page) ──────────┘                   
 | `home(c, slug)` | VLC home (`p/vlc.html` everywhere, and `index.html` for languages without the landing), mockups |
 | `org_home()` | English VideoLAN landing (`index.html`): stack, timeline, projects, people, Dev Days (`VDD`) |
 | `org_strings.py` / `translate_org.py` | landing source strings, and the OpenRouter translate → native proofread pipeline writing `content/org_i18n.json` |
-| `mega()` | the *Projects* menu panel (all 16 projects, `ROLE` one-liners in 4 languages) |
+| `mega()` | the *Projects* menu panel (all 16 projects, `ROLE` one-liners, translated in every language) |
 | `dl_template()` | the `<template id="dlt">` holding the download chooser, shared by both homes |
 | `download_block()` | the download centre, reused by the download page and the chooser |
 | `content_page()` | every other page: reading layout, or the project layout (`band()` + `directory()`) for projects |
@@ -34,7 +34,24 @@ tools/lite.py (simple page) ──────────┘                   
 | `write()` | post-processing: asset versioning, empty-link removal, focusable `<pre>` |
 | `main()` | builds all languages, `search.js` index, `lite.html`, `.htaccess`, `version.json`, redirects, `vlc-web-redesign.zip` |
 
-Curated landing pages live in `tools/curated.py`; every string shown to users lives in `tools/i18n.py` (or in the `X` table at the top of `build_site.py`) with four translations side by side.
+Curated landing pages live in `tools/curated.py`; every string shown to users lives in `tools/i18n.py` (or in the `X` table at the top of `build_site.py`) with the English, French, Chinese and Arabic versions side by side.
+
+## Languages — `tools/i18n.py`, `content/l10n/`
+
+- `ALL` lists the 81 languages (code, native name, English name); `META` adds the URL folder (lowercase code), direction (`RTL`: ar, he, fa, ur, ps) and `NOSPACE` scripts (zh, zh-Hant, ja).
+- English, French, Chinese and Arabic keep their hand-written tables. Every other language reads `content/l10n/<code>.json`, a flat catalog keyed by `t:` (interface), `s:` (section names and ledes), `p:` (curated strings, keyed by a hash of the English), `o:` (landing and news cards), `l:` (simple page) and `u:` (mockup subtitles). `t()`, `sec()`, `curated.P`, `org_strings.ot` and `lite.py` fall back to it.
+- `complete()` checks coverage; `LANGS` (the languages the build writes) is the four base languages plus every complete catalog.
+- `date()` and `num()` use Babel for each locale.
+
+Pipeline:
+
+```
+tools/extract_l10n.py  ──▶ content/l10n/_source.json   (878 English strings + context)
+tools/translate_all.py ──▶ content/l10n/<code>.json     (draft → native-editor rewrite → checks → repair)
+                           content/l10n/_hashes/<code>.json · _log.jsonl (source hashes, usage)
+tools/polish_loanwords.py  native terms for leftover English words in non-Latin scripts
+```
+
 
 ## Front end — `site/`
 

@@ -23,7 +23,7 @@ SHOTS = [
     ('org-story', 'index.html', 1440, 900, 'dark', WIN, 'scroll:#about .rail-h', 1),
     ('org-people', 'index.html', 1440, 900, 'light', WIN, 'scroll:.vdd', 1),
     ('chooser', 'p/vlc.html', 1440, 900, 'light', WIN, 'button.cta-alt', 1),
-    ('chooser-dark', 'fr/index.html', 1440, 900, 'dark', WIN, 'button.cta-alt', 1),
+    ('chooser-dark', 'fr/p/vlc.html', 1440, 900, 'dark', WIN, 'button.cta-alt', 1),
     ('settings', 'index.html', 1440, 900, 'dark', WIN, 'button.setb', 1),
     ('download', 'p/download.html', 1440, 900, 'light', WIN, None, 1),
     ('projects', 'p/projects--dav1d.html', 1440, 900, 'light', WIN, None, 1),
@@ -36,6 +36,16 @@ SHOTS = [
     ('m-zh', 'zh/p/vlc--features.html', 390, 844, 'light', IPH, None, 2),
     ('m-ar', 'ar/index.html', 390, 844, 'dark', IPH, None, 2),
     ('m-chooser', 'p/vlc.html', 390, 844, 'light', IPH, 'button.cta-alt', 2),
+    ('m-l-de', 'de/index.html', 390, 844, 'light', IPH, None, 2),
+    ('m-l-es', 'es/index.html', 390, 844, 'dark', IPH, None, 2),
+    ('m-l-ja', 'ja/index.html', 390, 844, 'light', IPH, None, 2),
+    ('m-l-ko', 'ko/index.html', 390, 844, 'dark', IPH, None, 2),
+    ('m-l-hi', 'hi/index.html', 390, 844, 'light', IPH, None, 2),
+    ('m-l-ru', 'ru/index.html', 390, 844, 'dark', IPH, None, 2),
+    ('m-l-he', 'he/index.html', 390, 844, 'light', IPH, None, 2),
+    ('m-l-th', 'th/index.html', 390, 844, 'dark', IPH, None, 2),
+    ('m-l-km', 'km/index.html', 390, 844, 'light', IPH, None, 2),
+    ('m-l-sw', 'sw/index.html', 390, 844, 'dark', IPH, None, 2),
 ]
 
 def b64(p): return 'data:image/png;base64,' + base64.b64encode(p.read_bytes()).decode()
@@ -46,13 +56,15 @@ COMPOSE = {
 <svg width="84" height="84" viewBox="0 0 64 64"><path d="M26 6h12l3 12H23z" fill="#ff8800"/><path d="M22.4 21h19.2l2.6 11H19.8z" fill="#fff"/><path d="M19 35h26l3 12H16z" fill="#ff8800"/><rect x="8" y="50" width="48" height="8" rx="3" fill="#ff8800"/></svg>
 <div style="font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:#ffb366;font-weight:700;margin:28px 0 14px">Redesign proposal</div>
 <div style="font-size:64px;line-height:1.02;font-weight:800;letter-spacing:-.03em">videolan.org,<br><span style="color:#ff8800">rebuilt.</span></div>
-<div style="font-size:23px;line-height:1.45;color:#d9cfc3;margin-top:24px">1,236 pages · English, Français, 中文, العربية · download chooser · WCAG 2.2 AA · zero dependencies</div>
+<div style="font-size:23px;line-height:1.45;color:#d9cfc3;margin-top:24px">25,029 pages · 81 languages, 5 right-to-left · download chooser · WCAG 2.2 AA · zero dependencies</div>
 <div style="font-size:21px;color:#ffb366;margin-top:28px;font-weight:700">vlc.paulfleury.com</div></div>
 <img src="{s['home-light']}" style="position:absolute;left:690px;top:90px;width:900px;border-radius:14px;box-shadow:0 40px 90px rgba(0,0,0,.6)">
 <img src="{s['m-ar']}" style="position:absolute;left:1330px;top:300px;width:230px;border-radius:30px;border:6px solid #000;box-shadow:0 30px 70px rgba(0,0,0,.7)">
 </body>'''),
  'mobile': (1600, 900, lambda s: '<body style="margin:0;width:1600px;height:900px;background:#efe9e1;display:flex;gap:26px;align-items:center;justify-content:center">' + ''.join(
      f'<img src="{s[k]}" style="width:262px;border-radius:32px;border:7px solid #111;box-shadow:0 24px 60px rgba(0,0,0,.25)">' for k in ('m-en', 'm-fr', 'm-chooser', 'm-zh', 'm-ar')) + '</body>'),
+ 'languages': (1600, 1300, lambda s: '<body style="margin:0;width:1600px;height:1300px;background:#efe9e1;display:grid;grid-template-columns:repeat(5,262px);gap:34px 30px;align-content:center;justify-content:center">' + ''.join(
+     f'<img src="{s[k]}" style="width:262px;border-radius:32px;border:7px solid #111;box-shadow:0 24px 60px rgba(0,0,0,.25)">' for k in ('m-l-de', 'm-l-es', 'm-l-ja', 'm-l-ko', 'm-l-hi', 'm-l-ru', 'm-l-he', 'm-l-th', 'm-l-km', 'm-l-sw')) + '</body>'),
 }
 
 async def main():
