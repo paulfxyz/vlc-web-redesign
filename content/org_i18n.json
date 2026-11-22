@@ -1,0 +1,912 @@
+{
+ "a_h": {
+  "ar": "مشروع ومنظمة غير ربحية",
+  "fr": "Un projet et une association",
+  "zh": "一个开源项目，也是一家非营利组织"
+ },
+ "a_kick": {
+  "ar": "عن VideoLAN",
+  "fr": "À propos de VideoLAN",
+  "zh": "关于 VideoLAN"
+ },
+ "a_p": {
+  "ar": "انطلقت VideoLAN مشروعًا طلابيًا في باريس، ونمت لتصبح واحدة من أكبر مجتمعات الوسائط مفتوحة المصدر في العالم. تُديرها اليوم مجموعة من المتطوعين ومجلس إدارة صغير، بتمويل من التبرعات والشركاء، ولا تُحاسَب إلا أمام مستخدميها.",
+  "fr": "Né d’un projet étudiant à Paris, VideoLAN est devenu l’une des plus grandes communautés multimédias open source au monde. Aujourd’hui, il est animé par des bénévoles et un conseil d’administration restreint, financé par des dons et des partenaires, et ne doit de comptes qu’à ses utilisateurs.",
+  "zh": "VideoLAN 起步于巴黎的一个学生项目，如今已成长为全球最大的开源多媒体社区之一。它由志愿者和一个小型理事会运营，资金来自捐赠与合作伙伴，只对用户负责。"
+ },
+ "about_org": {
+  "ar": "عن المنظمة",
+  "fr": "À propos de l’association",
+  "zh": "关于组织"
+ },
+ "all_dl": {
+  "ar": "جميع التنزيلات",
+  "fr": "Tous les téléchargements",
+  "zh": "全部下载"
+ },
+ "all_events": {
+  "ar": "جميع الفعاليات",
+  "fr": "Tous les événements",
+  "zh": "全部活动"
+ },
+ "all_partners": {
+  "ar": "جميع الشركاء والمستشارون",
+  "fr": "Tous les partenaires et consultants",
+  "zh": "全部合作伙伴与顾问"
+ },
+ "b_dav1d": {
+  "ar": "مفكك ترميز AV1 في متصفحك",
+  "fr": "Décodeur AV1 dans votre navigateur",
+  "zh": "浏览器内置 AV1 解码器"
+ },
+ "b_dvblast": {
+  "ar": "بث لشبكات التلفزيون",
+  "fr": "Flux pour les réseaux de télévision",
+  "zh": "面向电视网络的流传输"
+ },
+ "b_libbluray": {
+  "ar": "تشغيل أقراص Blu-ray",
+  "fr": "Lecture Blu-ray",
+  "zh": "Blu-ray 播放支持"
+ },
+ "b_libvlc": {
+  "ar": "محرك لتطبيقك",
+  "fr": "Le moteur pour votre application",
+  "zh": "为你的应用提供媒体引擎"
+ },
+ "b_x264": {
+  "ar": "مشفّر H.264",
+  "fr": "L’encodeur H.264",
+  "zh": "业界标杆 H.264 编码器"
+ },
+ "bento_label": {
+  "ar": "مشاريع VideoLAN",
+  "fr": "Projets VideoLAN",
+  "zh": "VideoLAN 项目"
+ },
+ "board": {
+  "ar": "مجلس الإدارة",
+  "fr": "Le conseil d’administration",
+  "zh": "理事会"
+ },
+ "brand_sub": {
+  "ar": "وسائط متعددة مفتوحة المصدر",
+  "fr": "Multimédia open source",
+  "zh": "开源多媒体"
+ },
+ "c_berlin": {
+  "ar": "برلين",
+  "fr": "Berlin",
+  "zh": "柏林"
+ },
+ "c_dublin": {
+  "ar": "دبلن",
+  "fr": "Dublin",
+  "zh": "都柏林"
+ },
+ "c_london": {
+  "ar": "لندن",
+  "fr": "Londres",
+  "zh": "伦敦"
+ },
+ "c_paris": {
+  "ar": "باريس",
+  "fr": "Paris",
+  "zh": "巴黎"
+ },
+ "c_rome": {
+  "ar": "روما",
+  "fr": "Rome",
+  "zh": "罗马"
+ },
+ "c_seoul": {
+  "ar": "سيول",
+  "fr": "Séoul",
+  "zh": "首尔"
+ },
+ "c_tokyo": {
+  "ar": "طوكيو",
+  "fr": "Tokyo",
+  "zh": "东京"
+ },
+ "desc": {
+  "ar": "VideoLAN هي المنظمة غير الربحية التي تقف وراء VLC media player وعائلة من مشاريع الوسائط المفتوحة المصدر: dav1d وx264 وlibVLC وlibdvdcss وlibbluray وDVBlast وغيرها.",
+  "fr": "VideoLAN est l’association à but non lucratif derrière VLC media player et toute une famille de projets multimédias open source : dav1d, x264, libVLC, libdvdcss, libbluray, DVBlast et bien d’autres.",
+  "zh": "VideoLAN 是 VLC media player 及一系列开源多媒体项目背后的非营利组织：dav1d、x264、libVLC、libdvdcss、libbluray、DVBlast 等。"
+ },
+ "discover": {
+  "ar": "اكتشف",
+  "fr": "Découvrir",
+  "zh": "了解更多"
+ },
+ "discover_vlc": {
+  "ar": "اكتشف VLC",
+  "fr": "Découvrir VLC",
+  "zh": "探索 VLC"
+ },
+ "earlier": {
+  "ar": "السابق",
+  "fr": "Plus tôt",
+  "zh": "更早"
+ },
+ "engine_note": {
+  "ar": "ترخيص LGPL منذ 2011 · ارتباطات لمعظم لغات البرمجة",
+  "fr": "LGPL depuis 2011 · liaisons pour la plupart des langages",
+  "zh": "自 2011 年起采用 LGPL · 支持多种语言绑定"
+ },
+ "events_vdd": {
+  "ar": "الفعاليات وDev Days",
+  "fr": "Événements et Dev Days",
+  "zh": "活动与 Dev Days"
+ },
+ "explore": {
+  "ar": "استكشف المشاريع الـ {n}",
+  "fr": "Explorer les {n} projets",
+  "zh": "探索全部 {n} 个项目"
+ },
+ "f_dav1d": {
+  "ar": "أسرع مفكك برمجي لترميز AV1، طُوِّر بالتعاون مع مجتمع FFmpeg لصالح Alliance for Open Media.",
+  "fr": "Le décodeur logiciel AV1 le plus rapide, conçu avec la communauté FFmpeg pour l’Alliance for Open Media.",
+  "zh": "速度最快的 AV1 软件解码器，由我们与 FFmpeg 社区共同为 Alliance for Open Media 打造。"
+ },
+ "f_libvlc": {
+  "ar": "محرك VLC، جاهز للتضمين في تطبيقك على سطح المكتب والهاتف والتلفزيون.",
+  "fr": "Le moteur de VLC, prêt à être intégré dans votre application sur ordinateur, mobile et TV.",
+  "zh": "VLC 的核心引擎，可嵌入到你的桌面端、移动端或电视端应用中。"
+ },
+ "f_x264": {
+  "ar": "أشهر مشفّر فيديو برمجي في العالم، يقف خلف حصة ضخمة من فيديوهات الإنترنت.",
+  "fr": "L’encodeur vidéo logiciel le plus populaire au monde, à l’origine d’une immense part des vidéos en ligne.",
+  "zh": "全球使用最广泛的视频软件编码器，驱动着海量网络视频内容。"
+ },
+ "features": {
+  "ar": "المميزات",
+  "fr": "Fonctionnalités",
+  "zh": "功能特性"
+ },
+ "flagship_v": {
+  "ar": "مشروعنا الرائد · {v}",
+  "fr": "Notre logiciel phare · {v}",
+  "zh": "旗舰之作 · {v}"
+ },
+ "gi1": {
+  "ar": "اكتب الشيفرة",
+  "fr": "Coder",
+  "zh": "编写代码"
+ },
+ "gi1_d": {
+  "ar": "أصلح خطأً أو طوّر ميزة في VLC أو dav1d أو x264 أو أي مشروع آخر.",
+  "fr": "Corrigez un bug ou développez une fonctionnalité dans VLC, dav1d, x264 ou tout autre projet.",
+  "zh": "为 VLC、dav1d、x264 或其他任何项目修复问题或开发新功能。"
+ },
+ "gi2": {
+  "ar": "ترجم",
+  "fr": "Traduire",
+  "zh": "协助翻译"
+ },
+ "gi2_d": {
+  "ar": "أتِح VLC وموقعه بلغتك.",
+  "fr": "Traduisez VLC et son site web dans votre langue.",
+  "zh": "将 VLC 及其网站本地化为你的语言。"
+ },
+ "gi3": {
+  "ar": "ساعد المستخدمين",
+  "fr": "Aider les utilisateurs",
+  "zh": "帮助用户"
+ },
+ "gi3_d": {
+  "ar": "أجب عن الأسئلة في المنتدى والويكي وIRC.",
+  "fr": "Répondez aux questions sur le forum, le wiki et IRC.",
+  "zh": "在论坛、Wiki 和 IRC 上为其他用户答疑解惑。"
+ },
+ "gi4": {
+  "ar": "اختبر وأبلغ",
+  "fr": "Tester et signaler",
+  "zh": "测试与反馈"
+ },
+ "gi4_d": {
+  "ar": "جرّب الإصدارات التجريبية وأبلغ عما يتعطل.",
+  "fr": "Testez les versions nightly et signalez ce qui ne fonctionne pas.",
+  "zh": "体验每日构建版本，反馈遇到的问题。"
+ },
+ "gi_h": {
+  "ar": "VideoLAN من صنع أناس مثلك",
+  "fr": "VideoLAN existe grâce à des personnes comme vous",
+  "zh": "VideoLAN 由像你一样的人共同构建"
+ },
+ "gi_kick": {
+  "ar": "شارك معنا",
+  "fr": "Contribuer",
+  "zh": "参与贡献"
+ },
+ "gi_p": {
+  "ar": "بوسع الجميع المساهمة، سواء بكتابة الشيفرة أو الترجمة أو التصميم أو الاختبار أو التبرع.",
+  "fr": "Tout le monde peut aider : que vous codiez, parliez une autre langue, fassiez du graphisme, des tests ou simplement un don.",
+  "zh": "每个人都能出一份力：无论你是写代码、懂多门语言、做设计、参与测试，还是直接捐赠支持。"
+ },
+ "h1a": {
+  "ar": "وسائط متعددة مفتوحة المصدر،",
+  "fr": "Le multimédia open source,",
+  "zh": "开源多媒体，"
+ },
+ "h1b": {
+  "ar": "للجميع.",
+  "fr": "pour tous.",
+  "zh": "人人可用。"
+ },
+ "kick": {
+  "ar": "VideoLAN · غير ربحية · 30 عامًا من المصدر المفتوح",
+  "fr": "VideoLAN · association à but non lucratif · 30 ans d’open source",
+  "zh": "VideoLAN · 非营利 · 30 年开源历程"
+ },
+ "l_apps": {
+  "ar": "التطبيقات",
+  "fr": "Applications",
+  "zh": "应用"
+ },
+ "l_apps_d": {
+  "ar": "ما يُثبّته المستخدمون",
+  "fr": "Ce que l’on installe",
+  "zh": "用户安装的软件"
+ },
+ "l_bcast": {
+  "ar": "البث",
+  "fr": "Diffusion",
+  "zh": "广播"
+ },
+ "l_bcast_d": {
+  "ar": "شبكات التلفزيون والاستوديوهات",
+  "fr": "Réseaux TV et studios",
+  "zh": "电视网络与演播室"
+ },
+ "l_codecs": {
+  "ar": "برامج الترميز",
+  "fr": "Codecs",
+  "zh": "编解码器"
+ },
+ "l_codecs_d": {
+  "ar": "تشفير وفك تشفير",
+  "fr": "Décodage et encodage",
+  "zh": "解码与编码"
+ },
+ "l_discs": {
+  "ar": "الأقراص",
+  "fr": "Disques",
+  "zh": "光盘库"
+ },
+ "l_discs_d": {
+  "ar": "DVD وBlu-ray",
+  "fr": "DVD et Blu-ray",
+  "zh": "DVD 与 Blu-ray"
+ },
+ "l_engine": {
+  "ar": "المحرك",
+  "fr": "Moteur",
+  "zh": "引擎"
+ },
+ "l_engine_d": {
+  "ar": "ضمّنه في أي مكان",
+  "fr": "Intégrez-le partout",
+  "zh": "随处嵌入"
+ },
+ "later": {
+  "ar": "التالي",
+  "fr": "Plus tard",
+  "zh": "更晚"
+ },
+ "lede_a": {
+  "ar": "VideoLAN منظمة غير ربحية ومجتمع من المتطوعين يبنون برمجيات وسائط حرة منذ عام 1996:",
+  "fr": "VideoLAN est une association à but non lucratif et une communauté de bénévoles qui conçoit des logiciels multimédias libres depuis 1996 :",
+  "zh": "VideoLAN 是一家非营利组织，也是一个志愿者社区，自 1996 年起持续打造自由多媒体软件："
+ },
+ "lede_b": {
+  "ar": "، فضلاً عن برامج الترميز ومكتبات الأقراص وأدوات البث المدمجة في المتصفحات والهواتف وشبكات التلفزيون التي تستخدمها كل يوم.",
+  "fr": ", ainsi que les codecs, bibliothèques de disques et outils de diffusion intégrés aux navigateurs, téléphones et réseaux de télévision que vous utilisez chaque jour.",
+  "zh": "，以及你每天使用的浏览器、手机和电视网络背后的编解码器、光盘库与广播工具。"
+ },
+ "lede_vlc": {
+  "ar": "VLC media player",
+  "fr": "VLC media player",
+  "zh": "VLC media player"
+ },
+ "meet_team": {
+  "ar": "تعرّف على الفريق",
+  "fr": "Rencontrer l’équipe",
+  "zh": "认识团队"
+ },
+ "mg_all": {
+  "ar": "جميع المشاريع والمطورون",
+  "fr": "Tous les projets et développeurs",
+  "zh": "全部项目与开发者"
+ },
+ "mg_lede": {
+  "ar": "{n} مشروعًا مفتوح المصدر، ومنظمة غير ربحية واحدة.",
+  "fr": "{n} projets open source, une seule association.",
+  "zh": "{n} 个开源项目，一个非营利组织。"
+ },
+ "mg_src": {
+  "ar": "الشيفرة المصدرية",
+  "fr": "Code source",
+  "zh": "源代码"
+ },
+ "more_projects": {
+  "ar": "مشاريع إضافية",
+  "fr": "autres projets",
+  "zh": "更多项目"
+ },
+ "n_1996": {
+  "ar": "مشروع طلابي في École Centrale Paris",
+  "fr": "un projet étudiant à l’École Centrale Paris",
+  "zh": "起源于 École Centrale Paris 的学生项目"
+ },
+ "n_dl": {
+  "ar": "عملية تنزيل لـ VLC مُحصاة منذ عام 2005",
+  "fr": "téléchargements de VLC comptabilisés depuis 2005",
+  "zh": "自 2005 年起统计的 VLC 下载量"
+ },
+ "n_dl_v": {
+  "ar": "7 مليارات+",
+  "fr": "7 milliards+",
+  "zh": "70 亿+"
+ },
+ "n_pj": {
+  "ar": "مشروعًا مفتوح المصدر",
+  "fr": "projets open source",
+  "zh": "个开源项目"
+ },
+ "n_ppl": {
+  "ar": "مساهمًا مذكورًا بالاسم",
+  "fr": "contributeurs crédités",
+  "zh": "位署名贡献者"
+ },
+ "n_vdd": {
+  "ar": "دورة من Dev Days في سبع مدن",
+  "fr": "Dev Days dans sept villes",
+  "zh": "届 Dev Days，遍及七座城市"
+ },
+ "n_zero": {
+  "ar": "إعلانات أو أدوات تتبع أو مستثمرون",
+  "fr": "publicité, pistage ou investisseur",
+  "zh": "广告、追踪器或投资者"
+ },
+ "nums_label": {
+  "ar": "VideoLAN في أرقام",
+  "fr": "VideoLAN en chiffres",
+  "zh": "数字里的 VideoLAN"
+ },
+ "nw_h": {
+  "ar": "آخر أخبار VideoLAN",
+  "fr": "Les dernières nouvelles de VideoLAN",
+  "zh": "VideoLAN 最新动态"
+ },
+ "nw_kick": {
+  "ar": "الأخبار",
+  "fr": "Actualités",
+  "zh": "最新动态"
+ },
+ "nw_news-2026-05-31_t": {
+  "ar": "dav2d: مفكّك ترميز AV2 جديد",
+  "fr": "dav2d, un nouveau décodeur AV2",
+  "zh": "dav2d：全新 AV2 解码器"
+ },
+ "nw_news-2026-05-31_x": {
+  "ar": "يسعدنا الإعلان عن dav2d، مفكّك ترميز صغير وسريع وقابل للنقل لترميز AV2 الجديد، خليفة AV1 وأحدث ترميز فيديو خالٍ من رسوم الملكية الصادر عن Alliance for Open Media. يمثّل dav2d امتدادًا لـ…",
+  "fr": "Nous avons le plaisir d’annoncer dav2d, un décodeur compact, rapide et portable pour le nouveau codec AV2, successeur d’AV1 et dernier codec vidéo libre de droits de l’Alliance for Open Media. dav2d s’inscrit dans la continuité de…",
+  "zh": "我们很高兴地宣布推出 dav2d——一款专为全新 AV2 编解码器打造的轻量、高效、可移植解码器。AV2 是 AV1 的继任者，也是 Alliance for Open Media 发布的最新免版税视频编解码器。dav2d 延续了…"
+ },
+ "nw_news-2026-07-14_t": {
+  "ar": "dav1d 1.5.4",
+  "fr": "dav1d 1.5.4",
+  "zh": "dav1d 1.5.4"
+ },
+ "nw_news-2026-07-14_x": {
+  "ar": "صدر اليوم إصدار ثانوي جديد من dav1d، مفكّك ترميز AV1 الخاص بنا، مُكرَّسٌ للتحسينات والصيانة. يتصدّر هذا الإصدار دعمُ RISC-V، إذ تفوق الدوال المحسَّنة حديثًا نظيراتها المكتوبة بلغة C بمعدل يتراوح بين 2.5x و12x…",
+  "fr": "Une nouvelle version mineure de dav1d, notre décodeur AV1, est disponible aujourd’hui, centrée sur les optimisations et la maintenance. Le point fort de cette version est RISC-V : les fonctions nouvellement optimisées sont entre 2,5x et 12x plus rapides que le C…",
+  "zh": "我们的 AV1 解码器 dav1d 今日发布小版本更新，聚焦性能优化与维护。本次亮点是 RISC-V 支持：新优化函数的速度比 C 实现快 2.5x 到 12x，…"
+ },
+ "nw_news-2026-07-15_t": {
+  "ar": "إصدارات جديدة من libdvdcss وlibdvdread",
+  "fr": "Nouvelles versions de libdvdcss et libdvdread",
+  "zh": "libdvdcss 与 libdvdread 发布新版本"
+ },
+ "nw_news-2026-07-15_x": {
+  "ar": "نُشرت اليوم إصدارات جديدة من libdvdcss (1.6.0) وlibdvdread (7.1). تتمحور أبرز ميزات هذه الإصدارات حول وسائط DVD القابلة للتسجيل (DVD-VR)، ولا سيما فك تشفير CPRM، مع استمرار دعم DVD-Audio…",
+  "fr": "De nouvelles versions de libdvdcss (1.6.0) et libdvdread (7.1) sont publiées aujourd’hui. Les principales nouveautés concernent les supports DVD enregistrables (DVD-VR), notamment le déchiffrement CPRM, dans la continuité des travaux sur le DVD-Audio…",
+  "zh": "libdvdcss（1.6.0）与 libdvdread（7.1）新版本今日正式发布。此次更新最重要的内容围绕可录制 DVD 介质（DVD-VR），包括 CPRM 解密支持，延续了对 DVD-Audio…"
+ },
+ "nw_news-2026-07-16_t": {
+  "ar": "إصدارات جديدة من libbluray وlibaacs",
+  "fr": "Nouvelles versions de libbluray et libaacs",
+  "zh": "libbluray 与 libaacs 发布新版本"
+ },
+ "nw_news-2026-07-16_x": {
+  "ar": "صدرت نسختان جديدتان من libbluray (1.5.0) وlibaacs (0.12.0). تكشف libbluray الآن عن معلومات HDR10+ وDolby Vision والنطاق الديناميكي وفضاء الألوان، فضلًا عن أسماء الفصول، وتُقدّم تحسينات واسعة لـ BD-J،…",
+  "fr": "De nouvelles versions de libbluray (1.5.0) et libaacs (0.12.0) sont disponibles. libbluray expose désormais les informations HDR10+, Dolby Vision, plage dynamique et espace colorimétrique, ainsi que les noms de chapitres, et apporte de nombreuses améliorations BD-J,…",
+  "zh": "libbluray（1.5.0）与 libaacs（0.12.0）新版本现已发布。libbluray 新增了对 HDR10+、Dolby Vision、动态范围与色彩空间信息及章节名称的支持，并带来多项 BD-J 改进、…"
+ },
+ "nw_news-2026-09-22_t": {
+  "ar": "VLC 3.0.24",
+  "fr": "VLC 3.0.24",
+  "zh": "VLC 3.0.24"
+ },
+ "nw_news-2026-09-22_x": {
+  "ar": "يُعدّ VLC 3.0.24 تحديثًا أمنيًا بالغ الأهمية، يشمل أكثر من 130 إصلاحًا أمنيًا في VLC ومكتباته المضمّنة. يرفع هذا الإصدار FFmpeg من 4.4 إلى 8.1.2، ويُحدّث 49 مكتبة خارجية. ومن أبرز الميزات الجديدة دعم فك ترميز ATRAC،…",
+  "fr": "VLC 3.0.24 est une mise à jour de sécurité majeure qui corrige plus de 130 failles dans VLC et ses bibliothèques intégrées. Elle fait passer FFmpeg de la version 4.4 à la version 8.1.2 et met à jour 49 bibliothèques tierces. Parmi les nouveautés : le décodage ATRAC,…",
+  "zh": "VLC 3.0.24 是一次重要安全更新，修复了 VLC 及其附带库中的 130 多处安全漏洞。此版本将 FFmpeg 从 4.4 升级至 8.1.2，并更新了 49 个第三方库。新增功能包括 ATRAC 解码、…"
+ },
+ "o_contact": {
+  "ar": "تواصل معنا",
+  "fr": "Contact",
+  "zh": "联系我们"
+ },
+ "o_h": {
+  "ar": "كل شيء آخر في مكان واحد",
+  "fr": "Tout le reste, au même endroit",
+  "zh": "更多信息，一应俱全"
+ },
+ "o_kick": {
+  "ar": "المنظمة",
+  "fr": "L’association",
+  "zh": "组织"
+ },
+ "o_legal": {
+  "ar": "الشؤون القانونية",
+  "fr": "Mentions légales",
+  "zh": "法律信息"
+ },
+ "o_mirrors": {
+  "ar": "المرايا",
+  "fr": "Miroirs",
+  "zh": "镜像站点"
+ },
+ "o_press": {
+  "ar": "الصحافة",
+  "fr": "Presse",
+  "zh": "媒体资源"
+ },
+ "o_privacy": {
+  "ar": "الخصوصية",
+  "fr": "Vie privée",
+  "zh": "隐私政策"
+ },
+ "o_security": {
+  "ar": "الأمان",
+  "fr": "Sécurité",
+  "zh": "安全公告"
+ },
+ "p_btn": {
+  "ar": "المشاريع والمطورون",
+  "fr": "Projets et développeurs",
+  "zh": "项目与开发者"
+ },
+ "p_h": {
+  "ar": "أكثر بكثير من مجرد مشغل وسائط",
+  "fr": "Bien plus qu’un lecteur multimédia",
+  "zh": "远不止是一款播放器"
+ },
+ "p_kick": {
+  "ar": "المشاريع",
+  "fr": "Projets",
+  "zh": "项目"
+ },
+ "p_p": {
+  "ar": "VLC هو الأشهر، غير أن VideoLAN تُشرف على {n} مشروعًا مفتوح المصدر: مرمِّزات، ومكتبات للأقراص، وأدوات بث تُشغِّل المتصفحات وأنظمة التشغيل وخدمات البث وشبكات التلفزيون.",
+  "fr": "VLC est le plus connu, mais VideoLAN maintient {n} projets open source : des codecs, des bibliothèques de lecture de disques et des outils de diffusion qui font tourner navigateurs, systèmes d’exploitation, services de streaming et réseaux de télévision.",
+  "zh": "VLC 最广为人知，但 VideoLAN 旗下共有 {n} 个开源项目——涵盖编解码器、光盘库与广播工具，为浏览器、操作系统、流媒体服务和电视网络提供底层支持。"
+ },
+ "partners": {
+  "ar": "الشركاء والداعمون",
+  "fr": "Partenaires et soutiens",
+  "zh": "合作伙伴与支持者"
+ },
+ "pe_h": {
+  "ar": "صُنع بأيدي مجتمع",
+  "fr": "Fait par une communauté",
+  "zh": "因社区而生"
+ },
+ "pe_kick": {
+  "ar": "المجتمع",
+  "fr": "Communauté",
+  "zh": "社区成员"
+ },
+ "pe_p": {
+  "ar": "{n} مساهمًا مذكورًا بالاسم في البرمجة والترجمة والتصميم والتوثيق، من أكثر من 40 بلدًا، يلتقون كل عام في VideoLAN Dev Days.",
+  "fr": "{n} contributeurs crédités pour le code, la traduction, le graphisme et la documentation, issus de plus de 40 pays, réunis chaque année lors des VideoLAN Dev Days.",
+  "zh": "来自 40 多个国家的 {n} 位署名贡献者，在代码、翻译、设计与文档各领域共同耕耘，每年齐聚 VideoLAN Dev Days。"
+ },
+ "photo_alt": {
+  "ar": "صورة جماعية من VideoLAN Dev Days 2014",
+  "fr": "Photo de groupe des VideoLAN Dev Days 2014",
+  "zh": "VideoLAN Dev Days 2014 合影"
+ },
+ "r_bitstream": {
+  "ar": "ترويسات التدفق",
+  "fr": "En-têtes de flux",
+  "zh": "流头部工具"
+ },
+ "r_dav1d": {
+  "ar": "مفكك ترميز AV1",
+  "fr": "Décodeur AV1",
+  "zh": "AV1 解码器"
+ },
+ "r_dvblast": {
+  "ar": "بث DVB",
+  "fr": "Diffusion DVB",
+  "zh": "DVB 流传输"
+ },
+ "r_libaacs": {
+  "ar": "AACS وBD+",
+  "fr": "AACS et BD+",
+  "zh": "AACS 与 BD+"
+ },
+ "r_libbluray": {
+  "ar": "تشغيل Blu-ray",
+  "fr": "Lecture Blu-ray",
+  "zh": "Blu-ray 播放"
+ },
+ "r_libdca": {
+  "ar": "مفكك ترميز DTS",
+  "fr": "Décodeur DTS",
+  "zh": "DTS 解码器"
+ },
+ "r_libdvbcsa": {
+  "ar": "تشفير DVB",
+  "fr": "Embrouillage DVB",
+  "zh": "DVB 加扰解扰"
+ },
+ "r_libdvbpsi": {
+  "ar": "جداول MPEG TS",
+  "fr": "Tables MPEG TS",
+  "zh": "MPEG TS 表解析"
+ },
+ "r_libdvdcss": {
+  "ar": "الوصول إلى DVD",
+  "fr": "Accès DVD",
+  "zh": "DVD 解密读取"
+ },
+ "r_libdvdnav": {
+  "ar": "قوائم DVD",
+  "fr": "Menus DVD",
+  "zh": "DVD 菜单导航"
+ },
+ "r_libvlc": {
+  "ar": "محرك وسائط قابل للتضمين",
+  "fr": "Moteur multimédia intégrable",
+  "zh": "可嵌入媒体引擎"
+ },
+ "r_multicat": {
+  "ar": "أدوات البث المتعدد",
+  "fr": "Outils multicast",
+  "zh": "多播工具"
+ },
+ "r_vlc": {
+  "ar": "مشغل وسائط",
+  "fr": "Lecteur multimédia",
+  "zh": "多媒体播放器"
+ },
+ "r_vlma": {
+  "ar": "إدارة البث التلفزيوني",
+  "fr": "Gestionnaire de diffusion TV",
+  "zh": "电视广播管理"
+ },
+ "r_vlmc": {
+  "ar": "محرر فيديو",
+  "fr": "Éditeur vidéo",
+  "zh": "视频编辑器"
+ },
+ "r_x264": {
+  "ar": "مشفّر H.264",
+  "fr": "Encodeur H.264",
+  "zh": "H.264 编码器"
+ },
+ "since_y": {
+  "ar": "منذ {y}",
+  "fr": "depuis {y}",
+  "zh": "始于 {y} 年"
+ },
+ "st_h": {
+  "ar": "أنت تستخدم VideoLAN بالفعل",
+  "fr": "Vous utilisez déjà VideoLAN",
+  "zh": "你早已在使用 VideoLAN"
+ },
+ "st_kick": {
+  "ar": "في صميم الفيديو الذي تشاهده",
+  "fr": "Au cœur de vos vidéos",
+  "zh": "走进你观看的视频"
+ },
+ "st_label": {
+  "ar": "حزمة برمجيات VideoLAN",
+  "fr": "La pile logicielle de VideoLAN",
+  "zh": "VideoLAN 软件技术栈"
+ },
+ "st_p": {
+  "ar": "حتى لو لم تفتح VLC قط، فالأرجح أن شيفرة VideoLAN قد فككت أو شفّرت أو نقلت آخر مقطع فيديو شاهدته. إليك كيف تتلاءم هذه الأجزاء معًا.",
+  "fr": "Même si vous n’avez jamais ouvert VLC, il y a de fortes chances que du code VideoLAN ait décodé, encodé ou acheminé la dernière vidéo que vous avez regardée. Voici comment tout s’articule.",
+  "zh": "即使你从未打开过 VLC，你最近观看的视频也很可能经由 VideoLAN 的代码完成解码、编码或传输。以下是各层组件的协同方式。"
+ },
+ "t1996": {
+  "ar": "تلفزيون الحرم الجامعي",
+  "fr": "Campus TV",
+  "zh": "校园电视"
+ },
+ "t1996_d": {
+  "ar": "بدأ طلاب في École Centrale Paris مشروع VideoLAN لبث الفيديو عبر شبكة الحرم الجامعي.",
+  "fr": "Des élèves de l’École Centrale Paris lancent VideoLAN pour diffuser de la vidéo sur le réseau du campus.",
+  "zh": "École Centrale Paris 的学生启动 VideoLAN 项目，在校园网内流式传输视频。"
+ },
+ "t1998": {
+  "ar": "بداية جديدة",
+  "fr": "Nouveau départ",
+  "zh": "全新启程"
+ },
+ "t1998_d": {
+  "ar": "أُعيدت كتابة الشيفرة من الصفر، فوُضعت أسس VLC كما نعرفه اليوم.",
+  "fr": "Le code est entièrement réécrit, posant les bases du VLC d’aujourd’hui.",
+  "zh": "从零重写全部代码，为今天的 VLC 奠定基础。"
+ },
+ "t2001": {
+  "ar": "برمجيات حرة",
+  "fr": "Logiciel libre",
+  "zh": "走向自由软件"
+ },
+ "t2001_d": {
+  "ar": "في 1 فبراير، وافقت المدرسة على إصدار كل شيء بموجب رخصة GNU GPL.",
+  "fr": "Le 1er février, l’École accepte de tout publier sous licence GNU GPL.",
+  "zh": "2 月 1 日，学校同意以 GNU GPL 协议公开发布全部代码。"
+ },
+ "t2004": {
+  "ar": "x264",
+  "fr": "x264",
+  "zh": "x264 问世"
+ },
+ "t2004_d": {
+  "ar": "انطلق العمل على x264، الذي غدا المشفّر المرجعي لـ H.264.",
+  "fr": "Début des travaux sur x264, qui deviendra l’encodeur H.264 de référence.",
+  "zh": "x264 项目启动，随后成为业界标杆级 H.264 编码器。"
+ },
+ "t2008": {
+  "ar": "أول Dev Days",
+  "fr": "Premiers Dev Days",
+  "zh": "首届 Dev Days"
+ },
+ "t2008_d": {
+  "ar": "اجتمع المجتمع في باريس في أول نسخة من VideoLAN Dev Days.",
+  "fr": "La communauté se réunit à Paris pour les premiers VideoLAN Dev Days.",
+  "zh": "社区在巴黎汇聚，举办首届 VideoLAN Dev Days。"
+ },
+ "t2009": {
+  "ar": "الاستقلال",
+  "fr": "Indépendance",
+  "zh": "独立运作"
+ },
+ "t2009_d": {
+  "ar": "استقلت VideoLAN عن المدرسة وباتت تُدار بمنظمتها غير الربحية المستقلة.",
+  "fr": "VideoLAN se sépare de l’École et devient une association indépendante.",
+  "zh": "VideoLAN 脱离学校，由独立的非营利组织自主运营。"
+ },
+ "t2011": {
+  "ar": "libVLC بترخيص LGPL",
+  "fr": "libVLC passe sous LGPL",
+  "zh": "libVLC 拥抱 LGPL"
+ },
+ "t2011_d": {
+  "ar": "أُعيد ترخيص المحرك ليتمكن أي تطبيق، حرًا كان أم تجاريًا، من تضمينه.",
+  "fr": "Le moteur change de licence pour que toute application, libre ou non, puisse l’intégrer.",
+  "zh": "核心引擎变更许可证，任何自由或专有应用均可直接嵌入。"
+ },
+ "t2012": {
+  "ar": "بدعم من 3,080 شخصًا",
+  "fr": "Soutenu par 3 080 personnes",
+  "zh": "3,080 人众筹支持"
+ },
+ "t2012_d": {
+  "ar": "جمعت حملة Kickstarter مبلغ £47,056 لإحضار VLC إلى Windows 8 وRT وPhone.",
+  "fr": "Une campagne Kickstarter lève £47 056 pour porter VLC sur Windows 8, RT et Phone.",
+  "zh": "通过 Kickstarter 筹集 £47,056，将 VLC 移植到 Windows 8、RT 和 Phone。"
+ },
+ "t2013": {
+  "ar": "العودة إلى iPhone",
+  "fr": "Retour sur iPhone",
+  "zh": "重回 iPhone"
+ },
+ "t2013_d": {
+  "ar": "عاد VLC for iOS إلى App Store مجانًا في جميع البلدان.",
+  "fr": "VLC pour iOS fait son retour sur l’App Store, gratuitement dans tous les pays.",
+  "zh": "VLC for iOS 重返 App Store，在所有国家和地区免费提供。"
+ },
+ "t2016": {
+  "ar": "Apple TV",
+  "fr": "Apple TV",
+  "zh": "登陆 Apple TV"
+ },
+ "t2016_d": {
+  "ar": "وصل VLC إلى شاشة غرفة المعيشة.",
+  "fr": "VLC débarque sur les écrans du salon.",
+  "zh": "VLC 正式进驻客厅大屏。"
+ },
+ "t2017": {
+  "ar": "AV1",
+  "fr": "AV1",
+  "zh": "发力 AV1"
+ },
+ "t2017_d": {
+  "ar": "انضمت VideoLAN إلى Alliance for Open Media لبناء برنامج ترميز خالٍ من رسوم الملكية.",
+  "fr": "VideoLAN rejoint l’Alliance for Open Media pour concevoir un codec libre de droits.",
+  "zh": "VideoLAN 加入 Alliance for Open Media，共同打造免版税编解码器。"
+ },
+ "t2018": {
+  "ar": "dav1d",
+  "fr": "dav1d",
+  "zh": "dav1d 启航"
+ },
+ "t2018_d": {
+  "ar": "انطلق مفكك ترميز AV1 بالتعاون مع مجتمع FFmpeg، وسرعان ما وجد طريقه إلى المتصفحات.",
+  "fr": "Le décodeur AV1 naît avec la communauté FFmpeg et s’intègre rapidement dans les navigateurs.",
+  "zh": "联合 FFmpeg 社区启动 AV1 解码器开发，不久后内置于主流浏览器。"
+ },
+ "t2021": {
+  "ar": "20 عامًا من الحرية",
+  "fr": "20 ans de liberté",
+  "zh": "开源 20 周年"
+ },
+ "t2021_d": {
+  "ar": "عقدان من البرمجيات الحرة وأكثر من 3.5 مليار تنزيل.",
+  "fr": "Deux décennies de logiciel libre et plus de 3,5 milliards de téléchargements.",
+  "zh": "自由软件二十载，累计下载量突破 35 亿次。"
+ },
+ "t2025": {
+  "ar": "ترجمة بالذكاء الاصطناعي",
+  "fr": "Sous-titres par IA",
+  "zh": "AI 字幕"
+ },
+ "t2025_d": {
+  "ar": "في CES، عرضت VideoLAN توليد الترجمات وترجمتها على الجهاز مباشرةً لإصدار VLC 4.0.",
+  "fr": "Au CES, VideoLAN présente la génération et la traduction de sous-titres en local pour VLC 4.0.",
+  "zh": "在 CES 上，VideoLAN 演示了为 VLC 4.0 打造的设备端字幕生成与翻译功能。"
+ },
+ "t2026": {
+  "ar": "ثلاثون عامًا",
+  "fr": "Trente ans",
+  "zh": "三十华诞"
+ },
+ "t2026_d": {
+  "ar": "النسخة الخامسة عشرة من Dev Days في روما، وVLC {v} بأكثر من 130 إصلاحًا أمنيًا، و7 مليارات تنزيل.",
+  "fr": "Les 15es Dev Days à Rome, VLC {v} avec 130+ correctifs de sécurité et 7 milliards de téléchargements.",
+  "zh": "第 15 届 Dev Days 在罗马举行，VLC {v} 带来 130+ 项安全修复，下载量突破 70 亿次。"
+ },
+ "title": {
+  "ar": "VideoLAN — وسائط متعددة مفتوحة المصدر، للجميع",
+  "fr": "VideoLAN — Multimédia open source, pour tous",
+  "zh": "VideoLAN — 开源多媒体，人人可用"
+ },
+ "tl_h": {
+  "ar": "ثلاثون عامًا، 1996–2026",
+  "fr": "Trente ans, 1996–2026",
+  "zh": "三十年历程，1996–2026"
+ },
+ "tl_label": {
+  "ar": "الخط الزمني لـ VideoLAN من 1996 إلى 2026",
+  "fr": "Chronologie de VideoLAN, de 1996 à 2026",
+  "zh": "VideoLAN 发展历程，1996 至 2026"
+ },
+ "trust1": {
+  "ar": "حر ومفتوح المصدر",
+  "fr": "Libre et open source",
+  "zh": "自由且开源"
+ },
+ "trust2": {
+  "ar": "مستقلة وغير ربحية",
+  "fr": "À but non lucratif, indépendant",
+  "zh": "非营利，保持独立"
+ },
+ "trust3": {
+  "ar": "بلا إعلانات، بلا تتبع",
+  "fr": "Sans publicité ni pistage",
+  "zh": "无广告，零追踪"
+ },
+ "v_kick": {
+  "ar": "مشروعنا الرائد",
+  "fr": "Notre logiciel phare",
+  "zh": "旗舰之作"
+ },
+ "v_lede": {
+  "ar": "المشغل الحر ومتعدد المنصات الذي يشغّل كل شيء تقريبًا، ويستخدمه مئات الملايين حول العالم. مبني على libVLC، المحرك ذاته الذي يضمّنه المطورون في تطبيقاتهم.",
+  "fr": "Le lecteur libre et multiplateforme qui lit presque tout, utilisé par des centaines de millions de personnes. Fondé sur libVLC, le même moteur que les développeurs intègrent dans leurs propres applications.",
+  "zh": "免费、跨平台、几乎能播放一切内容，拥有数以亿计的用户。基于 libVLC 构建——同款引擎，开发者也可自由嵌入到自己的应用中。"
+ },
+ "val1": {
+  "ar": "مستقلة",
+  "fr": "Indépendant",
+  "zh": "独立自主"
+ },
+ "val1_d": {
+  "ar": "لا مستثمرون ولا شركة خلفها. جمعية مستقلة غير ربحية بموجب القانون الفرنسي منذ عام 2009.",
+  "fr": "Aucun investisseur, aucune entreprise derrière. Une association autonome à but non lucratif de droit français depuis 2009.",
+  "zh": "无投资人，无企业控制。自 2009 年起依法注册为法国独立非营利组织。"
+ },
+ "val2": {
+  "ar": "مفتوحة",
+  "fr": "Ouvert",
+  "zh": "开放共享"
+ },
+ "val2_d": {
+  "ar": "كل سطر من الشيفرة برمجيات حرة، صادرة بموجب GPL وLGPL وBSD وغيرها من الرخص المفتوحة.",
+  "fr": "Chaque ligne de code est un logiciel libre, publié sous GPL, LGPL, BSD et autres licences libres.",
+  "zh": "每一行代码都是自由软件，基于 GPL、LGPL、BSD 等开源许可证发布。"
+ },
+ "val3": {
+  "ar": "تحترم الخصوصية",
+  "fr": "Privé",
+  "zh": "保护隐私"
+ },
+ "val3_d": {
+  "ar": "بلا إعلانات، بلا تتبع، ولا بيع للبيانات. لا الآن ولا في أي وقت.",
+  "fr": "Pas de publicité, aucun pistage, aucune donnée vendue. Ni maintenant, ni jamais.",
+  "zh": "无广告，零追踪，绝不出售数据。现在不会，将来也不会。"
+ },
+ "val4": {
+  "ar": "عالمية",
+  "fr": "Mondial",
+  "zh": "遍及全球"
+ },
+ "val4_d": {
+  "ar": "مطورون من أكثر من 40 دولة؛ وتُرجم VLC إلى أكثر من 100 لغة.",
+  "fr": "Des développeurs de plus de 40 pays ; VLC traduit dans plus de 100 langues.",
+  "zh": "开发者来自 40 多个国家和地区；VLC 已翻译为 100 多种语言。"
+ },
+ "vdd_h": {
+  "ar": "{n} دورة، من باريس إلى روما",
+  "fr": "{n} éditions, de Paris à Rome",
+  "zh": "{n} 届大会，从巴黎到罗马"
+ },
+ "vdd_p": {
+  "ar": "يجتمع المجتمع سنويًا على مدى يومين أو ثلاثة للمحاضرات والبرمجة المشتركة، إلى جانب FFmpeg وx264 وKodi وأصدقاء آخرين. كما تحضر VideoLAN بجناح في FOSDEM وCES وSCaLE وCOSCUP وOpen Source Experience.",
+  "fr": "Chaque année, la communauté se retrouve deux ou trois jours pour des conférences et du hacking, aux côtés de FFmpeg, x264, Kodi et d’autres. VideoLAN tient également un stand au FOSDEM, au CES, au SCaLE, à la COSCUP et à l’Open Source Experience.",
+  "zh": "社区每年齐聚两至三天，共同开展技术演讲与协作开发，携手 FFmpeg、x264、Kodi 及各方伙伴。VideoLAN 还常年在 FOSDEM、CES、SCaLE、COSCUP 和 Open Source Experience 设立展位。"
+ },
+ "vp1": {
+  "ar": "يشغّل كل شيء",
+  "fr": "Lit tous les formats",
+  "zh": "万能播放"
+ },
+ "vp1_d": {
+  "ar": "ملفات وأقراص وكاميرات ويب وأجهزة وتدفقات بث، دون الحاجة إلى تثبيت أي برامج ترميز إضافية.",
+  "fr": "Fichiers, disques, webcams, périphériques et flux, sans aucun pack de codecs à installer.",
+  "zh": "支持文件、光盘、摄像头、外接设备和流媒体，无需安装任何编解码器包。"
+ },
+ "vp2": {
+  "ar": "سريع في كل مكان",
+  "fr": "Rapide sur tout matériel",
+  "zh": "处处流畅"
+ },
+ "vp2_d": {
+  "ar": "فك ترميز بالعتاد على معظم المنصات، من دقة 8K HDR إلى الحواسيب المحمولة القديمة.",
+  "fr": "Décodage matériel sur la plupart des plateformes, de la 8K HDR aux anciens ordinateurs portables.",
+  "zh": "在主流平台上支持硬件解码，从 8K HDR 到老旧笔记本均可流畅运行。"
+ },
+ "vp3": {
+  "ar": "على كل شاشة",
+  "fr": "Sur tous vos écrans",
+  "zh": "覆盖所有屏幕"
+ },
+ "vp3_d": {
+  "ar": "Windows وmacOS وLinux وAndroid وiOS وApple TV وChromeOS وغيرها.",
+  "fr": "Windows, macOS, Linux, Android, iOS, Apple TV, ChromeOS et bien plus.",
+  "zh": "支持 Windows、macOS、Linux、Android、iOS、Apple TV、ChromeOS 等平台。"
+ },
+ "vp4": {
+  "ar": "خصوصية بالتصميم",
+  "fr": "Respectueux de votre vie privée",
+  "zh": "天生保护隐私"
+ },
+ "vp4_d": {
+  "ar": "بلا إعلانات، بلا تتبع، بلا حسابات. أبدًا.",
+  "fr": "Sans publicité, sans pistage, sans compte. Jamais.",
+  "zh": "无广告、零追踪、无需账号。始终如一。"
+ },
+ "your_app": {
+  "ar": "تطبيقك",
+  "fr": "Votre application",
+  "zh": "你的应用"
+ }
+}

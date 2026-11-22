@@ -2,6 +2,26 @@
 
 All notable changes to this project. Dates are in Europe/Lisbon time.
 
+## [1.3.0] — 2026-11-22
+
+The VideoLAN landing in all four languages.
+
+### Added
+- French, Chinese and Arabic VideoLAN landings: every string of the landing, the Projects menu, the brand line and the five latest news cards (172 landing strings + 10 news strings per language).
+- `tools/org_strings.py`: one English source table with translator context; `content/org_i18n.json` holds the translations.
+- `tools/translate_org.py`: two OpenRouter passes per language. A fast multilingual model drafts (Gemini 3.8 Flash), then a stronger model rereads as a native-speaking editor and rewrites for natural wording, rhythm and logic (Claude Sonnet 4.6). Validates keys, placeholders and numbers, applies French typography, only re-sends changed strings, and logs usage.
+- The build refuses to switch a language to the landing until every string is translated.
+
+### Fixed
+- Right-to-left alignment of Latin project names in Arabic cards, tiles and menu.
+- Licence and year line under each project no longer breaks.
+- Numbers strip keeps big figures on one line ("7 milliards+").
+- Locale number grouping (French "1 062").
+
+### Checked
+- Layout audit on 7 page types × 4 languages × 13 widths (320–2560 px): no overflow, no text under 11.5 px, no target under 24 px, no clipped text.
+- axe-core: 0 violations on every landing, light and dark, phone and desktop, with the Projects menu open.
+
 ## [1.2.0] — 2026-11-22
 
 Every VideoLAN project gets the spotlight, with VLC still first.

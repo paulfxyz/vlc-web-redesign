@@ -1706,3 +1706,12 @@ html.fx .bento .bt{animation:btIn .6s var(--ease) both;animation-delay:calc(.15s
 @media (max-width:1180px) and (min-width:901px){.bento{grid-template-columns:repeat(3,minmax(0,1fr))}.bt-vlc{grid-column:1/-1;grid-row:auto}}
 @media (max-width:900px){.og-hero .hero-g{grid-template-columns:1fr}}
 @media (max-width:640px){.bento{grid-template-columns:1fr 1fr;gap:.55rem}.bt-vlc{grid-column:1/-1;grid-row:auto;padding:.7rem .7rem 0}.bt-cap{position:relative;inset:auto;margin:.7rem -.0rem .7rem}.bt-s{min-height:104px}.bt-cap small{display:none}}
+/* i18n polish */
+html[dir=rtl] :is(.bt b,.bt-cap b,.sk-fact b,.pi-t b,.mg-i b,.person h3,.vband h2,.sk-chip)[dir=ltr]{text-align:right}
+.bt-s{padding-top:calc(.6rem + 46px + .5rem)}
+.kstrip div>b{white-space:nowrap}
+.kstrip .wrap{grid-template-columns:repeat(6,minmax(0,auto));justify-content:space-between;column-gap:1.4rem}
+@media (max-width:1100px){.kstrip .wrap{grid-template-columns:repeat(3,minmax(0,1fr));justify-content:stretch}}
+@media (max-width:640px){.kstrip .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kstrip div>span{max-width:15rem}
+:lang(fr) .og-hero h1,:lang(ar) .og-hero h1{font-size:clamp(2.3rem,1.5rem + 3.2vw,4rem)}

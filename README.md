@@ -15,7 +15,7 @@ Everything is live at **[vlc.paulfleury.com](https://vlc.paulfleury.com)**. Pref
 [![live: vlc.paulfleury.com](https://img.shields.io/badge/live-vlc.paulfleury.com-ff8800?style=for-the-badge&labelColor=282828)](https://vlc.paulfleury.com)
 [![download: vlc-web-redesign.zip](https://img.shields.io/badge/download-vlc--web--redesign.zip-0a0a0a?style=for-the-badge&labelColor=282828)](https://vlc.paulfleury.com/vlc-web-redesign.zip)
 
-[![version: 1.2.0](https://img.shields.io/badge/version-1.2.0-ff8800?style=flat-square&labelColor=282828)](CHANGELOG.md)
+[![version: 1.3.0](https://img.shields.io/badge/version-1.3.0-ff8800?style=flat-square&labelColor=282828)](CHANGELOG.md)
 [![pages: 1,236](https://img.shields.io/badge/pages-1%2C236-0a0a0a?style=flat-square&labelColor=282828)](#-whats-inside)
 [![i18n: EN · FR · 中文 · العربية](https://img.shields.io/badge/i18n-EN%20%C2%B7%20FR%20%C2%B7%20%E4%B8%AD%E6%96%87%20%C2%B7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-0a0a0a?style=flat-square&labelColor=282828)](#-four-languages-one-rtl)
 [![RTL: Arabic](https://img.shields.io/badge/RTL-Arabic-0a0a0a?style=flat-square&labelColor=282828)](#-four-languages-one-rtl)
@@ -67,7 +67,7 @@ videolan.org carries twenty years of content: the player, libVLC, a dozen sister
 
 ### 🏛️ VideoLAN, not just VLC
 
-Since 1.1.0 the English homepage presents the whole organisation, built from what videolan.org already publishes (the about page, the 25 press releases, the events archive, the download statistics). VLC stays the star of the hero and links to its own home at [`/p/vlc.html`](https://vlc.paulfleury.com/p/vlc.html).
+Since 1.1.0 the homepage presents the whole organisation (in all four languages since 1.3.0), built from what videolan.org already publishes (the about page, the 25 press releases, the events archive, the download statistics). VLC stays the star of the hero and links to its own home at [`/p/vlc.html`](https://vlc.paulfleury.com/p/vlc.html).
 
 | Section | What it shows |
 |---|---|
@@ -94,7 +94,16 @@ Since 1.1.0 the English homepage presents the whole organisation, built from wha
 </tr>
 </table>
 
-The VLC home leads with one job: get the right VLC. The main button already knows your system (Windows 64-bit, Apple Silicon or Intel, Android, iPhone), points at the real file, and shows its size. Below it: real player mockups built in HTML and CSS with Blender open movies, the format wall, features, projects, news and the non-profit. French, Chinese and Arabic still open on the VLC home until the landing is translated.
+### 🌍 How the landing is translated
+
+Every landing string lives once in English in [`tools/org_strings.py`](tools/org_strings.py), with a note on where it appears. [`tools/translate_org.py`](tools/translate_org.py) runs two passes per language through [OpenRouter](https://openrouter.ai):
+
+1. **Translate** with a fast multilingual model (Gemini 3.8 Flash).
+2. **Proofread as a native speaker** with a stronger model (Claude Sonnet 4.6), asked to rewrite anything that sounds translated: wording, rhythm, logic between sentences, consistent terms, local typography.
+
+The script checks every key, placeholder and number, only re-sends strings whose English changed, and logs token usage in `content/org_i18n.log.json`. The build will not switch a language to the landing until all its strings exist.
+
+The VLC home leads with one job: get the right VLC. The main button already knows your system (Windows 64-bit, Apple Silicon or Intel, Android, iPhone), points at the real file, and shows its size. Below it: real player mockups built in HTML and CSS with Blender open movies, the format wall, features, projects, news and the non-profit. The landing is available in English, French, Chinese and Arabic (right-to-left).
 
 <div align="center"><img src=".github/img/mobile.png" alt="Five phone screens: English home, French download centre, the download chooser, Chinese features and Arabic home in right-to-left" width="100%"></div>
 
