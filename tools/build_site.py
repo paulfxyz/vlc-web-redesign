@@ -302,7 +302,7 @@ def head(c, title, desc, slug, cur=''):
 <a class="btn btn-gh btn-sm hide-md" href="{c.page('contribute')}" data-donate>{c.ico('heart', 'ic heart')}{e(c.t('donate'))}</a>
 <details class="menu"><summary class="ib" aria-label="{e(c.t('menu'))}">{c.ico('menu')}</summary><div class="drawer">{''.join(f'<a href="{nav_href(c, k)}">{c.ico(NAV_ICO[k])}{e(c.t(l))}</a>' for k, l in NAV)}<a href="{c.page('contribute')}" data-donate>{c.ico('heart', 'ic heart')}{e(c.t('donate'))}</a></div></details>
 </div></div></header>
-<script>(function(){{var h=document.documentElement,w=document.querySelector('.hd .wrap');if(!w||!w.scrollWidth)return;function f(){{h.classList.remove('navc');if(innerWidth>1180&&w.scrollWidth>w.clientWidth)h.classList.add('navc')}}f();addEventListener('resize',f);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f)}})()</script>
+<script>(function(){{var h=document.documentElement,w=document.querySelector('.hd .wrap');if(!w||!w.scrollWidth)return;function o(){{var W=w.getBoundingClientRect(),t=w.querySelector('.tools'),n=w.querySelector('.nav');if(!t||!n)return false;var T=t.getBoundingClientRect(),N=n.getBoundingClientRect(),cs=getComputedStyle(w),R=W.right-parseFloat(cs.paddingRight),Lf=W.left+parseFloat(cs.paddingLeft);return T.right>R+1||T.left<Lf-1||N.right>R+1||N.left<Lf-1||(N.right>T.left+1&&N.left<T.right-1)}}function f(){{h.classList.remove('navc','navs');if(innerWidth<=1180||!o())return;h.classList.add('navs');if(o())h.classList.add('navc')}}f();addEventListener('resize',f);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f)}})()</script>
 <main id="main" tabindex="-1">'''
 
 def foot(c):
