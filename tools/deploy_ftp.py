@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Mirror dist/ to vlc.paulfleury.com/public_html over FTP (parallel, skips unchanged by size+manifest)."""
 import ftplib, os, sys, pathlib, hashlib, json, threading, queue
-HOST, USER = 'ftp.paulfleury.com', 'vlc2@paulfleury.com'
+HOST = 'ftp.paulfleury.com'
+USER = os.environ.get('VLC_FTP_USER', 'vlc2@paulfleury.com')
 PASS = os.environ.get('VLC_FTP_PASS')
 REMOTE = '/vlc.paulfleury.com/public_html'
 DIST = pathlib.Path(__file__).resolve().parent.parent / 'dist'

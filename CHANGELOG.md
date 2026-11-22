@@ -2,6 +2,19 @@
 
 All notable changes to this project. Dates are in Europe/Lisbon time.
 
+## [1.2.0] — 2026-11-22
+
+Every VideoLAN project gets the spotlight, with VLC still first.
+
+### Added
+- Projects menu: a full panel under *Projects* listing all 16 projects by audience, each with its illustration and a one-line role, in all four languages; closes on Escape, outside click or focus leaving.
+- Hero project grid on the English landing: VLC as the large tile, plus dav1d, x264, libVLC, libbluray, DVBlast and "+10 more projects".
+
+### Changed
+- Hero text presents VideoLAN as a non-profit and a community, then VLC and the codecs, disc libraries and broadcast tools.
+- "You already use VideoLAN" now comes before the VLC band.
+- Navigation order: VLC, Projects, Download, News, Support, Contribute, About.
+
 ## [1.1.0] — 2026-11-22
 
 VideoLAN, not just VLC. The English homepage now presents the whole organisation.

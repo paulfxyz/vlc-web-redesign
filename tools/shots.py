@@ -18,6 +18,7 @@ SHOTS = [
     ('home-light', 'index.html', 1440, 900, 'light', WIN, None, 1),
     ('home-dark', 'index.html', 1440, 900, 'dark', WIN, None, 1),
     ('vlc-page', 'p/vlc.html', 1440, 900, 'light', WIN, None, 1),
+    ('org-menu', 'index.html', 1440, 900, 'light', WIN, '.mega summary', 1),
     ('org-stack', 'index.html', 1440, 900, 'light', WIN, 'scroll:#stack', 1),
     ('org-story', 'index.html', 1440, 900, 'dark', WIN, 'scroll:#about .rail-h', 1),
     ('org-people', 'index.html', 1440, 900, 'light', WIN, 'scroll:.vdd', 1),

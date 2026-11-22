@@ -15,7 +15,7 @@ Everything is live at **[vlc.paulfleury.com](https://vlc.paulfleury.com)**. Pref
 [![live: vlc.paulfleury.com](https://img.shields.io/badge/live-vlc.paulfleury.com-ff8800?style=for-the-badge&labelColor=282828)](https://vlc.paulfleury.com)
 [![download: vlc-web-redesign.zip](https://img.shields.io/badge/download-vlc--web--redesign.zip-0a0a0a?style=for-the-badge&labelColor=282828)](https://vlc.paulfleury.com/vlc-web-redesign.zip)
 
-[![version: 1.1.0](https://img.shields.io/badge/version-1.1.0-ff8800?style=flat-square&labelColor=282828)](CHANGELOG.md)
+[![version: 1.2.0](https://img.shields.io/badge/version-1.2.0-ff8800?style=flat-square&labelColor=282828)](CHANGELOG.md)
 [![pages: 1,236](https://img.shields.io/badge/pages-1%2C236-0a0a0a?style=flat-square&labelColor=282828)](#-whats-inside)
 [![i18n: EN · FR · 中文 · العربية](https://img.shields.io/badge/i18n-EN%20%C2%B7%20FR%20%C2%B7%20%E4%B8%AD%E6%96%87%20%C2%B7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-0a0a0a?style=flat-square&labelColor=282828)](#-four-languages-one-rtl)
 [![RTL: Arabic](https://img.shields.io/badge/RTL-Arabic-0a0a0a?style=flat-square&labelColor=282828)](#-four-languages-one-rtl)
@@ -71,14 +71,17 @@ Since 1.1.0 the English homepage presents the whole organisation, built from wha
 
 | Section | What it shows |
 |---|---|
-| **Hero** | VideoLAN in one sentence, the detected VLC download, and the VLC mockups as a link to the player's page |
+| **Projects menu** | One click on *Projects* opens all 16 projects by audience, with illustrations and roles, in every language |
+| **Hero** | VideoLAN in one sentence, the detected VLC download, and a project grid: VLC as the large tile, then dav1d, x264, libVLC, libbluray, DVBlast and 10 more |
 | **In numbers** | 1996 · 7 billion+ VLC downloads counted since 2005 · 16 projects · 1,062 named contributors · 15 Dev Days · 0 ads |
-| **VLC, our flagship** | Four promises, TV and iPhone mockups, links to downloads, features and libVLC |
 | **You already use VideoLAN** | The VideoLAN stack in five layers (apps, engine, codecs, discs, broadcast), with dav1d, x264 and libVLC called out |
+| **VLC, our flagship** | Four promises, TV and iPhone mockups, links to downloads, features and libVLC |
 | **A project, and a non-profit** | Values, then a scrollable 30-year timeline: 1996 campus TV to the 15th Dev Days in Rome |
 | **Projects** | All 16 projects grouped for everyone, for broadcasters, for developers |
 | **People** | Board, Dev Days 2014 photo, all 15 Video Dev Days editions (Paris to Rome), partners |
 | **News, Get involved, The organisation** | Latest posts, four ways to help, donation, press, legal, privacy, security, mirrors, contact |
+
+<div align="center"><img src=".github/img/org-menu.png" alt="The Projects menu: all 16 VideoLAN projects grouped by audience" width="100%"></div>
 
 <table>
 <tr>

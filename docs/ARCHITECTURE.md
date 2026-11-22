@@ -25,6 +25,7 @@ tools/lite.py (simple page) ──────────┘                   
 | `head()` / `foot()` | shared shell: old-browser guard, theme bootstrap, header, settings button, footer, `hreflang`, canonical, Open Graph |
 | `home(c, slug)` | VLC home (`p/vlc.html` everywhere, and `index.html` for languages without the landing), mockups |
 | `org_home()` | English VideoLAN landing (`index.html`): stack, timeline, projects, people, Dev Days (`VDD`) |
+| `mega()` | the *Projects* menu panel (all 16 projects, `ROLE` one-liners in 4 languages) |
 | `dl_template()` | the `<template id="dlt">` holding the download chooser, shared by both homes |
 | `download_block()` | the download centre, reused by the download page and the chooser |
 | `content_page()` | every other page: reading layout, or the project layout (`band()` + `directory()`) for projects |
